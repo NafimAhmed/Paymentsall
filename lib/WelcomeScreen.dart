@@ -29,97 +29,99 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          const SizedBox(height: 10,),
-          SafeArea(
-            child: GFIntroScreen(
-              height: 400,
-              slides: slides(),
-               border: Border.all(color: Colors.white),
-              pageController: _pageController,
-              introScreenBottomNavigationBar: GFIntroScreenBottomNavigationBar(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 10,),
+            SafeArea(
+              child: GFIntroScreen(
+                height: 400,
+                slides: slides(),
+                 border: Border.all(color: Colors.white),
                 pageController: _pageController,
-                pageCount: slideList.length,
-                currentIndex: initialPage,
-                navigationBarHeight: 50,
-                navigationBarColor: Colors.deepOrange.shade50,
-                showDivider: false,
-                dotHeight: 10,
-                dotWidth: 12,
-                dotShape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.grey,width: 1),
-                   borderRadius: BorderRadius.circular(3)
+                introScreenBottomNavigationBar: GFIntroScreenBottomNavigationBar(
+                  pageController: _pageController,
+                  pageCount: slideList.length,
+                  currentIndex: initialPage,
+                  navigationBarHeight: 50,
+                  navigationBarColor: Colors.deepOrange.shade50,
+                  showDivider: false,
+                  dotHeight: 10,
+                  dotWidth: 12,
+                  dotShape: RoundedRectangleBorder(
+                    side: const BorderSide(color: Colors.grey,width: 1),
+                     borderRadius: BorderRadius.circular(3)
+                  ),
+                  inactiveColor: Colors.grey,
+                  activeColor: GFColors.LIGHT,
+                 // dotMargin: EdgeInsets.symmetric(horizontal: 6),
+                  showPagination: true,
                 ),
-                inactiveColor: Colors.grey,
-                activeColor: GFColors.LIGHT,
-               // dotMargin: EdgeInsets.symmetric(horizontal: 6),
-                showPagination: true,
+                currentIndex: initialPage,
+                pageCount: slideList.length,
               ),
-              currentIndex: initialPage,
-              pageCount: slideList.length,
             ),
-          ),
-          const SizedBox(height: 20,),
-          const Text('Easy Online Payment',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),
-          const SizedBox(height: 10,),
-          const Text('Make your payment experience more better today.No additional admin fee',
-            style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal),textAlign: TextAlign.center,),
-          const SizedBox(height: 40,),
-          Container(
-            height: 50,
-            width: 360,
-            margin: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(4.0),
-                color: Colors.deepOrange.shade50
-            ),
-            child: TextButton(
-              style: ButtonStyle(
-                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                overlayColor: MaterialStateProperty.all(Colors.transparent),
+            const SizedBox(height: 20,),
+            const Text('Easy Online Payment',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),
+            const SizedBox(height: 10,),
+            const Text('Make your payment experience more better today.No additional admin fee',
+              style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal),textAlign: TextAlign.center,),
+            const SizedBox(height: 40,),
+            Container(
+              height: 50,
+              width: 360,
+              margin: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.0),
+                  color: Colors.deepOrange.shade50
               ),
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const LoginPage();
-                    },
-                  ),
-                );
-              },
-              child: const Text('Login',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal,color: Colors.black),),
-            ),
-          ),
-          Container(
-            height: 50,
-            width: 360,
-            margin: const EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-                border: Border.all(color: Colors.grey.shade400,width: 1.0),
-                borderRadius: BorderRadius.circular(4.0),
-                color: Colors.white
-            ),
-            child: TextButton(
-              style: ButtonStyle(
-                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                overlayColor: MaterialStateProperty.all(Colors.transparent),
+              child: TextButton(
+                style: ButtonStyle(
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                ),
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const LoginPage();
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Login',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal,color: Colors.black),),
               ),
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SignUpPage();
-                    },
-                  ),
-                );
-              },
-              child: const Text('Sign Up',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal,color: Colors.black),),
             ),
-          ),
-        ],
+            Container(
+              height: 50,
+              width: 360,
+              margin: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey.shade400,width: 1.0),
+                  borderRadius: BorderRadius.circular(4.0),
+                  color: Colors.white
+              ),
+              child: TextButton(
+                style: ButtonStyle(
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                ),
+                onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const SignUpPage();
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Sign Up',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal,color: Colors.black),),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:payments_all_app/WelcomeScreen.dart';
-import 'package:payments_all_app/welcomePage.dart';
-
 
 void main() {
   runApp(const MyApp());
