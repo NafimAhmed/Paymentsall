@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:getwidget/colors/gf_color.dart';
 import 'package:getwidget/components/intro_screen/gf_intro_screen.dart';
 import 'package:getwidget/components/intro_screen/gf_intro_screen_bottom_navigation_bar.dart';
+import 'package:payments_all_app/Login%20&%20Sign%20up/signUp/SignUpPage.dart';
 
 import 'Login & Sign up/login/LoginPage.dart';
 
@@ -105,7 +106,16 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 shadowColor: MaterialStateProperty.all(Colors.transparent),
                 overlayColor: MaterialStateProperty.all(Colors.transparent),
               ),
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const SignUpPage();
+                    },
+                  ),
+                );
+              },
               child: const Text('Sign Up',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal,color: Colors.black),),
             ),
           ),
