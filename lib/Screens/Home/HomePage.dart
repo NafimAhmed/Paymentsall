@@ -6,6 +6,7 @@ import 'package:payments_all_app/Screens/Home/BillPay.dart';
 import 'Add Money/Add Money.dart';
 import 'Mobile Recharge Page.dart';
 import 'SendMoneyPage.dart';
+import 'contacts_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -156,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return MobileRechargePage();
+                                  return ContactsPage();
                                 },
                               ),
                             );
