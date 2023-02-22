@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
 
 // class Operator{
 //    int id;
@@ -9,15 +10,22 @@ import 'package:flutter/material.dart';
 // );
 // }
 
-class MobileRechargePage extends StatefulWidget {
-  const MobileRechargePage({Key? key}) : super(key: key);
+// class MobileRechargePage extends StatefulWidget {
+//   const MobileRechargePage({Key? key, required this.contact}) : super(key: key);
+//
+//   final Contact contact;
+//   //ContactPage(this.contact);
+//
+//   @override
+//   State<MobileRechargePage> createState() => _MobileRechargePageState();
+// }
 
-  @override
-  State<MobileRechargePage> createState() => _MobileRechargePageState();
-}
-
-class _MobileRechargePageState extends State<MobileRechargePage> {
+class MobileRechargePag extends StatelessWidget {
   final TextEditingController _mobileNumber=TextEditingController();
+
+  final Contact contacts;
+
+  //_mobileNumber= " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
   //TextEditingController _operator=TextEditingController();
 
     String? _selected;
@@ -48,6 +56,8 @@ class _MobileRechargePageState extends State<MobileRechargePage> {
       'name': 'Teletalk'
     },
   ];
+
+   MobileRechargePag({super.key, required this.contacts});
 
   // static List<Operator> operatorList(){
   //   return <Operator>[
@@ -95,7 +105,7 @@ class _MobileRechargePageState extends State<MobileRechargePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20,),
-                  Text('   Mobile Number',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
+                  Text(' Phone Number : ',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
@@ -105,18 +115,19 @@ class _MobileRechargePageState extends State<MobileRechargePage> {
                           borderRadius: BorderRadius.circular(6.0),
                           color: Colors.white
                       ),
-                      child: TextField(
-                        controller: _mobileNumber,
-                        keyboardType: TextInputType.number,
-                        cursorColor: Colors.red.shade900,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.grey,),
-                          hintText: 'Pre-paid/Post-paid',
-                          hintStyle: TextStyle(color: Colors.grey.shade400),
-                          suffixIcon: Icon(Icons.contact_phone_outlined),
-                          suffixIconColor: Color(0xFFFCDEDE),
-                        ),
+                      child: Text(
+                           " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
+                        // controller: _mobileNumber,
+                        // keyboardType: TextInputType.number,
+                        // cursorColor: Colors.red.shade900,
+                        // decoration: InputDecoration(
+                        //   border: InputBorder.none,
+                        //   prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.grey,),
+                        //   hintText: 'Pre-paid/Post-paid',
+                        //   hintStyle: TextStyle(color: Colors.grey.shade400),
+                        //   suffixIcon: Icon(Icons.contact_phone_outlined),
+                        //   suffixIconColor: Color(0xFFFCDEDE),
+                        // ),
                       ),
                     ),
                   ),
@@ -152,9 +163,9 @@ class _MobileRechargePageState extends State<MobileRechargePage> {
                                   //value: _selected.isEmpty ? _selected : null,
                                   value: _selected,
                                   onChanged: (newValue){
-                                    setState(() {
-                                      _selected=newValue as String ;
-                                    });
+                                    // setState(() {
+                                    //   _selected=newValue as String ;
+                                    // });
                                   },
                                   items: _operatorList.map((e) {
                                     return DropdownMenuItem(

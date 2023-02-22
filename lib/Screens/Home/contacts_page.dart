@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 
+import 'Mobile Recharge Page.dart';
+
 class ContactsPage extends StatefulWidget {
   @override
   _ContactsPageState createState() => _ContactsPageState();
@@ -45,7 +47,7 @@ class _ContactsPageState extends State<ContactsPage> {
               final fullContact =
               await FlutterContacts.getContact(_contacts![i].id);
               await Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => ContactPage(fullContact!)));
+                  MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:fullContact!)));
             }));
   }
 }
