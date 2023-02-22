@@ -8,6 +8,7 @@ import 'CashOutPage.dart';
 import 'Merchant Pay.dart';
 import 'Mobile Recharge Page.dart';
 import 'SendMoneyPage.dart';
+import 'contact_page_send_money.dart';
 import 'contacts_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,6 +19,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return SendMoneyPage();
+                          return ContactPageSendMoney();
                         },
                       ),
                     );

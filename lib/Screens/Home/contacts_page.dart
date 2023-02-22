@@ -5,6 +5,7 @@ import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 
 import 'Mobile Recharge Page.dart';
+import 'SendMoneyPage.dart';
 
 class ContactsPage extends StatefulWidget {
   @override
@@ -35,6 +36,7 @@ class _ContactsPageState extends State<ContactsPage> {
       home: Scaffold(
           appBar: AppBar(title: Text('flutter_contacts_example')),
           body: _body()));
+
 
   Widget _body() {
     if (_permissionDenied) return Center(child: Text('Permission denied'));

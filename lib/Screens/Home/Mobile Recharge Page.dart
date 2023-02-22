@@ -1,25 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 
-// class Operator{
-//    int id;
-//    String name;
-//    Image images;
-//   Operator(
-//      this.id, this.name, this.images
-// );
-// }
-
-// class MobileRechargePage extends StatefulWidget {
-//   const MobileRechargePage({Key? key, required this.contact}) : super(key: key);
-//
-//   final Contact contact;
-//   //ContactPage(this.contact);
-//
-//   @override
-//   State<MobileRechargePage> createState() => _MobileRechargePageState();
-// }
-
 class MobileRechargePag extends StatelessWidget {
   final TextEditingController _mobileNumber=TextEditingController();
 
@@ -58,16 +39,6 @@ class MobileRechargePag extends StatelessWidget {
   ];
 
    MobileRechargePag({super.key, required this.contacts});
-
-  // static List<Operator> operatorList(){
-  //   return <Operator>[
-  //     Operator( 1,  'Airtel',  Image.asset('assets/images/airtel.png')),
-  //     Operator( 2,  'Banglalink',  Image.asset('assets/images/banglalik.png')),
-  //     Operator( 3,  'Grameenphone',  Image.asset('assets/images/grameenphone.png')),
-  //     Operator( 4,  'Robi',  Image.asset('assets/images/robi.png')),
-  //     Operator( 5,  'Teletalk', Image.asset('assets/images/TeleTalk.png')),
-  //   ];
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -115,19 +86,25 @@ class MobileRechargePag extends StatelessWidget {
                           borderRadius: BorderRadius.circular(6.0),
                           color: Colors.white
                       ),
-                      child: Text(
-                           " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
-                        // controller: _mobileNumber,
-                        // keyboardType: TextInputType.number,
-                        // cursorColor: Colors.red.shade900,
-                        // decoration: InputDecoration(
-                        //   border: InputBorder.none,
-                        //   prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.grey,),
-                        //   hintText: 'Pre-paid/Post-paid',
-                        //   hintStyle: TextStyle(color: Colors.grey.shade400),
-                        //   suffixIcon: Icon(Icons.contact_phone_outlined),
-                        //   suffixIconColor: Color(0xFFFCDEDE),
-                        // ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(height: 15,),
+                          Text(
+                               " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
+                            // controller: _mobileNumber,
+                            // keyboardType: TextInputType.number,
+                            // cursorColor: Colors.red.shade900,
+                            // decoration: InputDecoration(
+                            //   border: InputBorder.none,
+                            //   prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.grey,),
+                            //   hintText: 'Pre-paid/Post-paid',
+                            //   hintStyle: TextStyle(color: Colors.grey.shade400),
+                            //   suffixIcon: Icon(Icons.contact_phone_outlined),
+                            //   suffixIconColor: Color(0xFFFCDEDE),
+                            // ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

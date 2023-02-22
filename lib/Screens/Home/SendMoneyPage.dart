@@ -1,41 +1,30 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
 
-class Contacts{
-  late final String name;
-  late final Image image;
-  late final String number;
+class SendMoneyPage extends StatelessWidget {
+   SendMoneyPage({super.key,  required this.contacts});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return const Placeholder();
+//   }
+// }
 
-  Contacts({
-    required this.name,
-    required this.image,
-    required this.number,
-  });
-}
+// class SendMoneyPage extends StatefulWidget {
+//   final Contact contacts;
+//   const SendMoneyPage({Key? key, required this.contacts}) : super(key: key);
+//
+//   @override
+//   State<SendMoneyPage> createState() => _SendMoneyPageState();
+// }
 
-final List<Contacts> contactList=[
-  Contacts(name: 'kaka', image: Image.asset('assets/images/cat1.jpg'), number: '+91 8050530XXX'),
-  Contacts(name: 'Jane', image: Image.asset('assets/images/cat2.jpg'), number: '+91 505053XXXX'),
-  Contacts(name: 'Leah', image: Image.asset('assets/images/cat3.jpg'), number: '+91 905053XXXX'),
-  Contacts(name: 'Merry', image: Image.asset('assets/images/cat4.jpg'), number: '+91 605053XXXX'),
-  Contacts(name: 'Mike', image: Image.asset('assets/images/cat5.jpg'), number: '+91 705053XXXX'),
-];
-class SendMoneyPage extends StatefulWidget {
+final Contact contacts;
 
-  const SendMoneyPage({Key? key}) : super(key: key);
-
-  @override
-  State<SendMoneyPage> createState() => _SendMoneyPageState();
-}
-
-class _SendMoneyPageState extends State<SendMoneyPage> {
-  TextEditingController _sendMoney = TextEditingController();
-  final TextEditingController _searchController = TextEditingController();
+   TextEditingController _sendMoney = TextEditingController();
   final FocusNode _textFocusNode = FocusNode();
 
-  List<Contacts> contactList =  [];
-  List<Contacts>? contactListSearch;
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +32,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30,),
+            SizedBox(height: 50,),
             Row(
               children: [
                 TextButton(
@@ -60,127 +49,69 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: TextFormField(
-                controller: _searchController,
-                cursorColor: Colors.red,
-                focusNode: _textFocusNode,
-                decoration: InputDecoration(
-                  hintText: 'Enter Name or Number',
-                  suffixIcon: Icon(Icons.search),
-                    suffixIconColor: Colors.black,
-                    suffixStyle: TextStyle( fontSize: 19,fontWeight: FontWeight.w500),
-                    hintStyle: TextStyle( fontSize: 18,color: Colors.grey.shade400,fontWeight: FontWeight.w400),
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey.shade200)
-                    )
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 50,width: 320,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                        borderRadius: BorderRadius.circular(6.0),
+                        color: Colors.white
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(height: 15,),
+                        Text( "${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}",style: TextStyle(fontSize: 20),),
+                      ],
+                    )),
+              ),
+            ),
+            SizedBox(height: 40,),
+             Text("${contacts.name.first}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),SizedBox(height: 5,),
+             Text("${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}",style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
+            SizedBox(height: 40,),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                height: 60,width: 296,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                    borderRadius: BorderRadius.circular(6.0),
+                    color: Colors.white
                 ),
-                onChanged: (value){
-                  // setState(() {
-                  //   contactListSearch=contactList
-                  //       .where((element) => element.name
-                  //       .toLowerCase()
-                  //       .contains(value.toLowerCase())).toList();
-                  //   if(_searchController.text.isNotEmpty && contactList.isEmpty){
-                  //     if(kDebugMode){
-                  //       print('itemListSearch Length ${contactListSearch!.length}');
-                  //     }
-                  //   }
-                  // });
-                },
-              ),
-            ),
-            // Expanded(child: _searchController.text.isNotEmpty && contactList.isEmpty ? Center()
-            //     : ListView.builder(
-            //   itemCount: _searchController.text.isNotEmpty
-            //       ? contactListSearch!.length
-            //     : contactList.length,
-            //     itemBuilder: (context, index){
-            //     return Container(
-            //       height: 300,
-            //       width: 350,
-            //       color: Colors.white,
-            //       child: ListView.builder(
-            //           itemCount: contactList.length,
-            //           itemBuilder: (context, index){
-            //             return Column(
-            //               children: [
-            //                 Container(
-            //                   child: CircleAvatar(
-            //                     backgroundColor: Colors.white,
-            //                     child: Image.asset('assets/images/cat1.jpg'),
-            //                   ),
-            //                 ),
-            //                 Text('Kaka'),
-            //                 Text('+91 8050530XXX'),
-            //               ],
-            //             );
-            //           }),
-            //     );
-            //
-            //     }))
-        Container(
-          height: 120,width: 350,
-          child: Image.asset('assets/images/cat1.jpg',height: 100,width: 120,),
-        ),SizedBox(height: 5,),
-        Text('Kaka',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),SizedBox(height: 5,),
-        Text('+91 8050530XXX',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
-            SizedBox(height: 10,),
-          Container(
-            height: 385,
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  TextFormField(
-                    keyboardType: TextInputType.number,
-                    keyboardAppearance: Brightness.light,
-                    controller: _sendMoney,
-                    cursorColor: Colors.red,
-                    focusNode: _textFocusNode,
+                child: Form(
+                  child: TextField(
                     textAlign: TextAlign.center,
+                    controller: _sendMoney,
+                    keyboardType: TextInputType.number,
+                    cursorColor: Colors.red.shade900,
                     decoration: InputDecoration(
-                        hintText: 'Amount',
-                         hintStyle: TextStyle( fontSize: 18,color: Colors.grey.shade400,fontWeight: FontWeight.w400),
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey.shade200)
-                        )
-                    ),
-                    onChanged: (value){
-                      // setState(() {
-                      //   contactListSearch=contactList
-                      //       .where((element) => element.name
-                      //       .toLowerCase()
-                      //       .contains(value.toLowerCase())).toList();
-                      //   if(_searchController.text.isNotEmpty && contactList.isEmpty){
-                      //     if(kDebugMode){
-                      //       print('itemListSearch Length ${contactListSearch!.length}');
-                      //     }
-                      //   }
-                      // });
-                    },
-                  ),
-                  SizedBox(height: 217,),
-                  Container(
-                    height: 80,
-                    color: Colors.white,
-                    child: Center(
-                      child: SizedBox(height: 50,width: 320,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.black,
-                          ),
-                          onPressed: (){},
-                          child: Text('Send',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16)),
-                        ),
-                      ),
+                      border: InputBorder.none,
+                      hintText: 'Amount',
+                      hintStyle: TextStyle(color: Colors.grey.shade400),
                     ),
                   ),
-
-                ],
+                ),
               ),
             ),
-          ),
+            SizedBox(height: 200,),
+            Padding(padding: EdgeInsets.only(left: 6),
+                child: Container(
+                  height: 40,width: 270,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      color: Colors.red.shade900
+                  ),
+                  child: TextButton(
+                    style: ButtonStyle(
+                      shadowColor: MaterialStateProperty.all(Colors.transparent),
+                      overlayColor: MaterialStateProperty.all(Colors.transparent),
+                    ),
+                    onPressed: (){},
+                    child: Text('Send',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
+                  ),
+                )
+            ),
           ],
         ),
       ),
