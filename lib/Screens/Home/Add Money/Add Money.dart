@@ -79,7 +79,16 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FromOtherBankVisaCardPage();
+                          },
+                        ),
+                      );
+                    },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -114,7 +123,16 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FromOtherBankVisaCardPage();
+                          },
+                        ),
+                      );
+                    },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -129,7 +147,16 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return FromOtherBankVisaCardPage();
+                          },
+                        ),
+                      );
+                    },
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

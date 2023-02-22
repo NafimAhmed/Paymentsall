@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:payments_all_app/Screens/Home/Bank%20Transfer.dart';
+import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.dart';
 import 'package:payments_all_app/Screens/Home/BillPay.dart';
 
 import 'Add Money/Add Money.dart';
+import 'CashOutPage.dart';
+import 'Merchant Pay.dart';
 import 'Mobile Recharge Page.dart';
 import 'SendMoneyPage.dart';
 import 'contacts_page.dart';
@@ -93,7 +95,17 @@ class _HomePageState extends State<HomePage> {
                           Text('Send Money',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white))
                         ],
                       )),
-                  TextButton(onPressed: (){},
+                  TextButton(onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CashOutPage();
+                        },
+                      ),
+                    );
+
+                  },
                       style: ButtonStyle(
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
                         overlayColor: MaterialStateProperty.all(Colors.transparent),
@@ -227,7 +239,16 @@ class _HomePageState extends State<HomePage> {
                             shadowColor: MaterialStateProperty.all(Colors.transparent),
                             overlayColor: MaterialStateProperty.all(Colors.transparent),
                           ),
-                          onPressed: (){},
+                          onPressed: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return MerchantPayPage();
+                                },
+                              ),
+                            );
+                          },
                           child: Column(
                             children: [
                               CircleAvatar(
