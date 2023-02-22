@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Column(crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Hi, Alamin Fatass',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),),SizedBox(height: 5,),
+                      Text('Hi, Nafim Ahmed',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),),SizedBox(height: 5,),
                       Text('Your available balance',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
                     ],
                   ),Spacer(),
