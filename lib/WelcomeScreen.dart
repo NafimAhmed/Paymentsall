@@ -136,7 +136,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('assets/images/logo.png',height: 24,width: 28,),
+                  Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
                   const Text('EasyPay',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -153,7 +153,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children:  [
+                  Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
                   Text('Easy Transfer Way',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
@@ -170,7 +171,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
+                children:  [
+                  Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
                   Text('Safe and Secure',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
