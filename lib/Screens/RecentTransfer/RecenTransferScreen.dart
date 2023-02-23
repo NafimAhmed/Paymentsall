@@ -9,6 +9,12 @@ class RecentTransferScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('All Transaction',style: TextStyle(fontSize: 24,fontWeight: FontWeight.w500,color: Colors.black),),
+        iconTheme: const IconThemeData(color: Colors.black),
+        elevation: 0.0,
+        backgroundColor: Color(0xFFFFF8F8),
+      ),
       backgroundColor: Color(0xFFFFF8F8),
 
 
@@ -20,17 +26,6 @@ class RecentTransferScreen extends StatelessWidget {
           child: Column(
             children: [
               SizedBox(height: 30,),
-              SafeArea(
-                child: Row(
-                  children: [
-                    TextButton(
-                        onPressed: (){},
-                        child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
-                    Text('All Transections',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),)
-                  ],
-                ),
-              ),
-
 
 
 
@@ -41,7 +36,6 @@ class RecentTransferScreen extends StatelessWidget {
                   itemBuilder: (BuildContext context,int index){
 
                     return Container(
-                      //color: Colors.red.shade100,
                       decoration: BoxDecoration(
                         color: Colors.red.shade100,
                           border: Border.all(
