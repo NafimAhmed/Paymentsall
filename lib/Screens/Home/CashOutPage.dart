@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../cashout_all/QRCode/cashout_qrcode_scanner.dart';
+import '../cashout_all/cashout_amount.dart';
+
+
+
+
 class CashOutPage extends StatefulWidget {
   const CashOutPage({Key? key}) : super(key: key);
 
@@ -37,7 +43,18 @@ class _CashOutPageState extends State<CashOutPage> {
                   color: Colors.white,
                 ),
                 child: TextButton(
-                  onPressed: () {  },
+                  onPressed: () {
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return CashOutQRCodeScanner();
+                        },
+                      ),
+                    );
+
+                  },
                   child: Column(
                     children: [
                       SizedBox(height: 10,),
@@ -104,6 +121,16 @@ class _CashOutPageState extends State<CashOutPage> {
                             overlayColor: MaterialStateProperty.all(Colors.transparent),
                           ),
                           onPressed: (){
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return CashoutAmount();
+                                },
+                              ),
+                            );
+
                           },
                           child: Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
                         ),
