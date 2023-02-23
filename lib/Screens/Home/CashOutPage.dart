@@ -107,6 +107,10 @@ class _CashOutPageState extends State<CashOutPage> {
                       ),
                     ),
                   ),
+
+
+
+
                   SizedBox(height: 15,),
                   Padding(padding: EdgeInsets.only(left: 28.0),
                       child: Container(
