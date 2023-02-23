@@ -59,6 +59,8 @@ class _ScanScreenState extends State<ScanScreen> {
 
 
 
+
+
             Container(
               margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getHeight(20)),
               child: ElevatedButton(
