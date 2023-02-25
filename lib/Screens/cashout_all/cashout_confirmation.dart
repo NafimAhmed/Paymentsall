@@ -9,11 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class CashOutConfirmation extends StatelessWidget
-{
-
-
-
-  @override
+{  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(

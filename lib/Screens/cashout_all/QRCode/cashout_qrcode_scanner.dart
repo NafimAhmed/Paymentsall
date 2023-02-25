@@ -7,6 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
+import '../cashout_amount.dart';
+
 
 
 class CashOutQRCodeScanner extends StatefulWidget
@@ -19,6 +21,7 @@ class _HomeState extends State<CashOutQRCodeScanner> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   Barcode? result;
+
 
   QRViewController? controller;
 
@@ -49,10 +52,11 @@ class _HomeState extends State<CashOutQRCodeScanner> {
           Expanded(
             flex: 1,
             child: Center(
-              child: (result != null)
-                  ? Text(
-                  'Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                  : Text('Scan a code'),
+              child: (result == null)
+                  ? Text("Scan a Code")
+              //Text('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+
+                  : Text('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
             ),
           )
         ],
@@ -63,9 +67,30 @@ class _HomeState extends State<CashOutQRCodeScanner> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
-      setState(() {
+     // setState(() {
+
+        if(result!=null){
+
+          Navigator.pop(context);
+
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return CashoutAmount(agentNumber: result!.code.toString(),);
+              },
+            ),
+          );
+
+
+        }
+
+
         result = scanData;
-      });
+
+      //});
+
+
     });
   }
 
@@ -74,4 +99,28 @@ class _HomeState extends State<CashOutQRCodeScanner> {
     controller?.dispose();
     super.dispose();
   }
+
+
+  nxtpg(String dta)
+  {
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) {
+    //       return CashoutAmount(agentNumber: dta,);
+    //     },
+    //   ),
+    // );
+    //
+    // controller?.dispose();
+
+
+
+
+  }
+
+
+
+
+
 }

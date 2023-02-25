@@ -51,7 +51,7 @@ class _ScanScreenState extends State<ScanScreen> {
                     color: Colors.white,
                     width: 60,
                     height: 60,
-                    child: const FlutterLogo(),
+                    child: Image.asset("assets/images/Payments_All.png"),
                   ),
                 ],
               ),

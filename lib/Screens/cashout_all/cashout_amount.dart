@@ -9,6 +9,12 @@ import '../../utils/app_layout.dart';
 
 class CashoutAmount extends StatelessWidget
 {
+
+  final String agentNumber;
+
+  const CashoutAmount({super.key, required this.agentNumber});
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -56,7 +62,7 @@ class CashoutAmount extends StatelessWidget
                     ),
                     SizedBox(height: 10,),
 
-                    Text("01XXXXXXXXXXXXXX",
+                    Text("${agentNumber}",
                     style: GoogleFonts.openSans(
                       fontSize: 20,
                     ),
