@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../marchent_pay_all/marchent_pay_amount.dart';
+
 class MerchantPayPage extends StatefulWidget {
   const MerchantPayPage({Key? key}) : super(key: key);
 
@@ -104,6 +106,18 @@ class _MerchantPayPageState extends State<MerchantPayPage> {
                             overlayColor: MaterialStateProperty.all(Colors.transparent),
                           ),
                           onPressed: (){
+
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return MarchentPayAmount();
+                                },
+                              ),
+                            );
+
+
                           },
                           child: Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
                         ),

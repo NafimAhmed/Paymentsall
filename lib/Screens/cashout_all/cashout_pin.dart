@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
+import 'cashout_confirmation.dart';
+
 class CashOutPin extends StatelessWidget
 {
   @override
@@ -130,7 +132,19 @@ class CashOutPin extends StatelessWidget
                           prefixIcon: Icon(Icons.lock,size: 30,color: Colors.red.shade900,),
                           hintText: 'Enter PIN',
                           hintStyle: TextStyle(color: Colors.grey.shade400),
-                          suffixIcon: Icon(Icons.arrow_forward,size: 30,color: Colors.red.shade900,),
+                          suffixIcon: InkWell(
+                            onTap:() {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return CashOutConfirmation();
+                                  },
+                                ),
+                              );
+
+                            },
+                              child: Icon(Icons.arrow_forward,size: 30,color: Colors.red.shade900,)),
                           suffixIconColor: Color(0xFFFCDEDE),
                         ),
                       ),
