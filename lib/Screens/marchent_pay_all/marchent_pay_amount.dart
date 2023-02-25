@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payments_all_app/Screens/marchent_pay_all/marchent_pay_pin.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class MarchentPayAmount extends StatelessWidget
@@ -31,12 +32,31 @@ class MarchentPayAmount extends StatelessWidget
 
 
           Container(
+            width: AppLayout.getScreenWidth(),
+            padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getHeight(20)),
+            decoration: BoxDecoration(
+                color: Colors.red.shade100,
+                borderRadius: BorderRadius.all(Radius.circular(10))
+            ),
+            margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getHeight(10)),
+
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Receiver : "),
+                Text("Receiver : ",
+                  style: GoogleFonts.openSans(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+                SizedBox(height: 10,),
 
-                Text("01XXXXXXXXXXX"),
-
+                Text("01XXXXXXXXXXXXXX",
+                  style: GoogleFonts.openSans(
+                    fontSize: 20,
+                  ),
+                )
 
               ],
             ),
@@ -80,14 +100,14 @@ class MarchentPayAmount extends StatelessWidget
 
                         onTap: (){
 
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) {
-                          //       return CashOutPin();
-                          //     },
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MarchentPayPin();
+                              },
+                            ),
+                          );
 
 
                         },
