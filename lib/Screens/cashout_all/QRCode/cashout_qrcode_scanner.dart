@@ -14,10 +14,10 @@ import '../cashout_amount.dart';
 class CashOutQRCodeScanner extends StatefulWidget
 {
   @override
-  State<CashOutQRCodeScanner> createState() => _HomeState();
+  State<CashOutQRCodeScanner> createState() => _CashOutQRCodeScannerState();
 }
 
-class _HomeState extends State<CashOutQRCodeScanner> {
+class _CashOutQRCodeScannerState extends State<CashOutQRCodeScanner> {
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
 
   Barcode? result;
