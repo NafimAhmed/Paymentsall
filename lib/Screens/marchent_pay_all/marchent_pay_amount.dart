@@ -21,7 +21,7 @@ class MarchentPayAmount extends StatelessWidget
                 TextButton(
                     onPressed: (){},
                     child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
-                Text('Cashout Amount',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),)
+                Text('Marchent pay Amount',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),)
               ],
             ),
           ),
