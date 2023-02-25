@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
+import 'marchentpay_confirmation.dart';
+
 class MarchentPayPin extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
@@ -184,14 +186,15 @@ class MarchentPayPin extends StatelessWidget{
                           hintStyle: TextStyle(color: Colors.grey.shade400),
                           suffixIcon: InkWell(
                               onTap:() {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) {
-                                //       return CashOutConfirmation();
-                                //     },
-                                //   ),
-                                // );
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MarchentPayConfirmation();
+                                    },
+                                  ),
+                                );
 
                               },
                               child: Icon(Icons.arrow_forward,size: 30,color: Colors.red.shade900,)),
