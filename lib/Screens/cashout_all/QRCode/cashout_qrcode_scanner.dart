@@ -49,16 +49,16 @@ class _HomeState extends State<CashOutQRCodeScanner> {
               onQRViewCreated: _onQRViewCreated,
             ),
           ),
-          Expanded(
-            flex: 1,
-            child: Center(
-              child: (result == null)
-                  ? Text("Scan a Code")
-              //Text('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-
-                  : Text('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-            ),
-          )
+          // Expanded(
+          //   flex: 1,
+          //   child: Center(
+          //     child: (result == null)
+          //         ? Text("Scan a Code")
+          //     //Text('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+          //
+          //         : Text('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
+          //   ),
+          // )
         ],
       ),
     );
@@ -101,23 +101,6 @@ class _HomeState extends State<CashOutQRCodeScanner> {
   }
 
 
-  nxtpg(String dta)
-  {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) {
-    //       return CashoutAmount(agentNumber: dta,);
-    //     },
-    //   ),
-    // );
-    //
-    // controller?.dispose();
-
-
-
-
-  }
 
 
 
