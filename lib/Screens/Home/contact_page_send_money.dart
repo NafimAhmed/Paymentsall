@@ -5,7 +5,7 @@ import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 
 import 'Mobile Recharge Page.dart';
-import 'SendMoneyPage.dart';
+import 'SendMoney/SendMoneyPage.dart';
 
 //
 // class ContactsPage extends StatefulWidget {

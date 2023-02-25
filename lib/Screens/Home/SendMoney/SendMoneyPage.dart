@@ -2,6 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 
+import 'TransferReceiptScreen.dart';
+
 class SendMoneyPage extends StatelessWidget {
    SendMoneyPage({super.key,  required this.contacts});
 //
@@ -107,7 +109,17 @@ final Contact contacts;
                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                    onPressed: (){},
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return TransferReceiptPage();
+                          },
+                        ),
+                      );
+
+                    },
                     child: Text('Send',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
                   ),
                 )
