@@ -55,46 +55,6 @@ class _BankTransferPageState extends State<BankTransferPage> {
         ),
        ),
 
-       // backgroundColor: Color(0xFFFFF8F8),
-
-        // body: Column(
-        //   children: [
-        //     const SizedBox(height: 30,),
-        //     Padding(
-        //       padding: const EdgeInsets.all(8.0),
-        //       child: Row(
-        //         children: [
-        //           TextButton(
-        //               style: ButtonStyle(
-        //                 shadowColor: MaterialStateProperty.all(Colors.transparent),
-        //                 overlayColor: MaterialStateProperty.all(Colors.transparent),
-        //               ),
-        //               onPressed: (){
-        //                 Navigator.pop(context);
-        //               },
-        //               child: const Icon(Icons.arrow_back_ios,color: Colors.black,)),
-        //           const Text('Bank Transfer',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-        //         ],
-        //       ),
-        //     ),
-        //     Padding(padding: EdgeInsets.all(16.0),
-        //     child: Container(
-        //       height: 450,
-        //       width: 330,
-        //       decoration: BoxDecoration(
-        //           borderRadius: BorderRadius.circular(6.0),
-        //           color: Colors.white
-        //       ),
-        //       child: Row(
-        //         children: [
-        //
-        //         ],
-        //       ),
-        //     ),
-        //     )
-        //   ],
-        // ),
-
     );
   }
 }

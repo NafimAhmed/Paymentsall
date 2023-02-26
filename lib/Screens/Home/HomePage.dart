@@ -324,7 +324,7 @@ class _HomePageState extends State<HomePage> {
                               child: Icon(Icons.account_balance_wallet_rounded,color: Colors.black,)),
                           title: Text('Aviroop',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black)),
                           subtitle: Text('February 24,2022'),
-                          trailing: Text('240.00',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black)),
+                          trailing: Text('৳240.00',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black)),
                         ),
                       )
                     ],

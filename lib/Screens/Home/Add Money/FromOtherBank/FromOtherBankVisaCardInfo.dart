@@ -56,14 +56,14 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
                       children: const [
                         SizedBox(height: 10,),
                         Text('Amount'),
-                        Text('000'),
+                        Text('৳ 000'),
                       ],
                     ),
                     Column(
                       children: const [
                         SizedBox(height: 10,),
                         Text('Fee'),
-                        Text('000'),
+                        Text('৳ 0'),
                       ],
                     ),
                   ],
@@ -71,7 +71,6 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
               ),
             ),
             ),
-           // SizedBox(height: 20,),
             Padding(padding: const EdgeInsets.all(10.0),
             child: Container(
               height: 440,width: 320,
@@ -112,7 +111,7 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
                                   borderRadius: BorderRadius.circular(2.0),
                                   color: Colors.white
                               ),
-                              child: TextField(
+                              child: const TextField(
                                 decoration: InputDecoration(
                                   border: InputBorder.none,
 
@@ -140,7 +139,7 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
                             ),
                             const SizedBox(height: 10,),
                             Row(
-                              children: [
+                              children: const [
                                 Text('   Expiry Date(MM/YY) *'),Spacer(),
                                 Text('   CVV *     '),
                               ],
@@ -152,11 +151,12 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
                                   Container(
                                     height: 25,width: 60,
                                     decoration: BoxDecoration(
-                                        border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                                        border: Border.all(width: 1,
+                                          color: const Color(0xFFFCDEDE),),
                                         borderRadius: BorderRadius.circular(2.0),
                                         color: Colors.white
                                     ),
-                                    child: TextField(
+                                    child: const TextField(
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
 
@@ -168,11 +168,12 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
                                   Container(
                                     height: 25,width: 60,
                                     decoration: BoxDecoration(
-                                        border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                                        border: Border.all(width: 1,
+                                          color: Color(0xFFFCDEDE),),
                                         borderRadius: BorderRadius.circular(2.0),
                                         color: Colors.white
                                     ),
-                                    child: TextField(
+                                    child: const TextField(
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
 
@@ -183,11 +184,12 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
                                   Container(
                                     height: 25,width: 60,
                                     decoration: BoxDecoration(
-                                        border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                                        border: Border.all(width: 1,
+                                          color: Color(0xFFFCDEDE),),
                                         borderRadius: BorderRadius.circular(2.0),
                                         color: Colors.white
                                     ),
-                                    child: TextField(
+                                    child: const TextField(
                                       decoration: InputDecoration(
                                         border: InputBorder.none,
                                       ),
@@ -218,7 +220,6 @@ class _FromOtherBankVisaCardInfoState extends State<FromOtherBankVisaCardInfo> {
                                 child: Container(
                                   height: 50,width: 296,
                                   decoration: BoxDecoration(
-                                    // border: Border.all(width: 1,color:),
                                       borderRadius: BorderRadius.circular(6.0),
                                       color: Colors.red.shade900
                                   ),
