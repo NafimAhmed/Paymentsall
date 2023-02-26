@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payments_all_app/Screens/mobile_recharge_all/mobile_recharge_pin.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class MobileRechargeAmount extends StatelessWidget
@@ -118,17 +119,14 @@ class MobileRechargeAmount extends StatelessWidget
 
                          onTap: (){
 
-                           // Navigator.push(
-                           //   context,
-                           //   MaterialPageRoute(
-                           //     builder: (context) {
-                           //       return CashOutPin(
-                           //         receiverNumb: agentNumber,
-                           //         amount: _mobileNo.text.toString(),
-                           //       );
-                           //     },
-                           //   ),
-                           // );
+                           Navigator.push(
+                             context,
+                             MaterialPageRoute(
+                               builder: (context) {
+                                 return MobileRechargePin();
+                               },
+                             ),
+                           );
 
 
                          },
