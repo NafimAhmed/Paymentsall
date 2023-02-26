@@ -9,7 +9,7 @@ import 'CashOutPage.dart';
 import 'Merchant Pay.dart';
 import '../mobile_recharge_all/Mobile Recharge Page.dart';
 import 'SendMoney/SendMoneyPage.dart';
-import 'contact_page_send_money.dart';
+import 'SendMoney/contact_page_send_money.dart';
 import '../mobile_recharge_all/contacts_page.dart';
 
 class HomePage extends StatefulWidget {

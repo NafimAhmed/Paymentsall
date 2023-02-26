@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 
-import '../mobile_recharge_all/Mobile Recharge Page.dart';
-import 'SendMoney/SendMoneyPage.dart';
+import '../../mobile_recharge_all/Mobile Recharge Page.dart';
+import 'SendMoneyPage.dart';
 
 //
 // class ContactsPage extends StatefulWidget {
@@ -24,11 +24,6 @@ import 'SendMoney/SendMoneyPage.dart';
 
   class _ContactPageSendMoneyState extends State<ContactPageSendMoney> {
     TextEditingController _writeMobileNo=TextEditingController();
-  //   @override
-  //   Widget build(BuildContext context) {
-  //     return const Placeholder();
-  //   }
-  // }
 
   List<Contact>? _contactss;
   bool _permissionDenied = false;
@@ -96,7 +91,7 @@ import 'SendMoney/SendMoneyPage.dart';
                     Padding(
                       padding: const EdgeInsets.only(left: 16.0,top: 3.0),
                       child: Container(
-                        height: 40,width: 245,
+                        height: 40,width: 296,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                             borderRadius: BorderRadius.circular(6.0),
@@ -111,21 +106,18 @@ import 'SendMoney/SendMoneyPage.dart';
                             prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.red.shade300),
                             hintText: 'Write Your Mobile No.',
                             hintStyle: TextStyle(color: Colors.grey.shade400),
+                            suffixIcon: InkWell(
+                                onTap: () {
+                                  // Navigator.of(context).push(
+                                  //     MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:_writeMobileNo.text.toString())));
+                                },
+                                child: Icon(Icons.arrow_forward)),
+                            suffixIconColor: Colors.red.shade900
                           ),
                         ),
                       ),
                     ),
 
-                    Spacer(),
-
-
-                    TextButton(
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-                        onPressed: (){},
-                        child: Icon(Icons.arrow_forward, size: 20,color: Colors.red.shade900,))
                   ],
                 ),
 

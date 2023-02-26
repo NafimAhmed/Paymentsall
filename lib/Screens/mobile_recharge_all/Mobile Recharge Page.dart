@@ -50,43 +50,11 @@ class MobileRechargePag extends StatelessWidget {
     }
 
 
-
-
-
     return nim;
   }
 
   //_mobileNumber= " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
   //TextEditingController _operator=TextEditingController();
-
-    String? _selected;
-  static List<Map>_operatorList=[
-    {
-      'id': '0',
-      'image': 'assets/images/airtel.png',
-      'name': 'Airtel'
-    },
-    {
-      'id': '1',
-      'image': 'assets/images/banglalik.png',
-      'name': 'Banglalink'
-    },
-    {
-      'id': '2',
-      'image': 'assets/images/grameenphone.png',
-      'name': 'Grameenphone'
-    },
-    {
-      'id': '3',
-      'image': 'assets/images/robi.png',
-      'name': 'Robi'
-    },
-    {
-      'id': '4',
-      'image': 'assets/images/TeleTalk.png',
-      'name': 'Teletalk'
-    },
-  ];
 
    MobileRechargePag({super.key, required this.contacts});
 
@@ -167,42 +135,7 @@ class MobileRechargePag extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
-                            child: DropdownButtonHideUnderline(
-                              child: ButtonTheme(
-                                alignedDropdown: true,
-                                child: DropdownButton(
-                                  hint: Row(
-                                    children: [
-                                      CircleAvatar(
-                                          child: Icon(Icons.cell_tower_rounded,color: Colors.white,),
-                                      radius: 13,
-                                      backgroundColor: Colors.grey,
-                                      ), SizedBox(width: 15,),
-                                      Text('Select Operator',style: TextStyle(fontWeight: FontWeight.w500),),
-                                    ],
-                                  ),
-                                  //value: _selected.isEmpty ? _selected : null,
-                                  value: _selected,
-                                  onChanged: (newValue){
-                                    // setState(() {
-                                    //   _selected=newValue as String ;
-                                    // });
-                                  },
-                                  items: _operatorList.map((e) {
-                                    return DropdownMenuItem(
-                                      value: e,
-                                        child: Row(
-                                          children: [
-                                            Image.asset(e['image'],height: 30,width: 40,),
-                                            SizedBox(width: 15,),
-                                            Text(e['name'])
-                                          ],
-                                        )
-                                    );
-                                }).toList(),
-                                ),
-                              ),
-                            ),
+                            child: OperatorSelect(),
                           ),
                         ],
                       ),
@@ -237,4 +170,81 @@ class MobileRechargePag extends StatelessWidget {
       ),
     );
   }
+
 }
+
+
+class OperatorSelect extends StatefulWidget {
+  const OperatorSelect({Key? key}) : super(key: key);
+
+  @override
+  State<OperatorSelect> createState() => _OperatorSelectState();
+}
+
+class _OperatorSelectState extends State<OperatorSelect> {
+
+  String _selected ='Select Operator';
+  List<String>_operator=[
+    'Select Operator','Airtel','Banglalink','Grameenphone','Robi','Teletalk'
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButtonHideUnderline(
+      child: ButtonTheme(
+        alignedDropdown: true,
+        child: DropdownButton(
+          // hint: Text('Select Operator'),
+          value: _selected,
+          items: _operator.map((e){
+            return DropdownMenuItem(
+                value: e,
+                child: Text(e));
+          }).toList(),
+          onChanged: ( value) {
+            setState(() {
+              _selected=value!;
+            });
+          },
+
+          // child: DropdownButtonHideUnderline(
+          //   child: ButtonTheme(
+          //     alignedDropdown: true,
+          //     child: DropdownButton(
+          //       hint: Row(
+          //         children: [
+          //           CircleAvatar(
+          //               child: Icon(Icons.cell_tower_rounded,color: Colors.white,),
+          //           radius: 13,
+          //           backgroundColor: Colors.grey,
+          //           ), SizedBox(width: 15,),
+          //           Text('Select Operator',style: TextStyle(fontWeight: FontWeight.w500),),
+          //         ],
+          //       ),
+          //       //value: _selected.isEmpty ? _selected : null,
+          //       value: _selected,
+          //       onChanged: (newValue){
+          //         setState(() {
+          //           _selected=_operatorList[newValue];
+          //         });
+          //       },
+          //       items: _operatorList.map((e) {
+          //         return DropdownMenuItem(
+          //           value: e['name'],
+          //             child: Row(
+          //               children: [
+          //                 Image.asset(e['image'],height: 30,width: 40,),
+          //                 SizedBox(width: 15,),
+          //                 Text(e['name'])
+          //               ],
+          //             )
+          //         );
+          //     }).toList(),
+          //     ),
+          //   ),
+        ),
+      ),
+    );
+  }
+}
+

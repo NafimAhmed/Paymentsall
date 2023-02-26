@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:payments_all_app/Screens/Home/HomePage.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
-import '../contact_page_send_money.dart';
+import 'contact_page_send_money.dart';
 
 class TransferReceiptPage extends StatefulWidget {
   const TransferReceiptPage({Key? key}) : super(key: key);
