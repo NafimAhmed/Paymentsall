@@ -12,7 +12,11 @@ class CashoutAmount extends StatelessWidget
 
   final String agentNumber;
 
-  const CashoutAmount({super.key, required this.agentNumber});
+   CashoutAmount({super.key, required this.agentNumber});
+
+  TextEditingController _mobileNo=TextEditingController();
+
+
 
 
   @override
@@ -95,7 +99,7 @@ class CashoutAmount extends StatelessWidget
                       ),
                     ),
                     TextField(
-                      //controller: _mobileNo,
+                      controller: _mobileNo,
                       keyboardType: TextInputType.number,
                       cursorColor: Colors.red.shade900,
                       style: GoogleFonts.openSans(
@@ -123,7 +127,10 @@ class CashoutAmount extends StatelessWidget
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return CashOutPin();
+                                  return CashOutPin(
+                                    receiverNumb: agentNumber,
+                                    amount: _mobileNo.text.toString(),
+                                  );
                                 },
                               ),
                             );

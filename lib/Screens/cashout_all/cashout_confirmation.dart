@@ -9,7 +9,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class CashOutConfirmation extends StatelessWidget
-{  @override
+{
+  final String totalAmount,receiversNumbe;
+
+  const CashOutConfirmation({super.key, required this.totalAmount, required this.receiversNumbe});
+
+
+  @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
@@ -38,7 +44,7 @@ class CashOutConfirmation extends StatelessWidget
             ),
             ),
 
-            Text("01XXXXXXXXXXXXXXX",
+            Text(receiversNumbe,
               style: GoogleFonts.openSans(
                   fontSize: 20,
                   fontWeight: FontWeight.normal
@@ -59,7 +65,7 @@ class CashOutConfirmation extends StatelessWidget
                     width: 1),
                 children: [
                   TableRow( children: [
-                    Column(children:[Text('Total :\n ৳ 50.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                    Column(children:[Text('Total :\n ৳ $totalAmount', style: GoogleFonts.openSans(fontSize: 20.0))]),
                     Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
                   ]),
 

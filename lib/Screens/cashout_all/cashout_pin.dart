@@ -1,6 +1,8 @@
 
 
 
+import 'dart:typed_data';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +12,31 @@ import 'cashout_confirmation.dart';
 
 class CashOutPin extends StatelessWidget
 {
+  final String receiverNumb,amount;
+
+   CashOutPin({super.key, required this.receiverNumb, required this.amount});
+
+  String charge="10";
+  
+  String total(String amount,String charge){
+
+    double amt= double.parse(amount);
+    double chr=double.parse(cha(amount,charge));
+    
+    return (amt+chr).toString();
+    
+  }
+
+
+  String cha(String amount,String chrg){
+    double amt= double.parse(amount);
+    double chr=double.parse(chrg);
+
+
+    return ((chr*amt)/1000).toString();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -55,7 +82,7 @@ class CashOutPin extends StatelessWidget
                   ),
                   SizedBox(height: 10,),
 
-                  Text("01XXXXXXXXXXXXXX",
+                  Text(receiverNumb,
                     style: GoogleFonts.openSans(
                       fontSize: 20,
                     ),
@@ -84,9 +111,9 @@ class CashOutPin extends StatelessWidget
                         Column(children:[Text('Total\n', style: GoogleFonts.openSans(fontSize: 20.0))]),
                       ]),
                       TableRow( children: [
-                        Column(children:[Text('৳ 100', style: TextStyle(fontSize: 20.0))]),
-                        Column(children:[Text('+৳ 10', style: TextStyle(fontSize: 20.0))]),
-                        Column(children:[Text('৳ 110', style: TextStyle(fontSize: 20.0))]),
+                        Column(children:[Text('৳ $amount', style: TextStyle(fontSize: 20.0))]),
+                        Column(children:[Text('+৳ ${cha(amount, charge)}', style: TextStyle(fontSize: 20.0))]),
+                        Column(children:[Text('৳ ${total(amount, charge)}', style: TextStyle(fontSize: 20.0))]),
                       ]),
 
                     ],
@@ -138,7 +165,10 @@ class CashOutPin extends StatelessWidget
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return CashOutConfirmation();
+                                    return CashOutConfirmation(
+                                      receiversNumbe: receiverNumb,
+                                      totalAmount: total(amount, charge),
+                                    );
                                   },
                                 ),
                               );
