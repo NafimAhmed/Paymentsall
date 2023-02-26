@@ -4,7 +4,57 @@ import 'package:flutter_contacts/contact.dart';
 class MobileRechargePag extends StatelessWidget {
   final TextEditingController _mobileNumber=TextEditingController();
 
-  final Contact contacts;
+  final String? contacts;
+
+
+  String operator(String contacts){
+    String nim,cont;
+    if(contacts.substring(0,3)=="+88"){
+      contacts=contacts.substring(1);
+      contacts=contacts.substring(1);
+      contacts=contacts.substring(1);
+    }
+
+    cont=contacts;
+
+    if(cont.substring(0,3)=="017")
+      {
+        nim="Grameen";
+      }
+    else if(cont.substring(0,3)=="013")
+    {
+      nim="Skitto";
+    }
+    else if(cont.substring(0,3)=="019")
+    {
+      nim="Banglalink";
+    }
+    else if(cont.substring(0,3)=="015")
+    {
+      nim="Teletalk";
+    }
+    else if(cont.substring(0,3)=="014")
+    {
+      nim="Banglalink";
+    }
+    else if(cont.substring(0,3)=="016")
+    {
+      nim="Robi";
+    }
+    else if(cont.substring(0,3)=="018")
+    {
+      nim="Robi";
+    }
+    else{
+      nim="can't detect";
+    }
+
+
+
+
+
+    return nim;
+  }
 
   //_mobileNumber= " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
   //TextEditingController _operator=TextEditingController();
@@ -39,6 +89,7 @@ class MobileRechargePag extends StatelessWidget {
   ];
 
    MobileRechargePag({super.key, required this.contacts});
+
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +142,7 @@ class MobileRechargePag extends StatelessWidget {
                         children: [
                           SizedBox(height: 15,),
                           Text(
-                               " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
+                               " ${contacts!.isNotEmpty ? contacts : '(none)'}"
                             // controller: _mobileNumber,
                             // keyboardType: TextInputType.number,
                             // cursorColor: Colors.red.shade900,
@@ -109,6 +160,9 @@ class MobileRechargePag extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height: 20,),
+                  
+                  Text(operator(contacts!)),
+                  
                   Text('   Operator',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
                   Padding(
                     padding: const EdgeInsets.all(10.0),
