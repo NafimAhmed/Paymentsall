@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
+import 'package:payments_all_app/Screens/mobile_recharge_all/mobile_recharge_amount.dart';
 
 class MobileRechargePag extends StatelessWidget {
   final TextEditingController _mobileNumber=TextEditingController();
@@ -115,6 +116,11 @@ class MobileRechargePag extends StatelessWidget {
               ],
             ),
           ),
+
+
+
+
+
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Container(
@@ -222,7 +228,18 @@ class MobileRechargePag extends StatelessWidget {
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
                         overlayColor: MaterialStateProperty.all(Colors.transparent),
                       ),
-                      onPressed: (){},
+                      onPressed: (){
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return MobileRechargeAmount();
+                            },
+                          ),
+                        );
+
+                      },
                       child: Text('SUBMIT',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
                     ),
                   )
