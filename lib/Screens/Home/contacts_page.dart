@@ -36,31 +36,64 @@ class _ContactsPageState extends State<ContactsPage> {
   @override
   Widget build(BuildContext context) => MaterialApp(
       home: Scaffold(
-          appBar: AppBar(title: Text('flutter_contacts_example')),
+          backgroundColor: const Color(0xFFFFF8F8),
+          appBar: AppBar(
+            elevation: 0.0,
+            title: Row(
+            children: [
+              TextButton(
+                  style: ButtonStyle(
+                    shadowColor: MaterialStateProperty.all(Colors.transparent),
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                  ),
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  child: const Icon(Icons.arrow_back,color: Colors.black,)),
+              Text('Mobile Recharge',style: TextStyle(
+                  color: Colors.black)),
+            ],
+          ),      backgroundColor: const Color(0xFFFFF8F8),
+
+          ),
           body: SingleChildScrollView(
             child: Column(
               children: [
-                TextField(
-                  controller: _mobileNo,
-                  keyboardType: TextInputType.number,
-                  cursorColor: Colors.red.shade900,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.grey,),
-                    hintText: 'Mobile or A/C No',
-                    hintStyle: TextStyle(color: Colors.grey.shade400),
-                    suffixIcon: InkWell(
-                      onTap: (){
-
-                        Navigator.of(context).push(
-                            MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:_mobileNo.text.toString())));
-                      },
-                        child: Icon(Icons.arrow_forward)
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Container(
+                    height: 40,width: 296,
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                        borderRadius: BorderRadius.circular(6.0),
+                        color: Colors.white
                     ),
-                    suffixIconColor: Colors.red.shade900,
+                    child: TextField(
+                      controller: _mobileNo,
+                      keyboardType: TextInputType.number,
+                      cursorColor: Colors.red.shade900,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.red.shade300,),
+                        hintText: 'Enter your Mobile No.',
+                        hintStyle: TextStyle(color: Colors.grey.shade400),
+                        suffixIcon: InkWell(
+                          onTap: (){
+
+                            Navigator.of(context).push(
+                                MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:_mobileNo.text.toString())));
+                          },
+                            child: Icon(Icons.arrow_forward)
+                        ),
+                        suffixIconColor: Colors.red.shade900,
+                      ),
+                    ),
                   ),
                 ),
-                _body(),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: _body(),
+                ),
               ],
             ),
           )));

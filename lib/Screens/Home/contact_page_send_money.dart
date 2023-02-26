@@ -23,6 +23,7 @@ import 'SendMoney/SendMoneyPage.dart';
   }
 
   class _ContactPageSendMoneyState extends State<ContactPageSendMoney> {
+    TextEditingController _writeMobileNo=TextEditingController();
   //   @override
   //   Widget build(BuildContext context) {
   //     return const Placeholder();
@@ -50,27 +51,97 @@ import 'SendMoney/SendMoneyPage.dart';
   @override
   Widget build(BuildContext context) => MaterialApp(
       home: Scaffold(
-        // backgroundColor: Color(0xFFFFF8F8),
-          appBar: AppBar(title: Row(
-            children: [
-              TextButton(
-                  style: ButtonStyle(
-                    shadowColor: MaterialStateProperty.all(Colors.transparent),
-                    overlayColor: MaterialStateProperty.all(Colors.transparent),
-                  ),
-                  onPressed: (){
-                    Navigator.pop(context);
-                  },
-                  child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
-              Text('Send Money',style:  TextStyle(color: Colors.black),),
-            ],
-          ),
+          appBar: AppBar(
+
+
+            automaticallyImplyLeading: true,
+            elevation: 0.0,
+            toolbarHeight: 100,
+
+
+            title: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back_sharp,
+                          color: Colors.black,)),
+
+
+                    Text('Send Money',
+                      style: TextStyle(
+                          color: Colors.black),),
+
+
+                    Spacer(),
+
+
+                    TextButton(
+                      style: ButtonStyle(
+                                      shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                      overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                    ),
+                        onPressed: (){},
+                        child: Icon(Icons.qr_code_scanner_sharp,color: Colors.red.shade300,size: 30,))
+
+
+                  ],
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16.0,top: 3.0),
+                      child: Container(
+                        height: 40,width: 245,
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                            borderRadius: BorderRadius.circular(6.0),
+                            color: Colors.white
+                        ),
+                        child: TextField(
+                          controller: _writeMobileNo,
+                          keyboardType: TextInputType.number,
+                          cursorColor: Colors.red.shade900,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.red.shade300),
+                            hintText: 'Write Your Mobile No.',
+                            hintStyle: TextStyle(color: Colors.grey.shade400),
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    Spacer(),
+
+
+                    TextButton(
+                        style: ButtonStyle(
+                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                          overlayColor: MaterialStateProperty.all(Colors.transparent),
+                        ),
+                        onPressed: (){},
+                        child: Icon(Icons.arrow_forward, size: 20,color: Colors.red.shade900,))
+                  ],
+                ),
+
+              ],
+            ),
               backgroundColor: Color(0xFFFFF8F8),
 
           ),
           backgroundColor: Color(0xFFFFF8F8),
 
-          body: _body()));
+          body: Padding(
+            padding: const EdgeInsets.only(left: 16.0),
+            child: _body(),
+          )
+      )
+  );
 
 
   Widget _body() {

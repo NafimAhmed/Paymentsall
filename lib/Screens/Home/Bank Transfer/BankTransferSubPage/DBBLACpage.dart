@@ -85,7 +85,9 @@ class _DBBLacPageState extends State<DBBLacPage> {
                       cursorColor: Colors.red.shade900,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        prefixIcon: Icon(Icons.attach_money_rounded,size: 30,color: Colors.grey,),
+                        prefixText: '    ৳    ',
+                        prefixStyle: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.bold),
+                        // prefixIcon: Icon(Icons.attach_money_rounded,size: 30,color: Colors.grey,),
                         hintText: 'Amount',
                         hintStyle: TextStyle(color: Colors.grey.shade400),
                       ),

@@ -128,6 +128,8 @@ class _FromOtherBankVisaCardPageState extends State<FromOtherBankVisaCardPage> {
                               cursorColor: Colors.red.shade900,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
+                                prefixIcon: Icon(Icons.drive_file_rename_outline_sharp,size: 24,color: Colors.grey,),
+
                                 hintText: '    Name',
                                 hintStyle: TextStyle(color: Colors.grey.shade400),
                               ),
@@ -156,7 +158,9 @@ class _FromOtherBankVisaCardPageState extends State<FromOtherBankVisaCardPage> {
                               cursorColor: Colors.red.shade900,
                               decoration: InputDecoration(
                                 border: InputBorder.none,
-                                prefixIcon: Icon(Icons.attach_money_rounded,size: 30,color: Colors.grey,),
+                               prefixText: '    ৳    ',
+                               prefixStyle: TextStyle(color: Colors.grey,fontSize: 16,fontWeight: FontWeight.bold),
+                               //prefixIcon: Icon(Icons.,size: 30,color: Colors.grey,),
                                 hintText: 'Amount',
                                 hintStyle: TextStyle(color: Colors.grey.shade400),
                               ),
@@ -192,10 +196,12 @@ class _FromOtherBankVisaCardPageState extends State<FromOtherBankVisaCardPage> {
                                     ),
                                   );
                                 },
-                                child: Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
+                                child: Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 18)),
                               ),
-                              SizedBox(width: 90,),
-                              Icon(Icons.arrow_forward,color: Colors.white,)
+                              SizedBox(width: 85,),
+                              Icon(Icons.arrow_forward,color: Colors.white,),
+                              SizedBox(width: 5,),
+
                             ],
                           ),
                         )

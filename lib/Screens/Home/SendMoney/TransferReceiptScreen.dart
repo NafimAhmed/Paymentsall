@@ -15,18 +15,25 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+
+
       appBar: AppBar(
         title: Text('Transfer Receipt',style: TextStyle(color: Colors.black)),
         elevation: 0.0,
         backgroundColor: Color(0xFFFFF8F8),
         iconTheme: const IconThemeData(color: Colors.black),
       ),
+
+
       backgroundColor: Color(0xFFFFF8F8),
 
 
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(16.0),
+
+
           child: Container(
             height: AppLayout.getScreenHeight(),
             width: AppLayout.getScreenWidth(),
@@ -39,21 +46,31 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+
+
                 Image.asset('assets/images/successful_transfer.png',
                   height: 200,
                   width: 250,),
+
+
                 Text('Transfer Success',
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w500,
                         color: Colors.black)),
+
+
                 SizedBox(height: 10,),
+
+
                 Text('Your money has been successfully sent to Nayantara V',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16),
                 ),
+
+
                 SizedBox(height: 15,),
 
                 Text('৳1300.00',
@@ -62,6 +79,8 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                       color: Colors.black,
                       fontSize: 26),
                 ),
+
+
                 SizedBox(height: 15,),
 
                 Text('Total Transfer',
@@ -69,6 +88,8 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                       color: Colors.grey,
                       fontSize: 16),
                 ),
+
+
                 SizedBox(height: 15,),
 
                 Text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - -',
@@ -76,12 +97,19 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                       color: Colors.grey.shade400,
                       fontSize: 20),
                 ),
+
+
                 SizedBox(height: 15,),
+
+
                 Text('Recipient',
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16),
                 ),
+
+
+
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
@@ -90,12 +118,17 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                       borderRadius: BorderRadius.circular(6.0),
                       color: Colors.grey.shade200,
                     ),
+
+
                     child: ListTile(
                       title: Text('Kaka'),
                       subtitle: Text('8050530XXX             3:02 PM'),
                     ),
                   ),
                 ),
+
+
+
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
@@ -104,6 +137,9 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                         borderRadius: BorderRadius.circular(4.0),
                         color: Colors.red.shade900
                     ),
+
+
+
                     child: TextButton(
                       style: ButtonStyle(
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -119,6 +155,8 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                           ),
                         );
                       },
+
+
                       child: Text('Done',
                         style: TextStyle(
                             fontSize: 20,
@@ -141,6 +179,8 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                         ),
                       );
                     },
+
+
                     child: Text('Transfer more money',
                       style: TextStyle(
                           fontWeight: FontWeight.w400,
