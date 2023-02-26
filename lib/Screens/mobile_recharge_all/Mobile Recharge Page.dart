@@ -143,17 +143,7 @@ class MobileRechargePag extends StatelessWidget {
                           SizedBox(height: 15,),
                           Text(
                                " ${contacts!.isNotEmpty ? contacts : '(none)'}"
-                            // controller: _mobileNumber,
-                            // keyboardType: TextInputType.number,
-                            // cursorColor: Colors.red.shade900,
-                            // decoration: InputDecoration(
-                            //   border: InputBorder.none,
-                            //   prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.grey,),
-                            //   hintText: 'Pre-paid/Post-paid',
-                            //   hintStyle: TextStyle(color: Colors.grey.shade400),
-                            //   suffixIcon: Icon(Icons.contact_phone_outlined),
-                            //   suffixIconColor: Color(0xFFFCDEDE),
-                            // ),
+
                           ),
                         ],
                       ),

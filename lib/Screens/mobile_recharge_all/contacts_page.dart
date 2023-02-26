@@ -6,7 +6,7 @@ import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Mobile Recharge Page.dart';
-import 'SendMoney/SendMoneyPage.dart';
+import '../Home/SendMoney/SendMoneyPage.dart';
 
 class ContactsPage extends StatefulWidget {
   @override
