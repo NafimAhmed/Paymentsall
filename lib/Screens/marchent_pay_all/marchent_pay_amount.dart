@@ -8,6 +8,16 @@ import 'package:payments_all_app/utils/app_layout.dart';
 
 class MarchentPayAmount extends StatelessWidget
 {
+
+  final String reveiverNumb;
+
+  MarchentPayAmount({super.key, required this.reveiverNumb});
+
+  TextEditingController _mobileNo=TextEditingController();
+
+
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -52,7 +62,7 @@ class MarchentPayAmount extends StatelessWidget
                 ),
                 SizedBox(height: 10,),
 
-                Text("01XXXXXXXXXXXXXX",
+                Text(reveiverNumb,
                   style: GoogleFonts.openSans(
                     fontSize: 20,
                   ),
@@ -76,7 +86,7 @@ class MarchentPayAmount extends StatelessWidget
                 Text("Amount : "),
 
                 TextField(
-                  //controller: _mobileNo,
+                  controller: _mobileNo,
                   keyboardType: TextInputType.number,
                   cursorColor: Colors.red.shade900,
                   style: GoogleFonts.openSans(
@@ -104,7 +114,7 @@ class MarchentPayAmount extends StatelessWidget
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return MarchentPayPin();
+                                return MarchentPayPin(receiverNumb: reveiverNumb,amount: _mobileNo.text.toString(),);
                               },
                             ),
                           );

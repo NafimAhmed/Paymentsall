@@ -10,6 +10,13 @@ import '../../utils/app_layout.dart';
 
 
 class MarchentPayConfirmation extends StatelessWidget{
+
+
+  final String receiveNumb,totAmount,ref;
+
+  const MarchentPayConfirmation({super.key, required this.receiveNumb, required this.totAmount, required this.ref});
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -39,7 +46,7 @@ class MarchentPayConfirmation extends StatelessWidget{
               ),
             ),
 
-            Text("01XXXXXXXXXXXXXXX",
+            Text(receiveNumb,
               style: GoogleFonts.openSans(
                   fontSize: 20,
                   fontWeight: FontWeight.normal
@@ -60,13 +67,13 @@ class MarchentPayConfirmation extends StatelessWidget{
                     width: 1),
                 children: [
                   TableRow( children: [
-                    Column(children:[Text('Total :\n ৳ 50.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                    Column(children:[Text('Total :\n ৳ $totAmount', style: GoogleFonts.openSans(fontSize: 20.0))]),
                     Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
                   ]),
 
                   TableRow( children: [
                     Column(children:[Text('Refernce : \n', style: GoogleFonts.openSans(fontSize: 20.0))]),
-                    Column(children:[Text('123789', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                    Column(children:[Text(ref, style: GoogleFonts.openSans(fontSize: 20.0))]),
                   ]),
 
 

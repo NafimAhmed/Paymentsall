@@ -8,6 +8,15 @@ import 'package:payments_all_app/utils/app_layout.dart';
 import 'marchentpay_confirmation.dart';
 
 class MarchentPayPin extends StatelessWidget{
+
+  final String receiverNumb;
+  final String amount;
+
+   MarchentPayPin({super.key, required this.receiverNumb, required this.amount});
+
+  TextEditingController _mobileNo=TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -53,7 +62,7 @@ class MarchentPayPin extends StatelessWidget{
                   ),
                   SizedBox(height: 10,),
 
-                  Text("01XXXXXXXXXXXXXX",
+                  Text(receiverNumb,
                     style: GoogleFonts.openSans(
                       fontSize: 20,
                     ),
@@ -90,9 +99,9 @@ class MarchentPayPin extends StatelessWidget{
                         Column(children:[Text('Total\n', style: GoogleFonts.openSans(fontSize: 20.0))]),
                       ]),
                       TableRow( children: [
-                        Column(children:[Text('৳ 100', style: TextStyle(fontSize: 20.0))]),
+                        Column(children:[Text("৳$amount", style: TextStyle(fontSize: 20.0))]),
                         Column(children:[Text('+৳ 00.00', style: TextStyle(fontSize: 20.0))]),
-                        Column(children:[Text('৳ 110', style: TextStyle(fontSize: 20.0))]),
+                        Column(children:[Text('৳ $amount', style: TextStyle(fontSize: 20.0))]),
                       ]),
 
                     ],
@@ -130,7 +139,7 @@ class MarchentPayPin extends StatelessWidget{
 
 
                       child: TextField(
-                        //controller: _mobileNo,
+                        controller: _mobileNo,
                         keyboardType: TextInputType.text,
                         cursorColor: Colors.red.shade900,
                         decoration: InputDecoration(
@@ -191,7 +200,11 @@ class MarchentPayPin extends StatelessWidget{
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return MarchentPayConfirmation();
+                                      return MarchentPayConfirmation(
+                                        receiveNumb: receiverNumb,
+                                        totAmount: amount,
+                                        ref: _mobileNo.text.toString(),
+                                      );
                                     },
                                   ),
                                 );
