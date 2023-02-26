@@ -7,10 +7,10 @@ import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart
 import 'Add Money/Add Money.dart';
 import 'CashOutPage.dart';
 import 'Merchant Pay.dart';
-import 'Mobile Recharge Page.dart';
+import '../mobile_recharge_all/Mobile Recharge Page.dart';
 import 'SendMoney/SendMoneyPage.dart';
 import 'contact_page_send_money.dart';
-import 'contacts_page.dart';
+import '../mobile_recharge_all/contacts_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
