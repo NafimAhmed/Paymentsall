@@ -2,10 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:payments_all_app/Screens/mobile_recharge_all/mobile_recharge_amount.dart';
 
-class MobileRechargePag extends StatelessWidget {
-  final TextEditingController _mobileNumber=TextEditingController();
+enum SingingCharacter { lafayette, jefferson }
+class MobileRechargePag extends StatefulWidget {
+
 
   final String? contacts;
+
+
+  static List<Map>_operatorList=[
+    {
+      'id': '0',
+      'image': 'assets/images/airtel.png',
+      'name': 'Airtel'
+    },
+    {
+      'id': '1',
+      'image': 'assets/images/banglalik.png',
+      'name': 'Banglalink'
+    },
+    {
+      'id': '2',
+      'image': 'assets/images/grameenphone.png',
+      'name': 'Grameenphone'
+    },
+    {
+      'id': '3',
+      'image': 'assets/images/robi.png',
+      'name': 'Robi'
+    },
+    {
+      'id': '4',
+      'image': 'assets/images/TeleTalk.png',
+      'name': 'Teletalk'
+    },
+  ];
+
+   MobileRechargePag({super.key, required this.contacts});
+
+  @override
+  State<MobileRechargePag> createState() => _MobileRechargePagState();
+}
+
+class _MobileRechargePagState extends State<MobileRechargePag> {
+
+  String connectionType='prepaid';
 
 
   String operator(String contacts){
@@ -58,42 +98,14 @@ class MobileRechargePag extends StatelessWidget {
   }
 
   //_mobileNumber= " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
-  //TextEditingController _operator=TextEditingController();
-
     String? _selected;
-  static List<Map>_operatorList=[
-    {
-      'id': '0',
-      'image': 'assets/images/airtel.png',
-      'name': 'Airtel'
-    },
-    {
-      'id': '1',
-      'image': 'assets/images/banglalik.png',
-      'name': 'Banglalink'
-    },
-    {
-      'id': '2',
-      'image': 'assets/images/grameenphone.png',
-      'name': 'Grameenphone'
-    },
-    {
-      'id': '3',
-      'image': 'assets/images/robi.png',
-      'name': 'Robi'
-    },
-    {
-      'id': '4',
-      'image': 'assets/images/TeleTalk.png',
-      'name': 'Teletalk'
-    },
-  ];
-
-   MobileRechargePag({super.key, required this.contacts});
-
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
     return Scaffold(
       backgroundColor: Color(0xFFFFF8F8),
       body: SingleChildScrollView(
@@ -125,7 +137,7 @@ class MobileRechargePag extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                height: 320,width: 320,
+                height: 520,width: 320,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     color: Colors.white
@@ -149,7 +161,7 @@ class MobileRechargePag extends StatelessWidget {
                           children: [
                             SizedBox(height: 15,),
                             Text(
-                                 " ${contacts!.isNotEmpty ? contacts : '(none)'}"
+                                 " ${widget.contacts!.isNotEmpty ? widget.contacts : '(none)'}"
 
                             ),
                           ],
@@ -158,9 +170,10 @@ class MobileRechargePag extends StatelessWidget {
                     ),
                     SizedBox(height: 20,),
 
-                    Text(operator(contacts!)),
+                    Text(operator(widget.contacts!)),
 
-                    Text('   Operator',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
+                    Text('   Operator',
+                        style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
@@ -195,7 +208,7 @@ class MobileRechargePag extends StatelessWidget {
                                       //   _selected=newValue as String ;
                                       // });
                                     },
-                                    items: _operatorList.map((e) {
+                                    items: MobileRechargePag._operatorList.map((e) {
                                       return DropdownMenuItem(
                                         value: e,
                                           child: Row(
@@ -215,6 +228,47 @@ class MobileRechargePag extends StatelessWidget {
                         ),
                       ),
                     ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text("Connection Type : ",
+
+                          style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)
+                      ),
+                    ),
+
+                    Container(
+                      child: Column(
+                        children: <Widget>[
+                          RadioListTile(
+                            title: Text("Prepaid"),
+                            value: "prepaid",
+                            groupValue: connectionType,
+                            onChanged: (value){
+                              setState(() {
+                                connectionType = value.toString();
+                              });
+                            },
+                          ),
+
+                          RadioListTile(
+                            title: Text("Postpaid"),
+                            value: "postpaid",
+                            groupValue: connectionType,
+                            onChanged: (value){
+                              setState(() {
+                                connectionType = value.toString();
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+
+
+
+
+
                     SizedBox(height: 10,),
                     Padding(padding: EdgeInsets.all(16.0),
                     child: Container(
@@ -235,7 +289,11 @@ class MobileRechargePag extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return MobileRechargeAmount();
+                                return MobileRechargeAmount(
+                                  recNumb: widget.contacts!,
+                                  connectionType: connectionType,
+                                  operator: "Grameen phone",
+                                );
                               },
                             ),
                           );

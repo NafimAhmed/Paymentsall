@@ -9,6 +9,17 @@ import 'package:payments_all_app/utils/app_layout.dart';
 
 class MobileRechargeAmount extends StatelessWidget
 {
+  final String recNumb,connectionType,operator;
+
+   //MobileRechargeAmount({super.key, required this.recNumb,required this.connectionType});
+
+  final TextEditingController _mobileNumber=TextEditingController();
+
+   MobileRechargeAmount({super.key, required this.recNumb, required this.connectionType, required this.operator});
+
+
+
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -65,7 +76,7 @@ class MobileRechargeAmount extends StatelessWidget
                  Row(
                    mainAxisAlignment: MainAxisAlignment.center,
                    children: [
-                     Text("01XXXXXXXXXXXXX",
+                     Text(recNumb,
                        style: GoogleFonts.openSans(
                          fontSize: 25,
                          fontWeight: FontWeight.bold
@@ -95,7 +106,7 @@ class MobileRechargeAmount extends StatelessWidget
                    ),
                  ),
                  TextField(
-                   //controller: _mobileNo,
+                   controller: _mobileNumber,
                    keyboardType: TextInputType.number,
                    cursorColor: Colors.red.shade900,
                    style: GoogleFonts.openSans(
@@ -123,7 +134,12 @@ class MobileRechargeAmount extends StatelessWidget
                              context,
                              MaterialPageRoute(
                                builder: (context) {
-                                 return MobileRechargePin();
+                                 return MobileRechargePin(
+                                   recNumb: recNumb,
+                                   amount: _mobileNumber.text.toString(),
+                                   connectionType: connectionType,
+                                   operator: operator,
+                                 );
                                },
                              ),
                            );
