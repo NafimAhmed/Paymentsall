@@ -129,25 +129,30 @@ class _BillPayPageState extends State<BillPayPage> {
                       children: [
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/electricity_logo.png',height: 40,width: 40,),
-                            Text('Electricity') 
+                            //Image.asset('assets/images/electricity_logo.png',height: 40,width: 40,),
+
+                            Icon(Icons.electric_bolt,color: Colors.black,size: 40),
+                            Text('Electricity')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/gas.png',height: 40,width: 40,),
-                            Text('Gas') 
+                            //Image.asset('assets/images/gas.png',height: 40,width: 40,),
+                            Icon(Icons.local_fire_department_outlined,color: Colors.black,size: 40),
+                            Text('Gas')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/Water tap.png',height: 41,width: 30,),
+                            //Image.asset('assets/images/Water tap.png',height: 41,width: 30,),
+                            Icon(Icons.water_drop_outlined,color: Colors.black,size: 40),
                             Text('Water')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/internet.png',height: 40,width: 30,),
+                            //Image.asset('assets/images/internet.png',height: 40,width: 30,),
+                            Icon(Icons.language_outlined,color: Colors.black,size: 40),
                             Text('Internet')
                           ],
                         )),
@@ -159,25 +164,33 @@ class _BillPayPageState extends State<BillPayPage> {
                       children: [
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/telephone.png',height: 40,width: 40,),
+                            //Image.asset('assets/images/telephone.png',height: 40,width: 40,),
+
+                            Icon(Icons.phone,color: Colors.black,size: 40),
+
                             Text('Telephone')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/tv.png',height: 40,width: 40,),
+                            //Image.asset('assets/images/tv.png',height: 40,width: 40,),
+                            Icon(Icons.live_tv,color: Colors.black,size: 40),
                             Text('TV')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/education.png',height: 41,width: 30,),
+                            //Image.asset('assets/images/education.png',height: 41,width: 30,),
+                            Icon(Icons.auto_stories,color: Colors.black,size: 40),
+
                             Text('Education')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/card.png',height: 40,width: 30,),
+                            //Image.asset('assets/images/card.png',height: 40,width: 30,),
+
+                            Icon(Icons.credit_card,color: Colors.black,size: 40),
                             Text('Credit Card')
                           ],
                         )),
@@ -189,25 +202,31 @@ class _BillPayPageState extends State<BillPayPage> {
                       children: [
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/map.png',height: 40,width: 40,),
+                            //Image.asset('assets/images/map.png',height: 40,width: 40,),
+                            
+                            Icon(Icons.assured_workload,color: Colors.black,size: 40),
+
                             Text('Govt.Fees')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/insurance.png',height: 40,width: 40,),
+                            //Image.asset('assets/images/insurance.png',height: 40,width: 40,),
+                            Icon(Icons.add_moderator_outlined,color: Colors.black,size: 40),
                             Text('Insurance')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Image.asset('assets/images/vehicle.png',height: 41,width: 30,),
+                            //Image.asset('assets/images/vehicle.png',height: 41,width: 30,),
+                            Icon(Icons.commute_rounded,color: Colors.black,size: 40),
+
                             Text('Vehicle')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            Icon(Icons.more_horiz,size: 40,),
+                            Icon(Icons.more_horiz,size: 40,color: Colors.black,),
                            // Image.asset('assets/images/internet.png',height: 40,width: 30,),
                             Text('Others')
                           ],

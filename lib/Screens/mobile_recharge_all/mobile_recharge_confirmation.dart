@@ -13,9 +13,10 @@ class MobileRechargeConfirmation extends StatelessWidget
 
   final String amount,connectiontype,oprerator,number;
 
+
   const MobileRechargeConfirmation({super.key, required this.amount, required this.connectiontype, required this.oprerator, required this.number});
 
-  //const MobileRechargeConfirmation({super.key, required this.amount, required this.connectiontype, required this.oprerator});
+
 
 
   @override
