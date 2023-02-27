@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payments_all_app/Screens/pay_bill_all/pay_bill_detail.dart';
 
 class BillPayPage extends StatefulWidget {
   const BillPayPage({Key? key}) : super(key: key);
@@ -34,6 +35,11 @@ class _BillPayPageState extends State<BillPayPage> {
                 ],
               ),
             ),
+
+
+
+
+
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -122,7 +128,7 @@ class _BillPayPageState extends State<BillPayPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 15,),
-                    Text('    All Organization'),
+                    Text('    All Organizations'),
                     Divider(thickness: 1.5,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -235,11 +241,57 @@ class _BillPayPageState extends State<BillPayPage> {
                     ),
                     Divider(thickness: 1.5,),
 
+
+                    Container(
+                      child: Column(
+                        children: [
+
+                          ListView.builder(
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                              itemCount: 10,
+                              itemBuilder: (BuildContext context,int index){
+
+                                return ListTile(
+                                  leading: Image.asset("assets/images/Payments_All.png"),
+                                  title: Text("Organization name"),
+                                  subtitle: Text(" Bill Type name"),
+
+                                  onTap: (){
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return PayBillDetil();
+                                        },
+                                      ),
+                                    );
+
+                                  },
+
+                                );
+
+                              }
+                          )
+
+                        ],
+                      ),
+                    )
+
                   ],
                 ),
               ),
             ),
             ),
+
+
+
+
+
+
+
+
 
           ],
         ),

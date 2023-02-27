@@ -204,9 +204,9 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
                                     //value: _selected.isEmpty ? _selected : null,
                                     value: _selected,
                                     onChanged: (newValue){
-                                      // setState(() {
-                                      //   _selected=newValue as String ;
-                                      // });
+                                      setState(() {
+                                        _selected=newValue as String ;
+                                      });
                                     },
                                     items: MobileRechargePag._operatorList.map((e) {
                                       return DropdownMenuItem(
