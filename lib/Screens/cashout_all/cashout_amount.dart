@@ -14,7 +14,7 @@ class CashoutAmount extends StatelessWidget
 
    CashoutAmount({super.key, required this.agentNumber});
 
-  TextEditingController _mobileNo=TextEditingController();
+  TextEditingController amount=TextEditingController();
 
 
 
@@ -99,7 +99,7 @@ class CashoutAmount extends StatelessWidget
                       ),
                     ),
                     TextField(
-                      controller: _mobileNo,
+                      controller: amount,
                       keyboardType: TextInputType.number,
                       cursorColor: Colors.red.shade900,
                       style: GoogleFonts.openSans(
@@ -123,17 +123,24 @@ class CashoutAmount extends StatelessWidget
 
                           onTap: (){
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return CashOutPin(
-                                    receiverNumb: agentNumber,
-                                    amount: _mobileNo.text.toString(),
-                                  );
-                                },
-                              ),
-                            );
+
+                            if(amount.text.toString().isNotEmpty){
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return CashOutPin(
+                                      receiverNumb: agentNumber,
+                                      amount: amount.text.toString(),
+                                    );
+                                  },
+                                ),
+                              );
+
+                            }
+
+
 
 
                           },
