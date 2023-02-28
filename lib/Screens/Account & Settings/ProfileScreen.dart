@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 import 'ProfilePage.dart';
@@ -12,6 +13,10 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+ static List<String>_language=['English','বাংলা'];
+ String select='';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,11 +42,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(16),vertical: AppLayout.getHeight(16)),
             child: Center(
               child: Container(
-                height: 120,
-                  width: 320,
+                height: AppLayout.getHeight(120),
+                  width: AppLayout.getWidth(320),
 
 
                   decoration: BoxDecoration(
@@ -58,12 +63,41 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       TextButton(
                           onPressed: () {  },
-                          child: Icon(Icons.account_circle_rounded,size: 100,)),
-                      Column(
+                          child: Icon(Icons.account_circle_rounded,size: 100,color: Colors.grey,)),
+                      Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height:40,),
-                          Text('User Name',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 20)), SizedBox(height: 5,),
-                          Text('Phone Number',style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)),SizedBox(height: 5,),
+                          const SizedBox(height:30,),
+                          Text('Nafim Ahmed',
+                            
+                            
+                            style: GoogleFonts.openSans(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w600),
+                          ),
+                          
+                          
+                          Text('Nafim0123@gmail.com',
+                              
+                              
+                              style: GoogleFonts.openSans(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500
+                              ),
+                          ),
+                          
+                          
+                          
+                          Text('017XXXXXXXX',
+                              
+                              
+                              style: GoogleFonts.openSans(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.w500
+                              ),
+                          ),
+                          
+                          
                         ],
                       )
                     ],
@@ -75,10 +109,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
             Padding(
-                padding: EdgeInsets.only(left: 16.0,right: 16.0),
+              padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(16),vertical: AppLayout.getHeight(16)),
             child: Container(
-              height:  600,
-              width: 320,
+              height: AppLayout.getHeight(600),
+              width: AppLayout.getWidth(320),
 
 
               decoration: BoxDecoration(
@@ -94,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   SizedBox(height: 10,),
 
-                  Padding(padding: EdgeInsets.only(left: 16.0),
+                  Padding(padding: EdgeInsets.only(left:AppLayout.getWidth(16)),
                     child: Text('ACCOUNT',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
                   ),
 
@@ -120,8 +154,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     child: Row(
                       children: [
-                        Icon(Icons.manage_accounts_sharp),SizedBox(width: 10,),
-                        Text('Profile')
+                        Icon(Icons.manage_accounts_sharp,color: Colors.red.shade300,),SizedBox(width: 10,),
+                        Text('Profile',
+                          style: GoogleFonts.openSans(
+                              fontSize: 15,
+                              color: Colors.black
+                          ),
+                        )
                       ],
                     ),
                   ),
@@ -134,22 +173,40 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(16),vertical: AppLayout.getHeight(16)),
                     child: Text('SETTINGS',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
                   ),
 
-                  TextButton(
-                      style: ButtonStyle(
-                        shadowColor: MaterialStateProperty.all(Colors.transparent),
-                        overlayColor: MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: () {  },
-                      child: Row(
-                        children: [
-                          Icon(Icons.language_sharp),SizedBox(width: 10,),
-                          Text('Language')
-                        ],
-                      )
+
+                  Padding(
+                    padding: EdgeInsets.only(left: AppLayout.getHeight(8),bottom: AppLayout.getWidth(8),right: AppLayout.getHeight(8)),
+                    child: Row(
+                      children: [
+                        Icon(Icons.language_sharp,color: Colors.red.shade300,),SizedBox(width: 10,),
+                        Text('Language',
+                          style: GoogleFonts.openSans(
+                              fontSize: 15,
+                              color: Colors.black
+                          ),
+                        ),
+                        Expanded(
+                          child:  DropdownButtonHideUnderline(
+                          child: ButtonTheme(
+                            alignedDropdown: true,
+                            child: DropdownButton(
+                               onChanged: (newValue){ },
+                              items: _language.map((e) {
+                                return DropdownMenuItem(
+                                    value: e,
+                                    child: Text(e)
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                        ),
+                        ),
+                      ],
+                    ),
                   ),
 
 
@@ -161,8 +218,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: () {  },
                       child: Row(
                         children: [
-                          Icon(Icons.gpp_good_sharp),SizedBox(width: 10,),
-                          Text('Permissions')
+                          Icon(Icons.gpp_good_sharp,color: Colors.red.shade300,),SizedBox(width: 10,),
+                          Text('Permissions',
+                            style: GoogleFonts.openSans(
+                                fontSize: 15,
+                                color: Colors.black
+                            ),
+                          )
                         ],
                       )
                   ),
@@ -171,10 +233,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(16),vertical: AppLayout.getHeight(16)),
                     child: Text('HELP & LEGAL',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
                   ),
 
+
+
                   TextButton(
                       style: ButtonStyle(
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -183,8 +247,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.help),SizedBox(width: 10,),
-                          Text('Help')
+                          Icon(Icons.help,color: Colors.red.shade300,),SizedBox(width: 10,),
+                          Text('Help',
+                            style: GoogleFonts.openSans(
+                                fontSize: 15,
+                                color: Colors.black
+                            ),
+                          )
                         ],
                       )
                   ),
@@ -198,8 +267,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.phone_callback_sharp),SizedBox(width: 10,),
-                          Text('Contact Us')
+                          Icon(Icons.phone_callback_sharp,color: Colors.red.shade300,),SizedBox(width: 10,),
+                          Text('Contact Us',
+                            style: GoogleFonts.openSans(
+                                fontSize: 15,
+                                color: Colors.black
+                            ),
+                          )
                         ],
                       )
                   ),
@@ -210,7 +284,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
                   Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(16),vertical: AppLayout.getHeight(16)),
                     child: Text('MORE',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
                   ),
 
@@ -223,8 +297,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.star_rate_outlined),SizedBox(width: 10,),
-                          Text('Rate Us')
+                          Icon(Icons.star_rate_outlined,color: Colors.red.shade300,),SizedBox(width: 10,),
+                          Text('Rate Us',
+                            style: GoogleFonts.openSans(
+                                fontSize: 15,
+                                color: Colors.black
+                            ),
+                          )
                         ],
                       )
                   ),
@@ -237,8 +316,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.logout),SizedBox(width: 10,),
-                          Text('Log out')
+                          Icon(Icons.logout,color: Colors.red.shade300,),SizedBox(width: 10,),
+                          Text('Log out',
+                            style: GoogleFonts.openSans(
+                                fontSize: 15,
+                                color: Colors.black
+                            ),
+                          )
                         ],
                       )
                   ),
