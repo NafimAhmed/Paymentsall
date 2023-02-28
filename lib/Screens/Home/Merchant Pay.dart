@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:payments_all_app/Screens/marchent_pay_all/QRCode/marchent_pay_qrcode_scanner.dart';
 
 import '../marchent_pay_all/marchent_pay_amount.dart';
 
@@ -40,7 +41,13 @@ class _MerchantPayPageState extends State<MerchantPayPage> {
                     color: Colors.white,
                   ),
                   child: TextButton(
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.push(
+                        context,MaterialPageRoute(
+                        builder: (context) {
+                          return MarchentPayQRCodeScanner();},),);
+
+                    },
                     child: Column(
                       children: [
                         SizedBox(height: 10,),
