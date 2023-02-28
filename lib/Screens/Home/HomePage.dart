@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.dart';
-import 'package:payments_all_app/Screens/Home/BillPay.dart';
+import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
 import 'Add Money/Add Money.dart';

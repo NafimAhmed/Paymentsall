@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:payments_all_app/Screens/pay_bill_all/pay_bill_detail.dart';
+import 'package:payments_all_app/Screens/Home/Bill%20Pay/pay_bill_detail.dart';
+
+import 'PayBillHistoryPage.dart';
 
 class BillPayPage extends StatefulWidget {
   const BillPayPage({Key? key}) : super(key: key);
@@ -43,16 +45,17 @@ class _BillPayPageState extends State<BillPayPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                height: 70,width: 330,
+                height: 74,width: 330,
                 decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
+                    border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                    borderRadius: BorderRadius.circular(6.0),
                         color: Colors.white
                     ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: 6,),
-                    Text('   Search Organization'),
+                    Text('   Search Organization',style: TextStyle(color: Colors.red.shade900)),
                     Padding(
                       padding: const EdgeInsets.only(left: 12,top: 0),
                       child: TextField(
@@ -64,7 +67,7 @@ class _BillPayPageState extends State<BillPayPage> {
                           // prefixIcon: Icon(Icons.attach_money_rounded,size: 30,color: Colors.grey,),
                           hintText: 'Enter Organization name or type',
                           hintStyle: TextStyle(color: Colors.grey.shade400),
-                          suffixIcon: Icon(Icons.arrow_forward_sharp,color: Colors.grey,)
+                          suffixIcon: Icon(Icons.arrow_forward_sharp,color: Colors.red.shade900,)
                         ),
                       ),
                     ),              ],
@@ -72,54 +75,50 @@ class _BillPayPageState extends State<BillPayPage> {
               ),
             ),
             Padding(
-                padding: EdgeInsets.only(left: 8,right: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 65,width: 162,
-                    color: Colors.white,
-                    child: TextButton(
-                      style: ButtonStyle(
-                        shadowColor: MaterialStateProperty.all(Colors.transparent),
-                        overlayColor: MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: (){},
-                      child: Row(
-                        children: [
-                          CircleAvatar(child: Icon(Icons.receipt_long_sharp)) ,SizedBox(width: 10,),
-                          Text('Receipts & \nTokens')
-                        ],
-                      ),
-                    ),
+                padding: EdgeInsets.only(left: 8,right: 8,bottom: 6),
+              child: Container(
+                height: 60,width: 330,
+                decoration: BoxDecoration(
+                    border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                    borderRadius: BorderRadius.circular(6.0),
+                    color: Colors.white
+                ),
+               // color: Colors.white,
+                child: TextButton(
+                  style: ButtonStyle(
+                    shadowColor: MaterialStateProperty.all(Colors.transparent),
+                    overlayColor: MaterialStateProperty.all(Colors.transparent),
                   ),
-                  SizedBox(width: 4,),
-                  Container(
-                    height: 65,width: 162,
-                    color: Colors.white,
-                    child: TextButton(
-                      style: ButtonStyle(
-                        shadowColor: MaterialStateProperty.all(Colors.transparent),
-                        overlayColor: MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: (){},
-                      child: Row(
-                        children: [
-                          // SizedBox(width: 8,),
-                          CircleAvatar(child: Icon(Icons.leaderboard_sharp)),SizedBox(width: 10,),
-                          Text('Pay Bill History')
+                  onPressed: (){
 
-                        ],
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return PayBillHistoryPage();
+                        },
                       ),
-                    ),
+                    );
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        backgroundColor: Colors.red.shade300,
+                          child: Icon(Icons.leaderboard_sharp,color: Colors.white,)),SizedBox(width: 10,),
+                      Text('Pay Bill History',style: TextStyle(color: Colors.black),),Spacer(),
+                      Icon(Icons.arrow_forward,color: Colors.red.shade900,)
+
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
             Padding(padding: EdgeInsets.only(left: 8,right: 8,top: 3),
             child: Container(
               height: 480,width: 330,
               decoration: BoxDecoration(
+                  border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                   borderRadius: BorderRadius.circular(6.0),
                   color: Colors.white
               ),

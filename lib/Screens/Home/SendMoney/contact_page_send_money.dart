@@ -109,9 +109,7 @@ import 'SendMoneyPage.dart';
                             suffixIcon: InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (_) => SendMoneyPage(
-                                          contacts: _writeMobileNo.text.toString(),
-                                      )));
+                                      MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:_writeMobileNo.text.toString())));
                                 },
                                 child: Icon(Icons.arrow_forward)),
                             suffixIconColor: Colors.red.shade900
@@ -146,21 +144,13 @@ import 'SendMoneyPage.dart';
         itemBuilder: (context, i) => ListTile(
             title: Text(_contactss![i].displayName),
             onTap: () async {
-              final fullContact = await FlutterContacts.getContact(_contactss![i].id);
+              final fullContact =
+              await FlutterContacts.getContact(_contactss![i].id);
+              if(fullContact!.phones.first.number.toString().isNotEmpty){
 
-              if(fullContact!.phones.first.number.toString().isNotEmpty)
-                {
-                  await Navigator.of(context).push(
-                      MaterialPageRoute(
-                          builder: (_) => SendMoneyPage(
-                              contacts:fullContact!.phones.first.number.toString()
-                          )));
-                }
+                await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:fullContact!.phones.first.number.toString())));
 
-
-
-
-
+              }
 
             }));
   }
