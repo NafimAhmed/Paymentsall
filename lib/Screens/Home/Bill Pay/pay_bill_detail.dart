@@ -4,6 +4,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payments_all_app/Screens/pay_bill_all/pay_bill_pin.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class PayBillDetil extends StatefulWidget
@@ -179,15 +180,57 @@ class _PayBillDetilState extends State<PayBillDetil> {
 
 
           Container(
+
+            decoration: BoxDecoration(
+                color: Colors.red.shade100,
+                borderRadius: BorderRadius.all(Radius.circular(15))
+            ),
+            margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10)),
+            padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getWidth(10)),
+
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
 
-                Text("Receiver : "),
+                Text("Account number : "),
+
+                TextField(
+                  //controller: _mobileNo,
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.red.shade900,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.account_balance,size: 30,color: Colors.red.shade900,),
+                    hintText: 'Enter Account number',
+                    hintStyle: TextStyle(color: Colors.grey.shade400),
+                    suffixIcon: InkWell(
+                        onTap:() {
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return PayBillPin();
+                              },
+                            ),
+                          );
+
+                        },
+                        child: Icon(Icons.arrow_forward,size: 30,color: Colors.red.shade900,)),
+                    suffixIconColor: Color(0xFFFCDEDE),
+                  ),
+                ),
+
+
+
 
               ],
             ),
-          )
+          ),
+
+
+
 
 
 
