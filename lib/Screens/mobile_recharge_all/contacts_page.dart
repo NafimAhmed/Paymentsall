@@ -80,9 +80,25 @@ class _ContactsPageState extends State<ContactsPage> {
                         suffixIcon: InkWell(
                           onTap: (){
 
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:_mobileNo.text.toString())));
+                            if(_mobileNo.text.toString().isNotEmpty)
+                              {
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                        builder: (_) => MobileRechargePag(
+                                            contacts:_mobileNo.text.toString()
+                                        )
+                                    )
+                                );
+                              }
+
+
+
+
                           },
+
+
+
+
                             child: Icon(Icons.arrow_forward)
                         ),
                         suffixIconColor: Colors.red.shade900,

@@ -21,7 +21,7 @@ class SendMoneyPage extends StatelessWidget {
 //   State<SendMoneyPage> createState() => _SendMoneyPageState();
 // }
 
-final Contact contacts;
+final String contacts;
 
   // TextEditingController _sendMoney = TextEditingController();
   final FocusNode _textFocusNode = FocusNode();
@@ -63,15 +63,15 @@ final Contact contacts;
                     child: Column(
                       children: [
                         SizedBox(height: 15,),
-                        Text( contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)',
+                        Text( contacts.isNotEmpty ? contacts : '(none)',
                           style: const TextStyle(fontSize: 20),),
                       ],
                     )),
               ),
             ),
             SizedBox(height: 40,),
-             Text(contacts.name.first,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),SizedBox(height: 5,),
-             Text(contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
+             Text(contacts,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),SizedBox(height: 5,),
+             Text(contacts.isNotEmpty ? contacts : '(none)',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
             SizedBox(height: 40,),
             Padding(
               padding: const EdgeInsets.all(10.0),

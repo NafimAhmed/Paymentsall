@@ -47,7 +47,7 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
 
   String connectionType='prepaid';
 
-
+  //
   String operator(String contacts){
     String nim,cont;
     if(contacts.substring(0,3)=="+88"){
@@ -170,7 +170,7 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
                     ),
                     SizedBox(height: 20,),
 
-                    Text(operator(widget.contacts!)),
+                    //Text(operator(widget.contacts!)),
 
                     Text('   Operator',
                         style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
