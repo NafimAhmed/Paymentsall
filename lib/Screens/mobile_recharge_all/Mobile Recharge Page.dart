@@ -8,34 +8,34 @@ class MobileRechargePag extends StatefulWidget {
 
   final String contacts;
 
-
-  static List<Map>_operatorList=[
-    {
-      'id': '0',
-      'image': 'assets/images/airtel.png',
-      'name': 'Airtel'
-    },
-    {
-      'id': '1',
-      'image': 'assets/images/banglalik.png',
-      'name': 'Banglalink'
-    },
-    {
-      'id': '2',
-      'image': 'assets/images/grameenphone.png',
-      'name': 'Grameenphone'
-    },
-    {
-      'id': '3',
-      'image': 'assets/images/robi.png',
-      'name': 'Robi'
-    },
-    {
-      'id': '4',
-      'image': 'assets/images/TeleTalk.png',
-      'name': 'Teletalk'
-    },
-  ];
+  //
+  // static List<Map>_operatorList=[
+  //   {
+  //     'id': '0',
+  //     'image': 'assets/images/airtel.png',
+  //     'name': 'Airtel'
+  //   },
+  //   {
+  //     'id': '1',
+  //     'image': 'assets/images/banglalik.png',
+  //     'name': 'Banglalink'
+  //   },
+  //   {
+  //     'id': '2',
+  //     'image': 'assets/images/grameenphone.png',
+  //     'name': 'Grameenphone'
+  //   },
+  //   {
+  //     'id': '3',
+  //     'image': 'assets/images/robi.png',
+  //     'name': 'Robi'
+  //   },
+  //   {
+  //     'id': '4',
+  //     'image': 'assets/images/TeleTalk.png',
+  //     'name': 'Teletalk'
+  //   },
+  // ];
 
    MobileRechargePag({super.key, required this.contacts});
 
@@ -98,7 +98,9 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
   }
 
   //_mobileNumber= " ${contacts.phones.isNotEmpty ? contacts.phones.first.number : '(none)'}"
-    String? _selected;
+    String _selected ='Select Operator';
+  List<String>_operator=['Select Operator','Airtel','Banglalink','Grameenphone','Robi','Skitto','Teletalk'];
+
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +163,7 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
                           children: [
                             SizedBox(height: 15,),
                             Text(
-                                 " ${widget.contacts!.isNotEmpty ? widget.contacts : '(none)'}"
+                                 "     ${widget.contacts!.isNotEmpty ? widget.contacts : '(none)'}"
 
                             ),
                           ],
@@ -205,19 +207,13 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
                                     value: _selected,
                                     onChanged: (newValue){
                                       setState(() {
-                                        _selected=newValue as String ;
+                                        _selected=newValue!;
                                       });
                                     },
-                                    items: MobileRechargePag._operatorList.map((e) {
+                                    items: _operator.map((e) {
                                       return DropdownMenuItem(
                                         value: e,
-                                          child: Row(
-                                            children: [
-                                              Image.asset(e['image'],height: 30,width: 40,),
-                                              SizedBox(width: 15,),
-                                              Text(e['name'])
-                                            ],
-                                          )
+                                          child: Text(e)
                                       );
                                   }).toList(),
                                   ),

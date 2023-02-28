@@ -69,14 +69,14 @@ final String contacts;
                     )),
               ),
             ),
-            SizedBox(height: 40,),
-             Text(contacts,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),SizedBox(height: 5,),
-             Text(contacts.isNotEmpty ? contacts : '(none)',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
-            SizedBox(height: 40,),
+           // SizedBox(height: 20,),
+            // Text(contacts,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24),),SizedBox(height: 5,),
+            // Text(contacts.isNotEmpty ? contacts : '(none)',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
+            //SizedBox(height: 40,),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Container(
-                height: 60,width: 296,
+                height: 50,width: 320,
                 decoration: BoxDecoration(
                     border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                     borderRadius: BorderRadius.circular(6.0),
@@ -95,7 +95,7 @@ final String contacts;
                 ),
               ),
             ),
-            SizedBox(height: 200,),
+            SizedBox(height: 350,),
             Padding(padding: EdgeInsets.only(left: 6),
                 child: Container(
                   height: 40,width: 270,
