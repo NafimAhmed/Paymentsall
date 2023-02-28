@@ -6,7 +6,7 @@ enum SingingCharacter { lafayette, jefferson }
 class MobileRechargePag extends StatefulWidget {
 
 
-  final String? contacts;
+  final String contacts;
 
 
   static List<Map>_operatorList=[
@@ -290,7 +290,7 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
                             MaterialPageRoute(
                               builder: (context) {
                                 return MobileRechargeAmount(
-                                  recNumb: widget.contacts!,
+                                  recNumb: widget.contacts,
                                   connectionType: connectionType,
                                   operator: "Grameen phone",
                                 );

@@ -13,7 +13,7 @@ class MobileRechargeAmount extends StatelessWidget
 
    //MobileRechargeAmount({super.key, required this.recNumb,required this.connectionType});
 
-  final TextEditingController _mobileNumber=TextEditingController();
+  final TextEditingController rechargeAmount=TextEditingController();
 
    MobileRechargeAmount({super.key, required this.recNumb, required this.connectionType, required this.operator});
 
@@ -106,7 +106,7 @@ class MobileRechargeAmount extends StatelessWidget
                    ),
                  ),
                  TextField(
-                   controller: _mobileNumber,
+                   controller: rechargeAmount,
                    keyboardType: TextInputType.number,
                    cursorColor: Colors.red.shade900,
                    style: GoogleFonts.openSans(
@@ -136,7 +136,7 @@ class MobileRechargeAmount extends StatelessWidget
                                builder: (context) {
                                  return MobileRechargePin(
                                    recNumb: recNumb,
-                                   amount: _mobileNumber.text.toString(),
+                                   amount: rechargeAmount.text.toString(),
                                    connectionType: connectionType,
                                    operator: operator,
                                  );

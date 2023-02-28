@@ -174,6 +174,19 @@ class _PayBillDetilState extends State<PayBillDetil> {
 
               ],
             ),
+          ),
+
+
+
+          Container(
+            child: Column(
+              children: [
+
+
+                Text("Receiver : "),
+
+              ],
+            ),
           )
 
 
