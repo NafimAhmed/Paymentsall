@@ -23,7 +23,7 @@ class SendMoneyPage extends StatelessWidget {
 
 final Contact contacts;
 
-   TextEditingController _sendMoney = TextEditingController();
+  // TextEditingController _sendMoney = TextEditingController();
   final FocusNode _textFocusNode = FocusNode();
 
 
@@ -82,17 +82,15 @@ final Contact contacts;
                     borderRadius: BorderRadius.circular(6.0),
                     color: Colors.white
                 ),
-                child: Form(
-                  child: TextField(
-                    textAlign: TextAlign.center,
-                    controller: _sendMoney,
-                    keyboardType: TextInputType.number,
-                    cursorColor: Colors.red.shade900,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Amount',
-                      hintStyle: TextStyle(color: Colors.grey.shade400),
-                    ),
+                child: TextField(
+                  textAlign: TextAlign.center,
+                 // controller: _sendMoney,
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.red.shade900,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Amount',
+                    hintStyle: TextStyle(color: Colors.grey.shade400),
                   ),
                 ),
               ),
