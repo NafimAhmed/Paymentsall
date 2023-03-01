@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -10,6 +15,42 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+  // File? image;
+  String _imagepath='';
+  final ImagePicker imgpicker = ImagePicker();
+
+  Future pickImageGallery() async {
+    try {
+      XFile? pickedFile = await imgpicker.pickImage(source: ImageSource.gallery);
+      if (pickedFile != null) {
+        setState(() {
+          _imagepath = pickedFile.path;
+        });
+      } else {
+        print("No image is selected.");
+      }
+    } on PlatformException catch (e) {
+      print("error while picking image.");
+    }
+  }
+  Future pickImageCamera() async {
+    try {
+      XFile? pickedFile = await imgpicker.pickImage(source: ImageSource.camera);
+      if (pickedFile != null) {
+        setState(() {
+          _imagepath = pickedFile.path;
+        });
+      } else {
+        print("No image is selected.");
+      }
+    } on PlatformException catch (e) {
+      print("error while picking image.");
+    }
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     TextEditingController _firstName=TextEditingController();
@@ -43,28 +84,53 @@ class _SignUpPageState extends State<SignUpPage> {
                   height: AppLayout.getHeight(180),
                   width: AppLayout.getWidth(300),
 
-
                   decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: FileImage(File(_imagepath)),
+                      fit: BoxFit.fill
+                    ),
                       border: Border.all(
                         width: 1,
                         color: Color(0xFFFCDEDE),
                       ),
                       borderRadius: BorderRadius.circular(4.0),
+
                       color: Colors.white
                   ),
 
 
-                  child: TextButton(
-                    style: ButtonStyle(
-                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                      overlayColor: MaterialStateProperty.all(Colors.transparent),
-                    ),
-                    onPressed: (){},
-                    child: Text('Take a Picture',
-                    style: GoogleFonts.openSans(
-                      color: Colors.red.shade300
-                    ),
-                    ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        style: ButtonStyle(
+                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                          overlayColor: MaterialStateProperty.all(Colors.transparent),
+                        ),
+                        onPressed: (){
+                          pickImageGallery();
+                          },
+                        child: Text('Upload Picture',
+                        style: GoogleFonts.openSans(
+                          color: Colors.red.shade300
+                        ),
+                        ),
+                      ),
+                      TextButton(
+                        style: ButtonStyle(
+                          shadowColor: MaterialStateProperty.all(Colors.transparent),
+                          overlayColor: MaterialStateProperty.all(Colors.transparent),
+                        ),
+                        onPressed: (){
+                          pickImageCamera();
+                          },
+                        child: Text('Take Picture',
+                        style: GoogleFonts.openSans(
+                          color: Colors.red.shade300
+                        ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -123,8 +189,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
 
-
-              //SizedBox(height: 5,),
               Text('   Last Name',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
               Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -151,9 +215,6 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
 
 
-             // SizedBox(height: 5,),
-
-             // SizedBox(height: 5,),
               Row(
                 children: [
                   Column(
