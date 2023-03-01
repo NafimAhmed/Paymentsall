@@ -3,9 +3,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:payments_all_app/Screens/pay_bill_all/pay_bill_confirmation.dart';
+import 'package:payments_all_app/Screens/Home/Bill%20Pay/pay_bill_confirmation.dart';
 
-import '../../utils/app_layout.dart';
+import '../../../utils/app_layout.dart';
+//import 'package:payments_all_app/Screens/pay_bill_all/pay_bill_confirmation.dart';
+
+//import '../../utils/app_layout.dart';
 
 class PayBillPin extends StatelessWidget
 {
