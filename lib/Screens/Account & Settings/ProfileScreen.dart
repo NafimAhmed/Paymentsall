@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:payments_all_app/Screens/Profile/contact_us.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 import 'ProfilePage.dart';
@@ -14,13 +12,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-
-  List<String> list_month = <String>['English', 'Bangla'];
-
-  String dropdownValue_month = 'English';
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,59 +145,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       onPressed: () {  },
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Icon(Icons.language_sharp),
-                              SizedBox(width: 10,),
-                              Text('Language'),
-                            ],
-                          ),
-
-                          Container(
-                            child: DropdownButton<String>(
-                              value: dropdownValue_month,
-                              icon: const Icon(Icons.arrow_drop_down),
-                              elevation: 16,
-                              style: const TextStyle(color: Colors.black),
-                              // underline: Container(
-                              //   height: 2,
-                              //   color: Colors.deepPurpleAccent,
-                              // ),
-                              onChanged: (String? value) {
-                                // This is called when the user selects an item.
-                                setState(() {
-                                  dropdownValue_month = value!;
-                                });
-                              },
-                              items: list_month.map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value,
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-
-
-
-
-
-
+                          Icon(Icons.language_sharp),SizedBox(width: 10,),
+                          Text('Language')
                         ],
                       )
                   ),
-
-
-
-
-
 
 
                   TextButton(
@@ -251,19 +195,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
                         overlayColor: MaterialStateProperty.all(Colors.transparent),
                       ),
-                      onPressed: (){
-
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return ContactUs();
-                            },
-                          ),
-                        );
-
-
-                      },
+                      onPressed: (){},
                       child: Row(
                         children: [
                           Icon(Icons.phone_callback_sharp),SizedBox(width: 10,),

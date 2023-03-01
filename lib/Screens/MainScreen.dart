@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:payments_all_app/Screens/Home/HomePage.dart';
 import 'package:payments_all_app/Screens/Notification/NotificationScreen.dart';
-import 'package:payments_all_app/Screens/Profile/ProfileScreen.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
+import 'Account & Settings/ProfileScreen.dart';
 import 'Scan/ScanScreen.dart';
 
 class MainScreen extends StatefulWidget {
