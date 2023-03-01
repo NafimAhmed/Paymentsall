@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payments_all_app/Screens/Account%20&%20Settings/contact_us.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 import 'ProfilePage.dart';
@@ -245,7 +246,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
                         overlayColor: MaterialStateProperty.all(Colors.transparent),
                       ),
-                      onPressed: (){},
+                      onPressed: (){
+
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ContactUs();
+                            },
+                          ),
+                        );
+
+
+                      },
                       child: Row(
                         children: [
                           Icon(Icons.phone_callback_sharp),SizedBox(width: 10,),
