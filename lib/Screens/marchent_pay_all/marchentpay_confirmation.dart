@@ -1,6 +1,8 @@
 
 
 
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -9,16 +11,116 @@ import '../../utils/app_layout.dart';
 
 
 
-class MarchentPayConfirmation extends StatelessWidget{
+class MarchentPayConfirmation extends StatefulWidget{
 
 
   final String receiveNumb,totAmount,ref;
 
   const MarchentPayConfirmation({super.key, required this.receiveNumb, required this.totAmount, required this.ref});
 
+  @override
+  State<MarchentPayConfirmation> createState() => _MarchentPayConfirmationState();
+}
+
+class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with TickerProviderStateMixin {
+
+  late AnimationController controller= AnimationController(
+    /// [AnimationController]s can be created with `vsync: this` because of
+    /// [TickerProviderStateMixin].
+    vsync: this,
+    duration: const Duration(seconds: 2),
+  )..addListener(() {
+    setState(() {});
+  });
+  bool determinate = false;
+
+  // @override
+  // void initState() {
+  //   controller = AnimationController(
+  //     /// [AnimationController]s can be created with `vsync: this` because of
+  //     /// [TickerProviderStateMixin].
+  //     vsync: this,
+  //     duration: const Duration(seconds: 2),
+  //   )..addListener(() {
+  //     setState(() {});
+  //   });
+  //   controller.repeat();
+  //   super.initState();
+  // }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+
+///////////////////////////////////////////////////////
+
+  // Timer? countdownTimer;
+  // Duration myDuration = Duration(seconds: 10);
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
+  // /// Timer related methods ///
+  // // Step 3
+  // void startTimer() {
+  //   countdownTimer =
+  //       Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
+  // }
+  // // Step 4
+  // void stopTimer() {
+  //   setState(() => countdownTimer!.cancel());
+  // }
+  // // Step 5
+  // void resetTimer() {
+  //   stopTimer();
+  //   setState(() => myDuration = Duration(days: 5));
+  // }
+  // // Step 6
+  // void setCountDown() {
+  //   final reduceSecondsBy = 1;
+  //   setState(() {
+  //     final seconds = myDuration.inSeconds - reduceSecondsBy;
+  //     if (seconds < 0) {
+  //
+  //       countdownTimer!.cancel();
+  //
+  //     } else {
+  //       myDuration = Duration(seconds: seconds);
+  //     }
+  //   });
+  // }
+  //
+  //
+  //
+  //
+
+
+//////////////////////////////////////////////
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
+    // String strDigits(int n) => n.toString().padLeft(2, '0');
+    // final days = strDigits(myDuration.inDays);
+    // // Step 7
+    // final hours = strDigits(myDuration.inHours.remainder(24));
+    // final minutes = strDigits(myDuration.inMinutes.remainder(60));
+    // final seconds = strDigits(myDuration.inSeconds.remainder(60));
+    //
+    // int remain=10-int.parse(seconds);
+
+
+
     // TODO: implement build
     return Scaffold(
       body: SingleChildScrollView(
@@ -46,7 +148,7 @@ class MarchentPayConfirmation extends StatelessWidget{
               ),
             ),
 
-            Text(receiveNumb,
+            Text(widget.receiveNumb,
               style: GoogleFonts.openSans(
                   fontSize: 20,
                   fontWeight: FontWeight.normal
@@ -67,13 +169,13 @@ class MarchentPayConfirmation extends StatelessWidget{
                     width: 1),
                 children: [
                   TableRow( children: [
-                    Column(children:[Text('Total :\n ৳ $totAmount', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                    Column(children:[Text('Total :\n ৳ ${widget.totAmount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
                     Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
                   ]),
 
                   TableRow( children: [
                     Column(children:[Text('Refernce : \n', style: GoogleFonts.openSans(fontSize: 20.0))]),
-                    Column(children:[Text(ref, style: GoogleFonts.openSans(fontSize: 20.0))]),
+                    Column(children:[Text(widget.ref, style: GoogleFonts.openSans(fontSize: 20.0))]),
                   ]),
 
 
@@ -83,9 +185,31 @@ class MarchentPayConfirmation extends StatelessWidget{
 
 
 
-            GestureDetector(
-              onTap: () async {
+
+            ////////////////////////////////
+
+            LinearProgressIndicator(
+              value: controller.value,
+              semanticsLabel: 'Linear progress indicator',
+            ),
+
+
+
+            ////////////////////////////
+
+
+
+
+
+
+
+
+
+            InkWell(
+              onTapDown: (Detail) async {
                 //startRecording();
+                controller.reset();
+                controller.repeat();
               },
               child: Container(
                 padding: EdgeInsets.all(40),
@@ -105,38 +229,32 @@ class MarchentPayConfirmation extends StatelessWidget{
                   ),
                 ),
               ),
-              onLongPressDown: (details) {
-                // startRecordingTimer();
-                // startRecording();
-                // stopwatch.start();
+              onTapUp: (detail) {
 
-                Fluttertoast.showToast(
-                    msg: "onLongPressDown",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
+                controller.stop();
+
+
+
 
               },
-              onLongPressUp: () {
 
-                Fluttertoast.showToast(
-                    msg: "onLongPressUP",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
-                // stopwatch.stop();
-                // var timeElapsedInSeconds =     stopwatch.elapsed.inSeconds;
-                // print("Time elapsed: $timeElapsedInSeconds");
-              },
-            )
+            ),
+
+
+
+
+
+
+
+
+
+            // Text(
+            //   '$hours:$minutes:${remain}',
+            //   style: TextStyle(
+            //       fontWeight: FontWeight.bold,
+            //       color: Colors.black,
+            //       fontSize: 50),
+            // ),
 
 
           ],
@@ -144,5 +262,4 @@ class MarchentPayConfirmation extends StatelessWidget{
       ),
     );
   }
-
 }
