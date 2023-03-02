@@ -1,11 +1,12 @@
 
 
 
-import 'dart:async';
+
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:google_fonts/google_fonts.dart';
 import '../../utils/app_layout.dart';
 
@@ -28,77 +29,57 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
     /// [AnimationController]s can be created with `vsync: this` because of
     /// [TickerProviderStateMixin].
     vsync: this,
-    duration: const Duration(seconds: 2),
+    duration: const Duration(seconds: 10),
   )..addListener(() {
-    setState(() {});
+
+    if(controller.value>=.90){
+
+      controller.stop();
+
+      Fluttertoast.showToast(
+          msg: "Done",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+
+    }
+    setState(() {
+
+
+
+
+
+    });
   });
   bool determinate = false;
 
-  // @override
-  // void initState() {
-  //   controller = AnimationController(
-  //     /// [AnimationController]s can be created with `vsync: this` because of
-  //     /// [TickerProviderStateMixin].
-  //     vsync: this,
-  //     duration: const Duration(seconds: 2),
-  //   )..addListener(() {
-  //     setState(() {});
-  //   });
-  //   controller.repeat();
-  //   super.initState();
-  // }
+
 
   @override
   void dispose() {
     controller.dispose();
+
+    Fluttertoast.showToast(
+        msg: "Done",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+
     super.dispose();
   }
 
 
 ///////////////////////////////////////////////////////
 
-  // Timer? countdownTimer;
-  // Duration myDuration = Duration(seconds: 10);
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
-  // /// Timer related methods ///
-  // // Step 3
-  // void startTimer() {
-  //   countdownTimer =
-  //       Timer.periodic(Duration(seconds: 1), (_) => setCountDown());
-  // }
-  // // Step 4
-  // void stopTimer() {
-  //   setState(() => countdownTimer!.cancel());
-  // }
-  // // Step 5
-  // void resetTimer() {
-  //   stopTimer();
-  //   setState(() => myDuration = Duration(days: 5));
-  // }
-  // // Step 6
-  // void setCountDown() {
-  //   final reduceSecondsBy = 1;
-  //   setState(() {
-  //     final seconds = myDuration.inSeconds - reduceSecondsBy;
-  //     if (seconds < 0) {
-  //
-  //       countdownTimer!.cancel();
-  //
-  //     } else {
-  //       myDuration = Duration(seconds: seconds);
-  //     }
-  //   });
-  // }
-  //
-  //
-  //
-  //
-
-
-//////////////////////////////////////////////
 
 
 
@@ -110,14 +91,6 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
   @override
   Widget build(BuildContext context) {
 
-    // String strDigits(int n) => n.toString().padLeft(2, '0');
-    // final days = strDigits(myDuration.inDays);
-    // // Step 7
-    // final hours = strDigits(myDuration.inHours.remainder(24));
-    // final minutes = strDigits(myDuration.inMinutes.remainder(60));
-    // final seconds = strDigits(myDuration.inSeconds.remainder(60));
-    //
-    // int remain=10-int.parse(seconds);
 
 
 
@@ -191,6 +164,7 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
             LinearProgressIndicator(
               value: controller.value,
               semanticsLabel: 'Linear progress indicator',
+
             ),
 
 
@@ -208,8 +182,17 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
             InkWell(
               onTapDown: (Detail) async {
                 //startRecording();
-                controller.reset();
+                //controller.reset();
                 controller.repeat();
+
+                if(controller.value>=.99){
+
+                  controller.stop();
+
+                }
+
+
+
               },
               child: Container(
                 padding: EdgeInsets.all(40),
@@ -230,31 +213,25 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
                 ),
               ),
               onTapUp: (detail) {
-
                 controller.stop();
 
 
-
+                Fluttertoast.showToast(
+                    msg: controller.value.toString(),
+                    toastLength: Toast.LENGTH_SHORT,
+                    gravity: ToastGravity.CENTER,
+                    timeInSecForIosWeb: 1,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                    fontSize: 16.0
+                );
+                controller.reset();
 
               },
 
             ),
 
 
-
-
-
-
-
-
-
-            // Text(
-            //   '$hours:$minutes:${remain}',
-            //   style: TextStyle(
-            //       fontWeight: FontWeight.bold,
-            //       color: Colors.black,
-            //       fontSize: 50),
-            // ),
 
 
           ],
