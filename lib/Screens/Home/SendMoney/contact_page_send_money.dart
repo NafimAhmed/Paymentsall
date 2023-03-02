@@ -5,6 +5,7 @@ import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 
 import '../../mobile_recharge_all/Mobile Recharge Page.dart';
+import 'QRCode_send_money/send_money_qrcode_scanner.dart';
 import 'SendMoneyPage.dart';
 
 //
@@ -80,7 +81,20 @@ import 'SendMoneyPage.dart';
                                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                                     ),
-                        onPressed: (){},
+                        onPressed: (){
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SendMoneyQRCodeScanner();
+                              },
+                            ),
+                          );
+
+
+
+                        },
                         child: Icon(Icons.qr_code_scanner_sharp,color: Colors.red.shade300,size: 30,))
 
 
