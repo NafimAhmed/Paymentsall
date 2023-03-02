@@ -19,6 +19,36 @@ class _SignUpPageState extends State<SignUpPage> {
   List<String> list_month = <String>['Male', 'Female'];
   String dropdownValue_month = 'Male';
 
+  ///////////////////////////////////////////////////
+
+
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+
+
+
+
+  /////////////////////////////////////////////
+
+
+
+
+
+
+
 
   // File? image;
   String _imagepath='';
@@ -113,6 +143,11 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
+
+
+
+
+
                             // TextButton(
                             //   style: ButtonStyle(
                             //     shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -255,17 +290,17 @@ class _SignUpPageState extends State<SignUpPage> {
                               borderRadius: BorderRadius.circular(6.0),
                               color: Colors.white
                           ),
-                          child: TextField(
-                            controller: _dob,
-                            keyboardType: TextInputType.number,
-                            cursorColor: Colors.red.shade900,
-
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: Icon(Icons.date_range_sharp,size: 24,color: Colors.grey,),
-                              hintText: 'Date of Birth',
-                              hintStyle: TextStyle(color: Colors.grey.shade400),
-
+                          child: InkWell(
+                            onTap: (){
+                              _selectDate(context);
+                            },
+                            child: Center(
+                              child: Text(
+                                "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
+                                style: GoogleFonts.openSans(
+                                  fontSize: 20,
+                                ),
+                              ),
                             ),
                           ),
 
