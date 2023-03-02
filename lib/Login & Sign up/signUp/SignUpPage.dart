@@ -16,6 +16,10 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
 
+  List<String> list_month = <String>['Male', 'Female'];
+  String dropdownValue_month = 'Male';
+
+
   // File? image;
   String _imagepath='';
   final ImagePicker imgpicker = ImagePicker();
@@ -80,57 +84,78 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
               Center(
-                child: Container(
-                  height: AppLayout.getHeight(180),
-                  width: AppLayout.getWidth(300),
+                child: CircleAvatar(
+                  radius: 60,
+                  child: Center(
+                    child: InkWell(
+                      onTap: (){
+                        pickImageCamera();
+                      },
+                      child: Container(
+                        height: AppLayout.getHeight(180),
+                        width: AppLayout.getWidth(300),
 
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: FileImage(File(_imagepath)),
-                      fit: BoxFit.fill
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: FileImage(File(_imagepath)),
+                            fit: BoxFit.fill
+                          ),
+                            border: Border.all(
+                              width: 1,
+                              color: Color(0xFFFCDEDE),
+                            ),
+                            borderRadius: BorderRadius.circular(4.0),
+
+                            color: Colors.white
+                        ),
+
+
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            // TextButton(
+                            //   style: ButtonStyle(
+                            //     shadowColor: MaterialStateProperty.all(Colors.transparent),
+                            //     overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            //   ),
+                            //   onPressed: (){
+                            //     pickImageGallery();
+                            //     },
+                            //   child: Text('Upload Picture',
+                            //   style: GoogleFonts.openSans(
+                            //     color: Colors.red.shade300
+                            //   ),
+                            //   ),
+                            // ),
+
+
+
+
+
+                            // TextButton(
+                            //   style: ButtonStyle(
+                            //     shadowColor: MaterialStateProperty.all(Colors.transparent),
+                            //     overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            //   ),
+                            //   onPressed: (){
+                            //     pickImageCamera();
+                            //     },
+                            //   child: Text('Take Picture',
+                            //   style: GoogleFonts.openSans(
+                            //     color: Colors.red.shade300
+                            //   ),
+                            //   ),
+                            // ),
+                            //
+
+
+
+
+
+                          ],
+                        ),
+                      ),
                     ),
-                      border: Border.all(
-                        width: 1,
-                        color: Color(0xFFFCDEDE),
-                      ),
-                      borderRadius: BorderRadius.circular(4.0),
-
-                      color: Colors.white
-                  ),
-
-
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextButton(
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-                        onPressed: (){
-                          pickImageGallery();
-                          },
-                        child: Text('Upload Picture',
-                        style: GoogleFonts.openSans(
-                          color: Colors.red.shade300
-                        ),
-                        ),
-                      ),
-                      TextButton(
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-                        onPressed: (){
-                          pickImageCamera();
-                          },
-                        child: Text('Take Picture',
-                        style: GoogleFonts.openSans(
-                          color: Colors.red.shade300
-                        ),
-                        ),
-                      ),
-                    ],
                   ),
                 ),
               ),
@@ -234,6 +259,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             controller: _dob,
                             keyboardType: TextInputType.number,
                             cursorColor: Colors.red.shade900,
+
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               prefixIcon: Icon(Icons.date_range_sharp,size: 24,color: Colors.grey,),
@@ -242,6 +268,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
                             ),
                           ),
+
+
+
                         ),
                       ),
 
@@ -254,24 +283,48 @@ class _SignUpPageState extends State<SignUpPage> {
                       Padding(
                         padding: const EdgeInsets.all(6.0),
                         child: Container(
+                          padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10)),
                           height: 40,width: 146,
                           decoration: BoxDecoration(
                               border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                               borderRadius: BorderRadius.circular(6.0),
                               color: Colors.white
                           ),
-                          child: TextField(
-                            controller: _gender,
-                            keyboardType: TextInputType.text,
-                            cursorColor: Colors.red.shade900,
-                            decoration: InputDecoration(
-                              border: InputBorder.none,
-                              prefixIcon: Icon(Icons.man,size: 24,color: Colors.grey,),
-                              hintText: 'Gender',
-                              hintStyle: TextStyle(color: Colors.grey.shade400),
-
+                          child: Container(
+                            child: DropdownButton<String>(
+                              value: dropdownValue_month,
+                              icon: const Icon(Icons.arrow_drop_down),
+                              elevation: 16,
+                              style: const TextStyle(color: Colors.black),
+                              // underline: Container(
+                              //   height: 2,
+                              //   color: Colors.deepPurpleAccent,
+                              // ),
+                              onChanged: (String? value) {
+                                // This is called when the user selects an item.
+                                setState(() {
+                                  dropdownValue_month = value!;
+                                });
+                              },
+                              items: list_month.map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value,
+                                    style: GoogleFonts.openSans(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600
+                                    ),
+                                  ),
+                                );
+                              }).toList(),
                             ),
                           ),
+
+
+
+
+
+
                         ),
                       ),
 
