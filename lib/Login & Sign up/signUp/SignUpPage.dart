@@ -117,7 +117,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 child: Row(
                   children: [
                     TextButton(
-                        onPressed: (){},
+                        onPressed: (){
+
+                        },
                         child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
                     Text('Registration form',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),)
                   ],
@@ -316,7 +318,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               child: Text(
                                 "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
                                 style: GoogleFonts.openSans(
-                                  fontSize: 20,
+                                  fontSize: 16,
                                 ),
                               ),
                             ),
@@ -344,32 +346,32 @@ class _SignUpPageState extends State<SignUpPage> {
                               color: Colors.white
                           ),
                           child: Container(
-                            child: DropdownButton<String>(
-                              value: dropdownValue_month,
-                              icon: const Icon(Icons.arrow_drop_down),
-                              elevation: 16,
-                              style: const TextStyle(color: Colors.black),
-                              // underline: Container(
-                              //   height: 2,
-                              //   color: Colors.deepPurpleAccent,
-                              // ),
-                              onChanged: (String? value) {
-                                // This is called when the user selects an item.
-                                setState(() {
-                                  dropdownValue_month = value!;
-                                });
-                              },
-                              items: list_month.map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value,
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
+                            child: DropdownButtonHideUnderline(
+                              child: ButtonTheme(
+                                alignedDropdown: true,
+                                child: DropdownButton<String>(
+                                  value: dropdownValue_month,
+                                  icon: const Icon(Icons.arrow_drop_down,size: 20,),
+                                  //elevation: 16,
+                                  style: const TextStyle(color: Colors.black),
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      dropdownValue_month = value!;
+                                    });
+                                  },
+                                  items: list_month.map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value,
+                                        style: GoogleFonts.openSans(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                             ),
                           ),
 

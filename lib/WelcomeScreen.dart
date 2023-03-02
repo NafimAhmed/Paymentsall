@@ -54,7 +54,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   ),
                   inactiveColor: Colors.grey,
                   activeColor: GFColors.LIGHT,
-                 // dotMargin: EdgeInsets.symmetric(horizontal: 6),
                   showPagination: true,
                 ),
                 currentIndex: initialPage,
@@ -155,7 +154,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:  [
                   Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
-                  Text('Easy Transfer Way',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
+                  const Text('Easy Transfer Way',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
              Image.asset('assets/images/easy transfer.png',height: 310,width: 320,)
@@ -173,7 +172,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:  [
                   Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
-                  Text('Safe and Secure',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
+                  const Text('Safe and Secure',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
              Image.asset('assets/images/safe and secure.png',height: 310,width: 320,)

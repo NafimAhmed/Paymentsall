@@ -17,22 +17,20 @@ class ContactUs extends StatelessWidget
 
         appBar: AppBar(
 
-          backgroundColor: Color(0xFFFFF8F8),
+          backgroundColor: const Color(0xFFFFF8F8),
           elevation: 0.0,
 
-          title: Text("Contact us",
+          title: const Text("Contact us",
             style: TextStyle(
                 color: Colors.black
             ),
           ),
 
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
               color: Colors.black),
         ),
 
-        backgroundColor: Color(0xFFFFF8F8),
-
-
+        backgroundColor: const Color(0xFFFFF8F8),
 
 
 
@@ -53,7 +51,7 @@ class ContactUs extends StatelessWidget
 
 
 
-            SizedBox(height: 60,),
+            const SizedBox(height: 60,),
 
 
 
@@ -89,8 +87,6 @@ class ContactUs extends StatelessWidget
 
 
 
-
-
             InkWell(
               onTap: (){
                 launch("tel://21213123123");
@@ -104,7 +100,7 @@ class ContactUs extends StatelessWidget
                       color: Colors.red.shade900,
                     ),
 
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
 
                     Text("Contact us :\n+8801797609439",
                       textAlign: TextAlign.center,
@@ -125,7 +121,7 @@ class ContactUs extends StatelessWidget
                 String subject="Support payments all";
                 String body="";
 
-                Uri mail = Uri.parse("mailto:${email}?subject=$subject&body=$body");
+                Uri mail = Uri.parse("mailto:$email?subject=$subject&body=$body");
                 await launchUrl(mail);
 
 
@@ -138,7 +134,7 @@ class ContactUs extends StatelessWidget
                     color: Colors.red.shade900,
                   ),
 
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
 
                   Text("Email :\nrecentnafimahmed@gmail.com",
                     textAlign: TextAlign.center,
@@ -152,7 +148,7 @@ class ContactUs extends StatelessWidget
             ),
 
 
-            SizedBox(height: 100,)
+            const SizedBox(height: 100,)
 
 
 

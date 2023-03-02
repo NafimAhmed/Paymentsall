@@ -1,10 +1,28 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:payments_all_app/WelcomeScreen.dart';
+import 'package:payments_all_app/utils/Theme.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(const MyApp());
+
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]).then((_) {
+    SharedPreferences.getInstance().then((prefs) {
+      var darkModeOn = prefs.getBool('darkMode') ?? true;
+      runApp(
+        ChangeNotifierProvider<ThemeNotifier>(
+          create: (_) => ThemeNotifier(darkModeOn ? darkTheme : lightTheme),
+          child: MyApp(),
+        ),
+      );
+    });
+  });
+
+  //runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,10 +30,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
     return MaterialApp(
       title: 'Payments All',
+
       debugShowCheckedModeBanner: false,
-      home: AnimatedSplashScreen(
+        theme: themeNotifier.getTheme(),
+        home: AnimatedSplashScreen(
         duration: 3000,
         splash: Scaffold(
           body: Container(

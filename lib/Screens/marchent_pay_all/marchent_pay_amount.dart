@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/Screens/marchent_pay_all/marchent_pay_pin.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
+import 'package:provider/provider.dart';
+
+import '../../utils/Theme.dart';
 
 class MarchentPayAmount extends StatelessWidget
 {
@@ -22,6 +25,7 @@ class MarchentPayAmount extends StatelessWidget
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+
       body: Column(
         children: [
 

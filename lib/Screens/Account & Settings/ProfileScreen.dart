@@ -1,10 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payments_all_app/Screens/Account%20&%20Settings/AboutUs.dart';
 import 'package:payments_all_app/Screens/Account%20&%20Settings/contact_us.dart';
-import 'package:payments_all_app/utils/app_layout.dart';
+import 'package:provider/provider.dart';
+import 'package:day_night_switch/day_night_switch.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+
+import '../../utils/Theme.dart';
 import 'ProfilePage.dart';
+import 'help.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -15,6 +21,8 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
 
+  bool _darkTheme=true;
+
   List<String> list_month = <String>['English', 'Bangla'];
   String dropdownValue_month = 'English';
 
@@ -22,6 +30,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = Provider.of<ThemeNotifier>(context);
+    _darkTheme = (themeNotifier.getTheme() == darkTheme);
     return Scaffold(
       appBar: AppBar(
 
@@ -29,7 +39,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
         elevation: 0.0,
 
         title: Text('Settings & Account',
-        style: TextStyle(
+
+          //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+          style: TextStyle(
             color: Colors.black
         ),
         ),
@@ -66,12 +79,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       TextButton(
                           onPressed: () {  },
-                          child: Icon(Icons.account_circle_rounded,size: 100,)),
+                          child: Icon(Icons.account_circle_rounded,size: 100,color: Colors.grey.shade300,)),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(height:40,),
-                          Text('User Name',style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 20)), SizedBox(height: 5,),
-                          Text('Phone Number',style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)),SizedBox(height: 5,),
+                          const SizedBox(height:25,),
+                          Text('Nafim Ahmed',
+                           // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+                            style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 20)
+                            ),
+                            SizedBox(height: 5,),
+                          Text('nafim0123@gmail.com',
+                            //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+                               style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)
+                          ),SizedBox(height: 5,),
+                          Text('017XXXXXXXX',
+                            //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                             style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500)
+                          ),SizedBox(height: 5,),
                         ],
                       )
                     ],
@@ -85,7 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Padding(
                 padding: EdgeInsets.only(left: 16.0,right: 16.0),
             child: Container(
-              height:  600,
+              height:  700,
               width: 320,
 
 
@@ -103,7 +129,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   SizedBox(height: 10,),
 
                   Padding(padding: EdgeInsets.only(left: 16.0),
-                    child: Text('ACCOUNT',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
+                    child: Text('ACCOUNT',
+                      //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+                      style: TextStyle(color: Colors.grey.shade700,fontSize: 12)
+                    ),
                   ),
 
                   
@@ -129,21 +158,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     child: Row(
                       children: [
                         Icon(Icons.manage_accounts_sharp),SizedBox(width: 10,),
-                        Text('Profile')
+                        Text('Profile',
+                          //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                        )
                       ],
                     ),
                   ),
 
 
-
-
-
-                  Divider(indent: 10,endIndent: 14,),
+                  Divider(indent: 10,endIndent: 14,color: Colors.grey,),
 
 
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text('SETTINGS',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
+                    child: Text('SETTINGS',
+                      //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                       style: TextStyle(color: Colors.grey.shade700,fontSize: 12)
+                    ),
                   ),
 
                   TextButton(
@@ -159,72 +192,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               Icon(Icons.language_sharp),
                               SizedBox(width: 10,),
-                              Text('Language')
+                              Text('Language',
+                                //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                              )
                             ],
 
                           ),
 
                           Container(
-                            child: DropdownButton<String>(
-                              value: dropdownValue_month,
-                              icon: const Icon(Icons.arrow_drop_down),
-                              elevation: 16,
-                              style: const TextStyle(color: Colors.black),
-                              // underline: Container(
-                              //   height: 2,
-                              //   color: Colors.deepPurpleAccent,
-                              // ),
-                              onChanged: (String? value) {
-                                // This is called when the user selects an item.
-                                setState(() {
-                                  dropdownValue_month = value!;
-                                });
-                              },
-                              items: list_month.map<DropdownMenuItem<String>>((String value) {
-                                return DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(value,
-                                    style: GoogleFonts.openSans(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600
-                                    ),
-                                  ),
-                                );
-                              }).toList(),
+                            child: DropdownButtonHideUnderline(
+                              child: ButtonTheme(
+                                alignedDropdown: true,
+                                child: DropdownButton<String>(
+                                  value: dropdownValue_month,
+                                  icon: const Icon(Icons.arrow_drop_down),
+                                  style: const TextStyle(color: Colors.black),
+                                  onChanged: (String? value) {
+                                    setState(() {
+                                      dropdownValue_month = value!;
+                                    });
+                                  },
+                                  items: list_month.map<DropdownMenuItem<String>>((String value) {
+                                    return DropdownMenuItem<String>(
+                                      value: value,
+                                      child: Text(value,
+                                        style: GoogleFonts.openSans(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w400
+                                        ),
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
                             ),
                           ),
 
 
 
-
-
-
                         ],
                       )
                   ),
 
-
-                  TextButton(
-                      style: ButtonStyle(
-                        shadowColor: MaterialStateProperty.all(Colors.transparent),
-                        overlayColor: MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: () {  },
-                      child: Row(
-                        children: [
-                          Icon(Icons.gpp_good_sharp),SizedBox(width: 10,),
-                          Text('Permissions')
-                        ],
-                      )
-                  ),
-
-                  Divider(indent: 10,endIndent: 14,),
-
-
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text('HELP & LEGAL',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
-                  ),
 
                   TextButton(
                       style: ButtonStyle(
@@ -234,13 +244,95 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.help),SizedBox(width: 10,),
-                          Text('Help')
+                          Icon(Icons.dark_mode_sharp),SizedBox(width: 10,),
+                          Text('Dark Mode',
+                             // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                          ),Spacer(),
+                          Switch(
+                              value: _darkTheme,
+                              onChanged: (val){
+                                setState(() {
+                                  _darkTheme = val;
+                                });
+                                onThemeChanged(val, themeNotifier);
+
+                              })
                         ],
                       )
                   ),
 
 
+                  Divider(indent: 10,endIndent: 14,color: Colors.grey,),
+
+
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text('HELP & LEGAL',
+                    //  style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                       style: TextStyle(color: Colors.grey.shade700,fontSize: 12)
+                    ),
+                  ),
+
+                  TextButton(
+                      style: ButtonStyle(
+                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
+                      onPressed: (){
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return HelpPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.help),SizedBox(width: 10,),
+                          Text('Help',
+                           // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                          )
+                        ],
+                      )
+                  ),
+
+
+                  TextButton(
+                      style: ButtonStyle(
+                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
+                      onPressed: (){
+
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return AboutUsPage();
+                            },
+                          ),
+                        );
+
+
+                      },
+                      child: Row(
+                        children: [
+                          Icon(Icons.info_outlined),SizedBox(width: 10,),
+                          Text('About Us',
+
+                            //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                          )
+                        ],
+                      )
+                  ),
                   TextButton(
                       style: ButtonStyle(
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -263,19 +355,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         children: [
                           Icon(Icons.phone_callback_sharp),SizedBox(width: 10,),
-                          Text('Contact Us')
+                          Text('Contact Us',
+                            //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                          )
                         ],
                       )
                   ),
 
 
 
-                  Divider(indent: 10,endIndent: 14,),
+                  Divider(indent: 10,endIndent: 14,color: Colors.grey,),
 
 
                   Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Text('MORE',style: TextStyle(color: Colors.grey.shade700,fontSize: 12)),
+                    child: Text('MORE',
+                     // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                       style: TextStyle(color: Colors.grey.shade700,fontSize: 12)
+                    ),
                   ),
 
 
@@ -288,7 +387,27 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         children: [
                           Icon(Icons.star_rate_outlined),SizedBox(width: 10,),
-                          Text('Rate Us')
+                          Text('Rate Us',
+                           // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+
+                          )
+                        ],
+                      )
+                  ),
+                  TextButton(
+                      style: ButtonStyle(
+                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
+                      onPressed: (){},
+                      child: Row(
+                        children: [
+                          Icon(Icons.share),SizedBox(width: 10,),
+                          Text('Share',
+                           // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                          )
                         ],
                       )
                   ),
@@ -302,7 +421,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Row(
                         children: [
                           Icon(Icons.logout),SizedBox(width: 10,),
-                          Text('Log out')
+                          Text('Log out',
+                           // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
+
+                          )
                         ],
                       )
                   ),
@@ -318,5 +440,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  void onThemeChanged(bool value, ThemeNotifier themeNotifier) async {
+    (value)
+        ? themeNotifier.setTheme(darkTheme)
+        : themeNotifier.setTheme(lightTheme);
+    var prefs = await SharedPreferences.getInstance();
+    prefs.setBool('darkMode', value);
   }
 }
