@@ -28,8 +28,8 @@ class _SignUpPageState extends State<SignUpPage> {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
+        firstDate: DateTime(1950, 8),
+        lastDate: DateTime(2050));
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
@@ -110,6 +110,24 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
+
+              SizedBox(height: 0,),
+              SafeArea(
+                child: Row(
+                  children: [
+                    TextButton(
+                        onPressed: (){},
+                        child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
+                    Text('Registration form',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),)
+                  ],
+                ),
+              ),
+
+
+
+
+
               SizedBox(height: 15,),
 
 
