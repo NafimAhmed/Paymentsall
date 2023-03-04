@@ -8,11 +8,13 @@ class AboutUsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xFFFFF8F8),
-        title: Text('About Us'),
+        backgroundColor: const Color(0xFFFFF8F8),
+        title: const Text('About Us',style: TextStyle(color: Colors.black)),
+        iconTheme: const IconThemeData(color: Colors.black),
+
         elevation: 0.0,
       ),
-      backgroundColor: Color(0xFFFFF8F8),
+      backgroundColor: const Color(0xFFFFF8F8),
 
       body: SingleChildScrollView(
         child: Column(
@@ -24,9 +26,9 @@ class AboutUsPage extends StatelessWidget {
                   fontSize: 16,
                   fontWeight: FontWeight.w500),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             Container(
-              margin: EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               child: Text('bKash is a word that resonates with development, people’s prosperity and social growth.'
                   ' From its inception in 2011, bKash has become an integral part of the lives of millions today.'
                   ' Through fast, easy, and secure digital transactions, it has become a member of every household '
@@ -50,7 +52,7 @@ class AboutUsPage extends StatelessWidget {
                   'Track Survey B-School. bKash has been honored as ‘Best Financial Institution of the year’ of 2021 for exemplary '
                   'contribution to the country’s financial inclusion by ‘DHL-The Daily Star - Bangladesh Business Awards’.'
                   ' For the first time as an MFS provider in the country, bKash has been honored as “Best for Digital Solutions in '
-                  'Bangladesh” in 2022 by Asiamoney.',
+                  'Bangladesh” in 2022 by Asia money.',
                 style: GoogleFonts.openSans(
                     fontWeight: FontWeight.w400),
               textAlign: TextAlign.justify,

@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/Screens/Account%20&%20Settings/AboutUs.dart';
 import 'package:payments_all_app/Screens/Account%20&%20Settings/contact_us.dart';
 import 'package:provider/provider.dart';
-import 'package:day_night_switch/day_night_switch.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -157,8 +156,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     },
                     child: Row(
                       children: [
-                        Icon(Icons.manage_accounts_sharp),SizedBox(width: 10,),
-                        Text('Profile',
+                        Icon(Icons.manage_accounts_sharp,color: Colors.red.shade300),SizedBox(width: 10,),
+                        Text('Profile', style: GoogleFonts.openSans(
+                            color: Colors.black
+                        ),
                           //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
                         )
@@ -190,9 +191,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.language_sharp),
+                              Icon(Icons.language_sharp,color: Colors.red.shade300),
                               SizedBox(width: 10,),
                               Text('Language',
+                                style: GoogleFonts.openSans(
+                                    color: Colors.black
+                                ),
                                 //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
                               )
@@ -244,11 +248,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.dark_mode_sharp),SizedBox(width: 10,),
-                          Text('Dark Mode',
+                           Icon(Icons.dark_mode_sharp,color: Colors.red.shade300),SizedBox(width: 10,),
+                           Text('Dark Mode', style: GoogleFonts.openSans(
+                              color: Colors.black
+                          ),
+
                              // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
-                          ),Spacer(),
+                          ), Spacer(),
                           Switch(
                               value: _darkTheme,
                               onChanged: (val){
@@ -263,7 +270,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
 
 
-                  Divider(indent: 10,endIndent: 14,color: Colors.grey,),
+                  const Divider(indent: 10,endIndent: 14,color: Colors.grey,),
 
 
                   Padding(
@@ -292,9 +299,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         );
                       },
                       child: Row(
-                        children: [
-                          Icon(Icons.help),SizedBox(width: 10,),
-                          Text('Help',
+                        children:  [
+                          Icon(Icons.help,color: Colors.red.shade300),SizedBox(width: 10,),
+                          Text('Help', style: GoogleFonts.openSans(
+                              color: Colors.black
+                          ),
                            // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
                           )
@@ -323,9 +332,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                       },
                       child: Row(
-                        children: [
-                          Icon(Icons.info_outlined),SizedBox(width: 10,),
-                          Text('About Us',
+                        children:  [
+                          Icon(Icons.info_outlined,color: Colors.red.shade300),SizedBox(width: 10,),
+                          Text('About Us', style: GoogleFonts.openSans(
+                              color: Colors.black
+                          ),
 
                             //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
@@ -353,9 +364,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                       },
                       child: Row(
-                        children: [
-                          Icon(Icons.phone_callback_sharp),SizedBox(width: 10,),
+                        children:  [
+                          Icon(Icons.phone_callback_sharp,color: Colors.red.shade300),SizedBox(width: 10,),
                           Text('Contact Us',
+                            style: GoogleFonts.openSans(
+                                color: Colors.black
+                            ),
                             //style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
                           )
@@ -386,8 +400,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.star_rate_outlined),SizedBox(width: 10,),
+                          Icon(Icons.star_rate_outlined,color: Colors.red.shade300),SizedBox(width: 10,),
                           Text('Rate Us',
+                            style: GoogleFonts.openSans(
+                                color: Colors.black
+                            ),
                            // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
 
@@ -403,8 +420,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.share),SizedBox(width: 10,),
-                          Text('Share',
+                          Icon(Icons.share,color: Colors.red.shade300),SizedBox(width: 10,),
+                          Text('Share', style: GoogleFonts.openSans(
+                              color: Colors.black
+                          ),
                            // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
                           )
@@ -420,8 +439,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       onPressed: (){},
                       child: Row(
                         children: [
-                          Icon(Icons.logout),SizedBox(width: 10,),
-                          Text('Log out',
+                          Icon(Icons.logout,color: Colors.red.shade300,),SizedBox(width: 10,),
+                          Text('Log out', style: GoogleFonts.openSans(
+                              color: Colors.black
+                          ),
                            // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
 
                           )

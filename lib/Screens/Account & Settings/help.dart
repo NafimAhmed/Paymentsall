@@ -9,7 +9,9 @@ class HelpPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFFFFF8F8),
-        title: Text('Help'),
+        title: Text('Help',style: TextStyle(color: Colors.black)),
+        iconTheme: IconThemeData(color: Colors.black),
+
         elevation: 0.0,
       ),
       backgroundColor: Color(0xFFFFF8F8),
