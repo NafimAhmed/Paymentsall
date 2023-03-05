@@ -1,25 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:payments_all_app/Screens/Home/HomePage.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 import 'contact_page_send_money.dart';
 
-class TransferReceiptPage extends StatefulWidget {
-  const TransferReceiptPage({Key? key}) : super(key: key);
+class TransferReceiptPage extends StatelessWidget {
 
-  @override
-  State<TransferReceiptPage> createState() => _TransferReceiptPageState();
-}
+  final String recNumb,recName,recAmount;
+  DateTime now = DateTime.now();
+   TransferReceiptPage({super.key, required this.recNumb, required this.recName, required this.recAmount});
 
-class _TransferReceiptPageState extends State<TransferReceiptPage> {
+
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
 
 
 
       appBar: AppBar(
-        title: Text('Transfer Receipt',style: TextStyle(color: Colors.black)),
+        title: const Text('Transfer Receipt',style: TextStyle(color: Colors.black)),
         elevation: 0.0,
         backgroundColor: Color(0xFFFFF8F8),
         iconTheme: const IconThemeData(color: Colors.black),
@@ -53,44 +55,52 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                   width: 250,),
 
 
-                Text('Transfer Success',
+                const Text('Transfer Success',
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.w500,
                         color: Colors.black)),
 
 
-                SizedBox(height: 10,),
+                const SizedBox(height: 10,),
 
 
-                Text('Your money has been successfully sent to Nayantara V',
+                const Text('Your money has been successfully sent to ',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16),
                 ),
+                SizedBox(height: 10,),
+                Text(recName.isEmpty ? recNumb : recName,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                      fontSize: 20),
+                ),
 
 
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
 
-                Text('৳1300.00',
-                  style: TextStyle(
+                Text('৳$recAmount.00',
+                  style: const TextStyle(
                     fontWeight: FontWeight.w400,
                       color: Colors.black,
                       fontSize: 26),
                 ),
 
 
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
 
-                Text('Total Transfer',
+                const Text('Total Transfer',
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16),
                 ),
 
 
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
 
                 Text('- - - - - - - - - - - - - - - - - - - - - - - - - - - - -',
                   style: TextStyle(
@@ -99,10 +109,10 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                 ),
 
 
-                SizedBox(height: 15,),
+                const SizedBox(height: 15,),
 
 
-                Text('Recipient',
+                const Text('Recipient',
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16),
@@ -121,8 +131,13 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
 
 
                     child: ListTile(
-                      title: Text('Kaka'),
-                      subtitle: Text('8050530XXX             3:02 PM'),
+                     // title: Text("     ${widget.contacts!.isNotEmpty ? widget.contacts : '(none)'}"),
+                      title: Text(recName.isEmpty ? 'Unknown' : recName,style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          fontSize: 16),
+                      ),
+                      subtitle: Text('$recNumb     ${DateFormat.yMd().format(now).toString()}   ${DateFormat.jm().format(now).toString()}'),
                     ),
                   ),
                 ),
@@ -157,7 +172,7 @@ class _TransferReceiptPageState extends State<TransferReceiptPage> {
                       },
 
 
-                      child: Text('Done',
+                      child: const Text('Done',
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.white),),

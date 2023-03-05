@@ -55,6 +55,7 @@ dependencies:
   image_picker: ^0.8.6+4
   provider: ^6.0.5
   shared_preferences: ^2.0.18
+  intl: ^0.18.0
 
 dev_dependencies:
   flutter_test:
@@ -93,6 +94,9 @@ flutter:
      - assets/images/merchant_pay.png
      - assets/images/successful_transfer.png
      - assets/images/desco.png
+     - assets/images/Govt Fees.png
+     - assets/images/Quick Pay.png
+     - assets/images/Travel card.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

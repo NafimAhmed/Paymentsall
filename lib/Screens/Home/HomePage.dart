@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.dart';
 import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
@@ -39,6 +40,7 @@ class _HomePageState extends State<HomePage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20,),
               Padding(
@@ -164,7 +166,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                   padding: const EdgeInsets.all(16.0),
               child: Container(
-                height: 190,width: 350,
+                height: 300,width: 350,
                 //color: Colors.white,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.0),
@@ -228,12 +230,65 @@ class _HomePageState extends State<HomePage> {
                                 const Text('Mobile Recharge',style: TextStyle(color:Color(0xFF80140E)))
                               ],
                             )),
+                        TextButton(
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(Colors.transparent),
+                              overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            ),
+                            onPressed: (){
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return ContactsPage();
+                              //     },
+                              //   ),
+                              // );
+                            },
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                    backgroundColor: Color(0xFFFFF8F8),
+                                  radius: 26,
+                                    child: Image.asset('assets/images/Travel card.png',height: 40,) ,
+
+                                ),
+                                const Text('Travel Card',style: TextStyle(color:Color(0xFF80140E)))
+                              ],
+                            )),
                       ],
                     ),
                     SizedBox( height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        TextButton(
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(Colors.transparent),
+                              overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            ),
+                            onPressed: (){
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return BillPayPage();
+                              //     },
+                              //   ),
+                              // );
+                            },
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                    backgroundColor: Color(0xFFFFF8F8),
+                                  radius: 26,
+                                    child: Image.asset('assets/images/Quick Pay.png',),
+
+                                  //Icon(Icons.receipt_sharp,color: Colors.black)
+                                ),
+                                const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
+                              ],
+                            )),
                         TextButton(
                             style: ButtonStyle(
                               shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -286,12 +341,53 @@ class _HomePageState extends State<HomePage> {
                                 const Text('Bank Transfer',style: TextStyle(color:Color(0xFF80140E)))
                               ],
                             )),
-
                       ],
                     ),
+                    SizedBox(height: 10,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        SizedBox(width: 10,),
+                        TextButton(
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(Colors.transparent),
+                              overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            ),
+                            onPressed: (){
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return BankTransferPage();
+                              //     },
+                              //   ),
+                              // );
+                            },
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: const Color(0xFFFFF8F8),
+                                  radius: 26,
+                                  child: Image.asset('assets/images/Govt Fees.png',),
+                                ),
+                                const Text('Govt. Fees',style: TextStyle(color:Color(0xFF80140E)))
+                              ],
+                            )),
+
+                      ],
+                    )
                   ],
                 ),
               ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 16.0,right: 16.0),
+                child: Text('Offers',
+                style: GoogleFonts.openSans(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w600,
+                ),
+                ),
               ),
               Padding(
                   padding: const EdgeInsets.only(left: 16,right: 16,bottom: 10,),

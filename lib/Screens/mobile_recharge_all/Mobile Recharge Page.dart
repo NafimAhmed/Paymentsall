@@ -8,34 +8,6 @@ class MobileRechargePag extends StatefulWidget {
 
   final String contacts;
 
-  //
-  // static List<Map>_operatorList=[
-  //   {
-  //     'id': '0',
-  //     'image': 'assets/images/airtel.png',
-  //     'name': 'Airtel'
-  //   },
-  //   {
-  //     'id': '1',
-  //     'image': 'assets/images/banglalik.png',
-  //     'name': 'Banglalink'
-  //   },
-  //   {
-  //     'id': '2',
-  //     'image': 'assets/images/grameenphone.png',
-  //     'name': 'Grameenphone'
-  //   },
-  //   {
-  //     'id': '3',
-  //     'image': 'assets/images/robi.png',
-  //     'name': 'Robi'
-  //   },
-  //   {
-  //     'id': '4',
-  //     'image': 'assets/images/TeleTalk.png',
-  //     'name': 'Teletalk'
-  //   },
-  // ];
 
    MobileRechargePag({super.key, required this.contacts});
 

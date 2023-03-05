@@ -164,6 +164,11 @@ class _BillPayPageState extends State<BillPayPage> {
                       ],
                     ),
                     SizedBox(height: 10,),
+
+
+
+
+
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -183,22 +188,24 @@ class _BillPayPageState extends State<BillPayPage> {
                             Text('TV')
                           ],
                         )),
+
                         TextButton(onPressed: (){}, child: Column(
                           children: [
                             //Image.asset('assets/images/education.png',height: 41,width: 30,),
-                            Icon(Icons.auto_stories,color: Colors.black,size: 40),
+                            Icon(Icons.auto_stories_outlined,color: Colors.black,size: 40),
 
-                            Text('Education')
+                            Text('School\nFee')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
-                            //Image.asset('assets/images/card.png',height: 40,width: 30,),
+                            //Image.asset('assets/images/education.png',height: 41,width: 30,),
+                            Icon(Icons.book_outlined ,color: Colors.black,size: 40),
 
-                            Icon(Icons.credit_card,color: Colors.black,size: 40),
-                            Text('Credit Card')
+                            Text('College\nFee')
                           ],
                         )),
+
                       ],
                     ),
                     SizedBox(height: 10,),
@@ -209,9 +216,9 @@ class _BillPayPageState extends State<BillPayPage> {
                           children: [
                             //Image.asset('assets/images/map.png',height: 40,width: 40,),
                             
-                            Icon(Icons.assured_workload,color: Colors.black,size: 40),
+                            Icon(Icons.school,color: Colors.black,size: 40),
 
-                            Text('Govt.Fees')
+                            Text('University\nFee')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
@@ -224,15 +231,126 @@ class _BillPayPageState extends State<BillPayPage> {
                         TextButton(onPressed: (){}, child: Column(
                           children: [
                             //Image.asset('assets/images/vehicle.png',height: 41,width: 30,),
-                            Icon(Icons.commute_rounded,color: Colors.black,size: 40),
+                            Icon(Icons.airport_shuttle_outlined,color: Colors.black,size: 40),
 
-                            Text('Vehicle')
+                            Text('Bus\nTicket')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            Icon(Icons.train_outlined,size: 40,color: Colors.black,),
+                           // Image.asset('assets/images/internet.png',height: 40,width: 30,),
+                            Text('Train\nTicket')
+                          ],
+                        )),
+                      ],
+                    ),
+                    Divider(thickness: 1.5,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/map.png',height: 40,width: 40,),
+
+                            Icon(Icons.airplane_ticket_outlined,color: Colors.black,size: 40),
+
+                            Text('Air\nTicket')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/insurance.png',height: 40,width: 40,),
+                            Icon(Icons.medical_information,color: Colors.black,size: 40),
+                            Text('Doctor\nBills')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/vehicle.png',height: 41,width: 30,),
+                            Icon(Icons.medical_services_outlined,color: Colors.black,size: 40),
+
+                            Text('Diagonostic\nBill')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            Icon(Icons.medication_liquid_sharp,size: 40,color: Colors.black,),
+                            // Image.asset('assets/images/internet.png',height: 40,width: 30,),
+                            Text('Medicine\nBills')
+                          ],
+                        )),
+                      ],
+                    ),
+                    Divider(thickness: 1.5,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/map.png',height: 40,width: 40,),
+
+                            Icon(Icons.payment,color: Colors.black,size: 40),
+
+                            Text('Remittances')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/insurance.png',height: 40,width: 40,),
+                            Icon(Icons.wallet_giftcard_sharp,color: Colors.black,size: 40),
+                            Text('Salary\nPayroll')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/vehicle.png',height: 41,width: 30,),
+                            Icon(Icons.add_card_outlined ,color: Colors.black,size: 40),
+
+                            Text('Mobile Bank\nTransfer')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            Icon(Icons.local_grocery_store,size: 40,color: Colors.black,),
+                            // Image.asset('assets/images/internet.png',height: 40,width: 30,),
+                            Text('Daily\nGoods')
+                          ],
+                        )),
+                      ],
+                    ),
+                    Divider(thickness: 1.5,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/map.png',height: 40,width: 40,),
+
+                            Icon(Icons.assured_workload,color: Colors.black,size: 40),
+
+                            Text('Government\nFees')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/insurance.png',height: 40,width: 40,),
+                            Icon(Icons.credit_score,color: Colors.black,size: 40),
+                            Text('Credit\nCard')
+                          ],
+                        )),
+                        TextButton(onPressed: (){}, child: Column(
+                          children: [
+                            //Image.asset('assets/images/vehicle.png',height: 41,width: 30,),
+                            Icon(Icons.account_balance_outlined ,color: Colors.black,size: 40),
+
+                            Text('Bank\nTransfer')
                           ],
                         )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
                             Icon(Icons.more_horiz,size: 40,color: Colors.black,),
-                           // Image.asset('assets/images/internet.png',height: 40,width: 30,),
+                            // Image.asset('assets/images/internet.png',height: 40,width: 30,),
                             Text('Others')
                           ],
                         )),

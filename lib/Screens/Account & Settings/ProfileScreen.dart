@@ -22,7 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   bool _darkTheme=true;
 
-  List<String> list_month = <String>['English', 'Bangla'];
+  List<String> list_month = <String>['English', 'বাংলা'];
   String dropdownValue_month = 'English';
 
 
@@ -81,8 +81,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child: Icon(Icons.account_circle_rounded,size: 100,color: Colors.grey.shade300,)),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height:25,),
+                        children: const [
+                          SizedBox(height:25,),
                           Text('Nafim Ahmed',
                            // style: Theme.of(context).brightness == Brightness.dark ? TextStyle(color: Colors.white) : TextStyle(color: Colors.black),
                             style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900,fontSize: 20)

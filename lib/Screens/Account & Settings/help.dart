@@ -32,7 +32,10 @@ class HelpPage extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w600),
               ),
-              subtitle: Text('- Bangladeshi National\n - Age 18 years or above\n - Having a valid Photo national ID/Passport/Driving License\n - Currently Robi, Grameenphone, Banglalink, Teletalk and Airtel subscribers',
+              subtitle: Text('- Bangladeshi National\n '
+                  '- Age 18 years or above\n '
+                  '- Having a valid Photo national ID/Passport/Driving License\n '
+                  '- Currently Robi, Grameenphone, Banglalink, Teletalk and Airtel subscribers',
                 style: GoogleFonts.openSans(
                     fontWeight: FontWeight.w500),
               ),

@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../mobile_recharge_all/Mobile Recharge Page.dart';
 import 'QRCode_send_money/send_money_qrcode_scanner.dart';
@@ -122,8 +123,23 @@ import 'SendMoneyPage.dart';
                             hintStyle: TextStyle(color: Colors.grey.shade400),
                             suffixIcon: InkWell(
                                 onTap: () {
-                                  Navigator.of(context).push(
-                                      MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:_writeMobileNo.text.toString())));
+                                  if(_writeMobileNo.text.isNotEmpty){
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:_writeMobileNo.text.toString(), name: '', amount: '',)));
+                                  }
+                                  else
+                                    {
+                                      Fluttertoast.showToast(
+                                          msg: "Please enter or select receiver phone number.Thank You! ",
+                                          toastLength: Toast.LENGTH_SHORT,
+                                          gravity: ToastGravity.CENTER,
+                                          timeInSecForIosWeb: 10,
+                                          backgroundColor: Colors.red.shade100,
+                                          textColor: Colors.black,
+                                          fontSize: 16.0
+                                      );
+                                    }
+
                                 },
                                 child: Icon(Icons.arrow_forward)),
                             suffixIconColor: Colors.red.shade900
@@ -162,7 +178,7 @@ import 'SendMoneyPage.dart';
               await FlutterContacts.getContact(_contactss![i].id);
               if(fullContact!.phones.first.number.toString().isNotEmpty){
 
-                await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:fullContact!.phones.first.number.toString())));
+                await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:fullContact!.phones.first.number.toString(), name: fullContact.name.first, amount: '',)));
 
               }
 

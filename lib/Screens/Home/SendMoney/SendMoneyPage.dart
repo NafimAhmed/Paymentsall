@@ -1,31 +1,27 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_contacts/contact.dart';
 
 import 'TransferReceiptScreen.dart';
 
-class SendMoneyPage extends StatelessWidget {
-   SendMoneyPage({super.key,  required this.contacts});
+// class SendMoneyPage extends StatelessWidget {
+//    SendMoneyPage({super.key,  required this.contacts});
 //
-//   @override
-//   Widget build(BuildContext context) {
-//     return const Placeholder();
-//   }
-// }
-
-// class SendMoneyPage extends StatefulWidget {
-//   final Contact contacts;
-//   const SendMoneyPage({Key? key, required this.contacts}) : super(key: key);
+// final String contacts;
 //
-//   @override
-//   State<SendMoneyPage> createState() => _SendMoneyPageState();
-// }
+//   final FocusNode _textFocusNode = FocusNode();
+//
 
-final String contacts;
 
-  // TextEditingController _sendMoney = TextEditingController();
-  final FocusNode _textFocusNode = FocusNode();
+class SendMoneyPage extends StatefulWidget {
+  final String contacts,name,amount;
+  const SendMoneyPage({super.key, required this.contacts, required this.name, required this.amount});
 
+  @override
+  State<SendMoneyPage> createState() => _SendMoneyPageState();
+}
+
+class _SendMoneyPageState extends State<SendMoneyPage> {
+
+  TextEditingController _sendMoney=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +30,7 @@ final String contacts;
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 50,),
+            const SizedBox(height: 10,),
             Row(
               children: [
                 TextButton(
@@ -54,19 +50,48 @@ final String contacts;
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 50,width: 320,
-                    decoration: BoxDecoration(
-                        border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
-                        borderRadius: BorderRadius.circular(6.0),
-                        color: Colors.white
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 15,),
-                        Text( contacts.isNotEmpty ? contacts : '(none)',
-                          style: const TextStyle(fontSize: 20),),
-                      ],
-                    )),
+                  //color: Colors.red.shade300,
+                  decoration: BoxDecoration(
+                    border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                      borderRadius: BorderRadius.circular(6.0),
+                      color: Colors.red.shade100
+                  ),
+                  height: 150,width: 330,
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                     // SizedBox(height: 1,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16,right: 16,top: 0,bottom: 8),
+                        child: Text('Receiver :',style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 22,
+                        color: Colors.black)
+                  ),
+                      ),
+                      SizedBox(height: 10,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 8,bottom: 12),
+                        child: Container(
+                          height: 50,width: 280,
+                            decoration: BoxDecoration(
+                                //border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                                borderRadius: BorderRadius.circular(6.0),
+                                color: Colors.white
+                            ),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 15,),
+                               // Text( contacts.isNotEmpty ? contacts : '(none)',
+                          Text( "${widget.contacts!.isNotEmpty ? widget.contacts : '(none)'}",
+                            style: const TextStyle(fontSize: 20),),
+
+                              ],
+                            )),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
            // SizedBox(height: 20,),
@@ -74,28 +99,64 @@ final String contacts;
             // Text(contacts.isNotEmpty ? contacts : '(none)',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
             //SizedBox(height: 40,),
             Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: Container(
-                height: 50,width: 320,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
-                    borderRadius: BorderRadius.circular(6.0),
-                    color: Colors.white
-                ),
-                child: TextField(
-                  textAlign: TextAlign.center,
-                 // controller: _sendMoney,
-                  keyboardType: TextInputType.number,
-                  cursorColor: Colors.red.shade900,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Amount',
-                    hintStyle: TextStyle(color: Colors.grey.shade400),
+              padding: const EdgeInsets.all(16.0),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  height: 200,width: 330,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      color: Colors.red.shade100
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16,right: 16,top: 0,bottom: 30),
+                        child: Text('Send Amount :',style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 22,
+                            color: Colors.black)
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 0,bottom: 12),
+                        //padding: const EdgeInsets.all(16.0),
+                        child: Container(
+                          height: 50,width: 280,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6.0),
+                              color: Colors.white
+                          ),
+                          child: TextField(
+                            controller: _sendMoney,
+                            textAlign: TextAlign.center,
+                            keyboardType: TextInputType.number,
+                            cursorColor: Colors.red.shade900,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              hintText: 'Amount',
+                              hintStyle: TextStyle(color: Colors.grey.shade400),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 26),
+                        child: Text('Available Balance : 1000.00 ৳',style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            color: Colors.black)
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-            SizedBox(height: 350,),
+            SizedBox(height: 150,),
             Padding(padding: EdgeInsets.only(left: 6),
                 child: Container(
                   height: 40,width: 270,
@@ -113,7 +174,7 @@ final String contacts;
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return TransferReceiptPage();
+                            return TransferReceiptPage(recNumb: widget.contacts, recName: widget.name, recAmount: _sendMoney.text.toString(),);
                           },
                         ),
                       );
