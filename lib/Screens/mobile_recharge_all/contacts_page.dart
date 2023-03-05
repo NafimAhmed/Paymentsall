@@ -96,9 +96,6 @@ class _ContactsPageState extends State<ContactsPage> {
 
                           },
 
-
-
-
                             child: Icon(Icons.arrow_forward)
                         ),
                         suffixIconColor: Colors.red.shade900,

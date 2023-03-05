@@ -238,7 +238,8 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
 
 
                     SizedBox(height: 10,),
-                    Padding(padding: EdgeInsets.all(16.0),
+                    Padding(
+                        padding: EdgeInsets.all(16.0),
                     child: Container(
                         height: 50,width: 296,
                         decoration: BoxDecoration(

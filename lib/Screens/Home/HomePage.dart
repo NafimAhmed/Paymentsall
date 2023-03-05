@@ -5,6 +5,7 @@ import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.da
 import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
+import '../travelcard_all/tc_form.dart';
 import 'Add Money/Add Money.dart';
 import 'CashOutPage.dart';
 import 'Merchant Pay.dart';
@@ -236,14 +237,14 @@ class _HomePageState extends State<HomePage> {
                               overlayColor: MaterialStateProperty.all(Colors.transparent),
                             ),
                             onPressed: (){
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return ContactsPage();
-                              //     },
-                              //   ),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return TCForm();
+                                  },
+                                ),
+                              );
                             },
                             child: Column(
                               children: [
