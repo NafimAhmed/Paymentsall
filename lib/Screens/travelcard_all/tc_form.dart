@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
+import 'doller_endowsement.dart';
+
 class TCForm extends StatelessWidget
 {
   @override
@@ -103,19 +105,14 @@ class TCForm extends StatelessWidget
                   ),
                   onPressed: (){
 
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) {
-                    //       return MobileRechargeAmount(
-                    //         recNumb: widget.contacts,
-                    //         connectionType: connectionType,
-                    //         operator: "Grameen phone",
-                    //       );
-                    //     },
-                    //   ),
-                    // );
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return Endowsement();
+                        },
+                      ),
+                    );
                   },
                   child: Text('Apply',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
                 ),
