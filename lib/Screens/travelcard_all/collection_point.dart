@@ -5,6 +5,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payments_all_app/Screens/travelcard_all/card_status.dart';
 
 import '../../utils/app_layout.dart';
 
@@ -30,7 +31,7 @@ class Collection_point extends StatelessWidget
                       Navigator.pop(context);
                     },
                     child: const Icon(Icons.arrow_back,color: Colors.black,)),
-                const Text('Endowsement',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
+                const Text('Collection point',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
               ],
             ),
 
@@ -47,39 +48,46 @@ class Collection_point extends StatelessWidget
                 itemBuilder: (BuildContext context,int index){
 
                   return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                    padding:  EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: ListTile(
+                      tileColor: Colors.red.shade100,
 
-                      padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(20)),
-                  decoration: BoxDecoration(
-                  color: Colors.red.shade100,
-                  borderRadius: BorderRadius.all(Radius.circular(15))
-                  ),
-                  margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(10)),
+
+                      title: Text("Branch name",
+                      style: GoogleFonts.openSans(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),
+                      ),
+                      subtitle: Text("Location"),
+
+                      onTap: (){
 
 
-
-                    child: Column(
-
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-
-                      //crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text("Branch name",
-
-                          style: GoogleFonts.openSans(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return CardStatus();
+                            },
                           ),
+                        );
 
-                        ),
-                        Text("Location"),
 
-                      ],
-                    ) ,
+
+                      },
+
+                    ),
                   );
                 }
 
             )
+
+
 
 
 
