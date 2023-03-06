@@ -80,7 +80,7 @@ class _AITpageState extends State<AITpage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return FeesPage();
+                                  return FeesPage(number: '', name: '', amount: '',);
                                 },
                               ),
                             );

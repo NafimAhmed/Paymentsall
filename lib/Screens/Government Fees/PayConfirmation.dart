@@ -3,14 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 import 'ConfirmPaymentPage.dart';
 
-class PayConfirmationPage extends StatefulWidget {
-  const PayConfirmationPage({Key? key}) : super(key: key);
-
-  @override
-  State<PayConfirmationPage> createState() => _PayConfirmationPageState();
-}
-
-class _PayConfirmationPageState extends State<PayConfirmationPage> {
+class PayConfirmationPage extends StatelessWidget {
+  final String accountNumber,accountName,amount;
+  const PayConfirmationPage({super.key, required this.accountNumber, required this.accountName, required this.amount});
+//
+//   @override
+//   State<PayConfirmationPage> createState() => _PayConfirmationPageState();
+// }
+//
+// class _PayConfirmationPageState extends State<PayConfirmationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +56,8 @@ class _PayConfirmationPageState extends State<PayConfirmationPage> {
                           color: Colors.white
                       ),
                       children: [
-                        Column(children:[Text('Account Number \n 01771389547', style: GoogleFonts.openSans(fontSize: 16.0))]),
-                        Column(children:[Text('Account Name \nNafim Ahmed', style: GoogleFonts.openSans(fontSize: 16.0))]),
+                        Column(children:[Text('Account Number \n $accountNumber', style: GoogleFonts.openSans(fontSize: 16.0))]),
+                        Column(children:[Text('Account Name \n $accountName', style: GoogleFonts.openSans(fontSize: 16.0))]),
                       ]
                     ),
 
@@ -89,9 +90,9 @@ class _PayConfirmationPageState extends State<PayConfirmationPage> {
                             color: Colors.white
                         ),
                         children: [
-                      Column(children:[Text('৳ ', style: TextStyle(fontSize: 16.0))]),
+                      Column(children:[Text('৳ $amount.00', style: TextStyle(fontSize: 16.0))]),
                       Column(children:[Text('+৳ 0.00', style: TextStyle(fontSize: 16.0))]),
-                      Column(children:[Text('৳ ', style: TextStyle(fontSize: 16.0))]),
+                      Column(children:[Text('৳ $amount.00', style: TextStyle(fontSize: 16.0))]),
                     ]),
 
                   ],
@@ -134,7 +135,10 @@ class _PayConfirmationPageState extends State<PayConfirmationPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return ConfirmPaymentPage();
+                                  return ConfirmPaymentPage(
+                                    accountNumber: accountNumber.toString(),
+                                    accountName: accountName.toString(),
+                                    amount: amount.toString(),);
                                 },
                               ),
                             );

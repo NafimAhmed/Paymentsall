@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class ConfirmPaymentPage extends StatefulWidget {
-  const ConfirmPaymentPage({Key? key}) : super(key: key);
+  final String accountNumber,accountName,amount;
+
+  const ConfirmPaymentPage({super.key, required this.accountNumber, required this.accountName, required this.amount});
 
   @override
   State<ConfirmPaymentPage> createState() => _ConfirmPaymentPageState();
@@ -87,6 +89,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> with TickerProv
         elevation: 0.0,
       ),
 
+      backgroundColor: Color(0xFFFFF8F8),
 
       body: Container(
         margin: EdgeInsets.symmetric(horizontal:AppLayout.getWidth(20)),
@@ -123,8 +126,8 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> with TickerProv
                         color: Colors.white
                     ),
                     children: [
-                      Column(children:[Text('Account Number \n 01771389547', style: GoogleFonts.openSans(fontSize: 16.0))]),
-                      Column(children:[Text('Account Name \nNafim Ahmed', style: GoogleFonts.openSans(fontSize: 16.0))]),
+                      Column(children:[Text('Account Number \n ${widget.accountNumber}', style: GoogleFonts.openSans(fontSize: 16.0))]),
+                      Column(children:[Text('Account Name \n${widget.accountName}', style: GoogleFonts.openSans(fontSize: 16.0))]),
                     ]
                 ),
 
@@ -155,9 +158,9 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> with TickerProv
                         color: Colors.white
                     ),
                     children: [
-                      Column(children:[Text('৳ ', style: TextStyle(fontSize: 16.0))]),
-                      Column(children:[Text('+৳ 0.00', style: TextStyle(fontSize: 16.0))]),
-                      Column(children:[Text('৳ ', style: TextStyle(fontSize: 16.0))]),
+                      Column(children:[Text('৳ ${widget.amount}.00', style: TextStyle(fontSize: 16.0))]),
+                      Column(children:[Text('+৳ 00.00', style: TextStyle(fontSize: 16.0))]),
+                      Column(children:[Text('৳ ${widget.amount}.00', style: TextStyle(fontSize: 16.0))]),
                     ]),
 
               ],
@@ -209,10 +212,8 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> with TickerProv
 
                 decoration: BoxDecoration(
                   color: Colors.red.shade900,
-                  // border: Border.all(width: 3.0),   // Set border width
                   borderRadius: BorderRadius.all(
                       Radius.circular(70.0)), // Set rounded corner radius
-                  //boxShadow: [BoxShadow(blurRadius: 10,color: Colors.black,offset: Offset(1,3))] // Make rounded corner of border
                 ),
 
                 child: Text("Tap to\n Confirm",
@@ -262,8 +263,6 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> with TickerProv
           ],
         ),
       ),
-
-
 
 
     );
