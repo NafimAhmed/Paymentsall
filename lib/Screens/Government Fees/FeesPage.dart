@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 import 'PayConfirmation.dart';
 
 class FeesPage extends StatefulWidget {
-  const FeesPage({Key? key}) : super(key: key);
+
+  final String number,name,amount;
+  const FeesPage({super.key, required this.number, required this.name, required this.amount});
 
   @override
   State<FeesPage> createState() => _FeesPageState();
@@ -394,7 +396,10 @@ class _FeesPageState extends State<FeesPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return PayConfirmationPage();
+                                    return PayConfirmationPage(
+                                      accountNumber: _number.text.toString(),
+                                      accountName: _name.text.toString(),
+                                       amount: _amount.text.toString(),);
                                   },
                                 ),
                               );

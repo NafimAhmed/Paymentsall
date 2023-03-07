@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
 
 
-            SizedBox(height: 15,),
+            SizedBox(height: 20,),
 
 
             Padding(
@@ -62,6 +62,8 @@ class _LoginPageState extends State<LoginPage> {
               child: Text('Enter Validate Mobile No. and Password for Login',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey.shade600),textAlign: TextAlign.center,),
             ),
 
+
+            SizedBox(height: 10,),
 
             Padding(
                 padding: EdgeInsets.all(8.0),
@@ -174,21 +176,6 @@ class _LoginPageState extends State<LoginPage> {
             ),
 
 
-
-            Row(
-              children: [
-                Text('  By proceeding you agree to our',
-                  style: TextStyle(fontWeight: FontWeight.normal,fontSize: 14,color: Colors.grey.shade500),
-                  textAlign: TextAlign.center,),
-                TextButton(
-                    style: ButtonStyle(
-                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                      overlayColor: MaterialStateProperty.all(Colors.transparent),
-                    ),
-                    onPressed: (){},
-                    child: Text('Terms and Conditions'))
-              ],
-            ),
           ],
         ),
       ),

@@ -80,7 +80,7 @@ class _VATpageState extends State<VATpage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return FeesPage();
+                                  return FeesPage(number: '', name: '', amount: '',);
                                 },
                               ),
                             );

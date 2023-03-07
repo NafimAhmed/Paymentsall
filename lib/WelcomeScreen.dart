@@ -5,6 +5,7 @@ import 'package:getwidget/components/intro_screen/gf_intro_screen.dart';
 import 'package:getwidget/components/intro_screen/gf_intro_screen_bottom_navigation_bar.dart';
 import 'package:payments_all_app/Login%20&%20Sign%20up/signUp/SignUpPage.dart';
 
+import 'Login & Sign up/OTPpage/SendMobileNumberPage.dart';
 import 'Login & Sign up/login/LoginPage.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -111,10 +112,23 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const SignUpPage();
+                        return const SendMobileNumberPage();
                       },
                     ),
                   );
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return PayConfirmationPage(
+                  //         accountNumber: _number.text.toString(),
+                  //         accountName: _name.text.toString(),
+                  //         amount: _amount.text.toString(),);
+                  //     },
+                  //   ),
+                  // );
+
                 },
                 child: const Text('Sign Up',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.normal,color: Colors.black),),
               ),
