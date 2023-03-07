@@ -291,6 +291,9 @@ class _HomePageState extends State<HomePage> {
                                 const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
                               ],
                             )),
+
+
+
                         TextButton(
                             style: ButtonStyle(
                               shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -317,7 +320,11 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 const Text('Bill Pay',style: TextStyle(color:Color(0xFF80140E)))
                               ],
-                            )),
+                            )
+                        ),
+
+
+
                         TextButton(
                             style: ButtonStyle(
                               shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -350,6 +357,10 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         SizedBox(width: 10,),
+
+
+
+
                         TextButton(
                             style: ButtonStyle(
                               shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -375,6 +386,51 @@ class _HomePageState extends State<HomePage> {
                                 const Text('Govt. Fees',style: TextStyle(color:Color(0xFF80140E)))
                               ],
                             )),
+
+
+
+                        SizedBox(width: 10,),
+
+
+
+
+
+                        TextButton(
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(Colors.transparent),
+                              overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            ),
+                            onPressed: (){
+
+
+
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return GovernmentFeesPage();
+                              //     },
+                              //   ),
+                              // );
+                            },
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: const Color(0xFFFFF8F8),
+                                  radius: 26,
+                                  child: Icon(Icons.wallet,
+                                    color: Colors.red.shade900,
+                                    size: 40,
+                                  )//Image.asset('assets/images/Govt Fees.png',),
+                                ),
+                                const Text('Salary Payroll',style: TextStyle(color:Color(0xFF80140E)))
+                              ],
+                            )),
+
+
+
+
+
 
                       ],
                     )
