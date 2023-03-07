@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/Screens/Government%20Fees/GovernmentFeesPage.dart';
 import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.dart';
 import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
+import 'package:payments_all_app/Screens/Mobile%20Banking/MobileBankingPage.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
 import '../salary_payroll/salary_dash_board.dart';
@@ -393,14 +394,14 @@ class _HomePageState extends State<HomePage> {
                               overlayColor: MaterialStateProperty.all(Colors.transparent),
                             ),
                             onPressed: (){
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return GovernmentFeesPage();
-                              //     },
-                              //   ),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return MobileBankingPage();
+                                  },
+                                ),
+                              );
                             },
                             child: Column(
                               children: [
@@ -422,7 +423,7 @@ class _HomePageState extends State<HomePage> {
                               //   context,
                               //   MaterialPageRoute(
                               //     builder: (context) {
-                              //       return GovernmentFeesPage();
+                              //       return MobileBankingPage();
                               //     },
                               //   ),
                               // );

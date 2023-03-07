@@ -295,13 +295,13 @@ class _BillPayPageState extends State<BillPayPage> {
                             Text('Remittances')
                           ],
                         )),
-                        TextButton(onPressed: (){}, child: Column(
-                          children: [
-                            //Image.asset('assets/images/insurance.png',height: 40,width: 40,),
-                            Icon(Icons.wallet_giftcard_sharp,color: Colors.black,size: 40),
-                            Text('Salary\nPayroll')
-                          ],
-                        )),
+                        // TextButton(onPressed: (){}, child: Column(
+                        //   children: [
+                        //     //Image.asset('assets/images/insurance.png',height: 40,width: 40,),
+                        //     Icon(Icons.wallet_giftcard_sharp,color: Colors.black,size: 40),
+                        //     Text('Salary\nPayroll')
+                        //   ],
+                        // )),
                         TextButton(onPressed: (){}, child: Column(
                           children: [
                             //Image.asset('assets/images/vehicle.png',height: 41,width: 30,),

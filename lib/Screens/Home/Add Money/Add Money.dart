@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'E_loan/EloanPage.dart';
 import 'FromOtherBank/FromOtherBankVisaCardPage.dart';
 
 class AddMoneyPage extends StatefulWidget {
@@ -181,8 +182,19 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                   color: Colors.white
               ),
               child: TextButton(
+                style: ButtonStyle(
+                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                ),
                 onPressed: () {
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return EloanPage();
+                      },
+                    ),
+                  );
                 },
                 child: Row(
                   children: [
