@@ -4,6 +4,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:payments_all_app/Screens/salary_payroll/salarypay_pin.dart';
 
 import '../../utils/app_layout.dart';
 
@@ -46,12 +47,40 @@ class SalaryDashBoard extends StatelessWidget
 
                   Text("Total Amount : "),
 
-                  Text(" ৳ 100000",
-                  style: GoogleFonts.openSans(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.red.shade900
-                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(" ৳ 100000",
+                      style: GoogleFonts.openSans(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.red.shade900
+                      ),
+                      ),
+
+
+                      InkWell(
+                        onTap: (){
+
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return SalaryPayPin();
+                              },
+                            ),
+                          );
+
+                        },
+                        child: Icon(
+                          Icons.arrow_forward_ios,
+                          size: 40,
+                        ),
+                      )
+
+
+
+                    ],
                   ),
 
                   Row(
@@ -113,6 +142,7 @@ class SalaryDashBoard extends StatelessWidget
                           subtitle: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+
                               Text("Designation"),
                               Text("Salary amount"),
 
