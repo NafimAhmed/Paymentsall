@@ -141,6 +141,8 @@ class _CashOutPageState extends State<CashOutPage> {
                             ),
 
 
+
+
                             hintText: 'Mobile or A/C No',
                             hintStyle: TextStyle(color: Colors.grey.shade400),
                             suffixIcon: const Icon(
@@ -181,6 +183,9 @@ class _CashOutPageState extends State<CashOutPage> {
                                   },
                                 ),
                               );
+
+
+
                             },
 
 

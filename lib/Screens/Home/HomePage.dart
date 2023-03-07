@@ -6,6 +6,7 @@ import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.da
 import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
+import '../salary_payroll/salary_dash_board.dart';
 import '../travelcard_all/tc_form.dart';
 import 'Add Money/Add Money.dart';
 import 'CashOutPage.dart';
@@ -464,14 +465,14 @@ class _HomePageState extends State<HomePage> {
 
 
 
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return GovernmentFeesPage();
-                              //     },
-                              //   ),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return SalaryDashBoard();
+                                  },
+                                ),
+                              );
                             },
                             child: Column(
                               children: [
