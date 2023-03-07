@@ -29,7 +29,6 @@ class _OTPsendPageState extends State<OTPsendPage> {
                 fontWeight: FontWeight.w600,
                 fontSize: 26
             ),),
-            // SizedBox(height: 20,),
 
             Text('Payments All Business Dashboard',
               style: GoogleFonts.openSans(
@@ -70,7 +69,9 @@ class _OTPsendPageState extends State<OTPsendPage> {
 
             OtpTextField(
               numberOfFields: 5,
-              borderColor: Colors.red.shade300,
+              borderColor: Color(0xFFE57373),
+              focusedBorderColor: Color(0xFFE57373),
+              cursorColor: Colors.red.shade900,
               showFieldAsBox: true,
               onCodeChanged: (String code) {
               },

@@ -43,11 +43,9 @@ class _SendMobileNumberPageState extends State<SendMobileNumberPage> {
                    fontSize: 16
                ),
              ),
-              // SizedBox(height: 20,),
 
               Container(
                 height: 60,width: 330,
-                //color: Colors.white,
                 child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Row(
@@ -68,12 +66,10 @@ class _SendMobileNumberPageState extends State<SendMobileNumberPage> {
                           cursorColor: Colors.red.shade900,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            // prefixIcon: Icon(Icons.attach_money_rounded,size: 30,color: Colors.grey,),
                             hintText: '017XXXXXXXX',
                             hintStyle: GoogleFonts.openSans(
                                 color: Colors.grey.shade400,
                                 fontWeight: FontWeight.w500,
-                               // fontSize: 20
 
                             ),
 

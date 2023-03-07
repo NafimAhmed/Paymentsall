@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage> {
               Padding(
                   padding: const EdgeInsets.all(16.0),
               child: Container(
-                height: 300,width: 350,
+                height: 400,width: 350,
                 //color: Colors.white,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(4.0),
@@ -386,6 +386,56 @@ class _HomePageState extends State<HomePage> {
                                 const Text('Govt. Fees',style: TextStyle(color:Color(0xFF80140E)))
                               ],
                             )),
+                        TextButton(
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(Colors.transparent),
+                              overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            ),
+                            onPressed: (){
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return GovernmentFeesPage();
+                              //     },
+                              //   ),
+                              // );
+                            },
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: const Color(0xFFFFF8F8),
+                                  radius: 26,
+                                  child: Image.asset('assets/images/mobile Bank.png',),
+                                ),
+                                const Text('Mobile Banking',style: TextStyle(color:Color(0xFF80140E)))
+                              ],
+                            )),
+                        TextButton(
+                            style: ButtonStyle(
+                              shadowColor: MaterialStateProperty.all(Colors.transparent),
+                              overlayColor: MaterialStateProperty.all(Colors.transparent),
+                            ),
+                            onPressed: (){
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) {
+                              //       return GovernmentFeesPage();
+                              //     },
+                              //   ),
+                              // );
+                            },
+                            child: Column(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: const Color(0xFFFFF8F8),
+                                  radius: 26,
+                                  child: Image.asset('assets/images/ticket.png',),
+                                ),
+                                const Text('Ticketing',style: TextStyle(color:Color(0xFF80140E)))
+                              ],
+                            )),
 
 
 
@@ -395,6 +445,16 @@ class _HomePageState extends State<HomePage> {
 
 
 
+
+
+
+
+
+
+                      ],
+                    ),
+                    Row(
+                      children: [
                         TextButton(
                             style: ButtonStyle(
                               shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -416,24 +476,19 @@ class _HomePageState extends State<HomePage> {
                             child: Column(
                               children: [
                                 CircleAvatar(
-                                  backgroundColor: const Color(0xFFFFF8F8),
-                                  radius: 26,
-                                  child: Icon(Icons.wallet,
-                                    color: Colors.red.shade900,
-                                    size: 40,
-                                  )//Image.asset('assets/images/Govt Fees.png',),
+                                    backgroundColor: const Color(0xFFFFF8F8),
+                                    radius: 26,
+                                    child: Icon(Icons.wallet,
+                                      color: Colors.red.shade900,
+                                      size: 40,
+                                    )//Image.asset('assets/images/Govt Fees.png',),
                                 ),
                                 const Text('Salary Payroll',style: TextStyle(color:Color(0xFF80140E)))
                               ],
                             )),
-
-
-
-
-
-
                       ],
-                    )
+                    ),
+
                   ],
                 ),
               ),
