@@ -44,7 +44,7 @@ class _MainScreenState extends State<MainScreen> {
           label: ''),
           BottomNavigationBarItem(icon: CircleAvatar(
             backgroundColor: Colors.black,
-              child: Icon(Icons.qr_code_scanner_sharp)),
+              child: Icon(Icons.qr_code_2_rounded,color: Colors.white,)),
           label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.notifications_sharp),
           label: ''),

@@ -103,7 +103,8 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                 ),
               ),
             ),
-            Padding(padding: EdgeInsets.all(16.0),
+            Padding(
+              padding: EdgeInsets.all(16.0),
               child: Container(
                 height: 200,width: 300,
                 decoration: BoxDecoration(
@@ -171,6 +172,31 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                 ),
               ),
             ),
+            Padding(
+                padding: EdgeInsets.all(16.0),
+            child: Container(
+              height: 60,width: 300,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8.0),
+                  color: Colors.white
+              ),
+              child: TextButton(
+                onPressed: () {
+
+                },
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.red.shade50,
+                        child: Icon(Icons.account_balance_wallet_rounded,color: Colors.red.shade300,)),
+                    SizedBox(width: 20,),
+                    Text('E-Loan',style: TextStyle(fontSize: 18,color: Colors.black))
+                  ],
+                ),
+
+              ),
+            ),
+            )
 
           ],
         ),

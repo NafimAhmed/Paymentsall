@@ -16,7 +16,7 @@ class PayConfirmationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pay Confirmation',style: TextStyle(color: Colors.black)),
+        title: Text('Payment Confirmation',style: TextStyle(color: Colors.black)),
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0.0,
       ),

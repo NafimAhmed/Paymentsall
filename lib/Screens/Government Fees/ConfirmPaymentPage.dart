@@ -84,7 +84,7 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> with TickerProv
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Confirm Your Payment',style: TextStyle(color: Colors.black)),
+        title: Text('Successful Payment',style: TextStyle(color: Colors.black)),
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0.0,
       ),
