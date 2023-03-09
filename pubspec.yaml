@@ -28,8 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  firebase_core: ^2.7.1
-  firebase_auth: ^4.0.1
+  firebase_core: any
+  firebase_auth: any
   timelines: ^0.1.0
   fluttertoast: ^8.2.1
   qr_code_scanner: ^1.0.1
