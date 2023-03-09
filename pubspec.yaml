@@ -28,6 +28,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  awesome_notifications: any
+  http: ^0.13.5
   firebase_core: any
   firebase_auth: any
   timelines: ^0.1.0
