@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -115,15 +116,44 @@ class _SendMobileNumberPageState extends State<SendMobileNumberPage> {
                     shadowColor: MaterialStateProperty.all(Colors.transparent),
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
                   ),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return OTPsendPage();
-                        },
-                      ),
+                  onPressed: () async{
+
+
+
+                    /////////////////////////////////////
+                    await FirebaseAuth.instance.verifyPhoneNumber(
+                      phoneNumber: "+88"+_mobileNumber.text,
+                      verificationCompleted: (PhoneAuthCredential credential) {},
+                      verificationFailed: (FirebaseAuthException e) {},
+                      codeSent: (String verificationId, int? resendToken) {
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return OTPsendPage(varificationId: verificationId);
+                            },
+                          ),
+                        );
+
+                      },
+                      codeAutoRetrievalTimeout: (String verificationId) {},
                     );
+
+
+
+                    /////////////////////////////
+
+
+
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) {
+                    //       return OTPsendPage();
+                    //     },
+                    //   ),
+                    // );
 
                   },
                   child: Row(

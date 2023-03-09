@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,13 +9,23 @@ import '../signUp/SignUpPage.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPsendPage extends StatefulWidget {
-  const OTPsendPage({Key? key}) : super(key: key);
+
+  final String varificationId;
+
+  const OTPsendPage({super.key, required this.varificationId});
+
+
+
+  //const OTPsendPage({Key? key}) : super(key: key);
 
   @override
   State<OTPsendPage> createState() => _OTPsendPageState();
 }
 
 class _OTPsendPageState extends State<OTPsendPage> {
+
+
+  TextEditingController otp=TextEditingController();
 
 
   String currentText = "";
@@ -74,26 +85,34 @@ class _OTPsendPageState extends State<OTPsendPage> {
 
             SizedBox(height: 10,),
 
-            OtpTextField(
-              numberOfFields: 5,
-              borderColor: Color(0xFFE57373),
-              focusedBorderColor: Color(0xFFE57373),
-              cursorColor: Colors.red.shade900,
-              showFieldAsBox: true,
-              onCodeChanged: (String code) {
-              },
-              onSubmit: (String verificationCode){
-                showDialog(
-                    context: context,
-                    builder: (context){
-                      return AlertDialog(
-                        title: Text("Verification Code"),
-                        content: Text('Code entered is $verificationCode'),
-                      );
-                    }
-                );
-              }, // end onSubmit
+            // OtpTextField(
+            //   numberOfFields: 5,
+            //   borderColor: Color(0xFFE57373),
+            //   focusedBorderColor: Color(0xFFE57373),
+            //   cursorColor: Colors.red.shade900,
+            //   showFieldAsBox: true,
+            //   onCodeChanged: (String code) {
+            //   },
+            //   onSubmit: (String verificationCode){
+            //     showDialog(
+            //         context: context,
+            //         builder: (context){
+            //           return AlertDialog(
+            //             title: Text("Verification Code"),
+            //             content: Text('Code entered is $verificationCode'),
+            //           );
+            //         }
+            //     );
+            //   }, // end onSubmit
+            // ),
+
+            TextField(
+              controller: otp,
             ),
+
+
+
+
             SizedBox(height: 40,),
 
 
@@ -108,15 +127,40 @@ class _OTPsendPageState extends State<OTPsendPage> {
                   shadowColor: MaterialStateProperty.all(Colors.transparent),
                   overlayColor: MaterialStateProperty.all(Colors.transparent),
                 ),
-                onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return SignUpPage();
-                      },
-                    ),
-                  );
+                onPressed: () async{
+
+
+                  try{
+                    FirebaseAuth auth = FirebaseAuth.instance;
+
+                    PhoneAuthCredential credential = PhoneAuthProvider.credential(verificationId: widget.varificationId, smsCode: otp.text);
+                    // Sign the user in (or link) with the credential
+                    await auth.signInWithCredential(credential);
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return SignUpPage();
+                        },
+                      ),
+                    );
+                  }catch(e)
+                  {
+                    print("wrong otp");
+                  }
+
+
+
+
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) {
+                  //       return SignUpPage();
+                  //     },
+                  //   ),
+                  // );
 
                 },
                 child: Text('Proceed',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),

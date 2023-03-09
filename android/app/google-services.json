@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "235910083998",
+    "project_id": "payments-all",
+    "storage_bucket": "payments-all.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:235910083998:android:8ac67cf79d7af5c17d128f",
+        "android_client_info": {
+          "package_name": "com.paymentsall.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "235910083998-8qprbj80plotvtvkmgjb8ager9m05d0a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF0LZO-fTg0fCatsPWqVBw_FW78nm6EAA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "235910083998-8qprbj80plotvtvkmgjb8ager9m05d0a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
