@@ -65,6 +65,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  checkbox_formfield:
+    dependency: "direct main"
+    description:
+      name: checkbox_formfield
+      sha256: "175655972cdc8fe618ac3c453fdd51eb38d6ddcfd4a67d580cf07cf5bdbf7a99"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.2.0"
   clock:
     dependency: transitive
     description:

@@ -59,6 +59,7 @@ dependencies:
   intl: ^0.18.0
   flutter_otp_text_field: ^1.1.1
   pin_code_fields: ^7.4.0
+  checkbox_formfield: ^0.2.0
 
 
 dev_dependencies:
