@@ -332,6 +332,8 @@ class _BillPayPageState extends State<BillPayPage> {
                             Text('Government\nFees')
                           ],
                         )),
+                        
+
                         TextButton(onPressed: (){}, child: Column(
                           children: [
                             //Image.asset('assets/images/insurance.png',height: 40,width: 40,),
@@ -339,6 +341,9 @@ class _BillPayPageState extends State<BillPayPage> {
                             Text('Credit\nCard')
                           ],
                         )),
+
+
+
                         TextButton(onPressed: (){}, child: Column(
                           children: [
                             //Image.asset('assets/images/vehicle.png',height: 41,width: 30,),
