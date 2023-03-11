@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'RepayMoneyDuration.dart';
+
 class EloanPageTwo extends StatelessWidget {
   const EloanPageTwo({Key? key}) : super(key: key);
 
@@ -8,7 +10,8 @@ class EloanPageTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+          backgroundColor: Color(0xFFFFF8F8),
+          title: Row(
           children: [
             Text('E-Loan',style: TextStyle(color: Colors.black)),
             Spacer(),
@@ -57,6 +60,11 @@ class EloanPageTwo extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
 
         child: Container(
+          width: 320,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              color: Colors.white
+          ),
 
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,
@@ -105,14 +113,14 @@ class EloanPageTwo extends StatelessWidget {
                     overlayColor: MaterialStateProperty.all(Colors.transparent),
                   ),
                   onPressed: (){
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) {
-                    //       return EloanPageTwo();
-                    //     },
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return RepayMoneyDurationAndAmount();
+                        },
+                      ),
+                    );
 
                   },
                   child: Row(

@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import '../signUp/SignUpPage.dart';
 
 
-import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPsendPage extends StatefulWidget {
 
@@ -26,6 +25,7 @@ class _OTPsendPageState extends State<OTPsendPage> {
 
 
   TextEditingController otp=TextEditingController();
+
 
 
   String currentText = "";
@@ -86,6 +86,7 @@ class _OTPsendPageState extends State<OTPsendPage> {
             SizedBox(height: 10,),
 
             // OtpTextField(
+            //   //controller: otpController,
             //   numberOfFields: 5,
             //   borderColor: Color(0xFFE57373),
             //   focusedBorderColor: Color(0xFFE57373),
