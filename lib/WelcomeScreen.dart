@@ -112,7 +112,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const SendMobileNumberPage();
+                        return const SignUpPage();//SendMobileNumberPage();
                       },
                     ),
                   );

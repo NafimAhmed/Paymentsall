@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
+import 'package:firebase_database/firebase_database.dart';
 
 
 class SignUpPage extends StatefulWidget {
@@ -15,6 +16,15 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+
+
+  //////////////////////////////////
+  FirebaseDatabase database = FirebaseDatabase.instance;
+  DatabaseReference ref = FirebaseDatabase.instance.ref("User_profile");
+
+
+
+  //////////////////////////////////
 
   List<String> list_month = <String>['Male', 'Female'];
   String dropdownValue_month = 'Male';
@@ -456,7 +466,37 @@ class _SignUpPageState extends State<SignUpPage> {
                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                    onPressed: (){
+                    onPressed: () async{
+
+
+                     //  if(_firstName.text.isEmpty){}
+                     //  else if(_lastName.text.isEmpty){}
+                     // // else if(_dob.text.isEmpty){}
+                     //  else if(_gender.text.isEmpty){}
+                     //  //else if(_gender.text.isEmpty){}
+                     //  else if(_mobileNumber.text.isEmpty){}
+                     //  else if(_pin.text.isEmpty){}
+                     //  else if(_nid.text.isEmpty){}
+                     //  else{
+                        await ref.child(_mobileNumber.text).set({
+                          "first_name": _firstName.text,
+                          "last_name": _lastName.text,
+                          "dob": "_dob.text",
+                          "gender": "_gender.text",
+                          "nid": _nid.text,
+                          "mobile_no": _mobileNumber.text,
+                          "pin": _pin.text,
+
+
+
+                          // "address": {
+                          //   "line1": "100 Mountain View"
+                          // }
+                        });
+                      //}
+
+
+
 
                     },
                     child: Text('Sign Up',
