@@ -21,6 +21,37 @@ class _RepayMoneyDurationAndAmountState extends State<RepayMoneyDurationAndAmoun
   String timeLimit = '3 Month';
 
 
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDateFrom(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1950, 8),
+        lastDate: DateTime(2050));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
+  DateTime selectedDateTo = DateTime.now();
+
+
+  Future<void> _selectDateTo(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDateTo,
+        firstDate: DateTime(1950, 8),
+        lastDate: DateTime(2050));
+    if (picked != null && picked != selectedDateTo) {
+      setState(() {
+        selectedDateTo = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,48 +181,103 @@ class _RepayMoneyDurationAndAmountState extends State<RepayMoneyDurationAndAmoun
                     Divider(color: Color(0xFFFFF8F8),thickness: 4,),
                     SizedBox(height: 10,),
                     Padding(
-                      padding: const EdgeInsets.only(left: 17),
-                      child: Text('E-Loan Reimbursement Time Limit',
+                      padding: const EdgeInsets.all(8.0),
+                      child: Center(
+                        child: Text('E-Loan Reimbursement Time Limit',
 
-                        style: GoogleFonts.openSans(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 16
+                          style: GoogleFonts.openSans(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w300,
+                              fontSize: 16
+                          ),
                         ),
                       ),
                     ),
 
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: Colors.red.shade50
-                        ),
-                        child: DropdownButtonHideUnderline(
-                          child: ButtonTheme(
-                            alignedDropdown: true,
-                            child: DropdownButton<String>(
-                                value: timeLimit,
-                                onChanged: (String? value){
-                                  setState(() {
-                                    timeLimit=value!;
-                                  });
-                                },
-                                items: timeLimitList.map<DropdownMenuItem<String>>((String value){
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Text(value,style: GoogleFonts.openSans(
-                                      // fontSize: 16,
-                                        fontWeight: FontWeight.w400
-                                    ),),
-                                  );
-                                },
-                                ).toList()
+                      child: Row(
+                        children: [
+                          Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('From',
+                                  style: GoogleFonts.openSans(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 16
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                Container(
+                                  height: 40,width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                      color: Colors.red.shade50
+                                  ),
+                                  child: InkWell(
+                                    onTap: (){
+                                      _selectDateFrom(context);
+                                    },
+                                    child: Center(
+                                      child: Text(
+                                        "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+
+
+                          ),
+                          Spacer(),
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                               // color: Colors.red.shade50
+                            ),
+
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('To',
+                                  style: GoogleFonts.openSans(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: 16
+                                  ),
+                                ),
+                                SizedBox(height: 10,),
+                                Container(
+                                  height: 40,width: 100,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                      color: Colors.red.shade50
+                                  ),
+                                  child: InkWell(
+                                    onTap: (){
+                                      _selectDateTo(context);
+                                    },
+                                    child: Center(
+                                      child: Text(
+                                        "${selectedDateTo.day}/${selectedDateTo.month}/${selectedDateTo.year}",
+                                        style: GoogleFonts.openSans(
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
 
                           ),
-                        ),
+                        ],
                       ),
                     ),
 

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 import 'package:firebase_database/firebase_database.dart';
 
@@ -36,18 +37,21 @@ class _SignUpPageState extends State<SignUpPage> {
 
   DateTime selectedDate = DateTime.now();
 
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(1950, 8),
-        lastDate: DateTime(2050));
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-      });
-    }
-  }
+  // Future<void> _selectDate(BuildContext context) async {
+  //   final DateTime? picked = await showDatePicker(
+  //       context: context,
+  //       initialDate: selectedDate,
+  //       firstDate: DateTime(1950, 8),
+  //       lastDate: DateTime(2050));
+  //
+  //  // if (picked != null && picked != selectedDate) {
+  //   if (picked != null) {
+  //     String formattedDate=DateFormat.yMd().format(selectedDate).toString();
+  //     setState(() {
+  //       _dob.text = formattedDate;
+  //     });
+  //   }
+  // }
 
 
 
@@ -95,18 +99,25 @@ class _SignUpPageState extends State<SignUpPage> {
     }
   }
 
+  TextEditingController _firstName=TextEditingController();
+  TextEditingController _lastName=TextEditingController();
+  TextEditingController _nid=TextEditingController();
+  TextEditingController _mobileNumber=TextEditingController();
+  TextEditingController _dob=TextEditingController();
+  TextEditingController _gender=TextEditingController();
+  TextEditingController _pin=TextEditingController();
+
+
+
+  @override
+  void initState(){
+    _dob.text="";
+    super.initState();
+  }
 
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _firstName=TextEditingController();
-    TextEditingController _lastName=TextEditingController();
-    TextEditingController _nid=TextEditingController();
-    TextEditingController _mobileNumber=TextEditingController();
-    TextEditingController _dob=TextEditingController();
-    TextEditingController _gender=TextEditingController();
-    TextEditingController _pin=TextEditingController();
-
     return Scaffold(
       backgroundColor: Color(0xFFFFF8F8),
       body: Padding(
@@ -180,40 +191,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
 
 
-                            // TextButton(
-                            //   style: ButtonStyle(
-                            //     shadowColor: MaterialStateProperty.all(Colors.transparent),
-                            //     overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            //   ),
-                            //   onPressed: (){
-                            //     pickImageGallery();
-                            //     },
-                            //   child: Text('Upload Picture',
-                            //   style: GoogleFonts.openSans(
-                            //     color: Colors.red.shade300
-                            //   ),
-                            //   ),
-                            // ),
-
-
-
-
-
-                            // TextButton(
-                            //   style: ButtonStyle(
-                            //     shadowColor: MaterialStateProperty.all(Colors.transparent),
-                            //     overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            //   ),
-                            //   onPressed: (){
-                            //     pickImageCamera();
-                            //     },
-                            //   child: Text('Take Picture',
-                            //   style: GoogleFonts.openSans(
-                            //     color: Colors.red.shade300
-                            //   ),
-                            //   ),
-                            // ),
-                            //
 
 
 
@@ -322,19 +299,50 @@ class _SignUpPageState extends State<SignUpPage> {
                               borderRadius: BorderRadius.circular(6.0),
                               color: Colors.white
                           ),
-                          child: InkWell(
-                            onTap: (){
-                              _selectDate(context);
-                            },
-                            child: Center(
-                              child: Text(
-                                "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
-                                style: GoogleFonts.openSans(
-                                  fontSize: 16,
-                                ),
+                          child:  Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: TextField(
+                              controller: _dob,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Date of Birth',
+                                hintStyle: TextStyle(color: Colors.grey.shade400),
+
                               ),
+                              readOnly: true,
+                              onTap: () async {
+                                DateTime? pickedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2025)
+                                );
+                                if (pickedDate != null) {
+
+                                  String formattedDate = DateFormat('MM/dd/yyyy').format(selectedDate).toString();
+                                  setState(() {
+                                    _dob.text = formattedDate;
+                                  });
+                                }
+                              }
                             ),
-                          ),
+                          )
+
+
+                          // InkWell(
+                          //   onTap: (){
+                          //     _selectDate(context);
+                          //   },
+                          //   child: Center(
+                          //     child: Text(
+                          //       "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
+                          //       style: GoogleFonts.openSans(
+                          //         fontSize: 16,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
 
 
 
@@ -484,7 +492,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           "first_name": _firstName.text,
                           "last_name": _lastName.text,
                           "dob": "_dob.text",
-                          "gender": "_gender.text",
+                          "gender": dropdownValue_month.toString(),
                           "nid": _nid.text,
                           "mobile_no": _mobileNumber.text,
                           "pin": _pin.text,

@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:payments_all_app/Screens/Home/HomePage.dart';
 
 import '../../../../utils/app_layout.dart';
+import '../../../MainScreen.dart';
 
 class LoanSuccessfulPage extends StatelessWidget {
    LoanSuccessfulPage({Key? key}) : super(key: key);
@@ -222,63 +224,68 @@ class LoanSuccessfulPage extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
                   height: AppLayout.getHeight(70),width: AppLayout.getWidth(320),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 160,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text('Total Payable',
-                              style: GoogleFonts.openSans(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300,
-                                //fontSize: 16
-                              ),),
-                            Text('৳3050.90',
-                              style: GoogleFonts.openSans(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                //fontSize: 16
-                              ),),
-                            Text('৳3,000.00+৳50.90',
-                              style: GoogleFonts.openSans(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w300,
-                                //fontSize: 16
-                              ),
-                            ),
-                          ],
+                  child: Container(
+                    width: 160,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Total Payable',
+                          style: GoogleFonts.openSans(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                            //fontSize: 16
+                          ),),
+                        Text('৳3050.90',
+                          style: GoogleFonts.openSans(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            //fontSize: 16
+                          ),),
+                        Text('৳3,000.00+৳50.90',
+                          style: GoogleFonts.openSans(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w300,
+                            //fontSize: 16
+                          ),
                         ),
-                      ),
-                      Spacer(),
-                      // Container(
-                      //   width: 150,
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: [
-                      //       Text('Loan Payment Deadline',
-                      //         style: GoogleFonts.openSans(
-                      //           color: Colors.black,
-                      //           fontWeight: FontWeight.w300,
-                      //           //fontSize: 16
-                      //         ),
-                      //       ),
-                      //       Text('Every Months 11th',
-                      //         style: GoogleFonts.openSans(
-                      //           color: Colors.black,
-                      //           fontWeight: FontWeight.w300,
-                      //           //fontSize: 16
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Center(
+                  child: Container(
+                    height: 40,width: 100,
+                    child: TextButton(
+                      style: ButtonStyle(
+                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                        overlayColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
+                      onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return MainScreen();
+                            },
+                          ),
+                        );
+                        // Navigator.of(context).pop();
 
+                      },
+                      child: Text('Done!',
+                        style: GoogleFonts.openSans(
+                          color: Colors.red.shade300,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 20
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),

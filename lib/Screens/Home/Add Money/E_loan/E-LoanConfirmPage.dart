@@ -23,7 +23,7 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
     duration: const Duration(seconds: 10),
   )..addListener(() {
 
-    if(controller.value>=.90){
+    if(controller.value>=1){
 
       controller.stop();
 
@@ -39,10 +39,6 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
 
     }
     setState(() {
-
-
-
-
 
     });
   });
@@ -272,10 +268,16 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                   ),
                 ),
               ),
-              LinearProgressIndicator(
-                value: controller.value,
-                semanticsLabel: 'Linear progress indicator',
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: LinearProgressIndicator(
+                  backgroundColor: Color(0xFFFFF8F8),
+                  color: Color(0xFFF59191),
+                  minHeight: 8,
+                  value: controller.value,
+                  semanticsLabel: 'Linear progress indicator',
 
+                ),
               ),
 
               Center(
@@ -285,7 +287,7 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                     //controller.reset();
                     controller.repeat();
 
-                    if(controller.value>=.99){
+                    if(controller.value>=1){
 
                       controller.stop();
 
@@ -302,36 +304,42 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                         },
                       ),
                     );
+                    //nav = Navigator.of(context);
+                   // Navigator.of(context).pop();
+                   // Navigator.of(context).pop();
+                    // Navigator.pushAndRemoveUntil(
+                    //     context, MaterialPageRoute(builder: (context) => LoanSuccessfulPage()), (
+                    //     route) => false);
                   },
                   child: Container(
                     padding: EdgeInsets.all(40),
                     margin: EdgeInsets.all(20),
 
                     decoration: BoxDecoration(
-                      color: Colors.red.shade900,
+                      color: Colors.red.shade300,
                       borderRadius: BorderRadius.all(
                           Radius.circular(70.0)), // Set rounded corner radius
                     ),
 
-                    child: Text("Tap to\n Confirm",
+                    child: Text("Tap to Confirm",
                       style: GoogleFonts.openSans(
-                          fontSize: 25
+                        color: Colors.white,
+                          fontSize: 20
                       ),
                     ),
                   ),
                   onTapUp: (detail) {
                     controller.stop();
 
-
-                    Fluttertoast.showToast(
-                        msg: controller.value.toString(),
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.CENTER,
-                        timeInSecForIosWeb: 1,
-                        backgroundColor: Colors.red,
-                        textColor: Colors.white,
-                        fontSize: 16.0
-                    );
+                    // Fluttertoast.showToast(
+                    //     msg: controller.value.toString(),
+                    //     toastLength: Toast.LENGTH_SHORT,
+                    //     gravity: ToastGravity.CENTER,
+                    //     timeInSecForIosWeb: 1,
+                    //     backgroundColor: Colors.red,
+                    //     textColor: Colors.white,
+                    //     fontSize: 16.0
+                    // );
                     controller.reset();
 
                   },
