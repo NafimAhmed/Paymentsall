@@ -496,14 +496,14 @@ class _SignUpPageState extends State<SignUpPage> {
                           // }
                         }).then((value) {
                           Navigator.pop(context);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MainScreen();
-                              },
-                            ),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) {
+                          //       return MainScreen();
+                          //     },
+                          //   ),
+                          // );
                         });
                       //}
 
