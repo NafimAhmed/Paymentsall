@@ -488,6 +488,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           "nid": _nid.text,
                           "mobile_no": _mobileNumber.text,
                           "pin": _pin.text,
+                          "balance":"00.00",
 
 
 

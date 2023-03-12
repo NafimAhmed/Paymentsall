@@ -7,30 +7,15 @@ import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart
 import 'Account & Settings/ProfileScreen.dart';
 import 'Scan/ScanScreen.dart';
 
-// class MainScreen extends StatefulWidget {
-//
-//
-//   const MainScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   State<MainScreen> createState() => _MainScreenState();
-// }
-
-// class MainScreen extends StatefulWidget {
-//
-//   final String phoneNumber;
-//
-//
-//   const MainScreen({super.key, required this.phoneNumber});
-//
-//   @override
-//   State<MainScreen> createState() => _MainScreenState();
-// }
 
 class MainScreen extends StatelessWidget {
 
   final String phoneNumber;
-  MainScreen({super.key, required this.phoneNumber});
+  final String firstName;
+  final String lastName;
+  final String pin;
+  final String balance;
+  //MainScreen({super.key, required this.phoneNumber});
 
   /////////////////////////////////////
 
@@ -46,6 +31,8 @@ class MainScreen extends StatelessWidget {
 
   RxInt _index = 0.obs;
 
+  MainScreen({super.key, required this.phoneNumber, required this.firstName, required this.lastName,required this.pin,required this.balance});
+
 
 
 
@@ -58,11 +45,19 @@ class MainScreen extends StatelessWidget {
     List<Widget> pages=[
       HomePage(
         phoneNumber: phoneNumber,
+        firstName: firstName,
+        lastName: lastName,
+        pin: pin,
+        balance: balance,
       ),
       RecentTransferScreen(),
-      ScanScreen(),
+      ScanScreen(phonenumber: phoneNumber,),
       NotificationScreen(),
-      ProfileScreen()
+      ProfileScreen(
+        first_name: firstName,
+        last_name: lastName,
+        number: phoneNumber,
+      )
     ];
 
 

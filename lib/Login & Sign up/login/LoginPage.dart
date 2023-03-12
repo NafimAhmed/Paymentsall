@@ -178,6 +178,9 @@ class _LoginPageState extends State<LoginPage> {
 
 
                           final snapshot = await rf.child(_mobileNumber.text.toString()).child("pin").get();
+                          final snapshotfnm = await rf.child(_mobileNumber.text.toString()).child("first_name").get();
+                          final snapshotlnm = await rf.child(_mobileNumber.text.toString()).child("last_name").get();
+                          final snapshotBalance = await rf.child(_mobileNumber.text.toString()).child("balance").get();
 
                           if (snapshot.exists) {
 
@@ -190,6 +193,10 @@ class _LoginPageState extends State<LoginPage> {
                                   builder: (context) {
                                     return MainScreen(
                                         phoneNumber: _mobileNumber.text.toString(),
+                                      pin: snapshot.value.toString(),
+                                      firstName: snapshotfnm.value.toString(),
+                                      lastName: snapshotlnm.value.toString(),
+                                      balance: snapshotBalance.value.toString(),
                                     );
                                   },
                                 ),
@@ -208,15 +215,7 @@ class _LoginPageState extends State<LoginPage> {
                               );
                             }
 
-                            // Fluttertoast.showToast(
-                            //     msg: snapshot.value.toString(),
-                            //     toastLength: Toast.LENGTH_SHORT,
-                            //     gravity: ToastGravity.CENTER,
-                            //     timeInSecForIosWeb: 1,
-                            //     backgroundColor: Colors.red,
-                            //     textColor: Colors.white,
-                            //     fontSize: 16.0
-                            // );
+
                             
 
                           } else {

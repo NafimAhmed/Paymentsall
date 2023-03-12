@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,21 +18,22 @@ import 'SendMoney/SendMoneyPage.dart';
 import 'SendMoney/contact_page_send_money.dart';
 import '../mobile_recharge_all/contacts_page.dart';
 
-// class HomePage extends StatefulWidget {
-//
-//   //final String phoneNumber ;
-//
-//   const HomePage({super.key});
-//
-//   //const HomePage({Key? key}) : super(key: key);
-//
-//   @override
-//   State<HomePage> createState() => _HomePageState();
-// }
+
 
 class HomePage extends StatelessWidget {
 
-  final phoneNumber;
+  final String phoneNumber;
+  final String firstName;
+  final String lastName;
+  final String pin;
+  final String balance;
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
+
+  DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
+
+
+
 
 
   static List offer=[
@@ -43,10 +45,19 @@ class HomePage extends StatelessWidget {
 
   ];
 
-  const HomePage({super.key, required this.phoneNumber});
+   HomePage({super.key, required this.phoneNumber, required this.firstName, required this.lastName, required this.pin,required this.balance});
+
+  // HomePage({super.key, required this.phoneNumber});
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
     return Scaffold(
       backgroundColor: Color(0xFFFFF8F8),
       body: SingleChildScrollView(
@@ -74,11 +85,11 @@ class HomePage extends StatelessWidget {
                   children: [
                     Column(crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Hi, Nafim Ahmed',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),),SizedBox(height: 5,),
+                        Text('Hi, $firstName $lastName',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18,),),SizedBox(height: 5,),
                         Text('Your available balance',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
                       ],
                     ),Spacer(),
-                    Text('৳4,590.00',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
+                    Text('৳ $balance',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
                   ],
                 ),
               ),
@@ -579,4 +590,29 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+
+  // Future<String> naam()async{
+  //
+  //   final snapshot_fname= await rf.child(phoneNumber.toString()).child("first_name").get();
+  //   final snapshot_lname= await rf.child(phoneNumber.toString()).child("last_name").get();
+  //
+  //   return snapshot_fname.toString()+" "+snapshot_lname.toString();
+  //
+  //
+  // }
+  //
+  // Future<String> phone()async{
+  //
+  //   final snapshot_mobile_no= await rf.child(phoneNumber.toString()).child("mobile_no").get();
+  //
+  //   return snapshot_mobile_no.toString();
+  //
+  // }
+
+
+
+
+
+
 }

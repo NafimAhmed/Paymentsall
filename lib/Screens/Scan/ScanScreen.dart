@@ -5,14 +5,20 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/app_layout.dart';
 
-class ScanScreen extends StatefulWidget {
-  const ScanScreen({Key? key}) : super(key: key);
+// class ScanScreen extends StatefulWidget {
+//   const ScanScreen({Key? key}) : super(key: key);
+//
+//   @override
+//   State<ScanScreen> createState() => _ScanScreenState();
+// }
 
-  @override
-  State<ScanScreen> createState() => _ScanScreenState();
-}
+class ScanScreen extends StatelessWidget {
 
-class _ScanScreenState extends State<ScanScreen> {
+  final phonenumber;
+
+  const ScanScreen({super.key, required this.phonenumber});
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +49,7 @@ class _ScanScreenState extends State<ScanScreen> {
                     barcode: Barcode.qrCode(
                       errorCorrectLevel: BarcodeQRCorrectionLevel.high,
                     ),
-                    data: '01797609439',
+                    data: '$phonenumber',
                     width: 200,
                     height: 200,
                   ),
