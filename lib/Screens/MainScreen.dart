@@ -32,20 +32,41 @@ class MainScreen extends StatelessWidget {
   final String phoneNumber;
   MainScreen({super.key, required this.phoneNumber});
 
+  /////////////////////////////////////
+
+
+
+
+  /////////////////////////////////////
+
+
+
+
+
+
   RxInt _index = 0.obs;
 
-  List<Widget> pages=[
-    const HomePage(),
-    const RecentTransferScreen(),
-    const ScanScreen(),
-    const NotificationScreen(),
-    const ProfileScreen()
-  ];
+
 
 
 
   @override
   Widget build(BuildContext context) {
+
+    //String numb=phoneNumber;
+
+    List<Widget> pages=[
+      HomePage(
+        phoneNumber: phoneNumber,
+      ),
+      RecentTransferScreen(),
+      ScanScreen(),
+      NotificationScreen(),
+      ProfileScreen()
+    ];
+
+
+
     return Obx(() => Scaffold(
       backgroundColor: Color(0xFFFFF8F8),
       body: pages[_index.value],

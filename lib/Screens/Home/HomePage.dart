@@ -17,19 +17,21 @@ import 'SendMoney/SendMoneyPage.dart';
 import 'SendMoney/contact_page_send_money.dart';
 import '../mobile_recharge_all/contacts_page.dart';
 
-class HomePage extends StatefulWidget {
+// class HomePage extends StatefulWidget {
+//
+//   //final String phoneNumber ;
+//
+//   const HomePage({super.key});
+//
+//   //const HomePage({Key? key}) : super(key: key);
+//
+//   @override
+//   State<HomePage> createState() => _HomePageState();
+// }
 
-  //final String phoneNumber ;
+class HomePage extends StatelessWidget {
 
-  const HomePage({super.key});
-
-  //const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+  final phoneNumber;
 
 
   static List offer=[
@@ -40,6 +42,8 @@ class _HomePageState extends State<HomePage> {
     Image.network('https://www.businessinsiderbd.com/media/imgAll/2020October/en/bkash-2108181309.jpg'),
 
   ];
+
+  const HomePage({super.key, required this.phoneNumber});
 
   @override
   Widget build(BuildContext context) {
