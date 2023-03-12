@@ -7,6 +7,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+import '../../Screens/MainScreen.dart';
+
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -492,6 +494,16 @@ class _SignUpPageState extends State<SignUpPage> {
                           // "address": {
                           //   "line1": "100 Mountain View"
                           // }
+                        }).then((value) {
+                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return MainScreen();
+                              },
+                            ),
+                          );
                         });
                       //}
 
