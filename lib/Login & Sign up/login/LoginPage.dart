@@ -1,4 +1,6 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../../Screens/Home/HomePage.dart';
 import '../../Screens/MainScreen.dart';
@@ -15,6 +17,23 @@ class _LoginPageState extends State<LoginPage> {
 
   TextEditingController _mobileNumber = TextEditingController();
   TextEditingController _password = TextEditingController();
+
+
+  ///////////////////////////////////
+
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
+
+  DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
+
+
+
+
+
+
+
+
+  //////////////////////////////
 
 
 
@@ -155,15 +174,69 @@ class _LoginPageState extends State<LoginPage> {
                           shadowColor: MaterialStateProperty.all(Colors.transparent),
                           overlayColor: MaterialStateProperty.all(Colors.transparent),
                         ),
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MainScreen();
-                              },
-                            ),
-                          );
+                        onPressed: ()async{
+
+
+                          final snapshot = await rf.child(_mobileNumber.text.toString()).child("pin").get();
+
+                          if (snapshot.exists) {
+
+
+                            if(snapshot.value.toString()==_password.text.toString()){
+
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) {
+                                    return MainScreen();
+                                  },
+                                ),
+                              );
+
+                            }
+                            else{
+                              Fluttertoast.showToast(
+                                  msg: "wrong password",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.red,
+                                  textColor: Colors.white,
+                                  fontSize: 16.0
+                              );
+                            }
+
+                            // Fluttertoast.showToast(
+                            //     msg: snapshot.value.toString(),
+                            //     toastLength: Toast.LENGTH_SHORT,
+                            //     gravity: ToastGravity.CENTER,
+                            //     timeInSecForIosWeb: 1,
+                            //     backgroundColor: Colors.red,
+                            //     textColor: Colors.white,
+                            //     fontSize: 16.0
+                            // );
+                            
+
+                          } else {
+
+                            Fluttertoast.showToast(
+                                msg: "No value found",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.CENTER,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.red,
+                                textColor: Colors.white,
+                                fontSize: 16.0
+                            );
+
+
+                          }
+
+
+
+
+
+
                         },
                         child: Text('Login',
                           style: TextStyle(fontSize: 20,color: Colors.red.shade900),),
