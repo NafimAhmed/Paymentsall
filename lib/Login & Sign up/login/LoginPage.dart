@@ -188,7 +188,9 @@ class _LoginPageState extends State<LoginPage> {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return MainScreen();
+                                    return MainScreen(
+                                        phoneNumber: _mobileNumber.text.toString(),
+                                    );
                                   },
                                 ),
                               );
@@ -220,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                           } else {
 
                             Fluttertoast.showToast(
-                                msg: "No value found",
+                                msg: "No Account found",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,

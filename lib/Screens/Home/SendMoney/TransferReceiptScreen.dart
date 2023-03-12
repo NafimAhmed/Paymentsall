@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:payments_all_app/Screens/Home/HomePage.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
@@ -161,15 +162,17 @@ class TransferReceiptPage extends StatelessWidget {
                         overlayColor: MaterialStateProperty.all(Colors.transparent),
                       ),
                       onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return HomePage();
-                            },
-                          ),
-                        );
+                        Navigator.pop(context);
                       },
+                      //   Navigator.push(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //       builder: (context) {
+                      //         return HomePage();
+                      //       },
+                      //     ),
+                      //   );
+                      // },
 
 
                       child: const Text('Done',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:payments_all_app/Screens/Home/HomePage.dart';
 import 'package:payments_all_app/Screens/Notification/NotificationScreen.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
@@ -6,15 +7,33 @@ import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart
 import 'Account & Settings/ProfileScreen.dart';
 import 'Scan/ScanScreen.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+// class MainScreen extends StatefulWidget {
+//
+//
+//   const MainScreen({Key? key}) : super(key: key);
+//
+//   @override
+//   State<MainScreen> createState() => _MainScreenState();
+// }
 
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
+// class MainScreen extends StatefulWidget {
+//
+//   final String phoneNumber;
+//
+//
+//   const MainScreen({super.key, required this.phoneNumber});
+//
+//   @override
+//   State<MainScreen> createState() => _MainScreenState();
+// }
 
-class _MainScreenState extends State<MainScreen> {
-  int _index = 0;
+class MainScreen extends StatelessWidget {
+
+  final String phoneNumber;
+  MainScreen({super.key, required this.phoneNumber});
+
+  RxInt _index = 0.obs;
+
   List<Widget> pages=[
     const HomePage(),
     const RecentTransferScreen(),
@@ -22,36 +41,45 @@ class _MainScreenState extends State<MainScreen> {
     const NotificationScreen(),
     const ProfileScreen()
   ];
+
+
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Obx(() => Scaffold(
       backgroundColor: Color(0xFFFFF8F8),
-     body: pages[_index],
+      body: pages[_index.value],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.black,
         unselectedItemColor: Colors.grey,
         backgroundColor: Color(0xFFFFF8F8),
-        currentIndex: _index,
+        currentIndex: _index.value,
         onTap: (value){
-          setState(() {
-            _index=value;
-          });
+          _index.value=value;
+          // setState(() {
+          //   _index=value;
+          // });
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home),
-          label: ''),
+              label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.receipt_long_sharp),
-          label: ''),
+              label: ''),
           BottomNavigationBarItem(icon: CircleAvatar(
-            backgroundColor: Colors.black,
+              backgroundColor: Colors.black,
               child: Icon(Icons.qr_code_2_rounded,color: Colors.white,)),
-          label: ''),
+              label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.notifications_sharp),
-          label: ''),
+              label: ''),
           BottomNavigationBarItem(icon: Icon(Icons.person),
-          label: ''),
+              label: ''),
         ],
       ),
-    );
+    ));
+
+
+
+
+
   }
 }

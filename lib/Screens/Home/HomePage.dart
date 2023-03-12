@@ -18,7 +18,12 @@ import 'SendMoney/contact_page_send_money.dart';
 import '../mobile_recharge_all/contacts_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+  //final String phoneNumber ;
+
+  const HomePage({super.key});
+
+  //const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
