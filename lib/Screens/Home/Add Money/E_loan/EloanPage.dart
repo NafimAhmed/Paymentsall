@@ -16,7 +16,8 @@ class _EloanPageState extends State<EloanPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+          backgroundColor: Color(0xFFFFF8F8),
+          title: Row(
           children: [
             Text('E-Loan',style: TextStyle(color: Colors.black)),
             Spacer(),

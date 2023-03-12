@@ -15,7 +15,9 @@ class _MobileBankingPageState extends State<MobileBankingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mobile Banking',style: TextStyle(color: Colors.black)),
+          backgroundColor: Color(0xFFFFF8F8),
+
+          title: Text('Mobile Banking',style: TextStyle(color: Colors.black)),
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0.0,
       ),

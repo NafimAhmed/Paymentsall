@@ -17,17 +17,17 @@ final darkTheme = ThemeData(
   //   onSurface: Colors.white,
   // ),
   //primarySwatch: Colors.grey,
-  primaryColor: Colors.black,
-  primaryColorBrightness: Brightness.dark,
-  primaryColorLight: Colors.black,
-  primaryColorDark: Colors.black,
-  canvasColor: Colors.black,
-  brightness: Brightness.dark,
-  backgroundColor: const Color(0xFF212121),
-  accentColor: Colors.white,
-  accentIconTheme: IconThemeData(color: Colors.black),
-  dividerColor: Colors.black12,
-  appBarTheme: AppBarTheme(brightness: Brightness.dark)
+  // primaryColor: Colors.black,
+  // primaryColorBrightness: Brightness.dark,
+  // primaryColorLight: Colors.black,
+  // primaryColorDark: Colors.black,
+  // canvasColor: Colors.black,
+  // brightness: Brightness.dark,
+  // backgroundColor: const Color(0xFF212121),
+  // accentColor: Colors.white,
+  // accentIconTheme: IconThemeData(color: Colors.black),
+  // dividerColor: Colors.black12,
+  // appBarTheme: AppBarTheme(brightness: Brightness.dark)
 );
 
 final lightTheme = ThemeData(

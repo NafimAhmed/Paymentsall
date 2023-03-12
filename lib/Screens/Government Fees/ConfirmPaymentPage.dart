@@ -87,6 +87,9 @@ class _ConfirmPaymentPageState extends State<ConfirmPaymentPage> with TickerProv
         title: Text('Successful Payment',style: TextStyle(color: Colors.black)),
         iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0.0,
+
+          backgroundColor: Color(0xFFFFF8F8)
+
       ),
 
       backgroundColor: Color(0xFFFFF8F8),
