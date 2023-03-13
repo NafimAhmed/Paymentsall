@@ -29,10 +29,6 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
-
-
-
-
   //////////////////////////////
 
 
@@ -60,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: [
                   Image.asset('assets/images/Payments_All.png',height: 40,width: 50,),
                   Text('Payments All',
-                    style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Colors.black,fontStyle: FontStyle.italic),)
+                    style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Colors.black,fontStyle: FontStyle.italic),),
                 ],
               ),
             ),
@@ -180,6 +176,8 @@ class _LoginPageState extends State<LoginPage> {
                           final snapshot = await rf.child(_mobileNumber.text.toString()).child("pin").get();
                           final snapshotfnm = await rf.child(_mobileNumber.text.toString()).child("first_name").get();
                           final snapshotlnm = await rf.child(_mobileNumber.text.toString()).child("last_name").get();
+                          final snapshotgnm = await rf.child(_mobileNumber.text.toString()).child("gender").get();
+                          final snapshotdnm = await rf.child(_mobileNumber.text.toString()).child("dob").get();
                           final snapshotBalance = await rf.child(_mobileNumber.text.toString()).child("balance").get();
 
                           if (snapshot.exists) {
@@ -197,6 +195,8 @@ class _LoginPageState extends State<LoginPage> {
                                       firstName: snapshotfnm.value.toString(),
                                       lastName: snapshotlnm.value.toString(),
                                       balance: snapshotBalance.value.toString(),
+                                      gender: snapshotgnm.value.toString(),
+                                      dob: snapshotdnm.value.toString(),
                                     );
                                   },
                                 ),

@@ -14,6 +14,8 @@ class MainScreen extends StatelessWidget {
   final String firstName;
   final String lastName;
   final String pin;
+  final String gender;
+  final String dob;
   final String balance;
   //MainScreen({super.key, required this.phoneNumber});
 
@@ -31,7 +33,7 @@ class MainScreen extends StatelessWidget {
 
   RxInt _index = 0.obs;
 
-  MainScreen({super.key, required this.phoneNumber, required this.firstName, required this.lastName,required this.pin,required this.balance});
+  MainScreen({super.key, required this.phoneNumber, required this.firstName, required this.lastName,required this.pin,required this.balance, required this.gender, required this.dob});
 
 
 
@@ -57,6 +59,8 @@ class MainScreen extends StatelessWidget {
         first_name: firstName,
         last_name: lastName,
         number: phoneNumber,
+        gender: gender,
+        dob: dob,
       )
     ];
 

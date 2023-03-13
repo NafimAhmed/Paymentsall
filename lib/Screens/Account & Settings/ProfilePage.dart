@@ -3,7 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class ProfilePage extends StatefulWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+
+  final String first_name,last_name,number,gender,dob;
+
+ // const ProfilePage({Key? key}) : super(key: key);
+  const ProfilePage({super.key, required this.first_name, required this.last_name, required this.number, required this.gender, required this.dob});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -53,7 +57,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.grey
                   ),),
                   SizedBox(height: 5,),
-                  Text('Nafim Ahmed',style: GoogleFonts.openSans(
+                  Text('${widget.first_name} ${widget.last_name}',style: GoogleFonts.openSans(
                     fontSize: 15,
                     color: Colors.black
                   ),
@@ -68,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.grey
                   ),),
                   SizedBox(height: 5,),
-                  Text('Nafim0123@gmail.com',style: GoogleFonts.openSans(
+                  Text('emu0123@gmail.com',style: GoogleFonts.openSans(
                       fontSize: 15,
                       color: Colors.black
                   ),),
@@ -80,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Colors.grey
                   ),),
                   SizedBox(height: 5,),
-                  Text('017XXXXXXXXX',style: GoogleFonts.openSans(
+                  Text('${widget.number}',style: GoogleFonts.openSans(
                       fontSize: 15,
                       color: Colors.black
                   ),),
@@ -95,7 +99,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text('GENDER',style: GoogleFonts.openSans(
                               color: Colors.grey
                           ),),
-                          Text('Male',style: GoogleFonts.openSans(
+                          Text('${widget.gender}',style: GoogleFonts.openSans(
                               fontSize: 15,
                               color: Colors.black
                           ),),
@@ -107,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           Text('DATE OF BIRTH',style: GoogleFonts.openSans(
                               color: Colors.grey
                           ),),
-                          Text('01-10-1997',style: GoogleFonts.openSans(
+                          Text('${widget.dob}',style: GoogleFonts.openSans(
                               fontSize: 15,
                               color: Colors.black
                           ),)

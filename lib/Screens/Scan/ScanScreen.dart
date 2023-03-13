@@ -1,7 +1,14 @@
+import 'dart:io';
+import 'dart:ui';
+
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../utils/app_layout.dart';
 
@@ -11,12 +18,31 @@ import '../../utils/app_layout.dart';
 //   @override
 //   State<ScanScreen> createState() => _ScanScreenState();
 // }
+//
+// final GlobalKey barcodeKey = GlobalKey();
+//
+// Future<bool> _requestPermission() async {
+//   final status = await Permission.storage.request();
+//   return status.isGranted;
+// }
+// Future<String> _getExternalStorageDirectory() async {
+//   final directory = await getExternalStorageDirectory();
+//   return directory!.path;
+// }
+// Future<File> _saveBarcodeImage(String directory, String fileName, ui.Image image) async {
+//   final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+//   final buffer = byteData!.buffer;
+//   return await File('$directory/$fileName').writeAsBytes(buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
+// }
+
 
 class ScanScreen extends StatelessWidget {
 
   final phonenumber;
 
-  const ScanScreen({super.key, required this.phonenumber});
+   ScanScreen({super.key, required this.phonenumber});
+
+  final globalKey = GlobalKey();
 
 
   @override
@@ -45,13 +71,15 @@ class ScanScreen extends StatelessWidget {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  BarcodeWidget(
-                    barcode: Barcode.qrCode(
-                      errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                  RepaintBoundary(
+                    child: BarcodeWidget(
+                      barcode: Barcode.qrCode(
+                        errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                      ),
+                      data: '$phonenumber',
+                      width: 200,
+                      height: 200,
                     ),
-                    data: '$phonenumber',
-                    width: 200,
-                    height: 200,
                   ),
                   Container(
                     color: Colors.white,
@@ -71,7 +99,62 @@ class ScanScreen extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getHeight(20)),
               child: ElevatedButton(
 
-                onPressed: () {
+                onPressed: () async {
+
+                  // try{
+                  //   RenderRepaintBoundary boundary = globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+                  //   var image=await boundary.toImage(pixelRatio: 3.0);
+                  //   final byteData=await image.toByteData(format: ImageByteFormat.png);
+                  //   final pngBytes=byteData!.buffer.asUint8List();
+                  //   final directory=await getExternalStorageDirectory();
+                  //   final file = File('${directory!.path}/barcode.png');
+                  //   await file.writeAsBytes(pngBytes);
+
+                    RepaintBoundary(
+                      key: globalKey,
+                      child: await BarcodeWidget(
+                        barcode: Barcode.code128(),
+                        data: '$phonenumber',
+                        width: 200,
+                        height: 100,
+                      ),
+                    );
+                  },
+
+                  //
+                  // final permission = await _requestPermission();
+                  // if (permission) {
+                  //   final directory = await _getExternalStorageDirectory();
+                  //   final fileName = 'barcode.png';
+                  //   // final barcodeWidget = BarcodeWidget(
+                  //   //   key: barcodeKey,
+                  //   //   barcode: Barcode.code128(),
+                  //   //   data: '$phonenumber',
+                  //   //   width: 200,
+                  //   //   height: 80,
+                  //   //   style: TextStyle(fontSize: 20),
+                  //   // );
+                  //
+                  //   final image = await Future.delayed(Duration(milliseconds: 20), () async {
+                  //     final boundary = barcodeKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
+                  //     final image = await boundary.toImage(pixelRatio: 3.0);
+                  //     return image;
+                  //   });
+                  //
+                  //
+                  //
+                  //   //final image = await barcodeWidget.toImage(pixelRatio: 3.0);
+                  //   final file = await _saveBarcodeImage(directory, fileName, image);
+                  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  //     content: Text('Barcode downloaded to ${file.path}'),
+                  //   ));
+                  // } else {
+                  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  //     content: Text('Permission denied'),
+                  //   ));
+                  // }
+
+
 
                   // Navigator.pop(context);
                   //
@@ -88,7 +171,6 @@ class ScanScreen extends StatelessWidget {
 
 
 
-                },
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(
                       horizontal: 60.0, vertical: 15.0),
@@ -108,7 +190,11 @@ class ScanScreen extends StatelessWidget {
               margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getHeight(20)),
               child: ElevatedButton(
 
-                onPressed: () {
+                onPressed: () async {
+
+
+
+
 
                   // Navigator.pop(context);
                   //
@@ -153,4 +239,8 @@ class ScanScreen extends StatelessWidget {
 
     );
   }
+
+
+
+
 }

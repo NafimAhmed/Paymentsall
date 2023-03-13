@@ -104,7 +104,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _nid=TextEditingController();
   TextEditingController _mobileNumber=TextEditingController();
   TextEditingController _dob=TextEditingController();
-  TextEditingController _gender=TextEditingController();
+ // TextEditingController _gender=TextEditingController();
   TextEditingController _pin=TextEditingController();
 
 
@@ -183,21 +183,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
 
 
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-
-
-
-
-
-
-
-
-
-
-                          ],
-                        ),
                       ),
                     ),
                   ),
@@ -320,7 +305,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 );
                                 if (pickedDate != null) {
 
-                                  String formattedDate = DateFormat('MM/dd/yyyy').format(selectedDate).toString();
+                                  String formattedDate = DateFormat('MM/dd/yyyy').format(pickedDate).toString();
                                   setState(() {
                                     _dob.text = formattedDate;
                                   });
@@ -394,9 +379,6 @@ class _SignUpPageState extends State<SignUpPage> {
                               ),
                             ),
                           ),
-
-
-
 
 
 
@@ -491,7 +473,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         await ref.child(_mobileNumber.text).set({
                           "first_name": _firstName.text,
                           "last_name": _lastName.text,
-                          "dob": "_dob.text",
+                          "dob": _dob.text,
                           "gender": dropdownValue_month.toString(),
                           "nid": _nid.text,
                           "mobile_no": _mobileNumber.text,

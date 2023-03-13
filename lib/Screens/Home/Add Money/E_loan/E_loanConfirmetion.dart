@@ -5,13 +5,20 @@ import 'package:payments_all_app/utils/app_layout.dart';
 import 'E-LoanConfirmPage.dart';
 
 class EloanConfirmationpage extends StatefulWidget {
+
+  //final String firstName,lastName,phoneNumber;
+
   const EloanConfirmationpage({Key? key}) : super(key: key);
+ // const EloanConfirmationpage({super.key, required this.firstName, required this.lastName, required this.phoneNumber});
 
   @override
   State<EloanConfirmationpage> createState() => _EloanConfirmationpageState();
 }
 
 class _EloanConfirmationpageState extends State<EloanConfirmationpage> {
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,8 +92,8 @@ class _EloanConfirmationpageState extends State<EloanConfirmationpage> {
                         Text('Received Info'),
                         ListTile(
                           leading: Icon(Icons.account_circle,size: 60,color: Colors.grey.shade200,),
-                          title: Text('ABCDEF'),
-                          subtitle: Text('01XXXXXXXXX'),
+                          title: Text("abcd"),
+                          subtitle: Text("01xxxxxxxxxx"),
                         )
                       ],
                     ),

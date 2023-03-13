@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,10 +24,17 @@ class TimeLineDetails {
 }
 
 class ELoanDetailsPage extends StatelessWidget {
-   ELoanDetailsPage({Key? key}) : super(key: key);
-   
-   
-   final details=[
+
+ // final String firstName,lastName,phoneNumber;
+
+
+  ELoanDetailsPage({Key? key}) : super(key: key);
+  //ELoanDetailsPage({super.key, required this.firstName, required this.lastName, required this.phoneNumber,});
+
+
+
+
+  final details=[
      TimeLineDetails('Oct 11', '2023', '1016.96', 'Main 989.23 + Interest 27.75'),
      TimeLineDetails('Nov 11', '2023', '1016.96', 'Main 1001.38 + Interest 15.58'),
      TimeLineDetails('Dec 11', '2023', '1016.98', 'Main 1001.41 + Interest 7.57'),

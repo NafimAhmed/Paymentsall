@@ -16,14 +16,14 @@ import 'help.dart';
 class ProfileScreen extends StatelessWidget {
 
 
-  final String first_name,last_name,number;
+  final String first_name,last_name,number,gender,dob;
 
   RxBool _darkTheme=true.obs;
 
   List<String> list_month = <String>['English', 'বাংলা'];
   RxString dropdownValue_month = 'English'.obs;
 
-   ProfileScreen({super.key, required this.first_name, required this.last_name, required this.number});
+   ProfileScreen({super.key, required this.first_name, required this.last_name, required this.number, required this.gender, required this.dob});
 
 
    //ProfileScreen({super.key, required this.name, required this.number});
@@ -155,7 +155,11 @@ class ProfileScreen extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return ProfilePage();
+                              return ProfilePage(first_name:  first_name,
+                                last_name: last_name,
+                                number: number,
+                                gender: gender,
+                                dob: dob,);
                             },
                           ),
                         );

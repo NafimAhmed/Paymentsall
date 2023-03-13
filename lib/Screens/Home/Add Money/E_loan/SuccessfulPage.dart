@@ -268,7 +268,14 @@ class LoanSuccessfulPage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return MainScreen();
+                              return MainScreen(phoneNumber: '',
+                                firstName: '',
+                                lastName: '',
+                                pin: '',
+                                balance: '',
+                                gender: '',
+                                dob: '',
+                              );
                             },
                           ),
                         );
