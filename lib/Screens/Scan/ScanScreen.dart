@@ -1,16 +1,24 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:open_file/open_file.dart';
+
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../utils/app_layout.dart';
+import '../RecentTransfer/RecenTransferScreen.dart';
 
 // class ScanScreen extends StatefulWidget {
 //   const ScanScreen({Key? key}) : super(key: key);
@@ -101,72 +109,10 @@ class ScanScreen extends StatelessWidget {
 
                 onPressed: () async {
 
-                  // try{
-                  //   RenderRepaintBoundary boundary = globalKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-                  //   var image=await boundary.toImage(pixelRatio: 3.0);
-                  //   final byteData=await image.toByteData(format: ImageByteFormat.png);
-                  //   final pngBytes=byteData!.buffer.asUint8List();
-                  //   final directory=await getExternalStorageDirectory();
-                  //   final file = File('${directory!.path}/barcode.png');
-                  //   await file.writeAsBytes(pngBytes);
+                  pdfQR();
 
-                    RepaintBoundary(
-                      key: globalKey,
-                      child: await BarcodeWidget(
-                        barcode: Barcode.code128(),
-                        data: '$phonenumber',
-                        width: 200,
-                        height: 100,
-                      ),
-                    );
-                  },
+                },
 
-                  //
-                  // final permission = await _requestPermission();
-                  // if (permission) {
-                  //   final directory = await _getExternalStorageDirectory();
-                  //   final fileName = 'barcode.png';
-                  //   // final barcodeWidget = BarcodeWidget(
-                  //   //   key: barcodeKey,
-                  //   //   barcode: Barcode.code128(),
-                  //   //   data: '$phonenumber',
-                  //   //   width: 200,
-                  //   //   height: 80,
-                  //   //   style: TextStyle(fontSize: 20),
-                  //   // );
-                  //
-                  //   final image = await Future.delayed(Duration(milliseconds: 20), () async {
-                  //     final boundary = barcodeKey.currentContext!.findRenderObject() as RenderRepaintBoundary;
-                  //     final image = await boundary.toImage(pixelRatio: 3.0);
-                  //     return image;
-                  //   });
-                  //
-                  //
-                  //
-                  //   //final image = await barcodeWidget.toImage(pixelRatio: 3.0);
-                  //   final file = await _saveBarcodeImage(directory, fileName, image);
-                  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  //     content: Text('Barcode downloaded to ${file.path}'),
-                  //   ));
-                  // } else {
-                  //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  //     content: Text('Permission denied'),
-                  //   ));
-                  // }
-
-
-
-                  // Navigator.pop(context);
-                  //
-                  // // Navigator.push(
-                  // //     context,
-                  // //     MaterialPageRoute(
-                  // //         builder: (context) =>
-                  // //             BottomBar()));
-                  //
-                  // Get.to(BottomBar(),
-                  //     duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
-                  //     transition: Transition.rightToLeft );
 
 
 
@@ -192,21 +138,6 @@ class ScanScreen extends StatelessWidget {
 
                 onPressed: () async {
 
-
-
-
-
-                  // Navigator.pop(context);
-                  //
-                  // // Navigator.push(
-                  // //     context,
-                  // //     MaterialPageRoute(
-                  // //         builder: (context) =>
-                  // //             BottomBar()));
-                  //
-                  // Get.to(BottomBar(),
-                  //     duration: Duration(milliseconds: 500), //duration of transitions, default 1 sec
-                  //     transition: Transition.rightToLeft );
 
 
 
@@ -239,6 +170,91 @@ class ScanScreen extends StatelessWidget {
 
     );
   }
+
+
+
+  //////////////////////////////////////////////////
+
+
+
+  Future<Uint8List> pdfQR() async {
+    final pdf = pw.Document();
+    final ByteData bytes = await rootBundle.load('assets/images/Payments_All.png');
+    final Uint8List byteList = bytes.buffer.asUint8List();
+
+    final ByteData bytes1 = await rootBundle.load('assets/images/Payments_All_Logo.png');
+    final Uint8List byteList1 = bytes1.buffer.asUint8List();
+    pdf.addPage(
+        pw.Page(
+            build: (pw.Context context){
+              return pw.Center(
+                child: pw.Container(
+                    height: 600,
+                    width: 700,
+                    decoration: pw.BoxDecoration(
+                      border: pw.Border.all(width: 1,color: PdfColors.grey),
+                      borderRadius: pw.BorderRadius.circular(8.0),
+                    ),
+                    child: pw.Padding(
+                        padding: pw.EdgeInsets.all(16.0),
+
+
+                        child: pw.Column(
+                            crossAxisAlignment: pw.CrossAxisAlignment.start,
+                            children: [
+
+
+
+                              pw.Center(
+                                child: pw.Stack(
+                                  alignment: pw.Alignment.center,
+                                  children: [
+                                    pw.Center(
+                                      child: pw.BarcodeWidget(
+                                        barcode: Barcode.qrCode(
+                                          errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                                        ),
+                                        data: '$phonenumber',
+                                        width: 200,
+                                        height: 200,
+                                      ),
+                                    ),
+                                    pw.Container(
+                                      color: PdfColors.white,
+                                      width: 60,
+                                      height: 60,
+                                      child: pw.Image(pw.MemoryImage(byteList),),
+                                    ),
+                                  ],
+                                ),
+                              ),
+
+
+
+
+
+
+                            ]
+                        )
+                    )
+                ),
+              );
+
+            }
+        )
+    );
+    final String directory = (await getApplicationDocumentsDirectory()).path;
+    final String path = '$directory/Transaction.pdf';
+    final file = File(path);
+    await file.writeAsBytes(await pdf.save());
+    await OpenFile.open(file.path);
+    return pdf.save();
+  }
+
+
+
+
+//////////////////////////////////////////////
 
 
 

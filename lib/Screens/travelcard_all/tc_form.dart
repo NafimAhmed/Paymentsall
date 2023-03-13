@@ -59,7 +59,7 @@ class TCForm extends StatelessWidget
                   cursorColor: Colors.red.shade900,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    prefixIcon: Icon(Icons.credit_card_sharp,size: 30,color: Colors.red.shade300,),
+                    prefixIcon: Icon(Icons.person,size: 30,color: Colors.red.shade300,),
                     hintText: 'Enter your Name',
                     hintStyle: TextStyle(color: Colors.grey.shade400),
                   ),
@@ -74,7 +74,7 @@ class TCForm extends StatelessWidget
                   cursorColor: Colors.red.shade900,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    prefixIcon: Icon(Icons.credit_card_sharp,size: 30,color: Colors.red.shade300,),
+                    prefixIcon: Icon(Icons.date_range,size: 30,color: Colors.red.shade300,),
                     hintText: 'Enter your date of birth',
                     hintStyle: TextStyle(color: Colors.grey.shade400),
                   ),

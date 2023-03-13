@@ -264,21 +264,16 @@ class LoanSuccessfulPage extends StatelessWidget {
                         overlayColor: MaterialStateProperty.all(Colors.transparent),
                       ),
                       onPressed: (){
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return MainScreen(phoneNumber: '',
-                                firstName: '',
-                                lastName: '',
-                                pin: '',
-                                balance: '',
-                                gender: '',
-                                dob: '',
-                              );
-                            },
-                          ),
-                        );
+
+                        Navigator.pop(context);
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //     builder: (context) {
+                        //       return MainScreen();
+                        //     },
+                        //   ),
+                        // );
                         // Navigator.of(context).pop();
 
                       },
