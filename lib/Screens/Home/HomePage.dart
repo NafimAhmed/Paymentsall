@@ -336,7 +336,10 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return BillPayPage();
+                                    return BillPayPage(
+                                      firstName: firstName,
+                                      lastName: lastName,
+                                      pin: pin,);
                                   },
                                 ),
                               );

@@ -90,6 +90,18 @@ class _ContactsPageState extends State<ContactsPage> {
                                     )
                                 );
                               }
+                            else
+                            {
+                              Fluttertoast.showToast(
+                                  msg: "Please enter or select receiver phone number.Thank You! ",
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.CENTER,
+                                  timeInSecForIosWeb: 10,
+                                  backgroundColor: Colors.red.shade100,
+                                  textColor: Colors.black,
+                                  fontSize: 16.0
+                              );
+                            }
 
 
 

@@ -204,16 +204,6 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
                   onTapUp: (detail) {
                     controller.stop();
 
-
-                    // Fluttertoast.showToast(
-                    //     msg: controller.value.toString(),
-                    //     toastLength: Toast.LENGTH_SHORT,
-                    //     gravity: ToastGravity.CENTER,
-                    //     timeInSecForIosWeb: 1,
-                    //     backgroundColor: Colors.red,
-                    //     textColor: Colors.white,
-                    //     fontSize: 16.0
-                    // );
                     controller.reset();
 
                   },

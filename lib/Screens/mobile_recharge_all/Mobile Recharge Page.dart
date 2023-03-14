@@ -81,29 +81,26 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
 
 
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 70,
+        leading: TextButton(
+            style: ButtonStyle(
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+            ),
+            onPressed: (){
+              Navigator.pop(context);
+            },
+            child: const Icon(Icons.arrow_back,color: Colors.black,)),
+        title: Text('Mobile Recharge',style: TextStyle(color: Colors.black),),
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: Color(0xFFFFF8F8),
+        elevation: 0.0,
+      ),
       backgroundColor: Color(0xFFFFF8F8),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 30,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  TextButton(
-                      style: ButtonStyle(
-                        shadowColor: MaterialStateProperty.all(Colors.transparent),
-                        overlayColor: MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: (){
-                        Navigator.pop(context);
-                      },
-                      child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
-                  Text('Mobile Recharge',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-                ],
-              ),
-            ),
-
 
 
 
@@ -261,7 +258,7 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
                                 return MobileRechargeAmount(
                                   recNumb: widget.contacts,
                                   connectionType: connectionType,
-                                  operator: "Grameen phone",
+                                  operator: _selected,
                                 );
                               },
                             ),

@@ -4,7 +4,11 @@ import 'package:payments_all_app/Screens/Home/Bill%20Pay/pay_bill_detail.dart';
 import 'PayBillHistoryPage.dart';
 
 class BillPayPage extends StatefulWidget {
-  const BillPayPage({Key? key}) : super(key: key);
+
+  final String firstName;
+  final String lastName;
+  final String pin;
+  const BillPayPage({super.key, required this.firstName, required this.lastName, required this.pin});
 
   @override
   State<BillPayPage> createState() => _BillPayPageState();
@@ -15,32 +19,20 @@ class _BillPayPageState extends State<BillPayPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      appBar: AppBar(
+        toolbarHeight: 70,
+        title: Text('Bill Pay',style: TextStyle(color: Colors.black),),
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: Color(0xFFFFF8F8),
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+      ),
+
       backgroundColor: Color(0xFFFFF8F8),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 30,),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  TextButton(
-                      style: ButtonStyle(
-                        shadowColor: MaterialStateProperty.all(Colors.transparent),
-                        overlayColor: MaterialStateProperty.all(Colors.transparent),
-                      ),
-                      onPressed: (){
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(Icons.arrow_back_ios,color: Colors.black,)),
-                  const Text('Bill Pay',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-                ],
-              ),
-            ),
-
-
-
-
 
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -385,7 +377,10 @@ class _BillPayPageState extends State<BillPayPage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) {
-                                          return PayBillDetil();
+                                          return PayBillDetails(
+                                              firstName: widget.firstName,
+                                              lastName: widget.lastName,
+                                              pin: widget.pin);
                                         },
                                       ),
                                     );
