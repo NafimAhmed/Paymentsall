@@ -8,7 +8,12 @@ import '../../../../utils/app_layout.dart';
 import '../../../MainScreen.dart';
 
 class LoanSuccessfulPage extends StatelessWidget {
-   LoanSuccessfulPage({Key? key}) : super(key: key);
+  final String amount;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String pin;
+   LoanSuccessfulPage({super.key, required this.amount, required this.firstName, required this.lastName, required this.phoneNumber, required this.pin});
 
 
   DateTime now = DateTime.now();
@@ -46,8 +51,8 @@ class LoanSuccessfulPage extends StatelessWidget {
               ),
               ListTile(
                 leading: Icon(Icons.account_circle,size: 60,color: Colors.grey.shade200,),
-                title: Text('ABCDEF'),
-                subtitle: Text('01XXXXXXXXX'),
+                title: Text('$firstName$lastName'),
+                subtitle: Text(phoneNumber),
               ),
               Divider(color:  Color(0xFFFFF8F8),thickness: 5,),
 
@@ -127,14 +132,14 @@ class LoanSuccessfulPage extends StatelessWidget {
                                 //fontSize: 16
                               ),
                             ),
-                            Text('৳2,931.00',
+                            Text('৳$amount.00',
                               style: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                                 //fontSize: 16
                               ),
                             ),
-                            Text('৳3,000.00-৳69.00',
+                            Text('৳$amount.00-৳69.00',
                               style: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w300,
@@ -189,7 +194,7 @@ class LoanSuccessfulPage extends StatelessWidget {
                                 fontWeight: FontWeight.w300,
                                 //fontSize: 16
                               ),),
-                            Text('৳3,000.00', style: GoogleFonts.openSans(
+                            Text('৳$amount.00', style: GoogleFonts.openSans(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
                               //fontSize: 16
@@ -241,7 +246,7 @@ class LoanSuccessfulPage extends StatelessWidget {
                             fontWeight: FontWeight.w500,
                             //fontSize: 16
                           ),),
-                        Text('৳3,000.00+৳50.90',
+                        Text('৳$amount.00+৳50.90',
                           style: GoogleFonts.openSans(
                             color: Colors.black,
                             fontWeight: FontWeight.w300,

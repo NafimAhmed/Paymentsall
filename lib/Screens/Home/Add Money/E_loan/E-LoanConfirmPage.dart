@@ -6,7 +6,14 @@ import '../../../../utils/app_layout.dart';
 import 'SuccessfulPage.dart';
 
 class EloanConfirmPage extends StatefulWidget {
-  const EloanConfirmPage({Key? key}) : super(key: key);
+
+  final String amount;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String pin;
+
+  const EloanConfirmPage({super.key, required this.amount, required this.firstName, required this.lastName, required this.phoneNumber, required this.pin});
 
   @override
   State<EloanConfirmPage> createState() => _EloanConfirmPageState();
@@ -92,8 +99,8 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
               ),
               ListTile(
                 leading: Icon(Icons.account_circle,size: 60,color: Colors.grey.shade200,),
-                title: Text('ABCDEF'),
-                subtitle: Text('01XXXXXXXXX'),
+                title: Text('${widget.firstName}${widget.lastName}'),
+                subtitle: Text(widget.phoneNumber),
               ),
               Divider(color:  Color(0xFFFFF8F8),thickness: 5,),
 
@@ -115,14 +122,14 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                                 //fontSize: 16
                               ),
                             ),
-                            Text('৳2,931.00',
+                            Text('৳${widget.amount}.00',
                               style: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                                 //fontSize: 16
                               ),
                             ),
-                            Text('৳3,000.00-৳69.00',
+                            Text('৳${widget.amount}.00-৳69.00',
                               style: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w300,
@@ -177,7 +184,7 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                                 fontWeight: FontWeight.w300,
                                 //fontSize: 16
                               ),),
-                            Text('৳3,000.00', style: GoogleFonts.openSans(
+                            Text('৳${widget.amount}.00', style: GoogleFonts.openSans(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
                               //fontSize: 16
@@ -225,13 +232,13 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                               fontWeight: FontWeight.w300,
                               //fontSize: 16
                             ),),
-                            Text('৳3050.90',
+                            Text('৳${widget.amount}.90',
                               style: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                                 //fontSize: 16
                               ),),
-                            Text('৳3,000.00+৳50.90',
+                            Text('৳${widget.amount}.00+৳50.90',
                               style: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w300,
@@ -300,7 +307,12 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return LoanSuccessfulPage();
+                          return LoanSuccessfulPage(
+                            amount: widget.amount,
+                            firstName: widget.firstName,
+                            lastName: widget.lastName,
+                            phoneNumber: widget.phoneNumber,
+                            pin: widget.pin,);
                         },
                       ),
                     );

@@ -217,7 +217,12 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return AddMoneyPage();
+                                    return AddMoneyPage(
+                                      amount: '',
+                                      firstName: firstName,
+                                      lastName: lastName,
+                                      phoneNumber: phoneNumber,
+                                      pin: pin,);
                                   },
                                 ),
                               );

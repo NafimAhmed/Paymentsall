@@ -4,7 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'E_loanDetails.dart';
 
 class RepayMoneyDurationAndAmount extends StatefulWidget {
-  const RepayMoneyDurationAndAmount({Key? key}) : super(key: key);
+
+  final String amount;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String pin;
+  const RepayMoneyDurationAndAmount({super.key, required this.amount, required this.firstName, required this.lastName, required this.phoneNumber, required this.pin});
 
   @override
   State<RepayMoneyDurationAndAmount> createState() => _RepayMoneyDurationAndAmountState();
@@ -303,7 +309,14 @@ class _RepayMoneyDurationAndAmountState extends State<RepayMoneyDurationAndAmoun
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return ELoanDetailsPage();
+                          return ELoanDetailsPage(
+                            amount: _amountLoan.text.toString(),
+                            firstName: widget.firstName,
+                            lastName: widget.lastName,
+                            phoneNumber: widget.phoneNumber,
+                            pin: widget.pin,
+
+                          );
                         },
                       ),
                     );

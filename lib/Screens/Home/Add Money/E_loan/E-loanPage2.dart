@@ -4,7 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'RepayMoneyDuration.dart';
 
 class EloanPageTwo extends StatelessWidget {
-  const EloanPageTwo({Key? key}) : super(key: key);
+  final String amount;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String pin;
+  const EloanPageTwo({super.key, required this.amount, required this.firstName, required this.lastName, required this.phoneNumber, required this.pin});
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +122,14 @@ class EloanPageTwo extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return RepayMoneyDurationAndAmount();
+                          return RepayMoneyDurationAndAmount(
+                            amount: amount,
+                            firstName: firstName,
+                            lastName: lastName,
+                            phoneNumber: phoneNumber,
+                            pin: pin,
+
+                          );
                         },
                       ),
                     );

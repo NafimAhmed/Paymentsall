@@ -4,7 +4,12 @@ import 'E_loan/EloanPage.dart';
 import 'FromOtherBank/FromOtherBankVisaCardPage.dart';
 
 class AddMoneyPage extends StatefulWidget {
-  const AddMoneyPage({Key? key}) : super(key: key);
+  final String amount;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String pin;
+  const AddMoneyPage({super.key, required this.amount, required this.firstName, required this.lastName, required this.phoneNumber, required this.pin});
 
   @override
   State<AddMoneyPage> createState() => _AddMoneyPageState();
@@ -191,7 +196,13 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return EloanPage();
+                        return EloanPage(
+                          amount: '',
+                          firstName: widget.firstName,
+                          lastName: widget.lastName,
+                          phoneNumber: widget.phoneNumber,
+                          pin: widget.pin
+                        );
                       },
                     ),
                   );

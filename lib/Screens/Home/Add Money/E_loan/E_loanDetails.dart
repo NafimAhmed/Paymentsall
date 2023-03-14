@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 import 'package:timelines/timelines.dart';
 
-import 'E_loanConfirmetion.dart';
+import 'E_loanConfirmetion_pin.dart';
 
 
 
@@ -24,12 +24,17 @@ class TimeLineDetails {
 }
 
 class ELoanDetailsPage extends StatelessWidget {
+  final String amount;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String pin;
 
- // final String firstName,lastName,phoneNumber;
+  // final String firstName,lastName,phoneNumber;
 
 
-  ELoanDetailsPage({Key? key}) : super(key: key);
-  //ELoanDetailsPage({super.key, required this.firstName, required this.lastName, required this.phoneNumber,});
+  //ELoanDetailsPage({Key? key}) : super(key: key);
+  ELoanDetailsPage({super.key, required this.amount, required this.firstName, required this.lastName, required this.phoneNumber, required this.pin});
 
 
 
@@ -174,7 +179,7 @@ class ELoanDetailsPage extends StatelessWidget {
                                 fontSize: 18
                             ),
                           ),
-                          Text('৳2,931.00',
+                          Text('৳$amount.00',
                             style: GoogleFonts.openSans(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w700,
@@ -360,7 +365,13 @@ class ELoanDetailsPage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return EloanConfirmationpage();
+                            return EloanConfirmationpage(
+                              amount: amount,
+                              firstName: firstName,
+                              lastName: lastName,
+                              phoneNumber: phoneNumber,
+                              pin: pin
+                            );
                           },
                         ),
                       );

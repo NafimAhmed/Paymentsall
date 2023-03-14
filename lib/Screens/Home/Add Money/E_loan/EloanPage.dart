@@ -4,7 +4,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'E-loanPage2.dart';
 
 class EloanPage extends StatefulWidget {
-  const EloanPage({Key? key}) : super(key: key);
+  final String amount;
+  final String firstName;
+  final String lastName;
+  final String phoneNumber;
+  final String pin;
+
+  const EloanPage({super.key, required this.amount, required this.firstName, required this.lastName, required this.phoneNumber, required this.pin});
 
   @override
   State<EloanPage> createState() => _EloanPageState();
@@ -170,7 +176,13 @@ class _EloanPageState extends State<EloanPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return EloanPageTwo();
+                        return EloanPageTwo(
+                          amount: widget.amount,
+                          firstName: widget.firstName,
+                          lastName: widget.lastName,
+                          phoneNumber: widget.phoneNumber,
+                          pin: widget.pin
+                        );
                       },
                     ),
                   );
