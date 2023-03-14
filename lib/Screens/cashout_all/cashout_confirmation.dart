@@ -276,28 +276,64 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     /////receiver/////////////////////////////////////////////////////////////////////////
 
 
-    double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
-    double senderCurrentBalance=senderBalance-amnt;
-    double receiverCurrentBalance=receiverBalance+amnt;
 
 
     bool isSennt=false;
     bool isReceived=false;
 
-    await rf.child(sendPhoneNumber).set({
-      "balance":senderCurrentBalance.toString(),
-    }).then((value) {
-      isSennt=true;
-    });
-    //}
+
+    if (receiverPhoneNumbersnapshotBalance.exists){
+
+      double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+      double senderCurrentBalance=senderBalance-amnt;
+      double receiverCurrentBalance=receiverBalance+amnt;
 
 
-    await rf.child(receiverPhoneNumber).set({
-      "balance":receiverCurrentBalance.toString(),
-    }).then((value) {
-     isReceived=true;
-    });
-    //}
+
+      await rf.child(sendPhoneNumber).set({
+        "balance":senderCurrentBalance.toString(),
+      }).then((value)async {
+
+        await rf.child(sendPhoneNumber).child("Transition").set({
+          "balance":senderCurrentBalance.toString(),
+          "type":"send"
+        }).then((value) {
+          isSennt=true;
+        });
+
+      });
+      //}
+
+
+      //}
+
+
+      await rf.child(receiverPhoneNumber).set({
+        "balance":receiverCurrentBalance.toString(),
+      }).then((value) async{
+        await rf.child(receiverPhoneNumber).child("Transition").set({
+          "balance":senderCurrentBalance.toString(),
+          "type":"received"
+        }).then((value) {
+          isReceived=true;
+        });
+      });
+      //}
+
+    }
+    else{
+      Fluttertoast.showToast(
+          msg: "This account doesn't exist",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+
+
 
     if(isSennt && isReceived)
       {
