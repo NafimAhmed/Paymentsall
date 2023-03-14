@@ -127,10 +127,13 @@ class _ContactsPageState extends State<ContactsPage> {
 
 
     if(fullContact!.phones.first.number.isNotEmpty) {
+
       Navigator.pop(context);
+
      await Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:fullContact!.phones.first.number)));
     }
     else{
+
 
       Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:"none")));
 
