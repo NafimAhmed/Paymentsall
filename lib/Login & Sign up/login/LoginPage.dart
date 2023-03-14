@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
 
   //////////////////////////////
 
-
+  bool _isObscure=true;
 
 
   @override
@@ -141,6 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       child: TextField(
                         controller: _password,
+                        obscureText: _isObscure,
                         keyboardType: TextInputType.text,
                         cursorColor: Colors.red.shade900,
                         decoration: InputDecoration(
@@ -148,7 +149,14 @@ class _LoginPageState extends State<LoginPage> {
                           prefixIcon: Icon(Icons.vpn_key_sharp,size: 30,color: Colors.grey,),
                           hintText: 'Enter Password',
                           hintStyle: TextStyle(color: Colors.grey.shade400),
-                          suffixIcon: Icon(Icons.password_sharp),
+                          suffixIcon: IconButton(
+                            icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
+                            onPressed: (){
+                              setState(() {
+                                _isObscure= !_isObscure;
+                              });
+                            },
+                          ),
                           suffixIconColor: Color(0xFFFCDEDE),
                         ),
                       ),

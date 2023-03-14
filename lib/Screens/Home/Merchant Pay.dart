@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:payments_all_app/Screens/marchent_pay_all/QRCode/marchent_pay_qrcode_scanner.dart';
 
 import '../marchent_pay_all/marchent_pay_amount.dart';
 
 class MerchantPayPage extends StatefulWidget {
-  const MerchantPayPage({Key? key}) : super(key: key);
+
+  final String pin;
+  final String balance;
+
+  const MerchantPayPage({super.key, required this.pin,required this.balance});
 
   @override
   State<MerchantPayPage> createState() => _MerchantPayPageState();
@@ -75,7 +80,7 @@ class _MerchantPayPageState extends State<MerchantPayPage> {
                   children: [
                     SizedBox(height: 20,),
                     //Text('   Merchant or A/C No'),
-                    Text('   Merchant or A/C No',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
+                    Text('   Merchant Mobile or A/C No',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
                     Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: Container(
@@ -114,17 +119,31 @@ class _MerchantPayPageState extends State<MerchantPayPage> {
                               overlayColor: MaterialStateProperty.all(Colors.transparent),
                             ),
                             onPressed: (){
+                              if(_mobileNo.text.isNotEmpty){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MarchentPayAmount(reveiverNumb: _mobileNo.text.toString(),
+                                        pin: widget.pin,
+                                         balance: widget.balance,);
+                                    },
+                                  ),
+                                );
 
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return MarchentPayAmount(reveiverNumb: _mobileNo.text.toString(),);
-                                  },
-                                ),
-                              );
-
+                              }
+                              else
+                                {
+                                  Fluttertoast.showToast(
+                                      msg: "Please enter Merchant mobile or A/C number.Thank You! ",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.TOP,
+                                      timeInSecForIosWeb: 10,
+                                      backgroundColor: Colors.red.shade100,
+                                      textColor: Colors.black,
+                                      fontSize: 16.0
+                                  );
+                                }
 
                             },
                             child: Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
