@@ -1,6 +1,9 @@
 
 
 
+import 'dart:ffi';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -236,7 +239,135 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
   }
 
 
-  void cashout (sendPhoneNumber,receiverPhoneNumber){
+  void cashout (String sendPhoneNumber,String receiverPhoneNumber,String amount)async{
+
+
+    //FirebaseDatabase database = FirebaseDatabase.instance;
+
+
+
+
+    double amnt=double.parse(amount);
+    ////////////////sender///////////////////////////////////////////////////////////////////////////////
+
+    DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
+
+    final sendPhoneNumbersnapshotpin = await rf.child(sendPhoneNumber).child("pin").get();
+    final sendPhoneNumbersnapshotfnm = await rf.child(sendPhoneNumber).child("first_name").get();
+    final sendPhoneNumbersnapshotlnm = await rf.child(sendPhoneNumber).child("last_name").get();
+    final sendPhoneNumbersnapshotgnm = await rf.child(sendPhoneNumber).child("gender").get();
+    final sendPhoneNumbersnapshotdnm = await rf.child(sendPhoneNumber).child("dob").get();
+    final sendPhoneNumbersnapshotBalance = await rf.child(sendPhoneNumber).child("balance").get();
+
+
+
+    //////////////////sender//////////////////////////////////////////////////////////////////////////////////
+
+    double senderBalance=double.parse(sendPhoneNumbersnapshotBalance.value.toString());
+
+    ///////receiver///////////////////////////////////////////////////////////////////////////////
+
+    final receiverPhoneNumbersnapshotpin = await rf.child(receiverPhoneNumber).child("pin").get();
+    final receiverPhoneNumbersnapshotfnm = await rf.child(receiverPhoneNumber).child("first_name").get();
+    final receiverPhoneNumbersnapshotlnm = await rf.child(receiverPhoneNumber).child("last_name").get();
+    final receiverPhoneNumbersnapshotgnm = await rf.child(receiverPhoneNumber).child("gender").get();
+    final receiverPhoneNumbersnapshotdnm = await rf.child(receiverPhoneNumber).child("dob").get();
+    final receiverPhoneNumbersnapshotBalance = await rf.child(receiverPhoneNumber).child("balance").get();
+
+
+    /////receiver/////////////////////////////////////////////////////////////////////////
+
+
+
+
+    bool isSennt=false;
+    bool isReceived=false;
+
+
+    if (receiverPhoneNumbersnapshotBalance.exists){
+
+      double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+      double senderCurrentBalance=senderBalance-amnt;
+      double receiverCurrentBalance=receiverBalance+amnt;
+
+
+
+      await rf.child(sendPhoneNumber).set({
+        "balance":senderCurrentBalance.toString(),
+      }).then((value)async {
+
+        await rf.child(sendPhoneNumber).child("Transition").set({
+          "balance":senderCurrentBalance.toString(),
+          "type":"send"
+        }).then((value) {
+          isSennt=true;
+        });
+
+      });
+      //}
+
+
+      //}
+
+
+      await rf.child(receiverPhoneNumber).set({
+        "balance":receiverCurrentBalance.toString(),
+      }).then((value) async{
+        await rf.child(receiverPhoneNumber).child("Transition").set({
+          "balance":senderCurrentBalance.toString(),
+          "type":"received"
+        }).then((value) {
+          isReceived=true;
+        });
+      });
+      //}
+
+    }
+    else{
+      Fluttertoast.showToast(
+          msg: "This account doesn't exist",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+
+
+
+    if(isSennt && isReceived)
+      {
+
+        Fluttertoast.showToast(
+            msg: "Cashout Successful",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+
+      }
+    else{
+      Fluttertoast.showToast(
+          msg: "Something wrong. please try again",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+    }
+
+
+
+
+
+
 
 
 
