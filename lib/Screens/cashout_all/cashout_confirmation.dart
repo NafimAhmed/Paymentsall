@@ -75,13 +75,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 ///////////////////////////////////////////////////////
 
 
-
-
   /////////////////////////////////////////////////////
-
-
-
-
 
 
 
@@ -89,145 +83,153 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
+
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFFFF8F8),
+        title: const Text('Confirm your CashOut',style: TextStyle(color: Colors.black)),
+        iconTheme: const IconThemeData(color: Colors.black),
+
+        elevation: 0.0,
+      ),
+      backgroundColor: const Color(0xFFFFF8F8),
+
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-
-            SizedBox(height: 30,),
-            SafeArea(
-              child: Row(
-                children: [
-                  TextButton(
-                      onPressed: (){},
-                      child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
-                  Text('Conferm your cashout',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold,),)
-                ],
-              ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20,right: 16,top: 30,bottom: 16),
+          child: Container(
+            height: 600,width: 320,
+            decoration: BoxDecoration(
+                border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
+                borderRadius: BorderRadius.circular(6.0),
+                color: Colors.white
             ),
+            child: Column(
+              children: [
 
-            SizedBox(height: 40,),
+                SizedBox(height: 40,),
 
-            Text("XYZ Telecom",
-            style: GoogleFonts.openSans(
-              fontSize: 25,
-              fontWeight: FontWeight.bold
-            ),
-            ),
-
-            Text(widget.receiversNumbe,
-              style: GoogleFonts.openSans(
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal
-              ),
-            ),
-
-            SizedBox(
-              height: 40,
-            ),
-
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getHeight(21)),
-              child: Table(
-
-                border: TableBorder.all(
-                    color: Colors.grey,
-                    style: BorderStyle.solid,
-                    width: 1),
-                children: [
-                  TableRow( children: [
-                    Column(children:[Text('Total :\n ৳ ${widget.totalAmount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
-                    Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
-                  ]),
-
-
-                ],
-              ),
-            ),
-
-
-
-            ///////////////////////////////////////////
-
-            ////////////////////////////////
-
-            LinearProgressIndicator(
-              value: controller.value,
-              semanticsLabel: 'Linear progress indicator',
-
-            ),
-
-
-
-            ////////////////////////////
-
-
-
-
-
-
-
-
-
-            InkWell(
-              onTapDown: (Detail) async {
-                //startRecording();
-                //controller.reset();
-                controller.repeat();
-
-                if(controller.value>=.99){
-
-                  controller.stop();
-
-                }
-
-
-
-              },
-              child: Container(
-                padding: EdgeInsets.all(40),
-                margin: EdgeInsets.all(20),
-
-                decoration: BoxDecoration(
-                  color: Colors.red.shade900,
-                  // border: Border.all(width: 3.0),   // Set border width
-                  borderRadius: BorderRadius.all(
-                      Radius.circular(70.0)), // Set rounded corner radius
-                  //boxShadow: [BoxShadow(blurRadius: 10,color: Colors.black,offset: Offset(1,3))] // Make rounded corner of border
+                Text("XYZ Telecom",
+                style: GoogleFonts.openSans(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold
+                ),
                 ),
 
-                child: Text("Tap to\n Confirm",
+                Text(widget.receiversNumbe,
                   style: GoogleFonts.openSans(
-                      fontSize: 25
+                      fontSize: 20,
+                      fontWeight: FontWeight.normal
                   ),
                 ),
-              ),
-              onTapUp: (detail) {
-                controller.stop();
+
+                SizedBox(
+                  height: 40,
+                ),
+
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getHeight(21)),
+                  child: Table(
+
+                    border: TableBorder.all(
+                        color: Colors.grey,
+                        style: BorderStyle.solid,
+                        width: 1),
+                    children: [
+                      TableRow( children: [
+                        Column(children:[Text('Total :\n ৳ ${widget.totalAmount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                        Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                      ]),
 
 
-                Fluttertoast.showToast(
-                    msg: controller.value.toString(),
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
-                controller.reset();
+                    ],
+                  ),
+                ),
 
-              },
 
+
+                ///////////////////////////////////////////
+
+                ////////////////////////////////
+
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: LinearProgressIndicator(
+                    backgroundColor: Color(0xFFFFF8F8),
+                    color: Color(0xFFF59191),
+                    minHeight: 8,
+                    value: controller.value,
+                    semanticsLabel: 'Linear progress indicator',
+                  ),
+                ),
+
+
+
+                ////////////////////////////
+
+
+                InkWell(
+                  onTapDown: (Detail) async {
+                    //startRecording();
+                    //controller.reset();
+                    controller.repeat();
+
+                    if(controller.value>=1){
+
+                      controller.stop();
+
+                    }
+
+
+
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(40),
+                    margin: EdgeInsets.all(20),
+
+                    decoration: BoxDecoration(
+                      color: Colors.red.shade100,
+                      // border: Border.all(width: 3.0),   // Set border width
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(70.0)), // Set rounded corner radius
+                      //boxShadow: [BoxShadow(blurRadius: 10,color: Colors.black,offset: Offset(1,3))] // Make rounded corner of border
+                    ),
+
+                    child: Text("Tap to Confirm",
+                      style: GoogleFonts.openSans(
+                        color: Colors.white,
+                          fontSize: 25
+                      ),
+                    ),
+                  ),
+                  onTapUp: (detail) {
+                    controller.stop();
+
+
+                    // Fluttertoast.showToast(
+                    //     msg: controller.value.toString(),
+                    //     toastLength: Toast.LENGTH_SHORT,
+                    //     gravity: ToastGravity.CENTER,
+                    //     timeInSecForIosWeb: 1,
+                    //     backgroundColor: Colors.red,
+                    //     textColor: Colors.white,
+                    //     fontSize: 16.0
+                    // );
+                    controller.reset();
+
+                  },
+
+                ),
+
+
+
+
+
+                ////////////////////////////////////////
+
+
+              ],
             ),
-
-
-
-
-
-            ////////////////////////////////////////
-
-
-          ],
+          ),
         ),
       ),
     );

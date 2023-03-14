@@ -32,7 +32,7 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
     duration: const Duration(seconds: 10),
   )..addListener(() {
 
-    if(controller.value>=.90){
+    if(controller.value>=.99){
 
       controller.stop();
 
@@ -83,7 +83,7 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFF8F8),
-        title: const Text('Confirm your Payment',style: TextStyle(color: Colors.black)),
+        title: const Text('Confirm your Merchant Payment',style: TextStyle(color: Colors.black)),
         iconTheme: const IconThemeData(color: Colors.black),
 
         elevation: 0.0,
@@ -196,6 +196,7 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
 
                     child: Text("Tap to Confirm",
                       style: GoogleFonts.openSans(
+                        color: Colors.white,
                           fontSize: 25
                       ),
                     ),

@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-import '../cashout_all/QRCode/cashout_qrcode_scanner.dart';
-import '../cashout_all/cashout_amount.dart';
+import 'QRCode/cashout_qrcode_scanner.dart';
+import 'cashout_amount.dart';
 
 
 
 
 class CashOutPage extends StatefulWidget {
-  const CashOutPage({Key? key}) : super(key: key);
+
+  final String pin;
+  final String balance;
+
+  const CashOutPage({super.key, required this.pin,required this.balance});
 
   @override
   State<CashOutPage> createState() => _CashOutPageState();
 }
 
 class _CashOutPageState extends State<CashOutPage> {
+
+
   TextEditingController _mobileNo=TextEditingController();
 
   @override
@@ -132,17 +139,11 @@ class _CashOutPageState extends State<CashOutPage> {
                           cursorColor: Colors.red.shade900,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-
-
                             prefixIcon: const Icon(
                               Icons.account_circle,
                               size: 30,
                               color: Colors.grey,
                             ),
-
-
-
-
                             hintText: 'Mobile or A/C No',
                             hintStyle: TextStyle(color: Colors.grey.shade400),
                             suffixIcon: const Icon(
@@ -174,16 +175,33 @@ class _CashOutPageState extends State<CashOutPage> {
                               overlayColor: MaterialStateProperty.all(Colors.transparent),
                             ),
                             onPressed: (){
+                              if(_mobileNo.text.isNotEmpty){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return CashoutAmount(
+                                        agentNumber: _mobileNo.text.toString(),
+                                        pin: widget.pin,
+                                        balance: widget.balance
+                                      );
+                                    },
+                                  ),
+                                );
 
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return CashoutAmount(agentNumber: _mobileNo.text.toString(),);
-                                  },
-                                ),
-                              );
-
+                              }
+                              else
+                                {
+                                  Fluttertoast.showToast(
+                                      msg: "Please enter Agent mobile or A/C number.Thank You! ",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.TOP,
+                                      timeInSecForIosWeb: 10,
+                                      backgroundColor: Colors.red.shade100,
+                                      textColor: Colors.black,
+                                      fontSize: 16.0
+                                  );
+                                }
 
 
                             },

@@ -11,7 +11,7 @@ import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart
 import '../salary_payroll/salary_dash_board.dart';
 import '../travelcard_all/tc_form.dart';
 import 'Add Money/Add Money.dart';
-import 'CashOutPage.dart';
+import '../cashout_all/CashOutPage.dart';
 import 'Merchant Pay.dart';
 import '../mobile_recharge_all/Mobile Recharge Page.dart';
 import 'SendMoney/SendMoneyPage.dart';
@@ -165,7 +165,9 @@ class HomePage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return CashOutPage();
+                            return CashOutPage(
+                              pin: pin,
+                              balance: balance,);
                           },
                         ),
                       );
