@@ -37,7 +37,7 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
       controller.stop();
 
       Fluttertoast.showToast(
-          msg: "Done",
+          msg: "Done controller",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -49,30 +49,15 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
     }
     setState(() {
 
-
-
-
-
     });
   });
-  bool determinate = false;
+ // bool determinate = false;
 
 
 
   @override
   void dispose() {
     controller.dispose();
-
-    Fluttertoast.showToast(
-        msg: "Done",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0
-    );
-
 
     super.dispose();
   }

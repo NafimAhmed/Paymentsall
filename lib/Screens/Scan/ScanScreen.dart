@@ -20,28 +20,6 @@ import 'package:permission_handler/permission_handler.dart';
 import '../../utils/app_layout.dart';
 import '../RecentTransfer/RecenTransferScreen.dart';
 
-// class ScanScreen extends StatefulWidget {
-//   const ScanScreen({Key? key}) : super(key: key);
-//
-//   @override
-//   State<ScanScreen> createState() => _ScanScreenState();
-// }
-//
-// final GlobalKey barcodeKey = GlobalKey();
-//
-// Future<bool> _requestPermission() async {
-//   final status = await Permission.storage.request();
-//   return status.isGranted;
-// }
-// Future<String> _getExternalStorageDirectory() async {
-//   final directory = await getExternalStorageDirectory();
-//   return directory!.path;
-// }
-// Future<File> _saveBarcodeImage(String directory, String fileName, ui.Image image) async {
-//   final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
-//   final buffer = byteData!.buffer;
-//   return await File('$directory/$fileName').writeAsBytes(buffer.asUint8List(byteData.offsetInBytes, byteData.lengthInBytes));
-// }
 
 
 class ScanScreen extends StatelessWidget {
@@ -182,8 +160,8 @@ class ScanScreen extends StatelessWidget {
     final ByteData bytes = await rootBundle.load('assets/images/Payments_All.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
 
-    final ByteData bytes1 = await rootBundle.load('assets/images/Payments_All_Logo.png');
-    final Uint8List byteList1 = bytes1.buffer.asUint8List();
+    // final ByteData bytes1 = await rootBundle.load('assets/images/Payments_All_Logo.png');
+    // final Uint8List byteList1 = bytes1.buffer.asUint8List();
     pdf.addPage(
         pw.Page(
             build: (pw.Context context){
@@ -191,10 +169,10 @@ class ScanScreen extends StatelessWidget {
                 child: pw.Container(
                     height: 600,
                     width: 700,
-                    decoration: pw.BoxDecoration(
-                      border: pw.Border.all(width: 1,color: PdfColors.grey),
-                      borderRadius: pw.BorderRadius.circular(8.0),
-                    ),
+                    // decoration: pw.BoxDecoration(
+                    //   border: pw.Border.all(width: 1,color: PdfColors.grey),
+                    //   borderRadius: pw.BorderRadius.circular(8.0),
+                    // ),
                     child: pw.Padding(
                         padding: pw.EdgeInsets.all(16.0),
 

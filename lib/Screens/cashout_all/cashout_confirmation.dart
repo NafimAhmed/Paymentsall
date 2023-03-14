@@ -7,11 +7,82 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
-class CashOutConfirmation extends StatelessWidget
+class CashOutConfirmation extends StatefulWidget
 {
   final String totalAmount,receiversNumbe;
 
   const CashOutConfirmation({super.key, required this.totalAmount, required this.receiversNumbe});
+
+  @override
+  State<CashOutConfirmation> createState() => _CashOutConfirmationState();
+}
+
+class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerProviderStateMixin {
+  //////////////////////////////////////////////////////
+
+
+  late AnimationController controller= AnimationController(
+    /// [AnimationController]s can be created with `vsync: this` because of
+    /// [TickerProviderStateMixin].
+    vsync: this,
+    duration: const Duration(seconds: 10),
+  )..addListener(() {
+
+    if(controller.value>=.90){
+
+      controller.stop();
+
+      Fluttertoast.showToast(
+          msg: "Done",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0
+      );
+
+    }
+    setState(() {
+
+
+
+
+
+    });
+  });
+
+  bool determinate = false;
+
+  @override
+  void dispose() {
+    controller.dispose();
+
+    Fluttertoast.showToast(
+        msg: "Done",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+
+
+    super.dispose();
+  }
+
+///////////////////////////////////////////////////////
+
+
+
+
+  /////////////////////////////////////////////////////
+
+
+
+
+
 
 
   @override
@@ -43,7 +114,7 @@ class CashOutConfirmation extends StatelessWidget
             ),
             ),
 
-            Text(receiversNumbe,
+            Text(widget.receiversNumbe,
               style: GoogleFonts.openSans(
                   fontSize: 20,
                   fontWeight: FontWeight.normal
@@ -64,7 +135,7 @@ class CashOutConfirmation extends StatelessWidget
                     width: 1),
                 children: [
                   TableRow( children: [
-                    Column(children:[Text('Total :\n ৳ $totalAmount', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                    Column(children:[Text('Total :\n ৳ ${widget.totalAmount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
                     Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
                   ]),
 
@@ -75,35 +146,67 @@ class CashOutConfirmation extends StatelessWidget
 
 
 
-            GestureDetector(
-              onTap: () async {
+            ///////////////////////////////////////////
+
+            ////////////////////////////////
+
+            LinearProgressIndicator(
+              value: controller.value,
+              semanticsLabel: 'Linear progress indicator',
+
+            ),
+
+
+
+            ////////////////////////////
+
+
+
+
+
+
+
+
+
+            InkWell(
+              onTapDown: (Detail) async {
                 //startRecording();
+                //controller.reset();
+                controller.repeat();
+
+                if(controller.value>=.99){
+
+                  controller.stop();
+
+                }
+
+
+
               },
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(40),
                 margin: EdgeInsets.all(20),
 
                 decoration: BoxDecoration(
-                    color: Colors.red.shade900,
-                   // border: Border.all(width: 3.0),   // Set border width
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(65.0)), // Set rounded corner radius
-                    //boxShadow: [BoxShadow(blurRadius: 10,color: Colors.black,offset: Offset(1,3))] // Make rounded corner of border
+                  color: Colors.red.shade900,
+                  // border: Border.all(width: 3.0),   // Set border width
+                  borderRadius: BorderRadius.all(
+                      Radius.circular(70.0)), // Set rounded corner radius
+                  //boxShadow: [BoxShadow(blurRadius: 10,color: Colors.black,offset: Offset(1,3))] // Make rounded corner of border
                 ),
 
-                child: Text("Tap to\n Finish",
+                child: Text("Tap to\n Confirm",
                   style: GoogleFonts.openSans(
-                    fontSize: 25
+                      fontSize: 25
                   ),
                 ),
               ),
-              onLongPressDown: (details) {
-                // startRecordingTimer();
-                // startRecording();
-                // stopwatch.start();
+              onTapUp: (detail) {
+                controller.stop();
+
 
                 Fluttertoast.showToast(
-                    msg: "onLongPressDown",
+                    msg: controller.value.toString(),
                     toastLength: Toast.LENGTH_SHORT,
                     gravity: ToastGravity.CENTER,
                     timeInSecForIosWeb: 1,
@@ -111,24 +214,17 @@ class CashOutConfirmation extends StatelessWidget
                     textColor: Colors.white,
                     fontSize: 16.0
                 );
+                controller.reset();
 
               },
-              onLongPressUp: () {
 
-                Fluttertoast.showToast(
-                    msg: "onLongPressUP",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
-                // stopwatch.stop();
-                // var timeElapsedInSeconds =     stopwatch.elapsed.inSeconds;
-                // print("Time elapsed: $timeElapsedInSeconds");
-              },
-            )
+            ),
+
+
+
+
+
+            ////////////////////////////////////////
 
 
           ],
@@ -136,5 +232,21 @@ class CashOutConfirmation extends StatelessWidget
       ),
     );
   }
+
+
+  void cashout (sendPhoneNumber,receiverPhoneNumber){
+
+
+
+
+
+
+
+  }
+
+
+
+
+
 
 }
