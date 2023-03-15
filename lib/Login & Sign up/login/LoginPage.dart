@@ -181,12 +181,12 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: ()async{
 
 
-                          final snapshot = await rf.child(_mobileNumber.text.toString()).child("pin").get();
-                          final snapshotfnm = await rf.child(_mobileNumber.text.toString()).child("first_name").get();
-                          final snapshotlnm = await rf.child(_mobileNumber.text.toString()).child("last_name").get();
-                          final snapshotgnm = await rf.child(_mobileNumber.text.toString()).child("gender").get();
-                          final snapshotdnm = await rf.child(_mobileNumber.text.toString()).child("dob").get();
-                          final snapshotBalance = await rf.child(_mobileNumber.text.toString()).child("balance").get();
+                          final snapshot = await rf.child(_mobileNumber.text.toString()).child("profile").child("pin").get();
+                          final snapshotfnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("first_name").get();
+                          final snapshotlnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("last_name").get();
+                          final snapshotgnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("gender").get();
+                          final snapshotdnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("dob").get();
+                          final snapshotBalance = await rf.child(_mobileNumber.text.toString()).child("profile").child("balance").get();
 
                           if (snapshot.exists) {
 

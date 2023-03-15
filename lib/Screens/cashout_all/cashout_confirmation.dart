@@ -12,9 +12,9 @@ import 'package:payments_all_app/utils/app_layout.dart';
 
 class CashOutConfirmation extends StatefulWidget
 {
-  final String totalAmount,receiversNumbe;
+  final String totalAmount,receiversNumber,senderPhoneNumber,balance;
 
-  const CashOutConfirmation({super.key, required this.totalAmount, required this.receiversNumbe});
+  const CashOutConfirmation({super.key, required this.totalAmount, required this.receiversNumber, required this.senderPhoneNumber, required this.balance});
 
   @override
   State<CashOutConfirmation> createState() => _CashOutConfirmationState();
@@ -44,6 +44,11 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
           textColor: Colors.white,
           fontSize: 16.0
       );
+
+      cashout(widget.senderPhoneNumber, widget.receiversNumber, widget.totalAmount);
+
+
+
 
     }
     setState(() {
@@ -118,7 +123,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
                 ),
                 ),
 
-                Text(widget.receiversNumbe,
+                Text(widget.receiversNumber,
                   style: GoogleFonts.openSans(
                       fontSize: 20,
                       fontWeight: FontWeight.normal
