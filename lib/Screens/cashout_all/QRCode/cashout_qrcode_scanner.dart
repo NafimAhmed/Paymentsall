@@ -76,7 +76,12 @@ class _CashOutQRCodeScannerState extends State<CashOutQRCodeScanner> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return CashoutAmount(agentNumber: result!.code.toString(), pin: '', balance: '',);
+                return CashoutAmount(
+                  agentNumber: result!.code.toString(),
+                  pin: '',
+                  senderPhoneNumber: '',
+                  balance: '',
+                );
               },
             ),
           );
