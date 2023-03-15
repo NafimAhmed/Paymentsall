@@ -50,6 +50,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
 
 
+
     }
     setState(() {
 
@@ -178,7 +179,6 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
                 InkWell(
                   onTapDown: (Detail) async {
                     //startRecording();
-                    //controller.reset();
                     controller.repeat();
 
                     if(controller.value>=1){
@@ -186,6 +186,11 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
                       controller.stop();
 
                     }
+                    //
+
+
+
+
 
 
 
@@ -257,12 +262,8 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
     DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
 
-    final sendPhoneNumbersnapshotpin = await rf.child(sendPhoneNumber).child("pin").get();
-    final sendPhoneNumbersnapshotfnm = await rf.child(sendPhoneNumber).child("first_name").get();
-    final sendPhoneNumbersnapshotlnm = await rf.child(sendPhoneNumber).child("last_name").get();
-    final sendPhoneNumbersnapshotgnm = await rf.child(sendPhoneNumber).child("gender").get();
-    final sendPhoneNumbersnapshotdnm = await rf.child(sendPhoneNumber).child("dob").get();
-    final sendPhoneNumbersnapshotBalance = await rf.child(sendPhoneNumber).child("balance").get();
+
+    final sendPhoneNumbersnapshotBalance = await rf.child(sendPhoneNumber).child("profile").child("balance").get();
 
 
 
@@ -272,15 +273,17 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
     ///////receiver///////////////////////////////////////////////////////////////////////////////
 
-    final receiverPhoneNumbersnapshotpin = await rf.child(receiverPhoneNumber).child("pin").get();
-    final receiverPhoneNumbersnapshotfnm = await rf.child(receiverPhoneNumber).child("first_name").get();
-    final receiverPhoneNumbersnapshotlnm = await rf.child(receiverPhoneNumber).child("last_name").get();
-    final receiverPhoneNumbersnapshotgnm = await rf.child(receiverPhoneNumber).child("gender").get();
-    final receiverPhoneNumbersnapshotdnm = await rf.child(receiverPhoneNumber).child("dob").get();
-    final receiverPhoneNumbersnapshotBalance = await rf.child(receiverPhoneNumber).child("balance").get();
+
+    final receiverPhoneNumbersnapshotBalance = await rf.child(receiverPhoneNumber).child("profile").child("balance").get();
 
 
     /////receiver/////////////////////////////////////////////////////////////////////////
+
+    await rf.child(sendPhoneNumber).child("transection").set({
+            "amount":"30",
+          });
+
+
 
 
 
@@ -289,91 +292,91 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     bool isReceived=false;
 
 
-    if (receiverPhoneNumbersnapshotBalance.exists){
-
-      double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
-      double senderCurrentBalance=senderBalance-amnt;
-      double receiverCurrentBalance=receiverBalance+amnt;
-
-
-
-      await rf.child(sendPhoneNumber).set({
-        "balance":senderCurrentBalance.toString(),
-      }).then((value)async {
-
-        await rf.child(sendPhoneNumber).child("Transition").set({
-          "balance":senderCurrentBalance.toString(),
-          "type":"send"
-        }).then((value) {
-          isSennt=true;
-        });
-
-      });
-      //}
-
-
-      //}
-
-
-      await rf.child(receiverPhoneNumber).set({
-        "balance":receiverCurrentBalance.toString(),
-      }).then((value) async{
-        await rf.child(receiverPhoneNumber).child("Transition").set({
-          "balance":senderCurrentBalance.toString(),
-          "type":"received"
-        }).then((value) {
-          isReceived=true;
-        });
-      });
-      //}
-
-    }
-    else{
-      Fluttertoast.showToast(
-          msg: "This account doesn't exist",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
-
-
-
-    if(isSennt && isReceived)
-      {
-
-        Fluttertoast.showToast(
-            msg: "Cashout Successful",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.CENTER,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0
-        );
-
-      }
-    else{
-      Fluttertoast.showToast(
-          msg: "Something wrong. please try again",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
-    }
-
-
-
-
-
-
-
+    // if (receiverPhoneNumbersnapshotBalance.exists){
+    //
+    //   double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+    //   double senderCurrentBalance=senderBalance-amnt;
+    //   double receiverCurrentBalance=receiverBalance+amnt;
+    //
+    //
+    //
+    //   await rf.child(sendPhoneNumber).child("profile").set({
+    //     "balance":senderCurrentBalance.toString(),
+    //   }).then((value)async {
+    //
+    //     await rf.child(sendPhoneNumber).child("Transition").child("path").set({
+    //       "balance":amount,
+    //       "type":"send"
+    //     }).then((value) {
+    //       isSennt=true;
+    //     });
+    //
+    //   });
+    //   //}
+    //
+    //
+    //   //}
+    //
+    //
+    //   await rf.child(receiverPhoneNumber).child("profile").update({
+    //     "balance":receiverCurrentBalance.toString(),
+    //   }).then((value) async{
+    //     await rf.child(receiverPhoneNumber).child("Transition").set({
+    //       "balance":amount,
+    //       "type":"received"
+    //     }).then((value) {
+    //       isReceived=true;
+    //     });
+    //   });
+    //   //}
+    //
+    // }
+    // else{
+    //   Fluttertoast.showToast(
+    //       msg: "This account doesn't exist",
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.CENTER,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0
+    //   );
+    // }
+    //
+    //
+    //
+    // if(isSennt && isReceived)
+    //   {
+    //
+    //     Fluttertoast.showToast(
+    //         msg: "Cashout Successful",
+    //         toastLength: Toast.LENGTH_SHORT,
+    //         gravity: ToastGravity.CENTER,
+    //         timeInSecForIosWeb: 1,
+    //         backgroundColor: Colors.red,
+    //         textColor: Colors.white,
+    //         fontSize: 16.0
+    //     );
+    //
+    //   }
+    // else{
+    //   Fluttertoast.showToast(
+    //       msg: "Something wrong. please try again",
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.CENTER,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0
+    //   );
+    // }
+    //
+    //
+    //
+    //
+    //
+    //
+    //
 
 
 
