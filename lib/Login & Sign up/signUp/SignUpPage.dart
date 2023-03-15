@@ -470,7 +470,7 @@ class _SignUpPageState extends State<SignUpPage> {
                      //  else if(_pin.text.isEmpty){}
                      //  else if(_nid.text.isEmpty){}
                      //  else{
-                        await ref.child(_mobileNumber.text).set({
+                        await ref.child(_mobileNumber.text).child("profile").set({
                           "first_name": _firstName.text,
                           "last_name": _lastName.text,
                           "dob": _dob.text,

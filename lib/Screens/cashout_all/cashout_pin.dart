@@ -209,8 +209,11 @@ class CashOutPin extends StatelessWidget {
                                         MaterialPageRoute(
                                           builder: (context) {
                                             return CashOutConfirmation(
-                                              receiversNumbe: receiverNumb,
+                                              receiversNumber: receiverNumb,
+                                              senderPhoneNumber: senderPhoneNumber,
                                               totalAmount: total(amount, charge),
+                                              balance: (double.parse(balance)-double.parse(total(amount, charge))).toString(),
+
                                             );
                                           },
                                         ),
