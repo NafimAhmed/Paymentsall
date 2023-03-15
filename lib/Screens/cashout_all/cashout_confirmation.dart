@@ -283,15 +283,16 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     DatabaseReference senderPostRef = rf.child(sendPhoneNumber).child("transection").push();
     senderPostRef.set({
       // ...
-      "amount":"30",
+      "type":"sent",
+      "amount":"$amount",
     });
 
 
 
     DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").push();
     receiverPostRef.set({
-      // ...
-      "amount":"30",
+      "type":"received",
+      "amount":"$amount",
     });
 
     // await rf.child(sendPhoneNumber).child("transection").set({
