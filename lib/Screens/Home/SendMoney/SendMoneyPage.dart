@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
+import 'Send_money_Pin_page.dart';
 import 'TransferReceiptScreen.dart';
 
 // class SendMoneyPage extends StatelessWidget {
@@ -12,8 +14,8 @@ import 'TransferReceiptScreen.dart';
 
 
 class SendMoneyPage extends StatefulWidget {
-  final String contacts,name,amount;
-  const SendMoneyPage({super.key, required this.contacts, required this.name, required this.amount});
+  final String contacts,name,pin,balance;
+  const SendMoneyPage({super.key, required this.contacts, required this.name, required this.pin, required this.balance});
 
   @override
   State<SendMoneyPage> createState() => _SendMoneyPageState();
@@ -26,25 +28,17 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 60,
+        title: Text('Send Money',style: TextStyle(color: Colors.black),),
+        iconTheme: const IconThemeData(color: Colors.black),
+        backgroundColor: Color(0xFFFFF8F8),
+        elevation: 0.0,
+      ),
       backgroundColor: const Color(0xFFFFF8F8),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 10,),
-            Row(
-              children: [
-                TextButton(
-                    style: ButtonStyle(
-                      shadowColor: MaterialStateProperty.all(Colors.transparent),
-                      overlayColor: MaterialStateProperty.all(Colors.transparent),
-                    ),
-                    onPressed: (){
-                      Navigator.pop(context);
-                    },
-                    child: const Icon(Icons.arrow_back,color: Colors.black,)),
-                const Text('Send Money',style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),),
-              ],
-            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Padding(
@@ -170,14 +164,34 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
                     onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return TransferReceiptPage(recNumb: widget.contacts, recName: widget.name, recAmount: _sendMoney.text.toString(),);
-                          },
-                        ),
-                      );
+                      if(_sendMoney.text.isNotEmpty){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return SendMoneyPinPage(
+                                pin: widget.pin,
+                                balance: widget.balance,
+                                contacts: widget.contacts,
+                                name: widget.name,
+                                amount: _sendMoney.text.toString(),);
+                              //TransferReceiptPage(recNumb: widget.contacts, recName: widget.name, recAmount: _sendMoney.text.toString(),);
+                            },
+                          ),
+                        );
+                      }
+                      else
+                      {
+                        Fluttertoast.showToast(
+                            msg: "Please enter your amount.Thank You! ",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 10,
+                            backgroundColor: Colors.red.shade100,
+                            textColor: Colors.black,
+                            fontSize: 16.0
+                        );
+                      }
 
                     },
                     child: Text('Send',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),

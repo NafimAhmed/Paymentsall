@@ -35,6 +35,7 @@ class _ContactsPageState extends State<ContactsPage> {
 
   @override
   Widget build(BuildContext context) => MaterialApp(
+    debugShowCheckedModeBanner: false,
       home: Scaffold(
           backgroundColor: const Color(0xFFFFF8F8),
           appBar: AppBar(
