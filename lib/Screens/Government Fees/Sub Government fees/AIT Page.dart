@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../FeesPage.dart';
 
 class AITpage extends StatefulWidget {
-  const AITpage({Key? key}) : super(key: key);
+  final String number,name,amount,pin;
+
+  const AITpage({Key? key, required this.number, required this.name, required this.amount, required this.pin}) : super(key: key);
 
   @override
   State<AITpage> createState() => _AITpageState();
@@ -80,7 +82,11 @@ class _AITpageState extends State<AITpage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return FeesPage(number: '', name: '', amount: '',);
+                                  return FeesPage(
+                                    number: widget.number,
+                                    name: widget.name,
+                                    amount: widget.amount,
+                                    pin: widget.pin,);
                                 },
                               ),
                             );

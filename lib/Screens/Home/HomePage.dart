@@ -407,7 +407,7 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return GovernmentFeesPage();
+                                    return GovernmentFeesPage(pin: pin,);
                                   },
                                 ),
                               );
@@ -504,7 +504,8 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return SalaryDashBoard();
+                                    return SalaryDashBoard(
+                                      pin: pin,);
                                   },
                                 ),
                               );
@@ -515,7 +516,7 @@ class HomePage extends StatelessWidget {
                                     backgroundColor: const Color(0xFFFFF8F8),
                                     radius: 26,
                                     child: Icon(Icons.wallet,
-                                      color: Colors.red.shade900,
+                                      color: Colors.red.shade300,
                                       size: 40,
                                     )//Image.asset('assets/images/Govt Fees.png',),
                                 ),

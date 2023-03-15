@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -6,8 +7,8 @@ import 'PayConfirmation.dart';
 
 class FeesPage extends StatefulWidget {
 
-  final String number,name,amount;
-  const FeesPage({super.key, required this.number, required this.name, required this.amount});
+  final String number,name,amount,pin;
+  const FeesPage({super.key, required this.number, required this.name, required this.amount, required this.pin});
 
   @override
   State<FeesPage> createState() => _FeesPageState();
@@ -103,7 +104,7 @@ class _FeesPageState extends State<FeesPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('   Bill Period',
+                          Text('   Bill Period*',
                             style: GoogleFonts.openSans(
                               color: Colors.red.shade900,
                                 fontWeight: FontWeight.w400
@@ -184,7 +185,7 @@ class _FeesPageState extends State<FeesPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Account Number',
+                                Text('Account Number*',
                                   style: GoogleFonts.openSans(
                                       color: Colors.red.shade900,
                                       fontWeight: FontWeight.w400
@@ -219,7 +220,7 @@ class _FeesPageState extends State<FeesPage> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('Account Name', style: GoogleFonts.openSans(
+                                Text('Account Name*', style: GoogleFonts.openSans(
                                     color: Colors.red.shade900,
                                     fontWeight: FontWeight.w400
                                 ),),
@@ -347,7 +348,7 @@ class _FeesPageState extends State<FeesPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('    Amount',style: GoogleFonts.openSans(
+                          Text('    Amount*',style: GoogleFonts.openSans(
                               color: Colors.red.shade900,
                               fontWeight: FontWeight.w400
                           ),),
@@ -392,18 +393,33 @@ class _FeesPageState extends State<FeesPage> {
                               overlayColor: MaterialStateProperty.all(Colors.transparent),
                             ),
                             onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return PayConfirmationPage(
-                                      accountNumber: _number.text.toString(),
-                                      accountName: _name.text.toString(),
-                                       amount: _amount.text.toString(),);
-                                  },
-                                ),
-                              );
+                              if(_number.text.isNotEmpty && _name.text.isNotEmpty && _amount.text.isNotEmpty){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return PayConfirmationPage(
+                                        accountNumber: _number.text.toString(),
+                                        accountName: _name.text.toString(),
+                                        amount: _amount.text.toString(),
+                                        pin: widget.pin,);
+                                    },
+                                  ),
+                                );
 
+                              }
+                              else
+                                {
+                                  Fluttertoast.showToast(
+                                      msg: "Please fill up all the required fields.Thank You! ",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 10,
+                                      backgroundColor: Colors.red.shade100,
+                                      textColor: Colors.black,
+                                      fontSize: 16.0
+                                  );
+                                }
                             },
                             child: Row(
                               children: [

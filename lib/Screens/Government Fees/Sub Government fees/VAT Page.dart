@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../FeesPage.dart';
 
 class VATpage extends StatefulWidget {
-  const VATpage({Key? key}) : super(key: key);
+  final String number,name,amount,pin;
+
+  const VATpage({Key? key, required this.number, required this.name, required this.amount, required this.pin}) : super(key: key);
 
   @override
   State<VATpage> createState() => _VATpageState();
@@ -80,7 +82,12 @@ class _VATpageState extends State<VATpage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return FeesPage(number: '', name: '', amount: '',);
+                                  return FeesPage(
+                                    number: widget.number,
+                                    name: widget.name,
+                                    amount: widget.amount,
+                                    pin: widget.pin,
+                                  );
                                 },
                               ),
                             );
