@@ -14,11 +14,12 @@ class CashoutAmount extends StatelessWidget
 {
 
   final String agentNumber;
+  final String senderPhoneNumber;
   final String pin;
   final String balance;
 
 
-  CashoutAmount({super.key, required this.agentNumber, required this.pin, required this.balance});
+  CashoutAmount({super.key, required this.agentNumber, required this.pin, required this.balance,required this.senderPhoneNumber});
 
   TextEditingController _amount=TextEditingController();
 
@@ -135,24 +136,13 @@ class CashoutAmount extends StatelessWidget
                             onTap: (){
 
 
-                              if(_amount.text.toString().isNotEmpty){
+                              double charge=double.parse(_amount.text.toString())*0.01;
+                              double total=charge+ double.parse(_amount.text.toString());
 
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return CashOutPin(
-                                        receiverNumb: agentNumber,
-                                        amount: _amount.text.toString(),
-                                        pin: pin,
-                                        balance: balance,
-                                      );
-                                    },
-                                  ),
-                                );
 
-                              }
-                              else
+
+
+                              if(_amount.text.toString().isEmpty)
                                 {
                                   Fluttertoast.showToast(
                                       msg: "Please enter your amount.Thank You! ",
@@ -164,6 +154,39 @@ class CashoutAmount extends StatelessWidget
                                       fontSize: 16.0
                                   );
                                 }
+                              else if(total>double.parse(balance)){
+
+
+                                Fluttertoast.showToast(
+                                    msg: "you haven't sufficient balance.Thank You! ",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 10,
+                                    backgroundColor: Colors.red.shade100,
+                                    textColor: Colors.black,
+                                    fontSize: 16.0
+                                );
+
+
+                              }
+                              else{
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return CashOutPin(
+                                        receiverNumb: agentNumber,
+                                        senderPhoneNumber: senderPhoneNumber,
+                                        amount: _amount.text.toString(),
+                                        pin: pin,
+                                        balance: balance,
+                                      );
+                                    },
+                                  ),
+                                );
+
+                              }
 
 
 
@@ -175,39 +198,11 @@ class CashoutAmount extends StatelessWidget
                         ),
                       ),
 
-                      Row(
-                        children: [
-                          Text("Aveilable Balance : ",
-                            style: GoogleFonts.openSans(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold
-                            ),
-                          ),
-
-                          Text("100.00",
-
-                            style: GoogleFonts.openSans(
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal,
-
-                            ),
-
-                          ),
-                          Text(" ৳",
-
-                            style: GoogleFonts.openSans(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-
-                            ),
-
-                          ),
-
-                          //Icon(Icons.currency_lira)
-
-
-
-                        ],
+                      Text("Aveilable Balance : $balance ৳",
+                        style: GoogleFonts.openSans(
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold
+                        ),
                       )
                     ],
                   ),

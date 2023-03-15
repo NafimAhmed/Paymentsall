@@ -7,18 +7,25 @@ import 'cashout_amount.dart';
 
 
 
-class CashOutPage extends StatefulWidget {
+// class CashOutPage extends StatefulWidget {
+//
+//   final String pin;
+//   final String balance;
+//   final String senderPhoneNumber;
+//
+//   const CashOutPage({super.key, required this.pin,required this.balance, required this.senderPhoneNumber});
+//
+//   @override
+//   State<CashOutPage> createState() => _CashOutPageState();
+// }
+
+class CashOutPage extends StatelessWidget {
 
   final String pin;
   final String balance;
+  final String senderPhoneNumber;
 
-  const CashOutPage({super.key, required this.pin,required this.balance});
-
-  @override
-  State<CashOutPage> createState() => _CashOutPageState();
-}
-
-class _CashOutPageState extends State<CashOutPage> {
+   CashOutPage({super.key, required this.pin,required this.balance, required this.senderPhoneNumber});
 
 
   TextEditingController _mobileNo=TextEditingController();
@@ -182,8 +189,9 @@ class _CashOutPageState extends State<CashOutPage> {
                                     builder: (context) {
                                       return CashoutAmount(
                                         agentNumber: _mobileNo.text.toString(),
-                                        pin: widget.pin,
-                                        balance: widget.balance
+                                        senderPhoneNumber: senderPhoneNumber,
+                                        pin: pin,
+                                        balance: balance
                                       );
                                     },
                                   ),

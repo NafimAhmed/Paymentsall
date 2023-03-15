@@ -166,6 +166,7 @@ class HomePage extends StatelessWidget {
                         MaterialPageRoute(
                           builder: (context) {
                             return CashOutPage(
+                              senderPhoneNumber: phoneNumber,
                               pin: pin,
                               balance: balance,);
                           },
