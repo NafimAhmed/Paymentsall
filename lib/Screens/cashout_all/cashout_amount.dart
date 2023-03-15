@@ -136,6 +136,11 @@ class CashoutAmount extends StatelessWidget
                             onTap: (){
 
 
+                              double charge=double.parse(_amount.text.toString())*0.01;
+                              double total=charge+ double.parse(_amount.text.toString());
+
+
+
 
                               if(_amount.text.toString().isEmpty)
                                 {
@@ -149,7 +154,7 @@ class CashoutAmount extends StatelessWidget
                                       fontSize: 16.0
                                   );
                                 }
-                              else if(double.parse(_amount.text.toString())>double.parse(balance)){
+                              else if(total>double.parse(balance)){
 
 
                                 Fluttertoast.showToast(
