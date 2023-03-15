@@ -2,15 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Send_money_Pin_page.dart';
-import 'TransferReceiptScreen.dart';
-
-// class SendMoneyPage extends StatelessWidget {
-//    SendMoneyPage({super.key,  required this.contacts});
-//
-// final String contacts;
-//
-//   final FocusNode _textFocusNode = FocusNode();
-//
 
 
 class SendMoneyPage extends StatefulWidget {
@@ -69,7 +60,6 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                         child: Container(
                           height: 50,width: 280,
                             decoration: BoxDecoration(
-                                //border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                                 borderRadius: BorderRadius.circular(6.0),
                                 color: Colors.white
                             ),
