@@ -9,6 +9,8 @@ import 'Mobile Recharge Page.dart';
 import '../Home/SendMoney/SendMoneyPage.dart';
 
 class ContactsPage extends StatefulWidget {
+
+
   @override
   _ContactsPageState createState() => _ContactsPageState();
 }
@@ -54,7 +56,8 @@ class _ContactsPageState extends State<ContactsPage> {
               Text('Mobile Recharge',style: TextStyle(
                   color: Colors.black)),
             ],
-          ),      backgroundColor: const Color(0xFFFFF8F8),
+          ),
+            backgroundColor: const Color(0xFFFFF8F8),
 
           ),
           body: SingleChildScrollView(
@@ -86,7 +89,7 @@ class _ContactsPageState extends State<ContactsPage> {
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (_) => MobileRechargePag(
-                                            contacts:_mobileNo.text.toString()
+                                            contacts:_mobileNo.text.toString(), pin: '', balance: '',
                                         )
                                     )
                                 );
@@ -136,19 +139,19 @@ class _ContactsPageState extends State<ContactsPage> {
             title: Text(_contacts![i].displayName),
             onTap: () async {
 
-    final fullContact = await FlutterContacts.getContact(_contacts![i].id);
+             final fullContact = await FlutterContacts.getContact(_contacts![i].id);
 
 
-    if(fullContact!.phones.first.number.isNotEmpty) {
+           if(fullContact!.phones.first.number.isNotEmpty) {
 
-      Navigator.pop(context);
+             Navigator.pop(context);
 
-     await Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:fullContact!.phones.first.number)));
-    }
-    else{
+             await Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:fullContact!.phones.first.number, pin: '', balance: '',)));
+              }
+              else{
 
 
-      Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:"none")));
+              Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:"none", pin: '', balance: '',)));
 
       Fluttertoast.showToast(
           msg: "this contact has no number",
