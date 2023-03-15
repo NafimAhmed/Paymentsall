@@ -406,7 +406,7 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return GovernmentFeesPage();
+                                    return GovernmentFeesPage(pin: pin,);
                                   },
                                 ),
                               );

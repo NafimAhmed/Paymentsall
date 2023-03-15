@@ -4,7 +4,8 @@ import 'Sub Government fees/AIT Page.dart';
 import 'Sub Government fees/VAT Page.dart';
 
 class GovernmentFeesPage extends StatefulWidget {
-  const GovernmentFeesPage({Key? key}) : super(key: key);
+  final String pin;
+  const GovernmentFeesPage({Key? key, required this.pin}) : super(key: key);
 
   @override
   State<GovernmentFeesPage> createState() => _GovernmentFeesPageState();
@@ -59,8 +60,8 @@ class _GovernmentFeesPageState extends State<GovernmentFeesPage> {
         ),
         body: TabBarView(
           children: [
-            AITpage(),
-            VATpage(),
+            AITpage(number: '', name: '', amount: '', pin: widget.pin,),
+            VATpage(number: '', name: '', amount: '', pin: widget.pin),
           ],
         ),
       ),
