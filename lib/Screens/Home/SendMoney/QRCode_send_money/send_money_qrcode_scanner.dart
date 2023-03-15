@@ -77,7 +77,7 @@ class _SendMoneyQRCodeScannerState extends State<SendMoneyQRCodeScanner> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return SendMoneyPage(contacts: result!.code.toString(), name: '', amount: '',);
+                return SendMoneyPage(contacts: result!.code.toString(), name: '', pin: '', balance: '',);
               },
             ),
           );

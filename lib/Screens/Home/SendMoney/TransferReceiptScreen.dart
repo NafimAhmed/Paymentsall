@@ -8,9 +8,9 @@ import 'contact_page_send_money.dart';
 
 class TransferReceiptPage extends StatelessWidget {
 
-  final String recNumb,recName,recAmount;
+  final String recNumb,recName,recAmount,pin;
   DateTime now = DateTime.now();
-   TransferReceiptPage({super.key, required this.recNumb, required this.recName, required this.recAmount});
+   TransferReceiptPage({super.key, required this.recNumb, required this.recName, required this.recAmount, required this.pin});
 
 
 
@@ -163,6 +163,7 @@ class TransferReceiptPage extends StatelessWidget {
                       ),
                       onPressed: (){
                         Navigator.pop(context);
+                        Navigator.pop(context);
                       },
                       //   Navigator.push(
                       //     context,
@@ -187,12 +188,12 @@ class TransferReceiptPage extends StatelessWidget {
                       shadowColor: MaterialStateProperty.all(Colors.transparent),
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return ContactPageSendMoney();
+                            return ContactPageSendMoney(pin: pin, balance: '',);
                           },
                         ),
                       );

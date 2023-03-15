@@ -140,7 +140,7 @@ class HomePage extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return ContactPageSendMoney();
+                            return ContactPageSendMoney(pin: pin, balance: balance,);
                           },
                         ),
                       );
