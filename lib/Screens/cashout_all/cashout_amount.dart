@@ -177,6 +177,7 @@ class CashoutAmount extends StatelessWidget
                                     builder: (context) {
                                       return CashOutPin(
                                         receiverNumb: agentNumber,
+                                        senderPhoneNumber: senderPhoneNumber,
                                         amount: _amount.text.toString(),
                                         pin: pin,
                                         balance: balance,

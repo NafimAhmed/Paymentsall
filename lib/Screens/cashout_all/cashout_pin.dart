@@ -11,19 +11,28 @@ import 'package:payments_all_app/utils/app_layout.dart';
 
 import 'cashout_confirmation.dart';
 
-class CashOutPin extends StatefulWidget {
+// class CashOutPin extends StatefulWidget {
+//
+//   final String receiverNumb,amount,senderPhoneNumber;
+//
+//   final String pin;
+//   final String balance;
+//
+//   const CashOutPin({super.key, required this.receiverNumb, required this.amount, required this.pin, required this.balance, required this.senderPhoneNumber});
+//
+//   @override
+//   State<CashOutPin> createState() => _CashOutPinState();
+// }
 
-  final String receiverNumb,amount;
+class CashOutPin extends StatelessWidget {
+
+  final String receiverNumb,amount,senderPhoneNumber;
+
   final String pin;
   final String balance;
 
-  const CashOutPin({super.key, required this.receiverNumb, required this.amount, required this.pin, required this.balance});
+   CashOutPin({super.key, required this.receiverNumb, required this.amount, required this.pin, required this.balance, required this.senderPhoneNumber});
 
-  @override
-  State<CashOutPin> createState() => _CashOutPinState();
-}
-
-class _CashOutPinState extends State<CashOutPin> {
 
   bool _obscureText = true;
 
@@ -112,7 +121,7 @@ class _CashOutPinState extends State<CashOutPin> {
                       ),
                       SizedBox(height: 10,),
 
-                      Text(widget.receiverNumb,
+                      Text(receiverNumb,
                         style: GoogleFonts.openSans(
                           fontSize: 20,
                         ),
@@ -141,9 +150,9 @@ class _CashOutPinState extends State<CashOutPin> {
                             Column(children:[Text('Total\n', style: GoogleFonts.openSans(fontSize: 20.0))]),
                           ]),
                           TableRow( children: [
-                            Column(children:[Text('৳ ${widget.amount}', style: TextStyle(fontSize: 20.0))]),
-                            Column(children:[Text('+৳ ${cha(widget.amount, charge)}', style: TextStyle(fontSize: 20.0))]),
-                            Column(children:[Text('৳ ${total(widget.amount, charge)}', style: TextStyle(fontSize: 20.0))]),
+                            Column(children:[Text('৳ ${amount}', style: TextStyle(fontSize: 20.0))]),
+                            Column(children:[Text('+৳ ${cha(amount, charge)}', style: TextStyle(fontSize: 20.0))]),
+                            Column(children:[Text('৳ ${total(amount, charge)}', style: TextStyle(fontSize: 20.0))]),
                           ]),
 
                         ],
@@ -194,14 +203,14 @@ class _CashOutPinState extends State<CashOutPin> {
                                 suffixIcon: InkWell(
                                   onTap:() {
 
-                                    if(_pinC.text.isNotEmpty && _pinC.text.toString()==widget.pin){
+                                    if(_pinC.text.isNotEmpty && _pinC.text.toString()==pin){
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                           builder: (context) {
                                             return CashOutConfirmation(
-                                              receiversNumbe: widget.receiverNumb,
-                                              totalAmount: total(widget.amount, charge),
+                                              receiversNumbe: receiverNumb,
+                                              totalAmount: total(amount, charge),
                                             );
                                           },
                                         ),
@@ -226,11 +235,11 @@ class _CashOutPinState extends State<CashOutPin> {
                                 suffixIconColor: Color(0xFFFCDEDE),
                               ),
                             ),
-                            onTap: (){
-                              setState(() {
-                                _obscureText = !_obscureText;
-                              });
-                            },
+                            // onTap: (){
+                            //   // setState(() {
+                            //   //   _obscureText = !_obscureText;
+                            //   // });
+                            // },
                           ),
 
                         ),
