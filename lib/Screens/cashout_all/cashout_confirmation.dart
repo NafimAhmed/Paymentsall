@@ -46,17 +46,8 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
       );
 
       cashout(widget.senderPhoneNumber, widget.receiversNumber, widget.totalAmount);
-
-
-
-
-
     }
     setState(() {
-
-
-
-
 
     });
   });
@@ -95,7 +86,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFF8F8),
-        title: const Text('Confirm your CashOut',style: TextStyle(color: Colors.black)),
+        title: const Text('Confirm CashOut',style: TextStyle(color: Colors.black)),
         iconTheme: const IconThemeData(color: Colors.black),
 
         elevation: 0.0,

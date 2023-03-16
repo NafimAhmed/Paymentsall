@@ -239,9 +239,9 @@ class CashOutPin extends StatelessWidget {
                               ),
                             ),
                             // onTap: (){
-                            //   // setState(() {
-                            //   //   _obscureText = !_obscureText;
-                            //   // });
+                            //   setState(() {
+                            //     _obscureText = !_obscureText;
+                            //   });
                             // },
                           ),
 

@@ -249,7 +249,7 @@ class HomePage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return ContactsPage();
+                                    return ContactsPage(pin: pin, balance: balance,);
                                   },
                                 ),
                               );

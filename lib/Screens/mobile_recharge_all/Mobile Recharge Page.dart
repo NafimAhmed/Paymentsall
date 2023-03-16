@@ -258,8 +258,10 @@ class _MobileRechargePagState extends State<MobileRechargePag> {
                                 builder: (context) {
                                   return MobileRechargeAmount(
                                     recNumb: widget.contacts,
-                                    connectionType: connectionType,
-                                    operator: _selected,
+                                    connectionType: connectionType.toString(),
+                                    operator: _selected.toString(),
+                                    pin: widget.pin,
+                                    balance: widget.balance,
                                   );
                                 },
                               ),

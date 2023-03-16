@@ -198,7 +198,7 @@ class CashoutAmount extends StatelessWidget
                         ),
                       ),
 
-                      Text("Aveilable Balance : $balance ৳",
+                      Text("Available Balance : $balance ৳",
                         style: GoogleFonts.openSans(
                           fontSize: 15,
                           fontWeight: FontWeight.bold
