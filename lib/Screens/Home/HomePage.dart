@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/Screens/Government%20Fees/GovernmentFeesPage.dart';
 import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.dart';
@@ -32,6 +33,8 @@ class HomePage extends StatelessWidget {
 
   DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
 
+  
+
 
 
 
@@ -55,10 +58,17 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    RxString? balancechange=balance.obs;
+
+    rf.child(phoneNumber).child('profile').onValue.listen((event) {
+
+      balancechange.value=event.snapshot.child("balance").value.toString()!;
+
+    });
 
 
 
-    return Scaffold(
+    return Obx(() => Scaffold(
       backgroundColor: Color(0xFFFFF8F8),
       body: SingleChildScrollView(
         child: Padding(
@@ -89,472 +99,472 @@ class HomePage extends StatelessWidget {
                         Text('Your available balance',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
                       ],
                     ),Spacer(),
-                    Text('৳ $balance',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
+                    Text('৳ $balancechange',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
                   ],
                 ),
               ),
               SizedBox(height: 20,),
               Padding(
-                  padding: EdgeInsets.only(left: 16,right: 16,bottom: 10),
-              child: Container(
-                height: 74,width: 350,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.0),
-                    color: Colors.red.shade900
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return MerchantPayPage(
-                                  pin: pin,
-                                  balance: balance,
-                                );
-                              },
-                            ),
-                          );
-                        },
-                        child: Column(
-                          children:  [
-                            //SizedBox(height: 5,),
-                            CircleAvatar(
-                              backgroundColor:  Color(0xFFFFF8F8),
-                                radius: 20,
-                                child: Image.asset('assets/images/merchant_pay.png',height: 40,width: 40,)),
-                            // Icon(Icons.shopping_cart_sharp,color: Colors.white),SizedBox(height: 5,),
-
-                            Text('Merchant Pay',style: TextStyle(color:Colors.white))
-                          ],
-                        )),
-                    TextButton(onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return ContactPageSendMoney(pin: pin, balance: balance,);
+                padding: EdgeInsets.only(left: 16,right: 16,bottom: 10),
+                child: Container(
+                  height: 74,width: 350,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: Colors.red.shade900
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      TextButton(
+                          style: ButtonStyle(
+                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                            overlayColor: MaterialStateProperty.all(Colors.transparent),
+                          ),
+                          onPressed: (){
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return MerchantPayPage(
+                                    pin: pin,
+                                    balance: balancechange.value,
+                                  );
+                                },
+                              ),
+                            );
                           },
-                        ),
-                      );
-                    },
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-                        child: Column(
-                          children: [
-                          //SizedBox(height: 5,),
-                            CircleAvatar(
-                              backgroundColor: Color(0xFFFFF8F8),
-                                radius: 20,
-                                child: Image.asset('assets/images/send_money.png',height: 40,width: 40,)),
-                            // Icon(Icons.send,color: Colors.white,),SizedBox(height: 5,),
-                            Text('Send Money',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white))
-                          ],
-                        )),
-                    TextButton(onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return CashOutPage(
-                              senderPhoneNumber: phoneNumber,
-                              pin: pin,
-                              balance: balance,);
-                          },
-                        ),
-                      );
+                          child: Column(
+                            children:  [
+                              //SizedBox(height: 5,),
+                              CircleAvatar(
+                                  backgroundColor:  Color(0xFFFFF8F8),
+                                  radius: 20,
+                                  child: Image.asset('assets/images/merchant_pay.png',height: 40,width: 40,)),
+                              // Icon(Icons.shopping_cart_sharp,color: Colors.white),SizedBox(height: 5,),
 
-                    },
-                        style: ButtonStyle(
-                          shadowColor: MaterialStateProperty.all(Colors.transparent),
-                          overlayColor: MaterialStateProperty.all(Colors.transparent),
-                        ),
-                        child: Column(
-                          children: [
-                         // SizedBox(height: 5,),
-                            CircleAvatar(
-                              backgroundColor: Color(0xFFFFF8F8),
-                                radius: 20,
-                                child: Image.asset('assets/images/cash_out.png',height: 35,width: 35,)),
-                            // Icon(Icons.account_balance_wallet_outlined,color: Colors.white,),SizedBox(height: 5,),
-                            Text('Cash Out',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white))
-                          ],
-                        )),
-                  ],
+                              Text('Merchant Pay',style: TextStyle(color:Colors.white))
+                            ],
+                          )),
+                      TextButton(onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ContactPageSendMoney(pin: pin, balance: balancechange.value,);
+                            },
+                          ),
+                        );
+                      },
+                          style: ButtonStyle(
+                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                            overlayColor: MaterialStateProperty.all(Colors.transparent),
+                          ),
+                          child: Column(
+                            children: [
+                              //SizedBox(height: 5,),
+                              CircleAvatar(
+                                  backgroundColor: Color(0xFFFFF8F8),
+                                  radius: 20,
+                                  child: Image.asset('assets/images/send_money.png',height: 40,width: 40,)),
+                              // Icon(Icons.send,color: Colors.white,),SizedBox(height: 5,),
+                              Text('Send Money',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white))
+                            ],
+                          )),
+                      TextButton(onPressed: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return CashOutPage(
+                                senderPhoneNumber: phoneNumber,
+                                pin: pin,
+                                balance: balancechange.value,);
+                            },
+                          ),
+                        );
+
+                      },
+                          style: ButtonStyle(
+                            shadowColor: MaterialStateProperty.all(Colors.transparent),
+                            overlayColor: MaterialStateProperty.all(Colors.transparent),
+                          ),
+                          child: Column(
+                            children: [
+                              // SizedBox(height: 5,),
+                              CircleAvatar(
+                                  backgroundColor: Color(0xFFFFF8F8),
+                                  radius: 20,
+                                  child: Image.asset('assets/images/cash_out.png',height: 35,width: 35,)),
+                              // Icon(Icons.account_balance_wallet_outlined,color: Colors.white,),SizedBox(height: 5,),
+                              Text('Cash Out',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white))
+                            ],
+                          )),
+                    ],
+                  ),
                 ),
-              ),
               ),
               Padding(
-                  padding: const EdgeInsets.all(16.0),
-              child: Container(
-                height: 400,width: 350,
-                //color: Colors.white,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(4.0),
-                    color: Colors.white
-                ),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return AddMoneyPage(
-                                      amount: '',
-                                      firstName: firstName,
-                                      lastName: lastName,
-                                      phoneNumber: phoneNumber,
-                                      pin: pin,);
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  height: 400,width: 350,
+                  //color: Colors.white,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4.0),
+                      color: Colors.white
+                  ),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return AddMoneyPage(
+                                        amount: '',
+                                        firstName: firstName,
+                                        lastName: lastName,
+                                        phoneNumber: phoneNumber,
+                                        pin: pin,);
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
                                     backgroundColor: Color(0xFFFFF8F8),
                                     child: Image.asset('assets/images/add_money.png',),
-                                  radius: 26,
-                                  //Icon(Icons.account_balance_wallet_sharp,color: Colors.black,)
-                                ),
-                                Text('Add Money',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return ContactsPage(pin: pin, balance: balance,);
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
+                                    radius: 26,
+                                    //Icon(Icons.account_balance_wallet_sharp,color: Colors.black,)
+                                  ),
+                                  Text('Add Money',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return ContactsPage();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
                                     backgroundColor: Color(0xFFFFF8F8),
-                                  radius: 26,
+                                    radius: 26,
                                     child: Image.asset('assets/images/money_recharge.png',) ,
 
-                                ),
-                                const Text('Mobile Recharge',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return TCForm();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
+                                  ),
+                                  const Text('Mobile Recharge',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return TCForm();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
                                     backgroundColor: Color(0xFFFFF8F8),
-                                  radius: 26,
+                                    radius: 26,
                                     child: Image.asset('assets/images/Travel card.png',height: 40,) ,
 
-                                ),
-                                const Text('Travel Card',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-                      ],
-                    ),
-                    SizedBox( height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return BillPayPage();
-                              //     },
-                              //   ),
-                              // );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
+                                  ),
+                                  const Text('Travel Card',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                        ],
+                      ),
+                      SizedBox( height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) {
+                                //       return BillPayPage();
+                                //     },
+                                //   ),
+                                // );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
                                     backgroundColor: Color(0xFFFFF8F8),
-                                  radius: 26,
+                                    radius: 26,
                                     child: Image.asset('assets/images/Quick Pay.png',),
 
-                                  //Icon(Icons.receipt_sharp,color: Colors.black)
-                                ),
-                                const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
+                                    //Icon(Icons.receipt_sharp,color: Colors.black)
+                                  ),
+                                  const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
 
 
 
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return BillPayPage(
-                                      firstName: firstName,
-                                      lastName: lastName,
-                                      pin: pin,);
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return BillPayPage(
+                                        firstName: firstName,
+                                        lastName: lastName,
+                                        pin: pin,);
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
                                     backgroundColor: Color(0xFFFFF8F8),
-                                  radius: 26,
+                                    radius: 26,
                                     child: Image.asset('assets/images/bill_pay.png',),
 
-                                  //Icon(Icons.receipt_sharp,color: Colors.black)
-                                ),
-                                const Text('Bill Pay',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )
-                        ),
+                                    //Icon(Icons.receipt_sharp,color: Colors.black)
+                                  ),
+                                  const Text('Bill Pay',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )
+                          ),
 
 
 
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return BankTransferPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return BankTransferPage();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
                                     backgroundColor: const Color(0xFFFFF8F8),
                                     radius: 26,
                                     child: Image.asset('assets/images/bank_transfer.png',),
-                                ),
-                                const Text('Bank Transfer',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-                      ],
-                    ),
-                    SizedBox(height: 10,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        SizedBox(width: 10,),
+                                  ),
+                                  const Text('Bank Transfer',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                        ],
+                      ),
+                      SizedBox(height: 10,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          SizedBox(width: 10,),
 
 
 
 
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return GovernmentFeesPage(pin: pin,);
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: const Color(0xFFFFF8F8),
-                                  radius: 26,
-                                  child: Image.asset('assets/images/Govt Fees.png',),
-                                ),
-                                const Text('Govt. Fees',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return MobileBankingPage();
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: const Color(0xFFFFF8F8),
-                                  radius: 26,
-                                  child: Image.asset('assets/images/mobile Bank.png',),
-                                ),
-                                const Text('Mobile Banking',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) {
-                              //       return MobileBankingPage();
-                              //     },
-                              //   ),
-                              // );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: const Color(0xFFFFF8F8),
-                                  radius: 26,
-                                  child: Image.asset('assets/images/ticket.png',),
-                                ),
-                                const Text('Ticketing',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-
-
-
-                        SizedBox(width: 10,),
-
-
-
-
-
-
-
-
-
-
-
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        TextButton(
-                            style: ButtonStyle(
-                              shadowColor: MaterialStateProperty.all(Colors.transparent),
-                              overlayColor: MaterialStateProperty.all(Colors.transparent),
-                            ),
-                            onPressed: (){
-
-
-
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return SalaryDashBoard(
-                                      pin: pin,);
-                                  },
-                                ),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return GovernmentFeesPage(pin: pin,);
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
                                     backgroundColor: const Color(0xFFFFF8F8),
                                     radius: 26,
-                                    child: Icon(Icons.wallet,
-                                      color: Colors.red.shade300,
-                                      size: 40,
-                                    )//Image.asset('assets/images/Govt Fees.png',),
-                                ),
-                                const Text('Salary Payroll',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
-                            )),
-                      ],
-                    ),
+                                    child: Image.asset('assets/images/Govt Fees.png',),
+                                  ),
+                                  const Text('Govt. Fees',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return MobileBankingPage();
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: const Color(0xFFFFF8F8),
+                                    radius: 26,
+                                    child: Image.asset('assets/images/mobile Bank.png',),
+                                  ),
+                                  const Text('Mobile Banking',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) {
+                                //       return MobileBankingPage();
+                                //     },
+                                //   ),
+                                // );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                    backgroundColor: const Color(0xFFFFF8F8),
+                                    radius: 26,
+                                    child: Image.asset('assets/images/ticket.png',),
+                                  ),
+                                  const Text('Ticketing',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
 
-                  ],
+
+
+                          SizedBox(width: 10,),
+
+
+
+
+
+
+
+
+
+
+
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+
+
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return SalaryDashBoard(
+                                        pin: pin,);
+                                    },
+                                  ),
+                                );
+                              },
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                      backgroundColor: const Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: Icon(Icons.wallet,
+                                        color: Colors.red.shade300,
+                                        size: 40,
+                                      )//Image.asset('assets/images/Govt Fees.png',),
+                                  ),
+                                  const Text('Salary Payroll',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                        ],
+                      ),
+
+                    ],
+                  ),
                 ),
-              ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 16.0,right: 16.0),
                 child: Text('Offers',
-                style: GoogleFonts.openSans(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
+                  style: GoogleFonts.openSans(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
               Padding(
-                  padding: const EdgeInsets.only(left: 16,right: 16,bottom: 10,),
-              child: Container(
-                height: 100,width: 350,
-                //color: Colors.pinkAccent.shade100,
-                 child: ListView.builder(
-                     scrollDirection: Axis.horizontal,
-                     itemCount: offer.length,
-                     itemBuilder: (BuildContext context,int index){
-                       return Container(
-                         child: offer[index],
-                       );
-                     }
+                padding: const EdgeInsets.only(left: 16,right: 16,bottom: 10,),
+                child: Container(
+                  height: 100,width: 350,
+                  //color: Colors.pinkAccent.shade100,
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: offer.length,
+                      itemBuilder: (BuildContext context,int index){
+                        return Container(
+                          child: offer[index],
+                        );
+                      }
 
-                 ),
-              ),
+                  ),
+                ),
               ),
               Padding(padding: const EdgeInsets.only(left: 16,right: 16,bottom: 10),
                 child: Container(
@@ -586,7 +596,7 @@ class HomePage extends StatelessWidget {
                       const Card(
                         child: ListTile(
                           leading: CircleAvatar(
-                            backgroundColor: Color(0xFFFFF8F8),
+                              backgroundColor: Color(0xFFFFF8F8),
                               child: Icon(Icons.account_balance_wallet_rounded,color: Colors.black,)),
                           title: Text('Aviroop',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.black)),
                           subtitle: Text('February 24,2022'),
@@ -603,7 +613,9 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-    );
+    ) );
+
+
   }
 
 

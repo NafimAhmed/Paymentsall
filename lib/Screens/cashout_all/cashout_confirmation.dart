@@ -1,13 +1,13 @@
 
 
 
-import 'dart:ffi';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 class CashOutConfirmation extends StatefulWidget
@@ -245,6 +245,11 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
     //FirebaseDatabase database = FirebaseDatabase.instance;
 
+    DateTime now = DateTime.now();
+    //String formattedDate = DateFormat.yMMMEd().format(now);
+    String formettedtime=DateFormat('E,d MMM yyyy HH:mm:ss').format(now);
+    //print(formattedDate);
+
 
 
 
@@ -314,6 +319,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
       // ...
       "type":"sent",
       "amount":"$amount",
+      "time": formettedtime,
     });
 
 
@@ -322,6 +328,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     receiverPostRef.set({
       "type":"received",
       "amount":"$amount",
+      "time":formettedtime,
     });
 
     // await rf.child(sendPhoneNumber).child("transection").set({
