@@ -1,9 +1,12 @@
 
 import 'dart:io';
 
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
@@ -57,125 +60,253 @@ final payReceipts=[
 
 
 class RecentTransferScreen extends StatelessWidget {
-  const RecentTransferScreen({Key? key}) : super(key: key);
+   RecentTransferScreen({Key? key}) : super(key: key);
+
+   Query dbref=FirebaseDatabase.instance.ref("User_profile").child("01797609439").child("transection");
+
+
+   //RxList<dynamic>? list;
+
+  // final  commentsRef = FirebaseDatabase.instance.ref("User_profile").child("01797609439")
+  //     .child("transection");
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('All Transaction',
-          style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.w500,
-              color: Colors.black),
+
+
+
+    // commentsRef.onChildAdded.listen((event) {
+    //
+    //
+    //   // A new comment has been added, so add it to the displayed list.
+    // });
+    // commentsRef.onChildChanged.listen((event) {
+    //
+    //   list=event.obs as RxList?;
+    //   // A comment has changed; use the key to determine if we are displaying this
+    //   // comment and if so displayed the changed comment.
+    // });
+    // commentsRef.onChildRemoved.listen((event) {
+    //   // A comment has been removed; use the key to determine if we are displaying
+    //   // this comment and if so remove it.
+    // });
+    //
+
+
+
+
+
+
+    return  Scaffold(
+        appBar: AppBar(
+          title: const Text('All Transaction',
+            style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
+          ),
+          iconTheme: const IconThemeData(color: Colors.black),
+          elevation: 0.0,
+          backgroundColor: Color(0xFFFFF8F8),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
-        elevation: 0.0,
         backgroundColor: Color(0xFFFFF8F8),
-      ),
-      backgroundColor: Color(0xFFFFF8F8),
 
 
 
 
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              SizedBox(height: 30,),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                SizedBox(height: 30,),
 
-
-
-              ListView.builder(
-                shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context,int index){
+                FirebaseAnimatedList(
+                  shrinkWrap: true,
+                  query: dbref,
+                  itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
 
                     return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.red.shade100,
-                          border: Border.all(
-                            color: Colors.red.shade100,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(15))
-                      ),
-
-
-
-                      padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(10)),
-                      margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(5),vertical: AppLayout.getHeight(10)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-
-                          Row(
-                            children: [
-                              Text("Pay Bill",
-                                style: GoogleFonts.openSans(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold
+                                decoration: BoxDecoration(
+                                    color: Colors.red.shade100,
+                                    border: Border.all(
+                                      color: Colors.red.shade100,
+                                    ),
+                                    borderRadius: BorderRadius.all(Radius.circular(15))
                                 ),
-                              ),
-
-
-                              Spacer(),
-
-
-                              TextButton(
-                                  style: ButtonStyle(
-                                    shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                    overlayColor: MaterialStateProperty.all(Colors.transparent),
-                                  ),
-                                  onPressed: (){
-                                     ViewDetails();
-                                  },
-                                  child: Text('View Details',style: TextStyle(
-                                    color: Color(0xFF800E03)
-                                  ),))
-                            ],
-                          ),
-
-                          Text("DESCO",
-                            style: GoogleFonts.openSans(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w600
-                            ),
-                          ),
-
-                          Text("Transaction ID : DEX123546",
-                            style: GoogleFonts.openSans(
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal
-                            ),
-                          ),
-
-                          Text("12:50 pm, 22/02/2023",
-
-                            style: GoogleFonts.openSans(
-                                fontSize: 15,
-                                fontWeight: FontWeight.normal
-                            ),
-
-                          ),
 
 
 
-                        ],
-                      ),
-                    );
+                                padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(10)),
+                                margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(5),vertical: AppLayout.getHeight(10)),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
 
-              }
-              ),
+                                    Row(
+                                      children: [
+                                        Text("${snapshot.child("type").value}",
+                                          style: GoogleFonts.openSans(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold
+                                          ),
+                                        ),
+
+
+                                        Spacer(),
+
+
+                                        TextButton(
+                                            style: ButtonStyle(
+                                              shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                              overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                            ),
+                                            onPressed: (){
+                                             // ViewDetails();
+                                            },
+                                            child: Text('View Details',style: TextStyle(
+                                                color: Color(0xFF800E03)
+                                            ),))
+                                      ],
+                                    ),
+
+                                    Text("DESCO",
+                                      style: GoogleFonts.openSans(
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w600
+                                      ),
+                                    ),
+
+                                    Text("Transaction ID : ${snapshot.key.toString()}",
+                                      style: GoogleFonts.openSans(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.normal
+                                      ),
+                                    ),
+
+                                    Text("Date and Time : ${snapshot.child("time").value}",
+
+                                      style: GoogleFonts.openSans(
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.normal
+                                      ),
+
+                                    ),
 
 
 
-            ],
+                                  ],
+                                ),
+                              );
+
+
+
+                  },
+
+                )
+
+
+                // ListView.builder(
+                //     shrinkWrap: true,
+                //     physics: NeverScrollableScrollPhysics(),
+                //     itemCount: 10,
+                //     itemBuilder: (BuildContext context,int index){
+                //
+                //       return Container(
+                //         decoration: BoxDecoration(
+                //             color: Colors.red.shade100,
+                //             border: Border.all(
+                //               color: Colors.red.shade100,
+                //             ),
+                //             borderRadius: BorderRadius.all(Radius.circular(15))
+                //         ),
+                //
+                //
+                //
+                //         padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(10)),
+                //         margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(5),vertical: AppLayout.getHeight(10)),
+                //         child: Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           children: [
+                //
+                //             Row(
+                //               children: [
+                //                 Text("Pay Bill",
+                //                   style: GoogleFonts.openSans(
+                //                       fontSize: 20,
+                //                       fontWeight: FontWeight.bold
+                //                   ),
+                //                 ),
+                //
+                //
+                //                 Spacer(),
+                //
+                //
+                //                 TextButton(
+                //                     style: ButtonStyle(
+                //                       shadowColor: MaterialStateProperty.all(Colors.transparent),
+                //                       overlayColor: MaterialStateProperty.all(Colors.transparent),
+                //                     ),
+                //                     onPressed: (){
+                //                      // ViewDetails();
+                //                     },
+                //                     child: Text('View Details',style: TextStyle(
+                //                         color: Color(0xFF800E03)
+                //                     ),))
+                //               ],
+                //             ),
+                //
+                //             Text("DESCO",
+                //               style: GoogleFonts.openSans(
+                //                   fontSize: 17,
+                //                   fontWeight: FontWeight.w600
+                //               ),
+                //             ),
+                //
+                //             Text("Transaction ID : DEX123546",
+                //               style: GoogleFonts.openSans(
+                //                   fontSize: 15,
+                //                   fontWeight: FontWeight.normal
+                //               ),
+                //             ),
+                //
+                //             Text("12:50 pm, 22/02/2023",
+                //
+                //               style: GoogleFonts.openSans(
+                //                   fontSize: 15,
+                //                   fontWeight: FontWeight.normal
+                //               ),
+                //
+                //             ),
+                //
+                //
+                //
+                //           ],
+                //         ),
+                //       );
+                //
+                //     }
+                // ),
+                //
+
+
+              ],
+            ),
           ),
-        ),
-      ));
+        ));
+
   }
+
+
+
+
+
+
+
   Future<Uint8List> ViewDetails() async {
     final pdf = pw.Document();
     final ByteData bytes = await rootBundle.load('assets/images/desco.png');

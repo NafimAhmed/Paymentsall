@@ -11,7 +11,7 @@
 
 
     <application
-        android:label="payments_all_app"
+        android:label="Payments All"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -64,7 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             const SizedBox(height: 20,),
             const Text('Easy Online Payment',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),
             const SizedBox(height: 10,),
-            const Text('Make your payment experience more better today.No additional admin fee',
+            const Text('Make your payment experience more better today.No additional fee',
               style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal),textAlign: TextAlign.center,),
             const SizedBox(height: 40,),
             Container(
@@ -150,7 +150,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
-                  const Text('EasyPay',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
+                  const Text(' Easy to Pay',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
              Image.asset('assets/images/WelcomeImage.png',height: 310,width: 320,)
@@ -168,7 +168,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:  [
                   Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
-                  const Text('Easy Transfer Way',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
+                  const Text(' Easy Transfer Way',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
              Image.asset('assets/images/easy transfer.png',height: 310,width: 320,)
@@ -186,7 +186,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children:  [
                   Image.asset('assets/images/Payments_All.png',height: 30,width: 28,),
-                  const Text('Safe and Secure',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
+                  const Text(' Safe and Secure',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold)),
                 ],
               ),
              Image.asset('assets/images/safe and secure.png',height: 310,width: 320,)

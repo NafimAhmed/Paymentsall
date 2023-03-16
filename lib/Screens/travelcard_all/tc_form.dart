@@ -51,6 +51,34 @@ class TCForm extends StatelessWidget
                   ),
                 ),
 
+                Text("Passport Number :"),
+
+                TextField(
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.red.shade900,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.book,size: 30,color: Colors.red.shade300,),
+                    hintText: 'Enter your Passport No.',
+                    hintStyle: TextStyle(color: Colors.grey.shade400),
+                  ),
+                ),
+
+
+                Text("Electricity Utility bill No. :"),
+
+                TextField(
+                  keyboardType: TextInputType.number,
+                  cursorColor: Colors.red.shade900,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    prefixIcon: Icon(Icons.book,size: 30,color: Colors.red.shade300,),
+                    hintText: 'Enter your Utility bill No.',
+                    hintStyle: TextStyle(color: Colors.grey.shade400),
+                  ),
+                ),
+
+
                 Text("Name :"),
 
 

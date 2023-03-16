@@ -40,11 +40,11 @@ class HomePage extends StatelessWidget {
 
 
   static List offer=[
-    Image.network('https://thumbs.dreamstime.com/b/special-offer-star-7527442.jpg'),
-    Image.network('https://www.tbsnews.net/sites/default/files/styles/very_big_1/public/images/2021/02/02/bkash.jpg'),
-    Image.network('https://static1.bigstockphoto.com/6/0/4/large2/406147223.jpg'),
-    Image.network('https://i0.wp.com/mytechoffer.com/wp-content/uploads/2020/10/Website-Image_English.jpg?resize=780%2C403&ssl=1'),
-    Image.network('https://www.businessinsiderbd.com/media/imgAll/2020October/en/bkash-2108181309.jpg'),
+    Image.network('https://static.vecteezy.com/system/resources/previews/005/405/595/original/special-offer-sale-banner-besign-discount-label-and-sticker-for-media-promotion-product-free-vector.jpg'),
+    Image.network('https://static.vecteezy.com/system/resources/previews/005/405/595/original/special-offer-sale-banner-besign-discount-label-and-sticker-for-media-promotion-product-free-vector.jpg'),
+    Image.network('https://static.vecteezy.com/system/resources/previews/005/405/595/original/special-offer-sale-banner-besign-discount-label-and-sticker-for-media-promotion-product-free-vector.jpg'),
+    Image.network('https://static.vecteezy.com/system/resources/previews/005/405/595/original/special-offer-sale-banner-besign-discount-label-and-sticker-for-media-promotion-product-free-vector.jpg'),
+    Image.network('https://static.vecteezy.com/system/resources/previews/005/405/595/original/special-offer-sale-banner-besign-discount-label-and-sticker-for-media-promotion-product-free-vector.jpg'),
 
   ];
 
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset('assets/images/Payments_All.png',height: 60,width: 60,),
-                    Text('Payments All',
+                    Text(' Payments All',
                       style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Colors.black,fontStyle: FontStyle.italic),)
                   ],
                 ),
