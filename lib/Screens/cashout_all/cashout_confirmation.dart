@@ -276,6 +276,44 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
     final receiverPhoneNumbersnapshotBalance = await rf.child(receiverPhoneNumber).child("profile").child("balance").get();
 
+    double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+    double senderCurrentBalance=senderBalance-amnt;
+    double receiverCurrentBalance=receiverBalance+amnt;
+
+
+    //DatabaseReference ref = FirebaseDatabase.instance.ref("users");
+
+    await rf.child(receiverPhoneNumber).child("profile").update({
+      "balance":receiverCurrentBalance.toString()
+    }).then((value) async {
+
+      await rf.child(sendPhoneNumber).child("profile").update({
+        "balance":senderCurrentBalance.toString()
+      }).then((value) {
+
+        Fluttertoast.showToast(
+            msg: "Cashout successful",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+
+      });
+
+
+    });
+
+
+    // await rf.child(sendPhoneNumber).child("profile").update({
+    //   "balance":senderCurrentBalance.toString()
+    // });
+
+
+
+
 
     /////receiver/////////////////////////////////////////////////////////////////////////
 
