@@ -52,7 +52,9 @@ class MainScreen extends StatelessWidget {
         pin: pin,
         balance: balance,
       ),
-      RecentTransferScreen(),
+      RecentTransferScreen(
+        phoneNumber: phoneNumber,
+      ),
       ScanScreen(phonenumber: phoneNumber,),
       NotificationScreen(),
       ProfileScreen(

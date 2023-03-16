@@ -317,7 +317,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     DatabaseReference senderPostRef = rf.child(sendPhoneNumber).child("transection").push();
     senderPostRef.set({
       // ...
-      "type":"sent",
+      "type":"Cashout",
       "amount":"$amount",
       "time": formettedtime,
     });
@@ -326,7 +326,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
     DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").push();
     receiverPostRef.set({
-      "type":"received",
+      "type":"Cashout received",
       "amount":"$amount",
       "time":formettedtime,
     });

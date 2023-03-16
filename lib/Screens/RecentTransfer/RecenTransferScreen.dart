@@ -60,9 +60,10 @@ final payReceipts=[
 
 
 class RecentTransferScreen extends StatelessWidget {
-   RecentTransferScreen({Key? key}) : super(key: key);
 
-   Query dbref=FirebaseDatabase.instance.ref("User_profile").child("01797609439").child("transection");
+  final String phoneNumber;
+   RecentTransferScreen({Key? key, required this.phoneNumber}) : super(key: key);
+
 
 
    //RxList<dynamic>? list;
@@ -76,6 +77,9 @@ class RecentTransferScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Query dbref=FirebaseDatabase.instance.ref("User_profile").child(phoneNumber).child("transection");
+
 
 
 
@@ -126,6 +130,7 @@ class RecentTransferScreen extends StatelessWidget {
                 SizedBox(height: 30,),
 
                 FirebaseAnimatedList(
+                  physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   query: dbref,
                   itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {

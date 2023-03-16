@@ -259,7 +259,10 @@ class HomePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return ContactsPage();
+                                      return ContactsPage(
+                                        pin: pin,
+                                        balance: balancechange.value,
+                                      );
                                     },
                                   ),
                                 );
@@ -585,7 +588,9 @@ class HomePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return RecentTransferScreen();
+                                      return RecentTransferScreen(
+                                        phoneNumber: phoneNumber,
+                                      );
                                     },
                                   ),
                                 );
