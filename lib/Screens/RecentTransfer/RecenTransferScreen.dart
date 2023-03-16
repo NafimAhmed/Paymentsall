@@ -130,7 +130,7 @@ class RecentTransferScreen extends StatelessWidget {
                 SizedBox(height: 30,),
 
                 FirebaseAnimatedList(
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: ScrollPhysics(),
                   shrinkWrap: true,
                   query: dbref,
                   itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
