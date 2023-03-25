@@ -402,12 +402,12 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     });
 
     ///////////////////////////////receiverNotification/////////////////////////////////////////
-    DatabaseReference receiverPostRefNotify = rf.child(receiverPhoneNumber).child("notification").push();
-    receiverPostRefNotify.set({
-      "type":"Cashout received",
-      "amount":"$amount",
-      "time":formettedtime,
-    });
+    // DatabaseReference receiverPostRefNotify = rf.child(receiverPhoneNumber).child("notification").push();
+    // receiverPostRefNotify.set({
+    //   "type":"Cashout received",
+    //   "amount":"$amount",
+    //   "time":formettedtime,
+    // });
 
     // await rf.child(sendPhoneNumber).child("transection").set({
     //         "amount":"30",
