@@ -82,7 +82,7 @@ class _EloanPageState extends State<EloanPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                   Image.asset('assets/images/Payments_All_Logo.png',height: 100,width: 200,),
+                   Image.asset('assets/images/paymentsAll_logo.png',height: 100,width: 200,),
 
                   Text('Take a Loan to your own Payments All Account',
                     style: GoogleFonts.openSans(

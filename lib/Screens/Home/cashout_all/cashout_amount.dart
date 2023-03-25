@@ -6,9 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:payments_all_app/Screens/cashout_all/cashout_pin.dart';
 
-import '../../utils/app_layout.dart';
+import '../../../utils/app_layout.dart';
+import 'cashout_pin.dart';
 
 class CashoutAmount extends StatelessWidget
 {
@@ -135,11 +135,11 @@ class CashoutAmount extends StatelessWidget
 
                             onTap: (){
 
-
+////////
                               double charge=double.parse(_amount.text.toString())*0.01;
                               double total=charge+ double.parse(_amount.text.toString());
 
-
+////////
 
 
                               if(_amount.text.toString().isEmpty)
@@ -198,7 +198,7 @@ class CashoutAmount extends StatelessWidget
                         ),
                       ),
 
-                      Text("Available Balance : $balance ৳",
+                      Text("Available Balance : $balance৳",
                         style: GoogleFonts.openSans(
                           fontSize: 15,
                           fontWeight: FontWeight.bold

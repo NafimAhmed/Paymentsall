@@ -206,7 +206,9 @@ class _EloanConfirmPageState extends State<EloanConfirmPage> with TickerProvider
                                 //fontSize: 16
                               ),
                             ),
-                            Image.asset('assets/images/Payments_All_Logo.png',height: 30,),
+                            Container(
+                              height: 40,width: 50,
+                                child: Image.asset('assets/images/paymentsAll_logo.png',)),
                           ],
                         ),
                       ),

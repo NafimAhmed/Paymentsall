@@ -203,7 +203,7 @@ class CashOutPin extends StatelessWidget {
                                 suffixIcon: InkWell(
                                   onTap:() {
 
-                                    if(_pinC.text.isNotEmpty && _pinC.text.toString()==pin){
+                                    if(_pinC.text.toString().isNotEmpty && _pinC.text.toString()==pin){
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(

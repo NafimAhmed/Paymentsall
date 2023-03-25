@@ -11,12 +11,13 @@ import 'marchentpay_confirmation.dart';
 
 class MerchantPayPin extends StatefulWidget {
   final String receiverNumb;
+  final String senderNumber;
   final String amount;
 
   final String pin;
   final String balance;
 
-  MerchantPayPin({super.key, required this.receiverNumb, required this.amount, required this.pin, required this.balance});
+  MerchantPayPin({super.key, required this.receiverNumb, required this.amount, required this.pin, required this.balance, required this.senderNumber});
 
 
   @override
@@ -24,6 +25,27 @@ class MerchantPayPin extends StatefulWidget {
 }
 
 class _MerchantPayPinState extends State<MerchantPayPin> {
+
+
+  String charge="10";
+
+  String total(String amount,String charge){
+
+    double amt= double.parse(amount);
+    double chr=double.parse(cha(amount,charge));
+
+    return (amt+chr).toString();
+
+  }
+
+
+  String cha(String amount,String chrg){
+    double amt= double.parse(amount);
+    double chr=double.parse(chrg);
+
+
+    return ((chr*amt)/1000).toString();
+  }
 
   TextEditingController _reference=TextEditingController();
   TextEditingController _pin=TextEditingController();
@@ -118,8 +140,8 @@ class _MerchantPayPinState extends State<MerchantPayPin> {
                           ]),
                           TableRow( children: [
                             Column(children:[Text("৳${widget.amount}", style: TextStyle(fontSize: 20.0))]),
-                            Column(children:[Text('+৳ 00.00', style: TextStyle(fontSize: 20.0))]),
-                            Column(children:[Text('৳ ${widget.amount}', style: TextStyle(fontSize: 20.0))]),
+                            Column(children:[Text('+৳${cha(widget.amount, charge)}', style: TextStyle(fontSize: 20.0))]),
+                            Column(children:[Text('৳ ${total(widget.amount, charge)}', style: TextStyle(fontSize: 20.0))]),
                           ]),
 
                         ],
@@ -222,8 +244,10 @@ class _MerchantPayPinState extends State<MerchantPayPin> {
                                             builder: (context) {
                                               return MarchentPayConfirmation(
                                                 receiveNumb: widget.receiverNumb,
-                                                totAmount: widget.amount,
                                                 ref: _reference.text.toString(),
+                                                totalAmount:  total(widget.amount, charge),
+                                                balance: (double.parse(widget.balance)-double.parse(total(widget.amount, charge))).toString(),
+                                                senderNumber: widget.senderNumber,
                                               );
                                             },
                                           ),

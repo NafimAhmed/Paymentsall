@@ -91,10 +91,6 @@ class ScanScreen extends StatelessWidget {
 
                 },
 
-
-
-
-
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(
                       horizontal: 60.0, vertical: 15.0),
@@ -115,10 +111,6 @@ class ScanScreen extends StatelessWidget {
               child: ElevatedButton(
 
                 onPressed: () async {
-
-
-
-
 
                 },
                 style: ElevatedButton.styleFrom(
@@ -160,62 +152,61 @@ class ScanScreen extends StatelessWidget {
     final ByteData bytes = await rootBundle.load('assets/images/Payments_All.png');
     final Uint8List byteList = bytes.buffer.asUint8List();
 
-    // final ByteData bytes1 = await rootBundle.load('assets/images/Payments_All_Logo.png');
-    // final Uint8List byteList1 = bytes1.buffer.asUint8List();
     pdf.addPage(
         pw.Page(
             build: (pw.Context context){
               return pw.Center(
-                child: pw.Container(
-                    height: 600,
-                    width: 700,
-                    // decoration: pw.BoxDecoration(
-                    //   border: pw.Border.all(width: 1,color: PdfColors.grey),
-                    //   borderRadius: pw.BorderRadius.circular(8.0),
-                    // ),
-                    child: pw.Padding(
-                        padding: pw.EdgeInsets.all(16.0),
+                child: pw.Padding(
+                  padding: pw.EdgeInsets.all(16.0),
+                  child: pw.Column(
+                    children: [
+                      pw.Container(
+                          height: 600,
+                          width: 700,
+                          child: pw.Padding(
+                              padding: pw.EdgeInsets.all(16.0),
 
 
-                        child: pw.Column(
-                            crossAxisAlignment: pw.CrossAxisAlignment.start,
-                            children: [
-
-
-
-                              pw.Center(
-                                child: pw.Stack(
-                                  alignment: pw.Alignment.center,
+                              child: pw.Column(
+                                mainAxisAlignment: pw.MainAxisAlignment.center,
+                                  crossAxisAlignment: pw.CrossAxisAlignment.start,
                                   children: [
+
                                     pw.Center(
-                                      child: pw.BarcodeWidget(
-                                        barcode: Barcode.qrCode(
-                                          errorCorrectLevel: BarcodeQRCorrectionLevel.high,
-                                        ),
-                                        data: '$phonenumber',
-                                        width: 200,
-                                        height: 200,
+                                      child: pw.Stack(
+                                        alignment: pw.Alignment.center,
+                                        children: [
+                                          pw.Center(
+                                            child: pw.BarcodeWidget(
+                                              barcode: Barcode.qrCode(
+                                                errorCorrectLevel: BarcodeQRCorrectionLevel.high,
+                                              ),
+                                              data: '$phonenumber',
+                                              width: 300,
+                                              height: 300,
+                                            ),
+                                          ),
+                                          pw.Container(
+                                            color: PdfColors.white,
+                                            width: 60,
+                                            height: 60,
+                                            child: pw.Image(pw.MemoryImage(byteList),),
+                                          ),
+
+                                        ],
                                       ),
                                     ),
-                                    pw.Container(
-                                      color: PdfColors.white,
-                                      width: 60,
-                                      height: 60,
-                                      child: pw.Image(pw.MemoryImage(byteList),),
-                                    ),
-                                  ],
-                                ),
-                              ),
 
-
-
-
-
-
-                            ]
-                        )
-                    )
-                ),
+                                  ]
+                              )
+                          )
+                      ),
+                      pw.SizedBox(height: 30),
+                      pw.Text('The QR Code has been generated electronically.'),
+                      pw.Text('Thank You.'),
+                    ]
+                  )
+                )
               );
 
             }

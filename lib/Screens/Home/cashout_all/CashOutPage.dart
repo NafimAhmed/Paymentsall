@@ -7,18 +7,6 @@ import 'cashout_amount.dart';
 
 
 
-// class CashOutPage extends StatefulWidget {
-//
-//   final String pin;
-//   final String balance;
-//   final String senderPhoneNumber;
-//
-//   const CashOutPage({super.key, required this.pin,required this.balance, required this.senderPhoneNumber});
-//
-//   @override
-//   State<CashOutPage> createState() => _CashOutPageState();
-// }
-
 class CashOutPage extends StatelessWidget {
 
   final String pin;

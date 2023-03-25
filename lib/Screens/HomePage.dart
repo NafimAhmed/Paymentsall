@@ -3,21 +3,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:payments_all_app/Screens/Government%20Fees/GovernmentFeesPage.dart';
 import 'package:payments_all_app/Screens/Home/Bank%20Transfer/Bank%20Transfer.dart';
 import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
 import 'package:payments_all_app/Screens/Mobile%20Banking/MobileBankingPage.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
-import '../salary_payroll/salary_dash_board.dart';
-import '../travelcard_all/tc_form.dart';
-import 'Add Money/Add Money.dart';
-import '../cashout_all/CashOutPage.dart';
-import 'Merchant Pay.dart';
-import '../mobile_recharge_all/Mobile Recharge Page.dart';
-import 'SendMoney/SendMoneyPage.dart';
-import 'SendMoney/contact_page_send_money.dart';
-import '../mobile_recharge_all/contacts_page.dart';
+import 'salary_payroll/salary_dash_board.dart';
+import 'travelcard_all/tc_form.dart';
+import 'Home/Add Money/Add Money.dart';
+import 'marchent_pay_all/Merchant Pay.dart';
+import 'mobile_recharge_all/Mobile Recharge Page.dart';
+import 'Home/Government Fees/GovernmentFeesPage.dart';
+import 'Home/SendMoney/SendMoneyPage.dart';
+import 'Home/SendMoney/contact_page_send_money.dart';
+import 'mobile_recharge_all/contacts_page.dart';
+import 'Home/cashout_all/CashOutPage.dart';
 
 
 
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                         Text('Your available balance',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey)),
                       ],
                     ),Spacer(),
-                    Text('৳ $balancechange',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
+                    Text('৳ ${balancechange}',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
                   ],
                 ),
               ),
@@ -128,6 +128,7 @@ class HomePage extends StatelessWidget {
                                   return MerchantPayPage(
                                     pin: pin,
                                     balance: balancechange.value,
+                                    senderNumber: phoneNumber,
                                   );
                                 },
                               ),
@@ -150,7 +151,9 @@ class HomePage extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return ContactPageSendMoney(pin: pin, balance: balancechange.value,);
+                              return ContactPageSendMoney(
+                                pin: pin,
+                                balance: balancechange.value,);
                             },
                           ),
                         );

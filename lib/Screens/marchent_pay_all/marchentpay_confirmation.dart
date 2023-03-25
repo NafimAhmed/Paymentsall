@@ -3,21 +3,24 @@
 
 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 import '../../utils/app_layout.dart';
+import '../Home/cashout_all/cashout_confirmation.dart';
 
 
 
 class MarchentPayConfirmation extends StatefulWidget{
 
 
-  final String receiveNumb,totAmount,ref;
+  final String senderNumber,totalAmount,receiveNumb,ref,balance;
 
-  const MarchentPayConfirmation({super.key, required this.receiveNumb, required this.totAmount, required this.ref});
+  const MarchentPayConfirmation({super.key, required this.receiveNumb, required this.ref, required this.totalAmount, required this.balance, required this.senderNumber});
 
   @override
   State<MarchentPayConfirmation> createState() => _MarchentPayConfirmationState();
@@ -45,6 +48,9 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
           textColor: Colors.white,
           fontSize: 16.0
       );
+
+
+      marchentPay(widget.senderNumber, widget.receiveNumb, widget.totalAmount);
 
     }
     setState(() {
@@ -132,8 +138,8 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
                         width: 1),
                     children: [
                       TableRow( children: [
-                        Column(children:[Text('Total :\n ৳ ${widget.totAmount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
-                        Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                        Column(children:[Text('Total :\n ৳ ${widget.totalAmount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                        Column(children:[Text('New Balance :\n ৳${widget.balance}', style: GoogleFonts.openSans(fontSize: 20.0))]),
                       ]),
 
                       TableRow( children: [
@@ -176,7 +182,6 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
                     controller.repeat();
 
                     if(controller.value>=1){
-
                       controller.stop();
 
                     }
@@ -220,4 +225,212 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
       ),
     );
   }
+
+
+
+  void marchentPay (String senderNumber,String receiveNumb,String amount)async{
+
+
+    //FirebaseDatabase database = FirebaseDatabase.instance;
+
+    DateTime now = DateTime.now();
+    //String formattedDate = DateFormat.yMMMEd().format(now);
+   // String formettedtime=DateFormat('E,d MMM yyyy HH:mm:ss').format(now);
+    String formettedtime=DateFormat('E,d MMM yyyy HH:mm:ss').format(now);
+    //print(formattedDate);
+
+
+
+
+    double amnt=double.parse(amount);
+    ////////////////sender///////////////////////////////////////////////////////////////////////////////
+
+    DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
+
+
+    final sendPhoneNumbersnapshotBalance = await rf.child(senderNumber).child("profile").child("balance").get();
+
+
+
+    //////////////////sender//////////////////////////////////////////////////////////////////////////////////
+
+    double senderBalance=double.parse(sendPhoneNumbersnapshotBalance.value.toString());
+
+    ///////receiver///////////////////////////////////////////////////////////////////////////////
+
+
+    final receiverPhoneNumbersnapshotBalance = await rf.child(receiveNumb).child("profile").child("balance").get();
+
+    double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+    double senderCurrentBalance=senderBalance-amnt;
+    double receiverCurrentBalance=receiverBalance+amnt;
+
+
+    //DatabaseReference ref = FirebaseDatabase.instance.ref("users");
+
+    await rf.child(receiveNumb).child("profile").update({
+      "balance":receiverCurrentBalance.toString()
+    }).then((value) async {
+
+      await rf.child(senderNumber).child("profile").update({
+        "balance":senderCurrentBalance.toString()
+      }).then((value) {
+
+        Fluttertoast.showToast(
+            msg: "Cashout Successful",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+
+      });
+
+
+    });
+
+
+    // await rf.child(sendPhoneNumber).child("profile").update({
+    //   "balance":senderCurrentBalance.toString()
+    // });
+
+
+
+
+
+    /////receiver/////////////////////////////////////////////////////////////////////////
+
+
+    DatabaseReference senderPostRef = rf.child(senderNumber).child("transection").push();
+    senderPostRef.set({
+      // ...
+      "type":"Merchant Pay",
+      "amount":amount,
+      "time": formettedtime,
+    });
+
+
+
+    DatabaseReference receiverPostRef = rf.child(receiveNumb).child("transection").push();
+    receiverPostRef.set({
+      "type":"Merchant Pay Received",
+      "amount":amount,
+      "time":formettedtime,
+    });
+
+    // await rf.child(sendPhoneNumber).child("transection").set({
+    //         "amount":"30",
+    //       });
+
+
+
+
+
+
+    bool isSennt=false;
+    bool isReceived=false;
+
+
+    // if (receiverPhoneNumbersnapshotBalance.exists){
+    //
+    //   double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+    //   double senderCurrentBalance=senderBalance-amnt;
+    //   double receiverCurrentBalance=receiverBalance+amnt;
+    //
+    //
+    //
+    //   await rf.child(sendPhoneNumber).child("profile").set({
+    //     "balance":senderCurrentBalance.toString(),
+    //   }).then((value)async {
+    //
+    //     await rf.child(sendPhoneNumber).child("Transition").child("path").set({
+    //       "balance":amount,
+    //       "type":"send"
+    //     }).then((value) {
+    //       isSennt=true;
+    //     });
+    //
+    //   });
+    //   //}
+    //
+    //
+    //   //}
+    //
+    //
+    //   await rf.child(receiverPhoneNumber).child("profile").update({
+    //     "balance":receiverCurrentBalance.toString(),
+    //   }).then((value) async{
+    //     await rf.child(receiverPhoneNumber).child("Transition").set({
+    //       "balance":amount,
+    //       "type":"received"
+    //     }).then((value) {
+    //       isReceived=true;
+    //     });
+    //   });
+    //   //}
+    //
+    // }
+    // else{
+    //   Fluttertoast.showToast(
+    //       msg: "This account doesn't exist",
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.CENTER,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0
+    //   );
+    // }
+    //
+    //
+    //
+    // if(isSennt && isReceived)
+    //   {
+    //
+    //     Fluttertoast.showToast(
+    //         msg: "Cashout Successful",
+    //         toastLength: Toast.LENGTH_SHORT,
+    //         gravity: ToastGravity.CENTER,
+    //         timeInSecForIosWeb: 1,
+    //         backgroundColor: Colors.red,
+    //         textColor: Colors.white,
+    //         fontSize: 16.0
+    //     );
+    //
+    //   }
+    // else{
+    //   Fluttertoast.showToast(
+    //       msg: "Something wrong. please try again",
+    //       toastLength: Toast.LENGTH_SHORT,
+    //       gravity: ToastGravity.CENTER,
+    //       timeInSecForIosWeb: 1,
+    //       backgroundColor: Colors.red,
+    //       textColor: Colors.white,
+    //       fontSize: 16.0
+    //   );
+    // }
+    //
+    //
+    //
+    //
+    //
+    //
+    //
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+
+
 }

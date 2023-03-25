@@ -14,11 +14,11 @@ class MarchentPayAmount extends StatelessWidget
 {
 
   final String reveiverNumb;
-
+  final String senderNumber;
   final String pin;
   final String balance;
 
-  MarchentPayAmount({super.key, required this.reveiverNumb, required this.pin, required this.balance});
+  MarchentPayAmount({super.key, required this.reveiverNumb, required this.pin, required this.balance, required this.senderNumber});
 
   TextEditingController _amount=TextEditingController();
 
@@ -119,31 +119,61 @@ class MarchentPayAmount extends StatelessWidget
                           suffixIcon: GestureDetector(
                               onTap: (){
 
-                                if(_amount.text.isNotEmpty){
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) {
-                                        return MerchantPayPin(
-                                          receiverNumb: reveiverNumb,
-                                          amount: _amount.text.toString(),
-                                          pin: pin,
-                                          balance: balance,);
-                                      },
-                                    ),
+
+
+                                double charge=double.parse(_amount.text.toString())*0.01;
+                                double total=charge+ double.parse(_amount.text.toString());
+
+
+
+                                if(_amount.text.toString().isEmpty){
+
+
+                                  Fluttertoast.showToast(
+                                      msg: "Please enter your amount.Thank You! ",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 10,
+                                      backgroundColor: Colors.red.shade100,
+                                      textColor: Colors.black,
+                                      fontSize: 16.0
                                   );
 
+
+
+
                                 }
+
+
+                                else if(total>double.parse(balance)){
+
+                                  Fluttertoast.showToast(
+                                      msg: "you haven't sufficient balance.Thank You! ",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.BOTTOM,
+                                      timeInSecForIosWeb: 10,
+                                      backgroundColor: Colors.red.shade100,
+                                      textColor: Colors.black,
+                                      fontSize: 16.0
+                                  );
+                                }
+
+
+
                                 else
                                   {
-                                    Fluttertoast.showToast(
-                                        msg: "Please enter your amount.Thank You! ",
-                                        toastLength: Toast.LENGTH_SHORT,
-                                        gravity: ToastGravity.BOTTOM,
-                                        timeInSecForIosWeb: 10,
-                                        backgroundColor: Colors.red.shade100,
-                                        textColor: Colors.black,
-                                        fontSize: 16.0
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) {
+                                          return MerchantPayPin(
+                                            receiverNumb: reveiverNumb,
+                                            amount: _amount.text.toString(),
+                                            pin: pin,
+                                            balance: balance,
+                                            senderNumber: senderNumber,);
+                                        },
+                                      ),
                                     );
                                   }
 
@@ -158,7 +188,7 @@ class MarchentPayAmount extends StatelessWidget
 
                       Row(
                         children: [
-                          Text("Aveilable Balance : ",
+                          Text("Available Balance : ",
                             style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold

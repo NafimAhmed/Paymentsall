@@ -76,7 +76,7 @@ class EloanPageTwo extends StatelessWidget {
             children: [
               SizedBox(height: 50,),
 
-              Image.asset('assets/images/Payments_All_Logo.png',height: 100,width: 200,),
+              Image.asset('assets/images/paymentsAll_logo.png',height: 100,width: 200,),
 
               SizedBox(height: 30,),
 

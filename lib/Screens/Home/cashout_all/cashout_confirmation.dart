@@ -2,6 +2,7 @@
 
 
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,10 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
+
+import '../../Notification/notification.dart';
+
+
 
 class CashOutConfirmation extends StatefulWidget
 {
@@ -24,6 +29,36 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
   //////////////////////////////////////////////////////
 
 
+  @override
+  void initState() {
+
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+
+      if(!isAllowed)
+      {
+        AwesomeNotifications().requestPermissionToSendNotifications();
+      }
+
+    });
+    super.initState();
+
+
+  }
+
+  triggerNotification()
+  {
+    AwesomeNotifications().createNotification(
+        content: NotificationContent(
+            id: 10,
+            channelKey: 'basic_channel',
+            title: 'CashOut',
+            body: '${widget.totalAmount} Tk has been successfully CashOut from \n${widget.senderPhoneNumber} account.'
+        )
+    );
+  }
+
+
+
   late AnimationController controller= AnimationController(
     /// [AnimationController]s can be created with `vsync: this` because of
     /// [TickerProviderStateMixin].
@@ -31,12 +66,10 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     duration: const Duration(seconds: 10),
   )..addListener(() {
 
-    if(controller.value>=.90){
-
+    if(controller.value>=.99){
       controller.stop();
-
       Fluttertoast.showToast(
-          msg: "Done",
+          msg: "Done Cashout",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
@@ -44,7 +77,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
           textColor: Colors.white,
           fontSize: 16.0
       );
-
+      triggerNotification();
       cashout(widget.senderPhoneNumber, widget.receiversNumber, widget.totalAmount);
     }
     setState(() {
@@ -81,6 +114,10 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
   @override
   Widget build(BuildContext context) {
+
+
+
+
     // TODO: implement build
     return Scaffold(
 
@@ -137,7 +174,7 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
                     children: [
                       TableRow( children: [
                         Column(children:[Text('Total :\n ৳ ${widget.totalAmount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
-                        Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                        Column(children:[Text('New Balance :\n ৳${widget.balance}', style: GoogleFonts.openSans(fontSize: 20.0))]),
                       ]),
 
 
@@ -175,6 +212,10 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
                     if(controller.value>=1){
 
                       controller.stop();
+
+
+                     // triggerNotification();
+
 
                     }
                     //
@@ -238,6 +279,23 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
       ),
     );
   }
+
+
+
+  // triggerNotification()
+  // {
+  //   AwesomeNotifications().createNotification(
+  //       content: NotificationContent(
+  //           id: 10,
+  //           channelKey: 'basic_channel',
+  //           title: 'CashOut',
+  //           body: '${widget.totalAmount}Tk has been successfully CashOut from ${widget.senderPhoneNumber} account.'
+  //       )
+  //   );
+  // }
+  //
+
+
 
 
   void cashout (String sendPhoneNumber,String receiverPhoneNumber,String amount)async{
@@ -326,6 +384,26 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
 
     DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").push();
     receiverPostRef.set({
+      "type":"Cashout received",
+      "amount":"$amount",
+      "time":formettedtime,
+    });
+
+    ////////////////////senderNotification///////////////////////////////////////////////////
+
+
+
+    DatabaseReference senderPostRefNotify = rf.child(sendPhoneNumber).child("notification").push();
+    senderPostRefNotify.set({
+      // ...
+      "type":"Cashout",
+      "amount":"$amount",
+      "time": formettedtime,
+    });
+
+    ///////////////////////////////receiverNotification/////////////////////////////////////////
+    DatabaseReference receiverPostRefNotify = rf.child(receiverPhoneNumber).child("notification").push();
+    receiverPostRefNotify.set({
       "type":"Cashout received",
       "amount":"$amount",
       "time":formettedtime,

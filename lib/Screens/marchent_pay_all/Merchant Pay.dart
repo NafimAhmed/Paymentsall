@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:payments_all_app/Screens/marchent_pay_all/QRCode/marchent_pay_qrcode_scanner.dart';
 
-import '../marchent_pay_all/marchent_pay_amount.dart';
+import 'marchent_pay_amount.dart';
 
 class MerchantPayPage extends StatefulWidget {
 
+  final String senderNumber;
   final String pin;
   final String balance;
 
-  const MerchantPayPage({super.key, required this.pin,required this.balance});
+  const MerchantPayPage({super.key, required this.pin,required this.balance, required this.senderNumber});
 
   @override
   State<MerchantPayPage> createState() => _MerchantPayPageState();
@@ -124,9 +125,11 @@ class _MerchantPayPageState extends State<MerchantPayPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return MarchentPayAmount(reveiverNumb: _mobileNo.text.toString(),
+                                      return MarchentPayAmount(
+                                        reveiverNumb: _mobileNo.text.toString(),
                                         pin: widget.pin,
-                                         balance: widget.balance,);
+                                         balance: widget.balance,
+                                        senderNumber: widget.senderNumber,);
                                     },
                                   ),
                                 );

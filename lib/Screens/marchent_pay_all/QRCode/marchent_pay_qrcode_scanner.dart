@@ -77,7 +77,7 @@ class _MarchentPayQRCodeScannerState extends State<MarchentPayQRCodeScanner> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return MarchentPayAmount(reveiverNumb: result!.code.toString(), pin: '', balance: '',);
+                return MarchentPayAmount(reveiverNumb: result!.code.toString(), pin: '', balance: '', senderNumber: '',);
               },
             ),
           );

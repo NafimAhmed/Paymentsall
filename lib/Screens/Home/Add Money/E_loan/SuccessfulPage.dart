@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:payments_all_app/Screens/Home/HomePage.dart';
+import 'package:payments_all_app/Screens/HomePage.dart';
 
 import '../../../../utils/app_layout.dart';
 import '../../../MainScreen.dart';
@@ -216,7 +216,7 @@ class LoanSuccessfulPage extends StatelessWidget {
                                 //fontSize: 16
                               ),
                             ),
-                            Image.asset('assets/images/Payments_All_Logo.png',height: 30,),
+                            Image.asset('assets/images/paymentsAll_logo.png',height: 30,),
                           ],
                         ),
                       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:payments_all_app/Screens/Home/HomePage.dart';
+import 'package:payments_all_app/Screens/HomePage.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
 import 'contact_page_send_money.dart';
@@ -133,12 +133,19 @@ class TransferReceiptPage extends StatelessWidget {
 
                     child: ListTile(
                      // title: Text("     ${widget.contacts!.isNotEmpty ? widget.contacts : '(none)'}"),
-                      title: Text(recName.isEmpty ? 'Unknown' : recName,style: const TextStyle(
+                      title: Text("${recName.isEmpty ? 'Unknown' : recName}",style: const TextStyle(
                         fontWeight: FontWeight.w500,
                           color: Colors.black,
-                          fontSize: 16),
+                          fontSize: 18,
                       ),
-                      subtitle: Text('$recNumb     ${DateFormat.yMd().format(now).toString()}   ${DateFormat.jm().format(now).toString()}'),
+                      ),
+                      subtitle: Text('$recNumb\n${DateFormat.yMd().format(now).toString()}     ${DateFormat.jm().format(now).toString()}'),
+                      trailing: Text('${recAmount}.00৳',style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 18,
+                      ),
+                      ),
                     ),
                   ),
                 ),

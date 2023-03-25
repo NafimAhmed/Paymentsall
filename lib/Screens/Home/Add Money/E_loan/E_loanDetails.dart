@@ -116,7 +116,7 @@ class ELoanDetailsPage extends StatelessWidget {
                     children: [
                       Text('E-Loan Giver'),
                       Spacer(),
-                      Image.asset('assets/images/Payments_All_Logo.png',height: AppLayout.getHeight(70),width: AppLayout.getWidth(100),)
+                      Image.asset('assets/images/paymentsAll_logo.png',height: AppLayout.getHeight(70),width: AppLayout.getWidth(100),)
                     ],
                   ),
                 ) ,

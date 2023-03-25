@@ -2,7 +2,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../Screens/Home/HomePage.dart';
+import '../../Screens/HomePage.dart';
 import '../../Screens/MainScreen.dart';
 
 class LoginPage extends StatefulWidget {

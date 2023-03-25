@@ -129,7 +129,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 16.0,right: 16.0,top: 26),
-                        child: Text('Available Balance : 1000.00 ৳',style: TextStyle(
+                        child: Text('Available Balance : ${widget.balance} ৳',style: TextStyle(
                             fontWeight: FontWeight.w400,
                             fontSize: 16,
                             color: Colors.black)
@@ -154,7 +154,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                       overlayColor: MaterialStateProperty.all(Colors.transparent),
                     ),
                     onPressed: (){
-                      if(_sendMoney.text.isNotEmpty){
+                      if(_sendMoney.text.toString().isNotEmpty){
                         Navigator.push(
                           context,
                           MaterialPageRoute(

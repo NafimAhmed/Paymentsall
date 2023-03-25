@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:payments_all_app/Screens/Home/HomePage.dart';
+import 'package:payments_all_app/Screens/HomePage.dart';
 import 'package:payments_all_app/Screens/Notification/NotificationScreen.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
@@ -56,7 +56,7 @@ class MainScreen extends StatelessWidget {
         phoneNumber: phoneNumber,
       ),
       ScanScreen(phonenumber: phoneNumber,),
-      NotificationScreen(),
+      NotificationScreen(phoneNumber: phoneNumber,),
       ProfileScreen(
         first_name: firstName,
         last_name: lastName,
