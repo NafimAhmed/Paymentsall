@@ -100,6 +100,7 @@ class _ContactsPageState extends State<ContactsPage> {
                           onTap: (){
                             if(_mobileNo.text.toString().isNotEmpty)
                               {
+                                Navigator.pop(context);
                                 Navigator.of(context).push(
                                     MaterialPageRoute(
                                         builder: (_) => MobileRechargePag(
@@ -158,14 +159,27 @@ class _ContactsPageState extends State<ContactsPage> {
 
            if(fullContact!.phones.first.number.isNotEmpty) {
 
-             Navigator.pop(context);
+             String newText = fullContact!.phones.first.number;
+             final updatedText = newText;
+             _mobileNo.value = _mobileNo.value.copyWith(
+               text: updatedText,
+               selection: TextSelection.collapsed(offset: updatedText.length),
+             );
 
-             await Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:fullContact!.phones.first.number, pin: widget.pin, balance: widget.balance,)));
+             // Navigator.pop(context);
+             //
+             // await Navigator.of(context).push(
+             //     MaterialPageRoute(builder: (_) => MobileRechargePag(
+             //       contacts:fullContact!.phones.first.number, pin: widget.pin, balance: widget.balance,)
+             //     )
+             // );
               }
+
               else{
 
 
-              Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:"none", pin: widget.pin, balance: widget.balance,)));
+             //
+             // Navigator.of(context).push(MaterialPageRoute(builder: (_) => MobileRechargePag(contacts:"none", pin: widget.pin, balance: widget.balance,)));
 
       Fluttertoast.showToast(
           msg: "this contact has no number",
