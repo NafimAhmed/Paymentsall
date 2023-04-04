@@ -42,6 +42,8 @@ class PaymentDetails {
 
 }
 
+
+
 final receipts=[
   BillDetails('Organization Name', 'DESCO(Postpaid)'),
   BillDetails('Bill Month', 'January, 2023'),
@@ -50,13 +52,13 @@ final receipts=[
 
 ];
 
-final payReceipts=[
-  PaymentDetails('Payment Date', '22 February, 2023'),
-  PaymentDetails('PaymentsAll Account', '017XXXXXXXX'),
-  PaymentDetails('Transaction Id', 'AMB4G5J7K6FF'),
-  PaymentDetails('Paid to Organization', 'BDT 1121.00'),
-  PaymentDetails('PaymentsAll Fee', 'BDT 0.00'),
-];
+// final payReceipts=[
+//   PaymentDetails('Payment Date', '22 February, 2023'),
+//   PaymentDetails('PaymentsAll Account', '017XXXXXXXX'),
+//   PaymentDetails('Transaction Id', 'AMB4G5J7K6FF'),
+//   PaymentDetails('Paid to Organization', 'BDT 1121.00'),
+//   PaymentDetails('PaymentsAll Fee', 'BDT 0.00'),
+// ];
 
 
 class RecentTransferScreen extends StatelessWidget {
@@ -110,6 +112,18 @@ class RecentTransferScreen extends StatelessWidget {
                   reverse: true,
                   itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
 
+
+
+
+
+                    String prep=" ";
+                    if(snapshot.child("transection_type").value.toString()=="Sent")
+                      {
+                        prep="Send to : ";
+                      }
+                    else if(snapshot.child("transection_type").value.toString()=="Received"){
+                      prep="Received from : ";
+                    }
                     return Container(
                                 decoration: BoxDecoration(
                                     color: Colors.red.shade50,
@@ -229,7 +243,7 @@ class RecentTransferScreen extends StatelessWidget {
                                                                                   top: 8.0,
                                                                                   bottom: 12.0),
                                                                               child: pw.Text(
-                                                                                'Bill Information',
+                                                                                '${snapshot.child("type").value.toString()} Information',
                                                                                 style: pw.TextStyle(
                                                                                     color: PdfColors.black,
                                                                                     fontSize: 18,
@@ -445,7 +459,7 @@ class RecentTransferScreen extends StatelessWidget {
                                                                           child:  pw.Row(
                                                                               mainAxisAlignment: pw.MainAxisAlignment.spaceEvenly,
                                                                               children: [
-                                                                                pw.Text('Payment Received',
+                                                                                pw.Text('Payment ${snapshot.child("transection_type").value.toString()}',
                                                                                     style:  pw.TextStyle(color: PdfColors.green900,fontSize: 16,font: pw.Font.times()
                                                                                     )
                                                                                 ),
@@ -489,7 +503,7 @@ class RecentTransferScreen extends StatelessWidget {
                                       ],
                                     ),
 
-                                    Text("DESCO",
+                                    Text(prep+snapshot.child("opponent").value.toString(),
                                       style: GoogleFonts.openSans(
                                           fontSize: 16,
                                           fontWeight: FontWeight.w600

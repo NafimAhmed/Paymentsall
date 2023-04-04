@@ -372,34 +372,80 @@ class _CashOutConfirmationState extends State<CashOutConfirmation> with TickerPr
     /////receiver/////////////////////////////////////////////////////////////////////////
 
 
+
     DatabaseReference senderPostRef = rf.child(sendPhoneNumber).child("transection").push();
     senderPostRef.set({
       // ...
-      "type":"Cashout",
-      "amount":"$amount",
+      "transection_type":"Sent",
+      "opponent":receiverPhoneNumber,
+      "type":"Cash out",
+      "amount":amount,
+      "time": formettedtime,
+    });
+
+
+    DatabaseReference senderPostNotifyRef = rf.child(sendPhoneNumber).child("Notifications").push();
+    senderPostNotifyRef.set({
+      // ...
+      "transection_type":"Sent",
+      "opponent":receiverPhoneNumber,
+      "type":"Cash out",
+      "amount":amount,
       "time": formettedtime,
     });
 
 
 
-    DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").push();
+
+
+    DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").child(senderPostRef.key.toString());
     receiverPostRef.set({
-      "type":"Cashout received",
-      "amount":"$amount",
+      "transection_type":"Received",
+      "opponent":sendPhoneNumber,
+      "type":"Cash out",
+      "amount":amount,
       "time":formettedtime,
     });
+
+    DatabaseReference receiverPostNotifyRef = rf.child(receiverPhoneNumber).child("Notifications").child(senderPostRef.key.toString());
+    receiverPostNotifyRef.set({
+      "transection_type":"Received",
+      "opponent":sendPhoneNumber,
+      "type":"Cash out",
+      "amount":amount,
+      "time":formettedtime,
+    });
+
+
+
+    // DatabaseReference senderPostRef = rf.child(sendPhoneNumber).child("transection").push();
+    // senderPostRef.set({
+    //   // ...
+    //   "type":"Cashout",
+    //   "amount":"$amount",
+    //   "time": formettedtime,
+    // });
+    //
+    //
+    //
+    // DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").push();
+    // receiverPostRef.set({
+    //   "type":"Cashout received",
+    //   "amount":"$amount",
+    //   "time":formettedtime,
+    // });
 
     ////////////////////senderNotification///////////////////////////////////////////////////
 
 
 
-    DatabaseReference senderPostRefNotify = rf.child(sendPhoneNumber).child("notification").push();
-    senderPostRefNotify.set({
-      // ...
-      "type":"Cashout",
-      "amount":"$amount",
-      "time": formettedtime,
-    });
+    // DatabaseReference senderPostRefNotify = rf.child(sendPhoneNumber).child("notification").push();
+    // senderPostRefNotify.set({
+    //   // ...
+    //   "type":"Cashout",
+    //   "amount":"$amount",
+    //   "time": formettedtime,
+    // });
 
     ///////////////////////////////receiverNotification/////////////////////////////////////////
     // DatabaseReference receiverPostRefNotify = rf.child(receiverPhoneNumber).child("notification").push();

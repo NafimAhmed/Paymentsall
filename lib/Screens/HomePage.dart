@@ -62,7 +62,9 @@ class HomePage extends StatelessWidget {
 
     rf.child(phoneNumber).child('profile').onValue.listen((event) {
 
-      balancechange.value=event.snapshot.child("balance").value.toString()!;
+      double balan= double.parse(event.snapshot.child("balance").value.toString()!);
+
+      balancechange.value=balan.toStringAsFixed(2);
 
     });
 

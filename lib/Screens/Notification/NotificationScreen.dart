@@ -23,7 +23,12 @@ class _NotificationScreenState extends State<NotificationScreen> {
   @override
   Widget build(BuildContext context) {
 
-    Query dbref=FirebaseDatabase.instance.ref("User_profile").child(widget.phoneNumber).child("notification");
+    Query dbref=FirebaseDatabase.instance.ref("User_profile").child(widget.phoneNumber).child("Notifications");
+
+
+    dbref.onValue.listen((event) {
+      triggerNotification();
+    });
 
 
     return Scaffold(
@@ -42,30 +47,46 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
 
 
+
             Padding(
               padding: const EdgeInsets.all(4.0),
               child: FirebaseAnimatedList(
+
                 physics: ScrollPhysics(),
                 shrinkWrap: true,
                 query: dbref,
                 reverse: true,
                 itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
 
+                  String prep=" ";
+                  if(snapshot.child("transection_type").value.toString()=="Sent")
+                  {
+                    prep="Send to : ";
+                  }
+                  else if(snapshot.child("transection_type").value.toString()=="Received"){
+                    prep="Received from : ";
+                  }
+
+
                   return Card(
                     color: Colors.red.shade50 ,
                     //color: Color(0xFFF6F3FD),
                     elevation: 0.0,
                     child: ListTile(
+                      onTap: (){
+
+                      },
                       leading: Image.asset('assets/images/Payments_All.png'),
-                      title: Row(
+                      title: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('${snapshot.child("type").value.toString()}',
                           style: GoogleFonts.openSans(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
                           ),
-                          ),Spacer(),
-                          Text('${DateFormat.yMd().format(DateTime.now()).toString()}',
+                          ),
+                          Text('${snapshot.child("time").value.toString()}',
                             style: GoogleFonts.openSans(
                               color: Colors.black,
                               fontWeight: FontWeight.w500,
@@ -86,13 +107,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                 fontWeight: FontWeight.bold
                             )
                             ),
-                            TextSpan(text: 'Tk has been successfully CashOut from',
+                            TextSpan(text: 'Tk has been successfully ${prep}',
                             style: GoogleFonts.openSans(
                               color: Colors.black,
                               fontWeight: FontWeight.w300
                             ),
                             ),
-                            TextSpan(text: ' ${widget.phoneNumber}',style: GoogleFonts.openSans(
+                            TextSpan(text: ' ${snapshot.child("opponent").value.toString()}',style: GoogleFonts.openSans(
                                 fontWeight: FontWeight.bold
                             )
                             ),
@@ -107,13 +128,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       ),
 
 
-                      // Text('${snapshot.child("amount").value.toString()} Tk has been successfully CashOut from ${widget.phoneNumber} account.',
-                      //   style: GoogleFonts.openSans(
-                      //     color: Colors.black,
-                      //     fontWeight: FontWeight.w300,
-                      //     //fontSize: 16
-                      //   ),
-                      // ),
+
                     ),
                   );
 
@@ -140,71 +155,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
 
 
-            // ListView.builder(
-            //   itemCount: notifications.length,
-            //     itemBuilder: (context, index){
-            //     return ListTile(
-            //       title: Text(notifications[index]),
-            //     );
-            //     })
 
-
-
-
-
-
-            // ListView.builder(
-            //     shrinkWrap: true,
-            //     physics: NeverScrollableScrollPhysics(),
-            //     itemCount: 10,
-            //     itemBuilder: (BuildContext context,int index){
-            //
-            //       return InkWell(
-            //         //onTap: triggerNotification,
-            //         child: Container(
-            //
-            //           decoration: BoxDecoration(
-            //               color: Colors.red.shade100,
-            //               border: Border.all(
-            //                 color: Colors.red.shade100,
-            //               ),
-            //               borderRadius: BorderRadius.all(Radius.circular(15))
-            //           ),
-            //
-            //
-            //           padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(10)),
-            //           margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(5),vertical: AppLayout.getHeight(10)),
-            //
-            //
-            //          // margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(20)),
-            //           child: Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //
-            //               Text("Notification Title",
-            //                 style: GoogleFonts.openSans(
-            //                   fontSize: 20,
-            //                   fontWeight: FontWeight.bold
-            //                 ),
-            //               ),
-            //
-            //               Text("Notificaton Description",
-            //
-            //                   style: GoogleFonts.openSans(
-            //                   fontSize: 15,
-            //                   fontWeight: FontWeight.normal
-            //               ),
-            //
-            //               ),
-            //
-            //             ],
-            //           ),
-            //         ),
-            //       );
-            //
-            //     }
-            //
-            // )
           ],
         ),
       ),
@@ -216,49 +167,49 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
 
 
-  //
-  //
-  // triggerNotification()
-  // {
-  //   AwesomeNotifications().createNotification(
-  //       content: NotificationContent(
-  //           id: 10,
-  //           channelKey: 'basic_channel',
-  //           title: 'Simple Notification',
-  //           body: 'this is notification body'
-  //       )
-  //   );
-  // }
-  //
-  //
-  //
-  //
-  // @override
-  // void initState() {
-  //
-  //
-  //   AwesomeNotifications().isNotificationAllowed().then((isAllowed){
-  //
-  //     if(!isAllowed)
-  //     {
-  //       AwesomeNotifications().requestPermissionToSendNotifications();
-  //     }
-  //
-  //   });
-  //   super.initState();
-  //
-  //   //
-  //   // rf.child("notification").onChildAdded.listen((event) {
-  //   //   showNotification(event.snapshot.value);
-  //   // });
-  // }
 
- // Future<void>onSelectNotification(String payload)async{
- //
- // }
- //
- // Future<void>showNotification(String data)async{
- //
- // }
+
+            triggerNotification()
+            {
+              AwesomeNotifications().createNotification(
+                  content: NotificationContent(
+                      id: 10,
+                      channelKey: 'basic_channel',
+                      title: 'Simple Notification',
+                      body: 'this is notification body'
+                  )
+              );
+            }
+
+
+
+
+            @override
+            void initState() {
+
+
+              AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+
+                if(!isAllowed)
+                {
+                  AwesomeNotifications().requestPermissionToSendNotifications();
+                }
+
+              });
+              super.initState();
+
+              //
+              // rf.child("notification").onChildAdded.listen((event) {
+              //   showNotification(event.snapshot.value);
+              // });
+            }
+
+           Future<void>onSelectNotification(String payload)async{
+
+           }
+
+           Future<void>showNotification(String data)async{
+
+           }
 
 }

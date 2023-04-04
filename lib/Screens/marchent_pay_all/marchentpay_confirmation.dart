@@ -242,6 +242,7 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
 
 
 
+
     double amnt=double.parse(amount);
     ////////////////sender///////////////////////////////////////////////////////////////////////////////
 
@@ -306,6 +307,19 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
     DatabaseReference senderPostRef = rf.child(senderNumber).child("transection").push();
     senderPostRef.set({
       // ...
+      "transection_type":"Sent",
+      "opponent":receiveNumb,
+      "type":"Merchant Pay",
+      "amount":amount,
+      "time": formettedtime,
+    });
+
+
+    DatabaseReference senderPostNotifyRef = rf.child(senderNumber).child("Notifications").push();
+    senderPostNotifyRef.set({
+      // ...
+      "transection_type":"Sent",
+      "opponent":receiveNumb,
       "type":"Merchant Pay",
       "amount":amount,
       "time": formettedtime,
@@ -313,9 +327,22 @@ class _MarchentPayConfirmationState extends State<MarchentPayConfirmation>with T
 
 
 
-    DatabaseReference receiverPostRef = rf.child(receiveNumb).child("transection").push();
+
+
+    DatabaseReference receiverPostRef = rf.child(receiveNumb).child("transection").child(senderPostRef.key.toString());
     receiverPostRef.set({
-      "type":"Merchant Pay Received",
+      "transection_type":"Received",
+      "opponent":senderNumber,
+      "type":"Merchant Pay",
+      "amount":amount,
+      "time":formettedtime,
+    });
+
+    DatabaseReference receiverPostNotifyRef = rf.child(receiveNumb).child("Notifications").child(senderPostRef.key.toString());
+    receiverPostNotifyRef.set({
+      "transection_type":"Received",
+      "opponent":senderNumber,
+      "type":"Merchant Pay",
       "amount":amount,
       "time":formettedtime,
     });
