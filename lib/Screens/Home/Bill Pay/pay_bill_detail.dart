@@ -13,7 +13,11 @@ class PayBillDetails extends StatefulWidget {
   final String firstName;
   final String lastName;
   final String pin;
-  const PayBillDetails({super.key, required this.firstName, required this.lastName, required this.pin});
+  final String organizationName,BillType,Org_AccountNumber;
+
+  const PayBillDetails({super.key, required this.firstName, required this.lastName, required this.pin, required this.organizationName, required this.BillType, required this.Org_AccountNumber});
+
+  //const PayBillDetails({super.key, required this.firstName, required this.lastName, required this.pin});
 
   @override
   State<PayBillDetails> createState() => _PayBillDetailsState();
@@ -73,8 +77,8 @@ class _PayBillDetailsState extends State<PayBillDetails> {
 
             ListTile(
               leading: Image.asset("assets/images/Payments_All.png"),
-              title: Text("Organization name"),
-              subtitle: Text(" Bill Type name"),
+              title: Text("${widget.organizationName}"),
+              subtitle: Text("${widget.BillType}"),
 
               onTap: (){
 
@@ -102,7 +106,7 @@ class _PayBillDetailsState extends State<PayBillDetails> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Text("Billing month : "),
+                      Text("Billing month and year: "),
 
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -222,6 +226,11 @@ class _PayBillDetailsState extends State<PayBillDetails> {
                                     MaterialPageRoute(
                                       builder: (context) {
                                         return PayBillPin(
+                                          Org_AccountNumber: widget.Org_AccountNumber,
+                                          organizationName: widget.organizationName,
+                                          BillType: widget.BillType,
+                                          Billing_Month: dropdownValue_month,
+                                          Billing_Year: dropdownValue_year,
                                           firstName: widget.firstName,
                                           lastName: widget.lastName,
                                           pin: widget.pin,);

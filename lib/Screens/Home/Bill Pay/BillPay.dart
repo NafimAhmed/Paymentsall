@@ -1,3 +1,5 @@
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:payments_all_app/Screens/Home/Bill%20Pay/pay_bill_detail.dart';
 
@@ -15,9 +17,17 @@ class BillPayPage extends StatefulWidget {
 }
 
 class _BillPayPageState extends State<BillPayPage> {
+
+
+
+
+
   TextEditingController _organization=TextEditingController();
   @override
   Widget build(BuildContext context) {
+
+    Query dbref=FirebaseDatabase.instance.ref("Organization_List");//.child(phoneNumber).child("transection");
+
     return Scaffold(
 
       appBar: AppBar(
@@ -360,37 +370,92 @@ class _BillPayPageState extends State<BillPayPage> {
                       child: Column(
                         children: [
 
-                          ListView.builder(
+
+
+
+                              FirebaseAnimatedList(
+                              physics: ScrollPhysics(),
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
-                              itemCount: 10,
-                              itemBuilder: (BuildContext context,int index){
+                              query: dbref,
+                              reverse: true,
+                              itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+                                // if(snapshot.child("Bill_type").value.toString()!=" ")
+                                //   {
+                                //     return Text("");
+                                //
+                                //   }else{
 
-                                return ListTile(
-                                  leading: Image.asset("assets/images/Payments_All.png"),
-                                  title: Text("Organization name"),
-                                  subtitle: Text(" Bill Type name"),
+                                  return ListTile(
 
-                                  onTap: (){
+                                    onTap: (){
+                                      Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) {
+                                                          return PayBillDetails(
+                                                              firstName: widget.firstName,
+                                                              lastName: widget.lastName,
+                                                              pin: widget.pin,
+                                                            Org_AccountNumber: snapshot.child("Account_Number").value.toString(),
+                                                            organizationName: snapshot.child("Org_Name").value.toString(),
+                                                            BillType: snapshot.child("Bill_type").value.toString() ,
 
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) {
-                                          return PayBillDetails(
-                                              firstName: widget.firstName,
-                                              lastName: widget.lastName,
-                                              pin: widget.pin);
-                                        },
-                                      ),
-                                    );
 
-                                  },
 
-                                );
+                                                          );
+                                                        },
+                                                      ),
+                                                    );
+                                    },
 
-                              }
-                          )
+                                    leading: Image.asset("assets/images/Payments_All.png"),
+                                    title: Text("${snapshot.child("Org_Name").value.toString()}"),
+                                    subtitle: Text("${snapshot.child("Bill_type").value.toString()}"),
+                                  );
+
+                               // }
+
+
+
+                              })
+
+
+
+
+
+
+
+    // ListView.builder(
+                          //     shrinkWrap: true,
+                          //     physics: NeverScrollableScrollPhysics(),
+                          //     itemCount: 10,
+                          //     itemBuilder: (BuildContext context,int index){
+                          //
+                          //       return ListTile(
+                          //         leading: Image.asset("assets/images/Payments_All.png"),
+                          //         title: Text("Organization name"),
+                          //         subtitle: Text(" Bill Type name"),
+                          //
+                          //         onTap: (){
+                          //
+                          //           Navigator.push(
+                          //             context,
+                          //             MaterialPageRoute(
+                          //               builder: (context) {
+                          //                 return PayBillDetails(
+                          //                     firstName: widget.firstName,
+                          //                     lastName: widget.lastName,
+                          //                     pin: widget.pin);
+                          //               },
+                          //             ),
+                          //           );
+                          //
+                          //         },
+                          //
+                          //       );
+                          //
+                          //     }
+                          // )
 
                         ],
                       ),

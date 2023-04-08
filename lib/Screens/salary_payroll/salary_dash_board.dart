@@ -1,21 +1,46 @@
 
 
 
+
+
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/Screens/salary_payroll/salarypay_pin.dart';
 
 import '../../utils/app_layout.dart';
+import 'add_employee.dart';
+import 'employee_detail.dart';
 
 class SalaryDashBoard extends StatelessWidget {
-  final String pin;
-  const SalaryDashBoard({Key? key, required this.pin}) : super(key: key);
+  final String pin,phoneNumber,balance;
+
+  RxDouble amt=0.00.obs;
+
+
+
+   SalaryDashBoard({super.key, required this.pin, required this.phoneNumber, required this.balance});
+  //const SalaryDashBoard({Key? key, required this.pin}) : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    String amount="100000";
+
+    Query dbref=FirebaseDatabase.instance.ref("User_profile").child(phoneNumber).child("Employee_List");
+
+    totalAmnt();
+
+
+
+
+
+
     return Scaffold(
 
       appBar: AppBar(
@@ -51,17 +76,17 @@ class SalaryDashBoard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
 
-                      Text("Total Amount : "),
+                      Text("Total Salary amount : "),
 
-                      Row(
+                      Obx(() => Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(" ৳ 100000",
-                          style: GoogleFonts.openSans(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.red.shade900
-                          ),
+                          Text(" ৳ ${amt.value}",
+                            style: GoogleFonts.openSans(
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red.shade900
+                            ),
                           ),
 
 
@@ -72,7 +97,11 @@ class SalaryDashBoard extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) {
-                                    return SalaryPayPin(pin: pin,);
+                                    return SalaryPayPin(
+                                      pin: pin,
+                                      balance: balance,
+                                      amount: amount,
+                                    );
                                   },
                                 ),
                               );
@@ -87,7 +116,11 @@ class SalaryDashBoard extends StatelessWidget {
 
 
                         ],
-                      ),
+                      ),),
+
+
+
+
 
                       Row(
                         children: [
@@ -98,7 +131,7 @@ class SalaryDashBoard extends StatelessWidget {
                             ),
                           ),
 
-                          Text("100.00",
+                          Text("$balance",
 
                             style: GoogleFonts.openSans(
                               fontSize: 15,
@@ -137,28 +170,73 @@ class SalaryDashBoard extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20)),
                   child: Column(
                     children: [
-                      ListView.builder(
-                        shrinkWrap: true,
+
+                      FirebaseAnimatedList(
                         physics: ScrollPhysics(),
-                        itemCount: 10,
-                          itemBuilder: (BuildContext context,int index){
-                            return ListTile(
-                              leading: Icon(Icons.person),
-                              title: Text('Employee name'),
-                              subtitle: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        shrinkWrap: true,
+                        query: dbref,
+                        reverse: true,
+                        itemBuilder: (BuildContext context, DataSnapshot snapshot, Animation<double> animation, int index) {
+
+
+                          return Container(
+                            margin: EdgeInsets.symmetric(vertical: 10),
+                            decoration: BoxDecoration(
+                                color: Colors.red.shade100,
+                                borderRadius: BorderRadius.circular(15)
+                            ),
+
+                            child: ListTile(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return EmployeeDetail(
+                                        EmpName: '${snapshot.child("EmployeeName").value.toString()}',
+                                        EmpDesig: "${snapshot.child("EmployeeDesignetion").value.toString()}",
+                                        EmpPhone: "${snapshot.child("EmployeePhoneNumber").value.toString()}",
+                                        EmpSal: "${snapshot.child("EmployeeSalary").value.toString()}",
+                                      );
+                                    },
+                                  ),
+                                );
+                              },
+                              leading: CircleAvatar(
+                                child: Icon(Icons.person),
+                                radius: 30,
+                                backgroundColor: Colors.green.shade500,
+
+                              ),
+                              title: Text('${snapshot.child("EmployeeName").value.toString()}',
+                                style: GoogleFonts.openSans(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-
-                                  Text("Designation"),
-                                  Text("Salary amount"),
-
+                                  Text("Designation : ${snapshot.child("EmployeeDesignetion").value.toString()}"),
+                                  Text("Account Phone Number : ${snapshot.child("EmployeePhoneNumber").value.toString()}"),
+                                  Text("Salary amount : ${snapshot.child("EmployeeSalary").value.toString()}"),
                                 ],
                               ),
 
-                            );
+                            ),
+                          );
 
-                          }
-                      ),
+
+
+
+                        },
+
+                      )
+
+
+
+
+
                     ],
                   ),
                 )
@@ -169,9 +247,81 @@ class SalaryDashBoard extends StatelessWidget {
               ],
             ),
           ),
+
+
+
+
         ),
       ),
+
+
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      floatingActionButton: Container(
+        margin: EdgeInsets.fromLTRB(0, 0, 0, 21),
+        child: FloatingActionButton.extended(
+
+          onPressed: (){
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return AddEmployee(
+                    PhoneNumber: phoneNumber,
+                  );
+                },
+              ),
+            );
+
+          },
+          label: Text("Add\nEmployee"),
+          hoverElevation: 100,
+          icon: Icon(Icons.add),
+          splashColor: Colors.purple,
+
+          backgroundColor: Colors.pink.shade500,
+        ),
+      ),
+
+
+
+
+
+
     );
   }
+
+
+  void totalAmnt(){
+
+   // amt.value=amt.value+double.parse(amount);
+
+
+    Query result = FirebaseDatabase.instance.ref("User_profile").child(phoneNumber).child("Employee_List");
+
+    result.onValue.listen((event) {
+      for (final i in event.snapshot.children) {
+        amt.value=amt.value+double.parse(i.child("EmployeeSalary").value.toString());
+      }
+    }, onError: (error) {
+      // Error.
+    });
+
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+
 
 }

@@ -19,8 +19,8 @@ import 'SendMoneyPage.dart';
 
   class ContactPageSendMoney extends StatefulWidget {
 
-    final String pin,balance;
-    const ContactPageSendMoney({Key? key, required this.pin, required this.balance}) : super(key: key);
+    final String pin,balance,SenderPhoneNumber;
+    const ContactPageSendMoney({Key? key, required this.pin,required this.SenderPhoneNumber, required this.balance}) : super(key: key);
 
     @override
     State<ContactPageSendMoney> createState() => _ContactPageSendMoneyState();
@@ -91,7 +91,11 @@ import 'SendMoneyPage.dart';
                             context,
                             MaterialPageRoute(
                               builder: (context) {
-                                return SendMoneyQRCodeScanner();
+                                return SendMoneyQRCodeScanner(
+                                  pin: widget.pin,
+                                  balance: widget.balance,
+                                  SenderPhoneNumber: widget.SenderPhoneNumber,
+                                );
                               },
                             ),
                           );
@@ -128,7 +132,13 @@ import 'SendMoneyPage.dart';
                                 onTap: () {
                                   if(_writeMobileNo.text.isNotEmpty){
                                     Navigator.of(context).push(
-                                        MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:_writeMobileNo.text.toString(), name: '', pin: widget.pin, balance: widget.balance,)));
+                                        MaterialPageRoute(builder: (_) =>
+                                            SendMoneyPage(contacts:_writeMobileNo.text.toString(),
+                                              name: '',
+                                              pin: widget.pin,
+                                              balance: widget.balance,
+                                              SenderPhoneNumber: widget.SenderPhoneNumber,
+                                            )));
                                   }
                                   else
                                     {
@@ -181,7 +191,12 @@ import 'SendMoneyPage.dart';
               await FlutterContacts.getContact(_contactss![i].id);
               if(fullContact!.phones.first.number.toString().isNotEmpty){
 
-                await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SendMoneyPage(contacts:fullContact!.phones.first.number.toString(), name: fullContact.name.first, pin: widget.pin, balance: widget.balance,)));
+                await Navigator.of(context).push(MaterialPageRoute(builder: (_) => SendMoneyPage(
+                  contacts:fullContact!.phones.first.number.toString(),
+                  name: fullContact.name.first,
+                  pin: widget.pin,
+                  SenderPhoneNumber: widget.SenderPhoneNumber,
+                  balance: widget.balance,)));
 
               }
 

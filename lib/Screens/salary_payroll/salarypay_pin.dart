@@ -13,8 +13,10 @@ import '../../utils/app_layout.dart';
 // class SalaryPayPin extends StatelessWidget{
 
   class SalaryPayPin extends StatefulWidget {
-    final String pin;
-    const SalaryPayPin({Key? key, required this.pin}) : super(key: key);
+    final String pin,balance,amount;
+
+  const SalaryPayPin({super.key, required this.pin, required this.balance, required this.amount});
+    //const SalaryPayPin({Key? key, required this.pin}) : super(key: key);
 
     @override
     State<SalaryPayPin> createState() => _SalaryPayPinState();
@@ -73,7 +75,7 @@ import '../../utils/app_layout.dart';
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(" ৳ 100000",
+                          Text(" ৳ ${widget.amount}",
                             style: GoogleFonts.openSans(
                                 fontSize: 40,
                                 fontWeight: FontWeight.bold,
@@ -108,7 +110,7 @@ import '../../utils/app_layout.dart';
                             ),
                           ),
 
-                          Text("100.00",
+                          Text("${widget.balance}",
 
                             style: GoogleFonts.openSans(
                               fontSize: 15,

@@ -13,6 +13,11 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class SendMoneyQRCodeScanner extends StatefulWidget
 {
+
+  final String pin,balance,SenderPhoneNumber;
+
+  const SendMoneyQRCodeScanner({super.key, required this.pin, required this.balance, required this.SenderPhoneNumber});
+
   @override
   State<SendMoneyQRCodeScanner> createState() => _SendMoneyQRCodeScannerState();
 }
@@ -77,7 +82,13 @@ class _SendMoneyQRCodeScannerState extends State<SendMoneyQRCodeScanner> {
             context,
             MaterialPageRoute(
               builder: (context) {
-                return SendMoneyPage(contacts: result!.code.toString(), name: '', pin: '', balance: '',);
+                return SendMoneyPage(
+                  contacts: result!.code.toString(),
+                  name: '',
+                  pin: widget.pin,
+                  balance: widget.balance,
+                  SenderPhoneNumber: widget.SenderPhoneNumber,
+                );
               },
             ),
           );

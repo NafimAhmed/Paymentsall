@@ -15,8 +15,16 @@ class PayBillPin extends StatefulWidget {
     final String firstName;
   final String lastName;
   final String pin;
+
+    final String Billing_Month,Billing_Year;
+
+  final String organizationName,BillType,Org_AccountNumber;
+
+  const PayBillPin({super.key, required this.firstName, required this.lastName, required this.pin, required this.Billing_Month, required this.Billing_Year, required this.organizationName, required this.BillType, required this.Org_AccountNumber});
+
+  //const PayBillPin({super.key, required this.firstName, required this.lastName, required this.pin, required this.organizationName, required this.BillType, required this.Org_AccountNumber});
 //
-  const PayBillPin({super.key, required this.firstName, required this.lastName, required this.pin});
+  //const PayBillPin({super.key, required this.firstName, required this.lastName, required this.pin});
 
   @override
   State<PayBillPin> createState() => _PayBillPinState();
@@ -73,8 +81,8 @@ class _PayBillPinState extends State<PayBillPin> {
 
                       ListTile(
                         leading: Image.asset("assets/images/Payments_All.png"),
-                        title: Text("Organization name"),
-                        subtitle: Text(" Bill Type name"),
+                        title: Text("${widget.organizationName}"),
+                        subtitle: Text(" ${widget.BillType}"),
 
                         onTap: (){
 
@@ -102,11 +110,11 @@ class _PayBillPinState extends State<PayBillPin> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Billing Month : "),
+                      Text("Billing Month and Year : "),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("January 2023",
+                          Text("${widget.Billing_Month} ${widget.Billing_Year}",
                           style: GoogleFonts.openSans(
                             fontSize: 20
                           ),
@@ -236,7 +244,12 @@ class _PayBillPinState extends State<PayBillPin> {
                                           MaterialPageRoute(
                                             builder: (context) {
                                               return PayBillconfirmation(
+                                                Billing_Month: widget.Billing_Month,
+                                                Billing_Year: widget.Billing_Year,
                                                 firstName: widget.firstName,
+                                                organizationName: widget.organizationName,
+                                                Org_AccountNumber: widget.Org_AccountNumber,
+                                                BillType: widget.BillType,
                                                 lastName: widget.lastName,);
                                             },
                                           ),

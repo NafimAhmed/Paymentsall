@@ -19,7 +19,12 @@ import '../../../utils/app_layout.dart';
 class PayBillconfirmation extends StatefulWidget {
   final String firstName;
   final String lastName;
-  const PayBillconfirmation({super.key, required this.firstName, required this.lastName});
+  final String Billing_Month,Billing_Year;
+  final String organizationName,BillType,Org_AccountNumber;
+
+  const PayBillconfirmation({super.key, required this.firstName, required this.lastName, required this.Billing_Month, required this.Billing_Year, required this.organizationName, required this.BillType, required this.Org_AccountNumber});
+
+
 
   @override
   State<PayBillconfirmation> createState() => _PayBillconfirmationState();
@@ -80,7 +85,7 @@ class _PayBillconfirmationState extends State<PayBillconfirmation>with TickerPro
         child: Padding(
           padding: const EdgeInsets.only(left: 20,right: 16,top: 16,bottom: 16),
           child: Container(
-            height: 550,width: 320,
+            width: 320,
             decoration: BoxDecoration(
               border: Border.all(width: 1,color: const Color(0xFFFCDEDE),),
               borderRadius: BorderRadius.circular(6.0),
@@ -104,8 +109,8 @@ class _PayBillconfirmationState extends State<PayBillconfirmation>with TickerPro
 
                       ListTile(
                         leading: Image.asset("assets/images/Payments_All.png"),
-                        title: Text("Organization name"),
-                        subtitle: Text(" Bill Type name"),
+                        title: Text("${widget.organizationName}"),
+                        subtitle: Text("${widget.BillType}"),
 
                         onTap: (){
 
@@ -116,6 +121,44 @@ class _PayBillconfirmationState extends State<PayBillconfirmation>with TickerPro
                   ),
                 ),
 
+
+
+                Container(
+
+                  width: AppLayout.getScreenWidth(),
+
+
+                  decoration: BoxDecoration(
+                      color: Colors.red.shade50,
+                      borderRadius: BorderRadius.all(Radius.circular(15))
+                  ),
+                  margin: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(10),vertical: AppLayout.getHeight(10)),
+                  padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20),vertical: AppLayout.getWidth(10)),
+
+
+
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Billing Month and Year : "),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("${widget.Billing_Month} ${widget.Billing_Year}",
+                            style: GoogleFonts.openSans(
+                                fontSize: 20
+                            ),
+                          ),
+                        ],
+                      ),
+
+
+
+
+
+                    ],
+                  ),
+                ),
 
 
 
@@ -186,69 +229,8 @@ class _PayBillconfirmationState extends State<PayBillconfirmation>with TickerPro
                       SizedBox(height: 10,),
 
 
-                      // Container(
-                      //   padding: EdgeInsets.symmetric(horizontal: AppLayout.getWidth(20)),
-                      //   child: Row(
-                      //     children: [
-                      //       Text("PIN : ",
-                      //         style: GoogleFonts.openSans(
-                      //           fontSize: 20,
-                      //           fontWeight: FontWeight.bold,
-                      //
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      SizedBox(height: 10,),
 
-                      // Padding(
-                      //   padding: const EdgeInsets.all(10.0),
-                      //   child: Container(
-                      //     height: 50,width: 296,
-                      //     decoration: BoxDecoration(
-                      //         border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
-                      //         borderRadius: BorderRadius.circular(6.0),
-                      //         color: Colors.white
-                      //     ),
-                      //
-                      //
-                      //
-                      //     child: TextField(
-                      //       //controller: _mobileNo,
-                      //       keyboardType: TextInputType.number,
-                      //       cursorColor: Colors.red.shade900,
-                      //       decoration: InputDecoration(
-                      //         border: InputBorder.none,
-                      //         prefixIcon: Icon(Icons.lock,size: 30,color: Colors.red.shade900,),
-                      //         hintText: 'Enter PIN',
-                      //         hintStyle: TextStyle(color: Colors.grey.shade400),
-                      //         suffixIcon: InkWell(
-                      //             onTap:() {
-                      //
-                      //               // Navigator.push(
-                      //               //   context,
-                      //               //   MaterialPageRoute(
-                      //               //     builder: (context) {
-                      //               //       return MarchentPayConfirmation(
-                      //               //         receiveNumb: receiverNumb,
-                      //               //         totAmount: amount,
-                      //               //         ref: _mobileNo.text.toString(),
-                      //               //       );
-                      //               //     },
-                      //               //   ),
-                      //               // );
-                      //
-                      //             },
-                      //             child: Icon(Icons.arrow_forward,size: 30,color: Colors.red.shade900,)),
-                      //         suffixIconColor: Color(0xFFFCDEDE),
-                      //       ),
-                      //     ),
-                      //
-                      //
-                      //
-                      //   ),
-                      // ),
+                      SizedBox(height: 10,),
 
 
 
@@ -311,61 +293,6 @@ class _PayBillconfirmationState extends State<PayBillconfirmation>with TickerPro
 
                 ),
 
-
-                // GestureDetector(
-                //   onTap: () async {
-                //     //startRecording();
-                //   },
-                //   child: Container(
-                //     padding: EdgeInsets.all(20),
-                //     margin: EdgeInsets.all(20),
-                //
-                //     decoration: BoxDecoration(
-                //       color: Colors.red.shade900,
-                //       // border: Border.all(width: 3.0),   // Set border width
-                //       borderRadius: BorderRadius.all(
-                //           Radius.circular(65.0)), // Set rounded corner radius
-                //       //boxShadow: [BoxShadow(blurRadius: 10,color: Colors.black,offset: Offset(1,3))] // Make rounded corner of border
-                //     ),
-                //
-                //     child: Text("Tap to\n Submit",
-                //       style: GoogleFonts.openSans(
-                //           fontSize: 25
-                //       ),
-                //     ),
-                //   ),
-                //   onLongPressDown: (details) {
-                //     // startRecordingTimer();
-                //     // startRecording();
-                //     // stopwatch.start();
-                //
-                //     Fluttertoast.showToast(
-                //         msg: "onLongPressDown",
-                //         toastLength: Toast.LENGTH_SHORT,
-                //         gravity: ToastGravity.CENTER,
-                //         timeInSecForIosWeb: 1,
-                //         backgroundColor: Colors.red,
-                //         textColor: Colors.white,
-                //         fontSize: 16.0
-                //     );
-                //
-                //   },
-                //   onLongPressUp: () {
-                //
-                //     Fluttertoast.showToast(
-                //         msg: "onLongPressUP",
-                //         toastLength: Toast.LENGTH_SHORT,
-                //         gravity: ToastGravity.CENTER,
-                //         timeInSecForIosWeb: 1,
-                //         backgroundColor: Colors.red,
-                //         textColor: Colors.white,
-                //         fontSize: 16.0
-                //     );
-                //     // stopwatch.stop();
-                //     // var timeElapsedInSeconds =     stopwatch.elapsed.inSeconds;
-                //     // print("Time elapsed: $timeElapsedInSeconds");
-                //   },
-                // )
 
 
 

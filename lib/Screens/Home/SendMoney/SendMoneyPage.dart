@@ -5,8 +5,8 @@ import 'Send_money_Pin_page.dart';
 
 
 class SendMoneyPage extends StatefulWidget {
-  final String contacts,name,pin,balance;
-  const SendMoneyPage({super.key, required this.contacts, required this.name, required this.pin, required this.balance});
+  final String contacts,SenderPhoneNumber,name,pin,balance;
+  const SendMoneyPage({super.key, required this.contacts,required this.SenderPhoneNumber, required this.name, required this.pin, required this.balance});
 
   @override
   State<SendMoneyPage> createState() => _SendMoneyPageState();
@@ -161,6 +161,7 @@ class _SendMoneyPageState extends State<SendMoneyPage> {
                             builder: (context) {
                               return SendMoneyPinPage(
                                 pin: widget.pin,
+                                SenderPhoneNumber: widget.SenderPhoneNumber,
                                 balance: widget.balance,
                                 contacts: widget.contacts,
                                 name: widget.name,

@@ -155,6 +155,7 @@ class HomePage extends StatelessWidget {
                             builder: (context) {
                               return ContactPageSendMoney(
                                 pin: pin,
+                                SenderPhoneNumber: phoneNumber,
                                 balance: balancechange.value,);
                             },
                           ),
@@ -218,6 +219,7 @@ class HomePage extends StatelessWidget {
                       color: Colors.white
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       const SizedBox(height: 10,),
                       Row(
@@ -341,42 +343,48 @@ class HomePage extends StatelessWidget {
                                   ),
                                   const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
                                 ],
-                              )),
-
-
-
-                          TextButton(
-                              style: ButtonStyle(
-                                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                overlayColor: MaterialStateProperty.all(Colors.transparent),
-                              ),
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return BillPayPage(
-                                        firstName: firstName,
-                                        lastName: lastName,
-                                        pin: pin,);
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Color(0xFFFFF8F8),
-                                    radius: 26,
-                                    child: Image.asset('assets/images/bill_pay.png',),
-
-                                    //Icon(Icons.receipt_sharp,color: Colors.black)
-                                  ),
-                                  const Text('Bill Pay',style: TextStyle(color:Color(0xFF80140E)))
-                                ],
                               )
                           ),
 
+                          //SizedBox(width: 15,),
+
+
+                          Container(
+                            //margin: EdgeInsets.fromLTRB(12, 0, 0, 0),
+                            child: TextButton(
+                                style: ButtonStyle(
+                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                ),
+                                onPressed: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return BillPayPage(
+                                          firstName: firstName,
+                                          lastName: lastName,
+                                          pin: pin,);
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: Image.asset('assets/images/bill_pay.png',),
+
+                                      //Icon(Icons.receipt_sharp,color: Colors.black)
+                                    ),
+                                    const Text('Bill Pay',style: TextStyle(color:Color(0xFF80140E)))
+                                  ],
+                                )
+                            ),
+                          ),
+
+                          //SizedBox(width: 15,),
 
 
                           TextButton(
@@ -523,6 +531,8 @@ class HomePage extends StatelessWidget {
                                   MaterialPageRoute(
                                     builder: (context) {
                                       return SalaryDashBoard(
+                                        phoneNumber: phoneNumber,
+                                        balance: balancechange.value,
                                         pin: pin,);
                                     },
                                   ),
@@ -629,23 +639,6 @@ class HomePage extends StatelessWidget {
   }
 
 
-  // Future<String> naam()async{
-  //
-  //   final snapshot_fname= await rf.child(phoneNumber.toString()).child("first_name").get();
-  //   final snapshot_lname= await rf.child(phoneNumber.toString()).child("last_name").get();
-  //
-  //   return snapshot_fname.toString()+" "+snapshot_lname.toString();
-  //
-  //
-  // }
-  //
-  // Future<String> phone()async{
-  //
-  //   final snapshot_mobile_no= await rf.child(phoneNumber.toString()).child("mobile_no").get();
-  //
-  //   return snapshot_mobile_no.toString();
-  //
-  // }
 
 
 

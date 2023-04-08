@@ -3,11 +3,13 @@
 
 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import '../../../utils/app_layout.dart';
 import 'TransferReceiptScreen.dart';
@@ -17,8 +19,8 @@ import 'TransferReceiptScreen.dart';
 class SendMoneyConfirmationPage extends StatefulWidget{
 
 
-  final String contacts,name,amount,ref,pin;
-  const SendMoneyConfirmationPage({super.key, required this.contacts, required this.name, required this.amount, required this.ref, required this.pin, });
+  final String contacts,name,amount,SenderPhoneNumber,ref,pin;
+  const SendMoneyConfirmationPage({super.key,required this.SenderPhoneNumber ,required this.contacts, required this.name, required this.amount, required this.ref, required this.pin, });
 
   @override
   State<SendMoneyConfirmationPage> createState() => _SendMoneyConfirmationPageState();
@@ -46,6 +48,8 @@ class _SendMoneyConfirmationPageState extends State<SendMoneyConfirmationPage>wi
           textColor: Colors.white,
           fontSize: 16.0
       );
+
+      SendMoney(widget.SenderPhoneNumber, widget.contacts, widget.amount);
 
     }
     setState(() {
@@ -189,7 +193,11 @@ class _SendMoneyConfirmationPageState extends State<SendMoneyConfirmationPage>wi
                       context,
                       MaterialPageRoute(
                         builder: (context) {
-                          return TransferReceiptPage(recNumb: widget.contacts, recName: widget.name, recAmount: widget.amount, pin: '',);
+                          return TransferReceiptPage(recNumb: widget.contacts,
+                            SenderPhoneNumber: widget.SenderPhoneNumber,
+                            recName: widget.name,
+                            recAmount: widget.amount,
+                            pin: '',);
 
                         },
                       ),
@@ -231,4 +239,146 @@ class _SendMoneyConfirmationPageState extends State<SendMoneyConfirmationPage>wi
       ),
     );
   }
+
+
+
+  void SendMoney (String sendPhoneNumber,String receiverPhoneNumber,String amount)async{
+
+
+    //FirebaseDatabase database = FirebaseDatabase.instance;
+
+    DateTime now = DateTime.now();
+    //String formattedDate = DateFormat.yMMMEd().format(now);
+    String formettedtime=DateFormat('E,d MMM yyyy HH:mm:ss').format(now);
+    //print(formattedDate);
+
+
+
+
+    double amnt=double.parse(amount);
+    ////////////////sender///////////////////////////////////////////////////////////////////////////////
+
+    DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
+
+
+    final sendPhoneNumbersnapshotBalance = await rf.child(sendPhoneNumber).child("profile").child("balance").get();
+
+
+
+    //////////////////sender//////////////////////////////////////////////////////////////////////////////////
+
+    double senderBalance=double.parse(sendPhoneNumbersnapshotBalance.value.toString());
+
+    ///////receiver///////////////////////////////////////////////////////////////////////////////
+
+
+    final receiverPhoneNumbersnapshotBalance = await rf.child(receiverPhoneNumber).child("profile").child("balance").get();
+
+    double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+    double senderCurrentBalance=senderBalance-amnt;
+    double receiverCurrentBalance=receiverBalance+amnt;
+
+
+    //DatabaseReference ref = FirebaseDatabase.instance.ref("users");
+
+    await rf.child(receiverPhoneNumber).child("profile").update({
+      "balance":receiverCurrentBalance.toString()
+    }).then((value) async {
+
+      await rf.child(sendPhoneNumber).child("profile").update({
+        "balance":senderCurrentBalance.toString()
+      }).then((value) {
+
+        Fluttertoast.showToast(
+            msg: "Cashout successful",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+
+      });
+
+
+    });
+
+
+    // await rf.child(sendPhoneNumber).child("profile").update({
+    //   "balance":senderCurrentBalance.toString()
+    // });
+
+
+
+
+
+    /////receiver/////////////////////////////////////////////////////////////////////////
+
+
+
+    DatabaseReference senderPostRef = rf.child(sendPhoneNumber).child("transection").push();
+    senderPostRef.set({
+      // ...
+      "transection_type":"Sent",
+      "opponent":receiverPhoneNumber,
+      "type":"Send money",
+      "amount":amount,
+      "time": formettedtime,
+    });
+
+
+    DatabaseReference senderPostNotifyRef = rf.child(sendPhoneNumber).child("Notifications").push();
+    senderPostNotifyRef.set({
+      // ...
+      "transection_type":"Sent",
+      "opponent":receiverPhoneNumber,
+      "type":"Send money",
+      "amount":amount,
+      "time": formettedtime,
+    });
+
+
+
+
+
+    DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").child(senderPostRef.key.toString());
+    receiverPostRef.set({
+      "transection_type":"Received",
+      "opponent":sendPhoneNumber,
+      "type":"Send money",
+      "amount":amount,
+      "time":formettedtime,
+    });
+
+    DatabaseReference receiverPostNotifyRef = rf.child(receiverPhoneNumber).child("Notifications").child(senderPostRef.key.toString());
+    receiverPostNotifyRef.set({
+      "transection_type":"Received",
+      "opponent":sendPhoneNumber,
+      "type":"Send money",
+      "amount":amount,
+      "time":formettedtime,
+    });
+
+
+
+
+
+
+
+    bool isSennt=false;
+    bool isReceived=false;
+
+
+
+
+
+  }
+
+
+
+
+
+
+
 }
