@@ -194,7 +194,7 @@ class AddEmployee extends StatelessWidget
                     "EmployeeDesignetion":EmpDesignetion.text.toString(),
                     "EmployeePhoneNumber":EmpPhoneNumber.text.toString(),
                     "EmployeeSalary":EmpSalary.text.toString(),
-                  });
+                  }).then((value) => Navigator.pop(context));
 
 
                 },

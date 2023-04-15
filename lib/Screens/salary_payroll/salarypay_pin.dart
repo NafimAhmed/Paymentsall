@@ -13,9 +13,9 @@ import '../../utils/app_layout.dart';
 // class SalaryPayPin extends StatelessWidget{
 
   class SalaryPayPin extends StatefulWidget {
-    final String pin,balance,amount;
+    final String pin,balance,amount,UserPhone;
 
-  const SalaryPayPin({super.key, required this.pin, required this.balance, required this.amount});
+  const SalaryPayPin({super.key, required this.pin, required this.balance, required this.amount,required this.UserPhone});
     //const SalaryPayPin({Key? key, required this.pin}) : super(key: key);
 
     @override
@@ -158,9 +158,9 @@ import '../../utils/app_layout.dart';
                                   Column(children:[Text('Total\nAmount\n', style: GoogleFonts.openSans(fontSize: 16.0))]),
                                 ]),
                                 TableRow( children: [
-                                  Column(children:[Text('৳ 100000', style: TextStyle(fontSize: 16.0))]),
+                                  Column(children:[Text('৳ ${widget.amount}', style: TextStyle(fontSize: 16.0))]),
                                   Column(children:[Text('+৳ 0.00', style: TextStyle(fontSize: 16.0))]),
-                                  Column(children:[Text('৳ 100000', style: TextStyle(fontSize: 16.0))]),
+                                  Column(children:[Text('৳ ${widget.amount}', style: TextStyle(fontSize: 16.0))]),
                                 ]),
 
                               ],
@@ -216,7 +216,11 @@ import '../../utils/app_layout.dart';
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) {
-                                                    return SalaryConfirmation();
+                                                    return SalaryConfirmation(
+                                                      Amount: widget.amount,
+                                                      balance: widget.balance,
+                                                      UserPhone: widget.UserPhone,
+                                                    );
                                                   },
                                                 ),
                                               );

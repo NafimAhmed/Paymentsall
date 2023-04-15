@@ -8,6 +8,7 @@ import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
 import 'package:payments_all_app/Screens/Mobile%20Banking/MobileBankingPage.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
+import 'donation/donation_home.dart';
 import 'salary_payroll/salary_dash_board.dart';
 import 'travelcard_all/tc_form.dart';
 import 'Home/Add Money/Add Money.dart';
@@ -142,7 +143,12 @@ class HomePage extends StatelessWidget {
                               CircleAvatar(
                                   backgroundColor:  Color(0xFFFFF8F8),
                                   radius: 20,
-                                  child: Image.asset('assets/images/merchant_pay.png',height: 40,width: 40,)),
+                                  child: Icon(Icons.shopping_cart_outlined,
+                                  color: Colors.red.shade900,
+                                  ),
+
+
+                              ),//Image.asset('assets/images/merchant_pay.png',height: 40,width: 40,)),
                               // Icon(Icons.shopping_cart_sharp,color: Colors.white),SizedBox(height: 5,),
 
                               Text('Merchant Pay',style: TextStyle(color:Colors.white))
@@ -171,7 +177,10 @@ class HomePage extends StatelessWidget {
                               CircleAvatar(
                                   backgroundColor: Color(0xFFFFF8F8),
                                   radius: 20,
-                                  child: Image.asset('assets/images/send_money.png',height: 40,width: 40,)),
+                                  child: Icon(Icons.send_and_archive,
+                                  color: Colors.red.shade900,
+                                  )//Image.asset('assets/images/send_money.png',height: 40,width: 40,)
+                              ),
                               // Icon(Icons.send,color: Colors.white,),SizedBox(height: 5,),
                               Text('Send Money',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white))
                             ],
@@ -200,7 +209,8 @@ class HomePage extends StatelessWidget {
                               CircleAvatar(
                                   backgroundColor: Color(0xFFFFF8F8),
                                   radius: 20,
-                                  child: Image.asset('assets/images/cash_out.png',height: 35,width: 35,)),
+                                  child: Icon(Icons.send_to_mobile,color: Colors.red.shade900,)//Image.asset('assets/images/cash_out.png',height: 35,width: 35,)
+                              ),
                               // Icon(Icons.account_balance_wallet_outlined,color: Colors.white,),SizedBox(height: 5,),
                               Text('Cash Out',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.white))
                             ],
@@ -225,37 +235,45 @@ class HomePage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextButton(
-                              style: ButtonStyle(
-                                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                overlayColor: MaterialStateProperty.all(Colors.transparent),
-                              ),
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return AddMoneyPage(
-                                        amount: '',
-                                        firstName: firstName,
-                                        lastName: lastName,
-                                        phoneNumber: phoneNumber,
-                                        pin: pin,);
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Color(0xFFFFF8F8),
-                                    child: Image.asset('assets/images/add_money.png',),
-                                    radius: 26,
-                                    //Icon(Icons.account_balance_wallet_sharp,color: Colors.black,)
-                                  ),
-                                  Text('Add Money',style: TextStyle(color:Color(0xFF80140E)))
-                                ],
-                              )),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: TextButton(
+                                style: ButtonStyle(
+                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                ),
+                                onPressed: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return AddMoneyPage(
+                                          amount: '',
+                                          firstName: firstName,
+                                          lastName: lastName,
+                                          phoneNumber: phoneNumber,
+                                          pin: pin,);
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Color(0xFFFFF8F8),
+                                      child: Icon(
+                                        Icons.install_mobile,
+                                        color: Colors.red.shade900,
+                                      size: 40,
+                                      ),//Image.asset('assets/images/add_money.png',),
+                                      radius: 26,
+                                      //Icon(Icons.account_balance_wallet_sharp,color: Colors.black,)
+                                    ),
+                                    Text('Add Money',style: TextStyle(color:Color(0xFF80140E)))
+                                  ],
+                                )
+                            ),
+                          ),
                           TextButton(
                               style: ButtonStyle(
                                 shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -279,7 +297,11 @@ class HomePage extends StatelessWidget {
                                   CircleAvatar(
                                     backgroundColor: Color(0xFFFFF8F8),
                                     radius: 26,
-                                    child: Image.asset('assets/images/money_recharge.png',) ,
+                                    child: Icon(Icons.perm_phone_msg,
+                                      color: Colors.red.shade900,
+                                      size: 40,
+
+                                    )//Image.asset('assets/images/money_recharge.png',) ,
 
                                   ),
                                   const Text('Mobile Recharge',style: TextStyle(color:Color(0xFF80140E)))
@@ -305,7 +327,11 @@ class HomePage extends StatelessWidget {
                                   CircleAvatar(
                                     backgroundColor: Color(0xFFFFF8F8),
                                     radius: 26,
-                                    child: Image.asset('assets/images/Travel card.png',height: 40,) ,
+                                    child: Icon(Icons.credit_card,
+                                      color: Colors.red.shade900,
+                                      size: 40,
+
+                                    )//Image.asset('assets/images/Travel card.png',height: 40,) ,
 
                                   ),
                                   const Text('Travel Card',style: TextStyle(color:Color(0xFF80140E)))
@@ -317,36 +343,42 @@ class HomePage extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          TextButton(
-                              style: ButtonStyle(
-                                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                overlayColor: MaterialStateProperty.all(Colors.transparent),
-                              ),
-                              onPressed: (){
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) {
-                                //       return BillPayPage();
-                                //     },
-                                //   ),
-                                // );
-                              },
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: Color(0xFFFFF8F8),
-                                    radius: 26,
-                                    child: Image.asset('assets/images/Quick Pay.png',),
+                          Container(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                                style: ButtonStyle(
+                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                ),
+                                onPressed: (){
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return BillPayPage();
+                                  //     },
+                                  //   ),
+                                  // );
+                                },
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: Icon(Icons.bolt,
+                                        color: Colors.red.shade900,
+                                        size: 40,
+                                      )//Image.asset('assets/images/Quick Pay.png',),
 
-                                    //Icon(Icons.receipt_sharp,color: Colors.black)
-                                  ),
-                                  const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
-                                ],
-                              )
+                                      //Icon(Icons.receipt_sharp,color: Colors.black)
+                                    ),
+                                    const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
+                                  ],
+                                )
+                            ),
                           ),
 
-                          //SizedBox(width: 15,),
+                          SizedBox(width: 35,),
 
 
                           Container(
@@ -374,7 +406,10 @@ class HomePage extends StatelessWidget {
                                     CircleAvatar(
                                       backgroundColor: Color(0xFFFFF8F8),
                                       radius: 26,
-                                      child: Image.asset('assets/images/bill_pay.png',),
+                                      child: Icon(Icons.receipt,
+                                      color: Colors.red.shade900,
+                                        size: 40,
+                                      )//Image.asset('assets/images/bill_pay.png',),
 
                                       //Icon(Icons.receipt_sharp,color: Colors.black)
                                     ),
@@ -384,41 +419,49 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
 
-                          //SizedBox(width: 15,),
+                          SizedBox(width: 15,),
 
 
-                          TextButton(
-                              style: ButtonStyle(
-                                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                overlayColor: MaterialStateProperty.all(Colors.transparent),
-                              ),
-                              onPressed: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return BankTransferPage();
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: const Color(0xFFFFF8F8),
-                                    radius: 26,
-                                    child: Image.asset('assets/images/bank_transfer.png',),
-                                  ),
-                                  const Text('Bank Transfer',style: TextStyle(color:Color(0xFF80140E)))
-                                ],
-                              )),
+                          Container(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                                style: ButtonStyle(
+                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                ),
+                                onPressed: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return BankTransferPage();
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Column(
+                                  //crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: const Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: Icon(Icons.account_balance,
+                                      size: 40,
+                                        color: Colors.red.shade900,
+                                      )//Image.asset('assets/images/bank_transfer.png',),
+                                    ),
+                                     Text('Bank Transfer',style: TextStyle(color:Color(0xFF80140E)))
+                                  ],
+                                )),
+                          ),
                         ],
                       ),
                       SizedBox(height: 10,),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
                         children: [
-                          SizedBox(width: 10,),
+
 
 
 
@@ -439,15 +482,22 @@ class HomePage extends StatelessWidget {
                                 );
                               },
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CircleAvatar(
                                     backgroundColor: const Color(0xFFFFF8F8),
                                     radius: 26,
-                                    child: Image.asset('assets/images/Govt Fees.png',),
+                                    child: Icon(Icons.assured_workload,
+                                      size: 40,
+                                      color: Colors.red.shade900,
+                                    )//Image.asset('assets/images/Govt Fees.png',),
                                   ),
                                   const Text('Govt. Fees',style: TextStyle(color:Color(0xFF80140E)))
                                 ],
                               )),
+
+
+
                           TextButton(
                               style: ButtonStyle(
                                 shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -468,40 +518,54 @@ class HomePage extends StatelessWidget {
                                   CircleAvatar(
                                     backgroundColor: const Color(0xFFFFF8F8),
                                     radius: 26,
-                                    child: Image.asset('assets/images/mobile Bank.png',),
+                                    child: Icon(Icons.mobile_friendly,
+                                      color: Colors.red.shade900,
+                                      size: 40,
+
+                                    )//Image.asset('assets/images/mobile Bank.png',),
                                   ),
                                   const Text('Mobile Banking',style: TextStyle(color:Color(0xFF80140E)))
                                 ],
                               )),
-                          TextButton(
-                              style: ButtonStyle(
-                                shadowColor: MaterialStateProperty.all(Colors.transparent),
-                                overlayColor: MaterialStateProperty.all(Colors.transparent),
-                              ),
-                              onPressed: (){
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) {
-                                //       return MobileBankingPage();
-                                //     },
-                                //   ),
-                                // );
-                              },
-                              child: Column(
-                                children: [
-                                  CircleAvatar(
-                                    backgroundColor: const Color(0xFFFFF8F8),
-                                    radius: 26,
-                                    child: Image.asset('assets/images/ticket.png',),
-                                  ),
-                                  const Text('Ticketing',style: TextStyle(color:Color(0xFF80140E)))
-                                ],
-                              )),
 
 
 
-                          SizedBox(width: 10,),
+                          Container(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                                style: ButtonStyle(
+                                  shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                  overlayColor: MaterialStateProperty.all(Colors.transparent),
+                                ),
+                                onPressed: (){
+                                  // Navigator.push(
+                                  //   context,
+                                  //   MaterialPageRoute(
+                                  //     builder: (context) {
+                                  //       return MobileBankingPage();
+                                  //     },
+                                  //   ),
+                                  // );
+                                },
+                                child: Column(
+                                  children: [
+                                    CircleAvatar(
+                                      backgroundColor: const Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: Icon(Icons.book_online,
+                                        color: Colors.red.shade900,
+                                        size: 40,
+
+                                      ),//Image.asset('assets/images/ticket.png',),
+                                    ),
+                                    const Text('Ticketing',style: TextStyle(color:Color(0xFF80140E)))
+                                  ],
+                                )),
+                          ),
+
+
+
+                          SizedBox(width: 0,),
 
 
 
@@ -515,7 +579,11 @@ class HomePage extends StatelessWidget {
 
                         ],
                       ),
+
+
+
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           TextButton(
                               style: ButtonStyle(
@@ -539,25 +607,87 @@ class HomePage extends StatelessWidget {
                                 );
                               },
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   CircleAvatar(
                                       backgroundColor: const Color(0xFFFFF8F8),
                                       radius: 26,
                                       child: Icon(Icons.wallet,
-                                        color: Colors.red.shade300,
+                                        color: Colors.red.shade900,
                                         size: 40,
                                       )//Image.asset('assets/images/Govt Fees.png',),
                                   ),
-                                  const Text('Salary Payroll',style: TextStyle(color:Color(0xFF80140E)))
+                                  const Text('Salary Pay',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+                          SizedBox(width: 9,),
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return DonateHome();
+                                    },
+                                  ),
+                                );
+
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                      backgroundColor: const Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: Icon(Icons.how_to_vote_rounded,
+                                        color: Colors.red.shade900,
+                                        size: 40,
+                                      )//Image.asset('assets/images/Govt Fees.png',),
+                                  ),
+                                  const Text('Donation',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              )),
+
+                          SizedBox(width: 9,),
+                          TextButton(
+                              style: ButtonStyle(
+                                shadowColor: MaterialStateProperty.all(Colors.transparent),
+                                overlayColor: MaterialStateProperty.all(Colors.transparent),
+                              ),
+                              onPressed: (){
+
+
+
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  CircleAvatar(
+                                      backgroundColor: const Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: SizedBox(width: 40,)//Image.asset('assets/images/Govt Fees.png',),
+                                  ),
+                                  const Text('',style: TextStyle(color:Color(0xFF80140E)))
                                 ],
                               )),
                         ],
                       ),
 
+
+
+
+
                     ],
                   ),
                 ),
               ),
+
+
               Padding(
                 padding: const EdgeInsets.only(left: 16.0,right: 16.0),
                 child: Text('Offers',

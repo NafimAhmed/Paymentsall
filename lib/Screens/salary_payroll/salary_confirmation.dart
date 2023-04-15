@@ -1,16 +1,23 @@
 
 
 
+import 'dart:ffi';
+
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import '../../utils/app_layout.dart';
 
 class SalaryConfirmation extends StatefulWidget{
 
 
+  final String Amount,balance,UserPhone;
+
+  const SalaryConfirmation({super.key, required this.Amount, required this.balance, required this.UserPhone});
 
 
 
@@ -87,6 +94,10 @@ class _SalaryConfirmationState extends State<SalaryConfirmation>with TickerProvi
   @override
   Widget build(BuildContext context) {
 
+    double remain,balan,amt;
+    amt=double.parse(widget.Amount);
+    balan=double.parse(widget.balance);
+    remain=balan-amt;
 
 
 
@@ -125,8 +136,8 @@ class _SalaryConfirmationState extends State<SalaryConfirmation>with TickerProvi
                         width: 1),
                     children: [
                       TableRow( children: [
-                        Column(children:[Text('Total :\n ৳ 100000', style: GoogleFonts.openSans(fontSize: 20.0))]),
-                        Column(children:[Text('New Balance :\n ৳ 21.00', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                        Column(children:[Text('Total :\n ৳ ${widget.Amount}', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                        Column(children:[Text('New Balance :\n ${remain}', style: GoogleFonts.openSans(fontSize: 20.0))]),
                       ]),
 
                       // TableRow( children: [
@@ -233,4 +244,159 @@ class _SalaryConfirmationState extends State<SalaryConfirmation>with TickerProvi
       ),
     );
   }
+
+
+
+
+
+  void sendOneByOne()
+  {
+
+  }
+
+
+
+
+
+  void PaySalary (String sendPhoneNumber,String receiverPhoneNumber,String amount)async{
+
+
+    //FirebaseDatabase database = FirebaseDatabase.instance;
+
+    DateTime now = DateTime.now();
+    //String formattedDate = DateFormat.yMMMEd().format(now);
+    String formettedtime=DateFormat('E,d MMM yyyy HH:mm:ss').format(now);
+    //print(formattedDate);
+
+
+
+
+    double amnt=double.parse(amount);
+    ////////////////sender///////////////////////////////////////////////////////////////////////////////
+
+    DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
+
+
+    final sendPhoneNumbersnapshotBalance = await rf.child(sendPhoneNumber).child("profile").child("balance").get();
+
+
+
+    //////////////////sender//////////////////////////////////////////////////////////////////////////////////
+
+    double senderBalance=double.parse(sendPhoneNumbersnapshotBalance.value.toString());
+
+    ///////receiver///////////////////////////////////////////////////////////////////////////////
+
+
+    final receiverPhoneNumbersnapshotBalance = await rf.child(receiverPhoneNumber).child("profile").child("balance").get();
+
+    double receiverBalance=double.parse(receiverPhoneNumbersnapshotBalance.value.toString());
+    double senderCurrentBalance=senderBalance-amnt;
+    double receiverCurrentBalance=receiverBalance+amnt;
+
+
+    //DatabaseReference ref = FirebaseDatabase.instance.ref("users");
+
+    await rf.child(receiverPhoneNumber).child("profile").update({
+      "balance":receiverCurrentBalance.toString()
+    }).then((value) async {
+
+      await rf.child(sendPhoneNumber).child("profile").update({
+        "balance":senderCurrentBalance.toString()
+      }).then((value) {
+
+        Fluttertoast.showToast(
+            msg: "Cashout successful",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0
+        );
+
+      });
+
+
+    });
+
+
+    // await rf.child(sendPhoneNumber).child("profile").update({
+    //   "balance":senderCurrentBalance.toString()
+    // });
+
+
+
+
+
+    /////receiver/////////////////////////////////////////////////////////////////////////
+
+
+
+    DatabaseReference senderPostRef = rf.child(sendPhoneNumber).child("transection").push();
+    senderPostRef.set({
+      // ...
+      "transection_type":"Sent",
+      "opponent":receiverPhoneNumber,
+      "type":"Salary",
+      "amount":amount,
+      "time": formettedtime,
+    });
+
+
+    DatabaseReference senderPostNotifyRef = rf.child(sendPhoneNumber).child("Notifications").push();
+    senderPostNotifyRef.set({
+      // ...
+      "transection_type":"Sent",
+      "opponent":receiverPhoneNumber,
+      "type":"Salary",
+      "amount":amount,
+      "time": formettedtime,
+    });
+
+
+
+
+
+    DatabaseReference receiverPostRef = rf.child(receiverPhoneNumber).child("transection").child(senderPostRef.key.toString());
+    receiverPostRef.set({
+      "transection_type":"Received",
+      "opponent":sendPhoneNumber,
+      "type":"Salary",
+      "amount":amount,
+      "time":formettedtime,
+    });
+
+    DatabaseReference receiverPostNotifyRef = rf.child(receiverPhoneNumber).child("Notifications").child(senderPostRef.key.toString());
+    receiverPostNotifyRef.set({
+      "transection_type":"Received",
+      "opponent":sendPhoneNumber,
+      "type":"Salary",
+      "amount":amount,
+      "time":formettedtime,
+    });
+
+
+
+
+
+    // bool isSennt=false;
+    // bool isReceived=false;
+    //
+
+
+
+
+
+
+  }
+
+
+
+
+
 }
+
+
+
+

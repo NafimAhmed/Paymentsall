@@ -20,9 +20,15 @@ class SalaryDashBoard extends StatelessWidget {
 
   RxDouble amt=0.00.obs;
 
+  FirebaseDatabase database = FirebaseDatabase.instance;
+
+  DatabaseReference rfup = FirebaseDatabase.instance.ref("User_profile");
 
 
-   SalaryDashBoard({super.key, required this.pin, required this.phoneNumber, required this.balance});
+
+
+
+  SalaryDashBoard({super.key, required this.pin, required this.phoneNumber, required this.balance});
   //const SalaryDashBoard({Key? key, required this.pin}) : super(key: key);
 
 
@@ -34,9 +40,14 @@ class SalaryDashBoard extends StatelessWidget {
 
     Query dbref=FirebaseDatabase.instance.ref("User_profile").child(phoneNumber).child("Employee_List");
 
-    totalAmnt();
+    //totalAmnt();
 
 
+    rfup.child(phoneNumber).onValue.listen((event) {
+
+      amt.value=0.00;
+     totalAmnt();
+    });
 
 
 
@@ -100,7 +111,8 @@ class SalaryDashBoard extends StatelessWidget {
                                     return SalaryPayPin(
                                       pin: pin,
                                       balance: balance,
-                                      amount: amount,
+                                      amount: amt.value.toString(),
+                                      UserPhone: phoneNumber,
                                     );
                                   },
                                 ),
@@ -197,6 +209,7 @@ class SalaryDashBoard extends StatelessWidget {
                                         EmpDesig: "${snapshot.child("EmployeeDesignetion").value.toString()}",
                                         EmpPhone: "${snapshot.child("EmployeePhoneNumber").value.toString()}",
                                         EmpSal: "${snapshot.child("EmployeeSalary").value.toString()}",
+                                        UserPhone: phoneNumber,
                                       );
                                     },
                                   ),

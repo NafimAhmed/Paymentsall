@@ -74,7 +74,7 @@ class _LoginPageState extends State<LoginPage> {
 
             Padding(
               padding: const EdgeInsets.only(left: 8,right: 8),
-              child: Text('Enter Validate Mobile No. and Password for Login',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey.shade600),textAlign: TextAlign.center,),
+              child: Text('Enter validate mobile Number and\nPassword for Login',style: TextStyle(fontWeight: FontWeight.normal,fontSize: 16,color: Colors.grey.shade600),textAlign: TextAlign.center,),
             ),
 
 
@@ -83,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
                 padding: EdgeInsets.all(8.0),
             child: Container(
-              height: 220,width: 320,
+              height: 250,width: 320,
               decoration: BoxDecoration(
                   border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                   borderRadius: BorderRadius.circular(8.0),
@@ -102,13 +102,14 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      height: 36,width: 296,
+                      height: 45,width: 296,
                       decoration: BoxDecoration(
                           border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                           borderRadius: BorderRadius.circular(6.0),
                           color: Colors.white
                       ),
                       child: TextField(
+
                         controller: _mobileNumber,
                         keyboardType: TextInputType.number,
                         cursorColor: Colors.red.shade900,
@@ -133,7 +134,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Container(
-                      height: 36,width: 296,
+                      height: 45,width: 296,
                       decoration: BoxDecoration(
                           border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                           borderRadius: BorderRadius.circular(6.0),
@@ -168,7 +169,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 80),
                     child: Container(
-                      height: 40,width: 150,
+                      height: 45,width: 150,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
                           color: Colors.deepOrange.shade50

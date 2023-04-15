@@ -1,5 +1,6 @@
 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 class EmployeeDetail extends StatelessWidget
 {
 
-  final String EmpName,EmpPhone,EmpSal,EmpDesig;
+  final String EmpName,UserPhone,EmpPhone,EmpSal,EmpDesig;
 
 
 
@@ -16,13 +17,21 @@ class EmployeeDetail extends StatelessWidget
   TextEditingController EmpSalary=TextEditingController();
   TextEditingController EmpDesignetion=TextEditingController();
 
-   EmployeeDetail({super.key, required this.EmpName, required this.EmpPhone, required this.EmpSal, required this.EmpDesig});
+   EmployeeDetail({super.key, required this.EmpName, required this.EmpPhone,required this.UserPhone, required this.EmpSal, required this.EmpDesig});
+
+
+
 
   //TextEditingController EmpSalary=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
+    //Query dbref=FirebaseDatabase.instance.ref("User_profile").child("${UserPhone}").child("Employee_List").child("$EmpPhone");
+
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Employee detail"),
@@ -180,11 +189,56 @@ class EmployeeDetail extends StatelessWidget
               ),
               SizedBox(height: 30,),
 
+
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+
+                  ElevatedButton(
+                    onPressed: (){
+
+                      FirebaseDatabase.instance
+                          .ref("User_profile")
+                          .child("${UserPhone}")
+                          .child("Employee_List")
+                          .child("$EmpPhone")
+                          .remove().then((value) => Navigator.pop(context)).onError((error, stackTrace) => null);
+
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete),
+                        Text("Delete Employee",
+                          style: GoogleFonts.openSans(
+                            fontSize: 15,
+
+                          ),
+                        ),
+                      ],
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red.shade900 ,
+                      shape: StadiumBorder(),
+                      side: BorderSide(color: Colors.red.shade900, width: 2),
+                    ),
+
+                  ),
+                ],
+              )
+
+
+
+
             ],
           ),
         ),
       ),
     );
+  }
+
+
+  void Delete(){
+
   }
 
 }
