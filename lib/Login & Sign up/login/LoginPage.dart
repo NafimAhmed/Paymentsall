@@ -1,23 +1,22 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../Screens/HomePage.dart';
 import '../../Screens/MainScreen.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+   LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
-
-
   TextEditingController _mobileNumber = TextEditingController();
-  TextEditingController _password = TextEditingController();
 
+  TextEditingController _password = TextEditingController();
 
   ///////////////////////////////////
 
@@ -26,13 +25,9 @@ class _LoginPageState extends State<LoginPage> {
 
   DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
 
-
-
-
   //////////////////////////////
 
   bool _isObscure=true;
-
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +78,7 @@ class _LoginPageState extends State<LoginPage> {
             Padding(
                 padding: EdgeInsets.all(8.0),
             child: Container(
-              height: 250,width: 320,
+              height: 280,width: 320,
               decoration: BoxDecoration(
                   border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
                   borderRadius: BorderRadius.circular(8.0),
@@ -99,30 +94,38 @@ class _LoginPageState extends State<LoginPage> {
                   Text('   Mobile Number',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.red.shade900),),
 
 
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 45,width: 296,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
-                          borderRadius: BorderRadius.circular(6.0),
-                          color: Colors.white
-                      ),
-                      child: TextField(
+                  Container(
+                    padding: EdgeInsets.fromLTRB(10,10,10,0),
+                    child: TextField(
+                      maxLength: 11,
+                      controller: _mobileNumber,
+                      keyboardType: TextInputType.number,
+                      cursorColor: Colors.red.shade900,
+                      decoration: InputDecoration(
 
-                        controller: _mobileNumber,
-                        keyboardType: TextInputType.number,
-                        cursorColor: Colors.red.shade900,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          prefixIcon: Icon(Icons.account_circle,
-                            size: 30,
-                            color: Colors.grey,),
-                          hintText: 'Phone Number',
-                          hintStyle: TextStyle(color: Colors.grey.shade400),
+                        prefixIcon: Icon(Icons.account_circle,
+                          size: 30,
+                          color: Colors.grey,),
+
                           suffixIcon: Icon(Icons.contact_phone_outlined),
                           suffixIconColor: Color(0xFFFCDEDE),
-                        ),
+
+
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(width: 1,color: Colors.red.shade100)
+
+                          ),
+
+                          hintText: "Mobile Number",
+
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                              borderSide: BorderSide(
+                                  color: Colors.red.shade900,
+                                  width: 1.0
+                              )
+                          )
                       ),
                     ),
                   ),
@@ -131,25 +134,16 @@ class _LoginPageState extends State<LoginPage> {
                   Text('   Password',style: TextStyle(fontWeight: FontWeight.normal,color: Colors.red.shade900),),
 
 
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Container(
-                      height: 45,width: 296,
-                      decoration: BoxDecoration(
-                          border: Border.all(width: 1,color: Color(0xFFFCDEDE),),
-                          borderRadius: BorderRadius.circular(6.0),
-                          color: Colors.white
-                      ),
-                      child: TextField(
-                        controller: _password,
-                        obscureText: _isObscure,
-                        keyboardType: TextInputType.text,
-                        cursorColor: Colors.red.shade900,
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                    child: TextField(
+
+                      controller: _password,
+                      obscureText: _isObscure,
+                      keyboardType: TextInputType.text,
+                      cursorColor: Colors.red.shade900,
+                      decoration: InputDecoration(
                           prefixIcon: Icon(Icons.vpn_key_sharp,size: 30,color: Colors.grey,),
-                          hintText: 'Enter Password',
-                          hintStyle: TextStyle(color: Colors.grey.shade400),
                           suffixIcon: IconButton(
                             icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
                             onPressed: (){
@@ -159,8 +153,22 @@ class _LoginPageState extends State<LoginPage> {
                             },
                           ),
                           suffixIconColor: Color(0xFFFCDEDE),
-                        ),
-                      ),
+                    border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(width: 1,color: Colors.red.shade100)
+
+                    ),
+
+                    hintText: "Password",
+
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10),
+                        borderSide: BorderSide(
+                            color: Colors.red.shade900,
+                            width: 1.0
+                        )
+                    )
+                    ),
                     ),
                   ),
 
@@ -225,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
                             }
 
 
-                            
+
 
                           } else {
 

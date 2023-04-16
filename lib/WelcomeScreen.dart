@@ -85,7 +85,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return const LoginPage();
+                        return LoginPage();
                       },
                     ),
                   );
