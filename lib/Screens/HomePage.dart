@@ -450,7 +450,7 @@ class HomePage extends StatelessWidget {
                                         color: Colors.red.shade900,
                                       )//Image.asset('assets/images/bank_transfer.png',),
                                     ),
-                                     Text('Bank Transfer',style: TextStyle(color:Color(0xFF80140E)))
+                                     Text('General banking',style: TextStyle(color:Color(0xFF80140E)))
                                   ],
                                 )),
                           ),
