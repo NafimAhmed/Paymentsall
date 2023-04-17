@@ -47,7 +47,7 @@ class _DBBLacPageState extends State<DBBLacPage> {
                   ],
                 ),
                 SizedBox(height: 20,),
-                Text('   DBBL CBS Account',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
+                Text('   Krishi Bank CBS Account',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.red.shade900)),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
                   child: Container(
@@ -62,7 +62,7 @@ class _DBBLacPageState extends State<DBBLacPage> {
                         decoration: InputDecoration(
                           border: InputBorder.none,
                           prefixIcon: Icon(Icons.account_circle,size: 30,color: Colors.grey,),
-                          hintText: 'DBBL CBS Account',
+                          hintText: 'Krishi Bank CBS Account',
                           hintStyle: TextStyle(color: Colors.grey.shade400),
                         ),
                       )
