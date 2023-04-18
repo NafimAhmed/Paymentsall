@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
           body: Container(
             width: AppLayout.getScreenWidth(),
             height: AppLayout.getScreenHeight(),
-            child: Image.asset('assets/images/splash2.png',height: 250,width: 300,),
+            child: Image.asset('assets/images/splash2.png',height: 200,width: 200,),
           ),
         ),
         nextScreen: WelcomeScreen(),
