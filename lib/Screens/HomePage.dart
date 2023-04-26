@@ -358,7 +358,9 @@ class HomePage extends StatelessWidget {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) {
-                                        return FuelPayDashBoard();
+                                        return FuelPayDashBoard(
+                                          phoneNumber: phoneNumber,
+                                        );
                                       },
                                     ),
                                   );
