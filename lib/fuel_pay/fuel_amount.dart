@@ -157,10 +157,15 @@ class FuelAmount extends StatelessWidget
                     color: Colors.red.shade100
                 ),
 
-                child: Text("Total price : ")
+                child: Text("Total price : "),
 
 
+            ),
 
+            ElevatedButton(onPressed: (){
+
+            },
+                child: Text("Pay Now")
             )
 
           ],
