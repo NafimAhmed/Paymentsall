@@ -1,9 +1,11 @@
 
 
 
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/app_layout.dart';
@@ -12,12 +14,56 @@ import 'collection_point.dart';
 class Endowsement extends StatelessWidget
 {
 
+  final String phoneNumber;
+
+
+  FirebaseDatabase database = FirebaseDatabase.instance;
+
+  DatabaseReference rf = FirebaseDatabase.instance.ref("User_profile");
+
+   Endowsement({super.key, required this.phoneNumber});
+
+
+
+  FirebaseDatabase database_Endowsment = FirebaseDatabase.instance;
+
+  DatabaseReference rf_Endowsment = FirebaseDatabase.instance.ref("Endowsment_Rate");
+
+
 
 
   @override
   Widget build(BuildContext context) {
+
+    String balance="0.00";
+    String Endowse_rate="0.00";
+
+
+    RxString? balancechange=balance.obs;
+    RxString? Endowse_ratechange=Endowse_rate.obs;
+
+    rf.child(phoneNumber).child('profile').onValue.listen((event) {
+
+      double balan= double.parse(event.snapshot.child("balance").value.toString()!);
+
+      balancechange.value=balan.toStringAsFixed(2);
+
+    });
+
+
+    rf_Endowsment.onValue.listen((event) {
+
+      double rate= double.parse(event.snapshot.child("Doller").value.toString()!);
+
+      Endowse_ratechange.value=rate.toStringAsFixed(2);
+
+    });
+
+
+
+
     // TODO: implement build
-    return Scaffold(
+    return Obx(() => Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -57,21 +103,21 @@ class Endowsement extends StatelessWidget
                 children: [
                   Text("Your current balance :",
 
-                  style: GoogleFonts.openSans(
-                    fontSize: 20
-                  ),
+                    style: GoogleFonts.openSans(
+                        fontSize: 20
+                    ),
 
                   ),
 
                   Gap(10),
 
 
-                  Text("৳ 500",
-                  style: GoogleFonts.openSans(
-                    fontSize: 30,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.red.shade900,
-                  ),
+                  Text("৳ ${balancechange.value}",
+                    style: GoogleFonts.openSans(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.red.shade900,
+                    ),
                   ),
                 ],
               ),
@@ -106,7 +152,7 @@ class Endowsement extends StatelessWidget
                         fontSize: 20
                     ),
                   ),
-                  Text("\$ 1 = ৳ 100",
+                  Text("\$ 1 = ৳ ${Endowse_ratechange}",
                     style: GoogleFonts.openSans(
                       fontSize: 30,
                       fontWeight: FontWeight.w600,
@@ -141,7 +187,7 @@ class Endowsement extends StatelessWidget
                     ),
                   ),
                   TextField(
-                   // controller: rechargeAmount,
+                    // controller: rechargeAmount,
                     keyboardType: TextInputType.number,
                     cursorColor: Colors.red.shade900,
                     style: GoogleFonts.openSans(
@@ -153,9 +199,9 @@ class Endowsement extends StatelessWidget
                       border: InputBorder.none,
                       prefixIcon: Text(" \$",
                         style: GoogleFonts.openSans(
-                          fontSize: 35,
-                          fontWeight: FontWeight.bold,
-                          color:  Colors.red.shade900
+                            fontSize: 35,
+                            fontWeight: FontWeight.bold,
+                            color:  Colors.red.shade900
 
                         ),
                       ),//Icon(Icons.currency_lira,size: 30,color: Colors.red.shade900,),
@@ -203,6 +249,6 @@ class Endowsement extends StatelessWidget
           ],
         ),
       ),
-    );
+    ));
   }
 }

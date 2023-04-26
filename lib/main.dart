@@ -9,6 +9,7 @@ import 'package:payments_all_app/utils/Theme.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:sizer/sizer.dart';
 
 void main() async{
 
@@ -60,26 +61,43 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeNotifier = Provider.of<ThemeNotifier>(context);
-    return GetMaterialApp(
-      title: 'Payments All',
+    return Sizer(
+        builder: (context, orientation, deviceType){
+        return GetMaterialApp(
+        title: 'Payments All',
 
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         theme: themeNotifier.getTheme(),
         home: AnimatedSplashScreen(
         duration: 3000,
         splash: Scaffold(
-          body: Container(
-            width: AppLayout.getScreenWidth(),
-            height: AppLayout.getScreenHeight(),
-            child: Image.asset('assets/images/splash2.png',height: 200,width: 200,),
-          ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  alignment: Alignment.center,
+                width: 50.w,
+                height: 50.h,
+                child: Image.asset('assets/images/splash2.png',height: 70.h,width: 70.w,),
+                ),
+              ],
+            ),
+          ],
+        ),
         ),
         nextScreen: WelcomeScreen(),
         splashTransition: SplashTransition.fadeTransition,
         splashIconSize: double.maxFinite,
         backgroundColor:  Color(0xFFFFF8F8),
-      )
-      // WelcomeScreen(),
+    )
+    // WelcomeScreen(),
+    );
+    }
     );
   }
 }

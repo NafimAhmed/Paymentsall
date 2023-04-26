@@ -8,6 +8,7 @@ import 'package:payments_all_app/Screens/Home/Bill%20Pay/BillPay.dart';
 import 'package:payments_all_app/Screens/Mobile%20Banking/MobileBankingPage.dart';
 import 'package:payments_all_app/Screens/RecentTransfer/RecenTransferScreen.dart';
 
+import '../fuel_pay/fuel_pay_dash_board.dart';
 import 'donation/donation_home.dart';
 import 'salary_payroll/salary_dash_board.dart';
 import 'travelcard_all/tc_form.dart';
@@ -85,7 +86,7 @@ class HomePage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset('assets/images/Payments_All.png',height: 60,width: 60,),
+                    Image.asset('assets/images/splash2.png',height: 60,width: 60,),
                     Text(' Payments All',
                       style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold,color: Colors.black,fontStyle: FontStyle.italic),)
                   ],
@@ -317,7 +318,9 @@ class HomePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) {
-                                      return TCForm();
+                                      return TCForm(
+                                        phoneNumber: phoneNumber,
+                                      );
                                     },
                                   ),
                                 );
@@ -334,7 +337,7 @@ class HomePage extends StatelessWidget {
                                     )//Image.asset('assets/images/Travel card.png',height: 40,) ,
 
                                   ),
-                                  const Text('Travel Card',style: TextStyle(color:Color(0xFF80140E)))
+                                  const Text('Travel\nCard',style: TextStyle(color:Color(0xFF80140E)))
                                 ],
                               )),
                         ],
@@ -351,28 +354,28 @@ class HomePage extends StatelessWidget {
                                   overlayColor: MaterialStateProperty.all(Colors.transparent),
                                 ),
                                 onPressed: (){
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) {
-                                  //       return BillPayPage();
-                                  //     },
-                                  //   ),
-                                  // );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return FuelPayDashBoard();
+                                      },
+                                    ),
+                                  );
                                 },
                                 child: Column(
                                   children: [
                                     CircleAvatar(
                                       backgroundColor: Color(0xFFFFF8F8),
                                       radius: 26,
-                                      child: Icon(Icons.bolt,
+                                      child: Icon(Icons.local_gas_station,
                                         color: Colors.red.shade900,
                                         size: 40,
                                       )//Image.asset('assets/images/Quick Pay.png',),
 
                                       //Icon(Icons.receipt_sharp,color: Colors.black)
                                     ),
-                                    const Text('Quick Pay',style: TextStyle(color:Color(0xFF80140E)))
+                                    const Text('Fuel Pay',style: TextStyle(color:Color(0xFF80140E)))
                                   ],
                                 )
                             ),
@@ -450,7 +453,7 @@ class HomePage extends StatelessWidget {
                                         color: Colors.red.shade900,
                                       )//Image.asset('assets/images/bank_transfer.png',),
                                     ),
-                                     Text('General banking',style: TextStyle(color:Color(0xFF80140E)))
+                                     Text('General\nbanking',style: TextStyle(color:Color(0xFF80140E)))
                                   ],
                                 )),
                           ),
