@@ -10,7 +10,7 @@ import 'package:payments_all_app/utils/app_layout.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 void main() async{
 
 
