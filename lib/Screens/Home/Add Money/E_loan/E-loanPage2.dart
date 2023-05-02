@@ -71,80 +71,82 @@ class EloanPageTwo extends StatelessWidget {
               color: Colors.white
           ),
 
-          child: Column(
-            // mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(height: 50,),
+          child: SingleChildScrollView(
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(height: 50,),
 
-              Image.asset('assets/images/paymentsAll_logo.png',height: 100,width: 200,),
+                Image.asset('assets/images/paymentsAll_logo.png',height: 100,width: 200,),
 
-              SizedBox(height: 30,),
+                SizedBox(height: 30,),
 
-              Text('Dear User, your useable E_loan Limit is',
-                 style: GoogleFonts.openSans(
-                     color: Colors.black,
-                     fontWeight: FontWeight.w400,
-                     fontSize: 20
+                Text('Dear User, your useable E_loan Limit is',
+                   style: GoogleFonts.openSans(
+                       color: Colors.black,
+                       fontWeight: FontWeight.w400,
+                       fontSize: 20
+                   ),
+                   textAlign: TextAlign.center,
+
+
                  ),
-                 textAlign: TextAlign.center,
 
+                SizedBox(height: 20,),
 
-               ),
+                Text('৳10,000',
 
-              SizedBox(height: 20,),
+                   style: GoogleFonts.openSans(
+                       color: Colors.red.shade900,
+                       fontWeight: FontWeight.w500,
+                       fontSize: 32
+                   ),
+                   textAlign: TextAlign.center,
 
-              Text('৳10,000',
-
-                 style: GoogleFonts.openSans(
-                     color: Colors.red.shade900,
-                     fontWeight: FontWeight.w500,
-                     fontSize: 32
                  ),
-                 textAlign: TextAlign.center,
-
-               ),
 
 
-              SizedBox(height: 274,),
-              Container(
-                height: 40,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(6.0),
-                    color: Colors.red.shade900
-                ),
-                child: TextButton(
-                  style: ButtonStyle(
-                    shadowColor: MaterialStateProperty.all(Colors.transparent),
-                    overlayColor: MaterialStateProperty.all(Colors.transparent),
+                SizedBox(height: 274,),
+                Container(
+                  height: 40,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6.0),
+                      color: Colors.red.shade900
                   ),
-                  onPressed: (){
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return RepayMoneyDurationAndAmount(
-                            amount: amount,
-                            firstName: firstName,
-                            lastName: lastName,
-                            phoneNumber: phoneNumber,
-                            pin: pin,
+                  child: TextButton(
+                    style: ButtonStyle(
+                      shadowColor: MaterialStateProperty.all(Colors.transparent),
+                      overlayColor: MaterialStateProperty.all(Colors.transparent),
+                    ),
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return RepayMoneyDurationAndAmount(
+                              amount: amount,
+                              firstName: firstName,
+                              lastName: lastName,
+                              phoneNumber: phoneNumber,
+                              pin: pin,
 
-                          );
-                        },
-                      ),
-                    );
+                            );
+                          },
+                        ),
+                      );
 
-                  },
-                  child: Row(
-                    children: [
-                      Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
-                      Spacer(),
-                      Icon(Icons.arrow_forward,color: Colors.white,)
-                    ],
+                    },
+                    child: Row(
+                      children: [
+                        Text('Next',style: TextStyle(fontWeight: FontWeight.w500,color: Colors.white,fontSize: 16)),
+                        Spacer(),
+                        Icon(Icons.arrow_forward,color: Colors.white,)
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

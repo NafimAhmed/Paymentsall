@@ -93,20 +93,22 @@ class FuelPayDashBoard extends StatelessWidget{
                                 ),
                               );
                             },
-                            child: Column(
-                              children: [
-                                CircleAvatar(
-                                    backgroundColor: Color(0xFFFFF8F8),
-                                    radius: 26,
-                                    child: Icon(Icons.oil_barrel_sharp,
-                                      color: Colors.red.shade900,
-                                      size: 40,
-                                    )//Image.asset('assets/images/Quick Pay.png',),
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: [
+                                  CircleAvatar(
+                                      backgroundColor: Color(0xFFFFF8F8),
+                                      radius: 26,
+                                      child: Icon(Icons.oil_barrel_sharp,
+                                        color: Colors.red.shade900,
+                                        size: 40,
+                                      )//Image.asset('assets/images/Quick Pay.png',),
 
-                                  //Icon(Icons.receipt_sharp,color: Colors.black)
-                                ),
-                                const Text('Petrol',style: TextStyle(color:Color(0xFF80140E)))
-                              ],
+                                    //Icon(Icons.receipt_sharp,color: Colors.black)
+                                  ),
+                                  const Text('Petrol',style: TextStyle(color:Color(0xFF80140E)))
+                                ],
+                              ),
                             )
                         ),
                       ),

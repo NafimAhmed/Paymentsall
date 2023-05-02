@@ -36,7 +36,15 @@ void main() async{
 
 
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+        apiKey: 'AIzaSyCF0LZO-fTg0fCatsPWqVBw_FW78nm6EAA',
+        appId: '1:235910083998:android:8ac67cf79d7af5c17d128f',
+        messagingSenderId: 'messagingSenderId',
+        projectId: 'payments-all',
+        databaseURL: 'https://payments-all-default-rtdb.firebaseio.com'
+    )
+  );
 
 
   WidgetsFlutterBinding.ensureInitialized();
