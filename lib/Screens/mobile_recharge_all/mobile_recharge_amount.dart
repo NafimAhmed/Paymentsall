@@ -183,7 +183,7 @@ class MobileRechargeAmount extends StatelessWidget
                              ),
                            ),
 
-                           Text("100.00",
+                           Text("${balance}",
 
                              style: GoogleFonts.openSans(
                                fontSize: 15,

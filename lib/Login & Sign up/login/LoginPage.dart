@@ -189,56 +189,82 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         onPressed: ()async{
 
+                          if(_mobileNumber.text.isNotEmpty)
+                            {
 
-                          final snapshot = await rf.child(_mobileNumber.text.toString()).child("profile").child("pin").get();
-                          final snapshotfnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("first_name").get();
-                          final snapshotlnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("last_name").get();
-                          final snapshotgnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("gender").get();
-                          final snapshotdnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("dob").get();
-                          final snapshotBalance = await rf.child(_mobileNumber.text.toString()).child("profile").child("balance").get();
+                              final snapshot = await rf.child(_mobileNumber.text.toString()).child("profile").child("pin").get();
+                              final snapshotfnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("first_name").get();
+                              final snapshotlnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("last_name").get();
+                              final snapshotgnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("gender").get();
+                              final snapshotdnm = await rf.child(_mobileNumber.text.toString()).child("profile").child("dob").get();
+                              final snapshotBalance = await rf.child(_mobileNumber.text.toString()).child("profile").child("balance").get();
 
-                          if (snapshot.exists) {
+                              if (snapshot.exists) {
 
 
-                            if(snapshot.value.toString()==_password.text.toString()){
+                                if(snapshot.value.toString()==_password.text.toString()){
 
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    return MainScreen(
-                                        phoneNumber: _mobileNumber.text.toString(),
-                                      pin: snapshot.value.toString(),
-                                      firstName: snapshotfnm.value.toString(),
-                                      lastName: snapshotlnm.value.toString(),
-                                      balance: snapshotBalance.value.toString(),
-                                      gender: snapshotgnm.value.toString(),
-                                      dob: snapshotdnm.value.toString(),
-                                    );
-                                  },
-                                ),
-                              );
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return MainScreen(
+                                          phoneNumber: _mobileNumber.text.toString(),
+                                          pin: snapshot.value.toString(),
+                                          firstName: snapshotfnm.value.toString(),
+                                          lastName: snapshotlnm.value.toString(),
+                                          balance: snapshotBalance.value.toString(),
+                                          gender: snapshotgnm.value.toString(),
+                                          dob: snapshotdnm.value.toString(),
+                                        );
+                                      },
+                                    ),
+                                  );
+
+                                }
+                                else{
+                                  Fluttertoast.showToast(
+                                      msg: "wrong password",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: Colors.red,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0
+                                  );
+                                }
+
+
+
+
+                              } else {
+
+                                Fluttertoast.showToast(
+                                    msg: "No Account found",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.CENTER,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.red,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0
+                                );
+
+
+                              }
+
+
+
+
+
+
+
 
                             }
-                            else{
-                              Fluttertoast.showToast(
-                                  msg: "wrong password",
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.CENTER,
-                                  timeInSecForIosWeb: 1,
-                                  backgroundColor: Colors.red,
-                                  textColor: Colors.white,
-                                  fontSize: 16.0
-                              );
-                            }
 
-
-
-
-                          } else {
+                          else{
 
                             Fluttertoast.showToast(
-                                msg: "No Account found",
+                                msg: "Please enter Valied Phone Number",
                                 toastLength: Toast.LENGTH_SHORT,
                                 gravity: ToastGravity.CENTER,
                                 timeInSecForIosWeb: 1,
@@ -247,15 +273,10 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 16.0
                             );
 
-
                           }
 
 
-
-
-
-
-                        },
+                                                 },
                         child: Text('Login',
                           style: TextStyle(fontSize: 20,color: Colors.red.shade900),),
                       ),

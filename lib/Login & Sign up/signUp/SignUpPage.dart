@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
@@ -309,6 +310,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                   setState(() {
                                     _dob.text = formattedDate;
                                   });
+
+
                                 }
                               }
                             ),
@@ -460,16 +463,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     onPressed: () async{
 
+                      if(_mobileNumber.text.isNotEmpty&&_pin.text.isNotEmpty&&_nid.text.isNotEmpty&&_firstName.text.isNotEmpty&&_lastName.text.isNotEmpty){
 
-                     //  if(_firstName.text.isEmpty){}
-                     //  else if(_lastName.text.isEmpty){}
-                     // // else if(_dob.text.isEmpty){}
-                     //  else if(_gender.text.isEmpty){}
-                     //  //else if(_gender.text.isEmpty){}
-                     //  else if(_mobileNumber.text.isEmpty){}
-                     //  else if(_pin.text.isEmpty){}
-                     //  else if(_nid.text.isEmpty){}
-                     //  else{
                         await ref.child(_mobileNumber.text).child("profile").set({
                           "first_name": _firstName.text,
                           "last_name": _lastName.text,
@@ -496,7 +491,33 @@ class _SignUpPageState extends State<SignUpPage> {
                           //   ),
                           // );
                         });
-                      //}
+
+
+                      }
+                      else{
+
+                        Fluttertoast.showToast(
+                            msg: "Please enter all the data properly",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.red,
+                            textColor: Colors.white,
+                            fontSize: 16.0
+                        );
+
+                      }
+
+                     //  if(_firstName.text.isEmpty){}
+                     //  else if(_lastName.text.isEmpty){}
+                     // // else if(_dob.text.isEmpty){}
+                     //  else if(_gender.text.isEmpty){}
+                     //  //else if(_gender.text.isEmpty){}
+                     //  else if(_mobileNumber.text.isEmpty){}
+                     //  else if(_pin.text.isEmpty){}
+                     //  else if(_nid.text.isEmpty){}
+                     //  else{
+                           //}
 
 
 

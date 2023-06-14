@@ -142,7 +142,7 @@ class _SendMoneyConfirmationPageState extends State<SendMoneyConfirmationPage>wi
                       ]),
 
                       TableRow( children: [
-                        Column(children:[Text('Refernce : \n', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                        Column(children:[Text('Reference : \n', style: GoogleFonts.openSans(fontSize: 20.0))]),
                         Column(children:[Text(widget.ref, style: GoogleFonts.openSans(fontSize: 20.0))]),
                       ]),
 

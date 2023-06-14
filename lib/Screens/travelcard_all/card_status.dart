@@ -11,7 +11,7 @@ import '../../utils/app_layout.dart';
 
 class CardStatus extends StatelessWidget{
 
-  List<String> _processes=['initiate','processing','ready','Delivered'];
+  List<String> _processes=['initiate','process','ready','delivered'];
 
 
 
@@ -63,7 +63,7 @@ class CardStatus extends StatelessWidget{
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
 
-                  Text("Collecting point :",
+                  Text("Collection point :",
                     style: GoogleFonts.openSans(
                         fontSize: 20,
                         fontWeight: FontWeight.bold

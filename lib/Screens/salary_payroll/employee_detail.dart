@@ -15,7 +15,7 @@ class EmployeeDetail extends StatelessWidget
   TextEditingController EmpPhoneNumber=TextEditingController();
 
   TextEditingController EmpSalary=TextEditingController();
-  TextEditingController EmpDesignetion=TextEditingController();
+  TextEditingController EmpDesignation=TextEditingController();
 
    EmployeeDetail({super.key, required this.EmpName, required this.EmpPhone,required this.UserPhone, required this.EmpSal, required this.EmpDesig});
 
@@ -55,7 +55,7 @@ class EmployeeDetail extends StatelessWidget
 
               SizedBox(height: 30,),
 
-              Text("Employee designetion : ",
+              Text("Employee designation : ",
                 style: GoogleFonts.openSans(
                     fontSize: 18
                 ),
@@ -65,7 +65,7 @@ class EmployeeDetail extends StatelessWidget
               Container(
                 child: TextField(
 
-                  controller: EmpDesignetion,
+                  controller: EmpDesignation,
 
 
                   maxLines: 1,

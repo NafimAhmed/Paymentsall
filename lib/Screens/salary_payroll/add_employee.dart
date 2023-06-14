@@ -14,7 +14,7 @@ class AddEmployee extends StatelessWidget
    AddEmployee({super.key, required this.PhoneNumber});
 
   TextEditingController EmpName = TextEditingController();
-  TextEditingController EmpDesignetion = TextEditingController();
+  TextEditingController EmpDesignation = TextEditingController();
   TextEditingController EmpSalary = TextEditingController();
   TextEditingController EmpPhoneNumber = TextEditingController();
 
@@ -80,7 +80,7 @@ class AddEmployee extends StatelessWidget
               SizedBox(height: 30,),
               Container(
                 child: TextField(
-                  controller: EmpDesignetion,
+                  controller: EmpDesignation,
                   maxLines: 1,
                   decoration: InputDecoration(
                       labelText: "Employee Designation",
@@ -99,7 +99,7 @@ class AddEmployee extends StatelessWidget
                       ),
                       filled: true,
                       fillColor: Colors.white70,
-                      hintText: "Employee Designetion",
+                      hintText: "Employee Designation",
                       focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                           borderSide: BorderSide(
@@ -191,7 +191,7 @@ class AddEmployee extends StatelessWidget
                   DatabaseReference receiverPostRef = rf.child(PhoneNumber).child("Employee_List").child(EmpPhoneNumber.text.toString());
                   receiverPostRef.set({
                     "EmployeeName":EmpName.text.toString(),
-                    "EmployeeDesignetion":EmpDesignetion.text.toString(),
+                    "EmployeeDesignation":EmpDesignation.text.toString(),
                     "EmployeePhoneNumber":EmpPhoneNumber.text.toString(),
                     "EmployeeSalary":EmpSalary.text.toString(),
                   }).then((value) => Navigator.pop(context));

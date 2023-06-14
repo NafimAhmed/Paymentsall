@@ -217,7 +217,7 @@ class LoanSuccessfulPage extends StatelessWidget {
                                   //fontSize: 16
                                 ),
                               ),
-                              Image.asset('assets/images/paymentsAll_logo.png',height: 30,),
+                              Image.asset('assets/images/splash2.png',height: 30,),
                             ],
                           ),
                         ),

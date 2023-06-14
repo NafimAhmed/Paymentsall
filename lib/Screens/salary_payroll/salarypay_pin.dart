@@ -103,7 +103,7 @@ import '../../utils/app_layout.dart';
 
                       Row(
                         children: [
-                          Text("Aveilable Balance : ",
+                          Text("Available Balance : ",
                             style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold

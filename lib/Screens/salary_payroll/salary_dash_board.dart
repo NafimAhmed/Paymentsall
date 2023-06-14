@@ -136,7 +136,7 @@ class SalaryDashBoard extends StatelessWidget {
 
                       Row(
                         children: [
-                          Text("Aveilable Balance : ",
+                          Text("Available Balance : ",
                             style: GoogleFonts.openSans(
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold
@@ -206,7 +206,7 @@ class SalaryDashBoard extends StatelessWidget {
                                     builder: (context) {
                                       return EmployeeDetail(
                                         EmpName: '${snapshot.child("EmployeeName").value.toString()}',
-                                        EmpDesig: "${snapshot.child("EmployeeDesignetion").value.toString()}",
+                                        EmpDesig: "${snapshot.child("EmployeeDesignation").value.toString()}",
                                         EmpPhone: "${snapshot.child("EmployeePhoneNumber").value.toString()}",
                                         EmpSal: "${snapshot.child("EmployeeSalary").value.toString()}",
                                         UserPhone: phoneNumber,
@@ -230,7 +230,7 @@ class SalaryDashBoard extends StatelessWidget {
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text("Designation : ${snapshot.child("EmployeeDesignetion").value.toString()}"),
+                                  Text("Designation : ${snapshot.child("EmployeeDesignation").value.toString()}"),
                                   Text("Account Phone Number : ${snapshot.child("EmployeePhoneNumber").value.toString()}"),
                                   Text("Salary amount : ${snapshot.child("EmployeeSalary").value.toString()}"),
                                 ],

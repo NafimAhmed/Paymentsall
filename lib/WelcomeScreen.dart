@@ -64,7 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             const SizedBox(height: 20,),
             const Text('Easy Online Payment',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),
             const SizedBox(height: 10,),
-            const Text('Make your payment experience more better today.No additional fee',
+            const Text('Make your payment experience more better today without any additional fee',
               style: TextStyle(fontSize: 16,fontWeight: FontWeight.normal),textAlign: TextAlign.center,),
             const SizedBox(height: 40,),
             Container(

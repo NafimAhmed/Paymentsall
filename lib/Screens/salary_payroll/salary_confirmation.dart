@@ -141,7 +141,7 @@ class _SalaryConfirmationState extends State<SalaryConfirmation>with TickerProvi
                       ]),
 
                       // TableRow( children: [
-                      //   Column(children:[Text('Refernce : \n', style: GoogleFonts.openSans(fontSize: 20.0))]),
+                      //   Column(children:[Text('Reference : \n', style: GoogleFonts.openSans(fontSize: 20.0))]),
                       //   Column(children:[Text(widget.ref, style: GoogleFonts.openSans(fontSize: 20.0))]),
                       // ]
 
