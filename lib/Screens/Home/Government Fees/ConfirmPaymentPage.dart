@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:gap/gap.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:payments_all_app/utils/app_layout.dart';
 
 class ConfirmPaymentPage extends StatefulWidget {
   final String accountNumber,accountName,amount;

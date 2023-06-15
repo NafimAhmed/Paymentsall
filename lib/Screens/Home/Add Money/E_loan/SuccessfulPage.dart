@@ -2,10 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'package:payments_all_app/Screens/HomePage.dart';
 
 import '../../../../utils/app_layout.dart';
-import '../../../MainScreen.dart';
 
 class LoanSuccessfulPage extends StatelessWidget {
   final String amount;
