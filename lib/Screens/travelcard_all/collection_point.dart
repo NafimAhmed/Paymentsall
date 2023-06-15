@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:payments_all_app/Screens/travelcard_all/card_status.dart';
 
-import '../../utils/app_layout.dart';
 
 class Collection_point extends StatelessWidget
 {

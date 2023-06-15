@@ -1,5 +1,4 @@
 
-import 'dart:async';
 import 'dart:io';
 
 import 'package:firebase_database/firebase_database.dart';
@@ -12,7 +11,7 @@ import 'package:payments_all_app/utils/app_layout.dart';
 
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
-import 'dart:typed_data';
+// import 'dart:typed_data';
 import 'package:path_provider/path_provider.dart';
 import 'package:open_file/open_file.dart';
 

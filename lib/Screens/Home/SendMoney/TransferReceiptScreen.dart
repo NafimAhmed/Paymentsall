@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:payments_all_app/Screens/HomePage.dart';
 import 'package:payments_all_app/utils/app_layout.dart';
 
-import 'contact_page_send_money.dart';
 
 class TransferReceiptPage extends StatelessWidget {
 

@@ -10,7 +10,6 @@ import 'package:payments_all_app/utils/app_layout.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sizer/sizer.dart';
-import 'package:firebase_core/firebase_core.dart';
 void main() async{
 
 
@@ -37,18 +36,17 @@ void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: FirebaseOptions(
-        apiKey: 'AIzaSyCF0LZO-fTg0fCatsPWqVBw_FW78nm6EAA',
-        appId: '1:235910083998:android:8ac67cf79d7af5c17d128f',
-        messagingSenderId: 'messagingSenderId',
-        projectId: 'payments-all',
-        databaseURL: 'https://payments-all-default-rtdb.firebaseio.com'
-    )
+    // options: FirebaseOptions(
+    //     apiKey: 'AIzaSyCF0LZO-fTg0fCatsPWqVBw_FW78nm6EAA',
+    //     appId: '1:235910083998:android:8ac67cf79d7af5c17d128f',
+    //     messagingSenderId: 'messagingSenderId',
+    //     projectId: 'payments-all',
+    //     databaseURL: 'https://payments-all-default-rtdb.firebaseio.com'
+    // )
   );
 
 
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]).then((_) {
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]).then((_) {
     SharedPreferences.getInstance().then((prefs) {
       var darkModeOn = prefs.getBool('darkMode') ?? true;
       runApp(
