@@ -1,8 +1,8 @@
-![payments all 5-01](https://github.com/NafimAhmed/Paymentsall/assets/49490709/975831ce-691f-4c51-936f-359d6bef90c7)# payments_all_app
 
- Fintech app.
 
-## Getting Started
+ 
+
+## Payments all
 
 Payments all is a fintech app containing some innovative and new functionality. This is a MFS Type app. The app contains : 
 1) Money transfer funtion.
