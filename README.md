@@ -13,5 +13,7 @@ Payments all is a fintech app containing some innovative and new functionality. 
 
 For database we have used Firebase realtime database.
 
+On the other hand, we have used awsome notification for offline notification.
+
 
 
