@@ -1,10 +1,10 @@
 # payments_all_app
 
-A new Flutter project.
+This is a fintech app.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Payments all is a fintech app containing some innovative and new functionality
 
 A few resources to get you started if this is your first Flutter project:
 
