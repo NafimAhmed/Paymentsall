@@ -4,7 +4,7 @@
 
 ## Payments all
 
-Payments all is a fintech app containing some innovative and new functionality. This is a MFS Type app. The app contains : 
+Payments all is a fintech app containing some innovative and new functionality. This is a MFS Type app. This app is build in flutter framework The app contains : 
 1) Money transfer funtion.
 2) Add money function.
 3) Mobule recharge funtion.
