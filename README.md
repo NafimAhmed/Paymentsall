@@ -18,5 +18,7 @@ For database we have used Firebase realtime database.
 
 On the other hand, we have used awsome notification for offline notification.
 
+app link in playstore : https://play.google.com/store/apps/details?id=com.paymentsall.app&pcampaignid=web_share
+
 
 
