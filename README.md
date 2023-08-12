@@ -1,3 +1,6 @@
+
+![Uploading payments all 5-01.png…]()
+![Uploading payments all 4-01.png…]()
 # payments_all_app
 
  Fintech app.
